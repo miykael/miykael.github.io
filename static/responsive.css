@@ -1,0 +1,182 @@
+@media only screen and (max-width: 992px){
+	.pd-md-40{padding: 40px !important;}
+
+	.site-logo a{
+		font-size: 28px;
+	}
+
+	.about-img-content{
+		width: 200px;
+		height: 200px;
+	}
+
+	.service-wrapper .w-block{
+		padding: 30px;
+	}
+
+	.skill-data-alt{
+		margin-top: 20px;
+	}
+
+	.portfolio-content{
+		width: 47.9%;
+		margin: 1%;
+	}
+
+	.contact-data{
+		margin-bottom: 30px;
+	}
+
+	.sidebar-wrapper{
+		margin-top: 50px;
+	}
+}
+
+
+@media only screen and (max-width: 600px){
+	.pd-sm-30{padding: 30px !important;}
+
+	.site-logo a{
+		font-size: 24px;
+	}
+
+	.search-input input[type="search"]{
+		font-size: 18px;
+		line-height: 82px;
+	}
+	
+	.main-nav{
+		width: 220px;
+	}
+
+	.main-nav a{
+		font-size: 18px;
+		padding: 3px 30px;
+	}
+
+	.about-img{
+		padding-bottom: 0 !important;
+		padding-right: 50px !important;
+		margin-bottom: 0;
+	}
+
+	.service-center{
+		position: relative;
+		top: auto;
+		left: auto;
+		margin-bottom: 25px;
+		-webkit-transform: translate(0);
+		-moz-transform: translate(0);
+		-ms-transform: translate(0);
+		-o-transform: translate(0);
+		transform: translate(0);
+	}
+
+	.service-wrapper:hover .service-center{
+		opacity: 1;
+		visibility: visible;
+	}
+
+	.service-desc{
+		opacity: 1;
+		visibility: visible;
+		-webkit-transform: scale(1);
+		-moz-transform: scale(1);
+		-ms-transform: scale(1);
+		-o-transform: scale(1);
+		transform: scale(1);
+	}
+
+	.timeline:before{
+        left: 1.5px;
+    }
+
+    .timeline > li{
+        margin-bottom: 0px;
+        position: relative;
+        width:100%;
+        float: left;
+        clear: left;
+    }
+
+    .timeline-panel{
+        width: calc(100% - 30px);
+        width: -moz-calc(100% - 65px);
+        width: -webkit-calc(100% - 30px);
+    }
+
+	.timeline > li:nth-of-type(2){
+		margin-top: 20px;
+	}
+
+    .timeline-badge{
+        left: -10px;
+        margin-left: 0;
+        top: 16px;
+    }
+
+    .timeline-panel{
+        float: right;
+    }
+
+    .timeline-panel:before{
+        border-left-width: 0;
+        border-right-width: 15px;
+        left: -15px;
+        right: auto;
+    }
+
+    .timeline-panel:after{
+        border-left-width: 0;
+        border-right-width: 14px;
+        left: -14px;
+        right: auto;
+    }
+
+    .timeline > li.timeline-inverted{
+        float: left;
+        clear: left;
+    }
+
+    .timeline > li.timeline-inverted > .timeline-badge{
+        left: -10px;
+    }
+
+	.site-header .overlay-section{
+		padding-top: 40px;
+	}
+
+	.site-header-title{
+		text-align: center;
+		font-size: 28px;
+	}
+
+	.site-header-title span{
+		font-size: 18px;
+		padding-top: 5px;
+	}
+
+	.site-header-contact{
+		text-align: center;
+		margin-top: 15px;
+	}
+
+	.skill-desc,
+	.skill-data{
+		padding: 0 !important;
+	}
+
+	.skill-data{
+		margin-top: 30px;
+	}
+
+	.portfolio-content{
+		width: 95.9%;
+		margin: 2%;
+	}
+
+	.single-portfolio-desc{
+		padding: 20px 30px;
+	}
+
+}
