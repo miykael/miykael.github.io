@@ -1,3 +1,3 @@
-# miykael.github.io
+# Personal Homepage of Michael Notter
 
-My github page under https://miykael.github.io/.
+My personal homepage can be found under https://miykael.github.io/
