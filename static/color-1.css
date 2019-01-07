@@ -46,7 +46,7 @@
 .error-404-section a,
 .error-404-section a:hover,
 .owl-theme .owl-controls .owl-page span{
-	background-color: #2196F3 !important;
+	background-color: rgb(0, 96, 192) !important;
 }
 
 .btn-custom:hover,
@@ -87,7 +87,7 @@
 .single-portfolio-demo-link a:hover,
 .single-sidebar a:hover,
 .color-scheme-select-btn{
-	color: #2196F3 !important;
+	color: rgb(0, 96, 192) !important;
 }
 
 blockquote,
@@ -99,18 +99,18 @@ blockquote,
 .c-form-input:focus,
 body .color-scheme-select,
 .color-scheme-select-btn{
-	border-color: #2196F3 !important;
+	border-color: rgb(0, 96, 192) !important;
 }
 
 body .arrow-box::before,
 .timeline-panel .timeline-time::before{
-	border-left-color: #2196F3 !important;
+	border-left-color: rgb(0, 96, 192) !important;
 }
 
 .search-form .search-field:focus:not([readonly]),
 .input-field input:focus:not([readonly]),
 .input-field textarea:focus:not([readonly]){
-	-webkit-box-shadow: 0 1px 0 0 #2196F3 !important;
-	-moz-box-shadow: 0 1px 0 0 #2196F3 !important;
-	box-shadow: 0 1px 0 0 #2196F3 !important;
+	-webkit-box-shadow: 0 1px 0 0 rgb(0, 96, 192) !important;
+	-moz-box-shadow: 0 1px 0 0 rgb(0, 96, 192) !important;
+	box-shadow: 0 1px 0 0 rgb(0, 96, 192) !important;
 }

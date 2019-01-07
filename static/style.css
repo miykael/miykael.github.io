@@ -411,7 +411,7 @@ ol.ff-roboto-cn li, ul.ff-roboto-cn li{
 	font-size: 28px;
 	font-weight: 700;
 	letter-spacing: 5px;
-	color: #555555;
+	color: #222222;
 	text-transform: uppercase;
 	text-align: center;
 	margin: 30px 0 0;
@@ -672,7 +672,7 @@ ol.ff-roboto-cn li, ul.ff-roboto-cn li{
 	text-transform: capitalize;
 	padding: 7px 30px;
 	position: relative;
-	color: #555555;
+	color: #222222;
 	border-left: 5px solid transparent;
 	background: #ffffff !important;
 	-webkit-transition: all 0.3s;
@@ -1159,7 +1159,7 @@ ol.ff-roboto-cn li, ul.ff-roboto-cn li{
     margin-bottom: 5px;
 	font-size: 15px;
 	font-weight: 600;
-    color: #555555;
+    color: #222222;
 	text-align: left;
 	text-transform: capitalize;
 }
@@ -1325,7 +1325,7 @@ ol.ff-roboto-cn li, ul.ff-roboto-cn li{
 
 .timeline-date{
 	font-size: 15px;
-	color: #2196F3;
+	color: rgb(0, 96, 192)
 	width: 160px;
 	display: inline-block;
 }
@@ -1337,7 +1337,7 @@ ol.ff-roboto-cn li, ul.ff-roboto-cn li{
 .timeline-time{
 	display: inline-block;
 	padding: 0 15px;
-	color: #2196F3;
+	color: rgb(0, 96, 192);
 	font-size: 15px;
 	font-weight: 600;
 	height: 24px;
@@ -1381,7 +1381,7 @@ ol.ff-roboto-cn li, ul.ff-roboto-cn li{
 	font-size: 14px;
 	font-weight: 600;
 	display: inline-block;
-	color: #555555;
+	color: #222222;
 	padding: 8px 5px;
 	margin: 0 10px;
 	letter-spacing: 1px;
@@ -1799,7 +1799,7 @@ ol.ff-roboto-cn li, ul.ff-roboto-cn li{
 .reference-company{
 	font-size: 14px;
 	font-weight: 600;
-	color: #555555;
+	color: #222222;
 	padding-bottom: 20px;
 }
 
@@ -2320,7 +2320,7 @@ ol.children{
 .comment-author .fn{
 	font-size: 16px;
 	font-weight: 600;
-	color: #555555;
+	color: #222222;
 	display: inline-block;
 	margin-top: 5px;
 	margin-left: 15px;
@@ -2374,7 +2374,7 @@ ol.children{
 }
 
 .comment-meta a{
-	color: #555555;
+	color: #222222;
 	font-size: 14px;
 }
 
@@ -2419,7 +2419,7 @@ ol.children{
 }
 
 .comment-respond .logged-in-as{
-	color: #555555;
+	color: #222222;
 }
 
 .comment-respond .logged-in-as a{
@@ -2576,7 +2576,7 @@ ol.children{
 	margin-left: 85px;
 	font-size: 16px;
     font-weight: 600;
-    color: #555555;
+    color: #222222;
     display: inline-block;
     margin-top: 15px;
 }
@@ -2767,7 +2767,7 @@ ol.children{
 	display: inline-block;
 	width: 100px;
 	font-weight: 600;
-	color: #555555;
+	color: #222222;
 }
 
 
