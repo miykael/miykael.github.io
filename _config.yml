@@ -165,6 +165,12 @@ collections:
   projects:
     output: true
     permalink: /projects/:path/
+  education:
+    output: true
+    permalink: /education/:path/
+  experience:
+    output: true
+    permalink: /experience/:path/
 
 announcements:
   enabled: true
