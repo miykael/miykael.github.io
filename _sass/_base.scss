@@ -636,7 +636,7 @@ footer.sticky-bottom {
 
   h2.category {
     color: var(--global-theme-color);
-    border-bottom: 2px solid $grey-color-light;
+    border-bottom: 1px solid $grey-color;
     padding-top: 0.5rem;
     margin-top: 2rem;
     margin-bottom: 1rem;
@@ -664,7 +664,9 @@ footer.sticky-bottom {
       font-size: 1.5rem;
     }
   }
-
+  h2.year {
+    color: $grey-color;
+    border-top: 1px solid $grey-color;
   h2.bibliography {
     color: var(--global-divider-color);
     border-top: 1px solid var(--global-divider-color);
