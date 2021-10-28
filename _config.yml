@@ -110,7 +110,7 @@ zotero_username: # your zotero username
 rss_icon: true
 
 contact_note: >
-  The easiest way to reach me is via e-mail, LinkedIn or Twitter.
+  The easiest way to reach me is via e-mail, LinkedIn or Twitter. The fastest way is with chocolate 🍫.
 
 google_analytics: UA-126030922-1 # out your google-analytics code
 panelbear_analytics: #XXXXXXXXX # panelbear analytics site ID
@@ -165,12 +165,9 @@ collections:
   projects:
     output: true
     permalink: /projects/:path/
-  education:
+  background:
     output: true
-    permalink: /education/:path/
-  experience:
-    output: true
-    permalink: /experience/:path/
+    permalink: /background/:path/
 
 announcements:
   enabled: true
