@@ -235,7 +235,7 @@ ul.task-list input[type="checkbox"] {
 
 .navbar {
   box-shadow: none;
-  border-bottom: 1px solid var(--global-divider-color);
+  border-bottom: 1px solid $grey-color-light;
   background-color: var(--global-bg-color);
   opacity: 0.95;
 }
@@ -447,7 +447,7 @@ footer.fixed-bottom {
 }
 
 footer.sticky-bottom {
-  border-top: 1px solid var(--global-divider-color);
+  border-top: 1px solid $grey-color-light;
   padding-top: 40px;
   padding-bottom: 40px;
   font-size: 0.9rem;
@@ -500,7 +500,7 @@ footer.sticky-bottom {
 // Blog
 
 .header-bar {
-  border-bottom: 1px solid var(--global-divider-color);
+  border-bottom: 1px solid $grey-color-light;
   text-align: center;
   padding-top: 1rem;
   padding-bottom: 2rem;
@@ -541,7 +541,7 @@ footer.sticky-bottom {
   padding: 0;
 
   li {
-    border-bottom: 1px solid var(--global-divider-color);
+    border-bottom: 1px solid $grey-color-light;
     list-style: none;
     padding-top: 2rem;
     padding-bottom: 2rem;

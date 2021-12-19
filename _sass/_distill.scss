@@ -3,7 +3,7 @@
  ******************************************************************************/
 
 d-byline {
-  border-top-color: var(--global-divider-color) !important;
+  border-top-color: $grey-color-light !important;
 }
 
 d-byline h3 {
@@ -136,7 +136,7 @@ d-article {
 }
 
 d-appendix {
-  border-top-color: var(--global-divider-color) !important;
+  border-top-color: $grey-color-light !important;
   color: var(--global-distill-app-color) !important;
   h3,
   li,
