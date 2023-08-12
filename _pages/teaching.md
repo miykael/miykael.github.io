@@ -24,4 +24,4 @@ ___
 ___
 ### Autodidactic Teaching Tools
 - **2017**, Updated the user's guide to a more <a href="https://miykael.github.io/nipype_tutorial">interactive Nipype Tutorial</a> using Docker, Jupyter Notebooks, and CircleCI. This has attracted over 2,500 visitors per month from +150 countries.
-- **2011**, Launched the <a href="http://miykael.github.io/nipype-beginner-s-guide">Nipype Beginner's Guide</a>, the first comprehensive guide to Nipype, drawing more than 1,500 monthly visitors from +148 coun
+- **2011**, Launched the <a href="http://miykael.github.io/nipype-beginner-s-guide">Nipype Beginner's Guide</a>, the first comprehensive guide to Nipype, drawing more than 1,500 monthly visitors from +148 countries.

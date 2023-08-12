@@ -41,6 +41,7 @@ IMD
 INAPIC
 IPython
 ITU
+Imposter
 InlineBackend
 InputLayer
 Jani
@@ -74,6 +75,7 @@ NaN
 Neurohackademy
 Neuroimaging
 Neuroinformatics
+NewLife
 Nibabel
 Nilearn
 Nipype
@@ -119,6 +121,7 @@ UMAP's
 UserWarnings
 VAE
 VCSELs
+VR
 VarianceScaling
 Viessman
 WhitakerLab
@@ -196,6 +199,7 @@ dropna
 dtypes
 eScience
 edgecolor
+ee
 el
 emb
 endfor
@@ -274,6 +278,7 @@ linestyles
 lineviewer
 linewidth
 linewidths
+linkedin
 linspace
 loc
 logreg
@@ -309,7 +314,9 @@ nd
 neurobiology
 neuroimaging
 neuroinformatics
+neuroscientist
 neutrophils
+newlife
 nifti
 nimg
 nipype
@@ -328,6 +335,8 @@ ok
 openml
 optimizers
 os
+osram
+oyd
 pairplot
 param
 params
@@ -398,6 +407,7 @@ thats
 ticklabels
 timepoint
 timepoints
+tkqpq
 totalling
 towardsdatascience
 tqdm
