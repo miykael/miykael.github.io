@@ -17,7 +17,7 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
-I am a **Senior Machine Learning researcher & neuroscientist** working at the cutting edge of machine learning, neuroimaging, computer vision, vital signs, AR/VR, and multi-sensor sensing. Driven by a fascination with hidden patterns in both the mind and the digital world, my **background** combines a robust understanding of signal processing, open source, Python, and innovation across various domains.
+I am a **Senior Machine Learning researcher & neuroscientist** working at the cutting edge of machine learning, neuroimaging, computer vision, vital signs, AR/VR, and multi-sensor sensing. Driven by a fascination with hidden patterns in both the mind and the digital world, my background combines a robust understanding of signal processing, open source, Python, and innovation across various domains.
 
 With a knack for quality, efficiency, and transparency, I **am experienced** in working on challenging projects, both as a team member and project leader. My expertise extends to crafting innovative toolboxes, mentoring, and leading proof-of-concept projects across sectors like medicine, manufacturing, semiconductors, and optical solutions. Collaborating with stakeholders from academia and industry, I apply my insights and methods with precision and adaptability. For more, check out my **<a href="/assets/pdf/CV_Notter.pdf">curriculum vitae</a>**, <a href="/publications">publications</a>, <a href="/background">background</a>, and <a href="/projects">projects</a> page.
 
