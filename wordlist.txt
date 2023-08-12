@@ -351,6 +351,7 @@ pearson
 perc
 perceptron
 permalink
+photodiodes
 plt
 png
 pre
