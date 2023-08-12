@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-🥳 <a href="https://twitter.com/miyka_el/status/1278034094576844800">Solo gold</a> medal (11th place out of 1047 teams) in my first ever Kaggle challenge!
+🥳 Won a <a href="https://twitter.com/miyka_el/status/1278034094576844800">solo gold</a> medal (11th place out of 1047) in my first-ever Kaggle challenge! Imposter syndrome is slightly reduced.

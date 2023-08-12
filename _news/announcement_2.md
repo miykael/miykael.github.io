@@ -5,4 +5,4 @@ inline: true
 related_posts: false
 ---
 
-👨‍🎨 My <a href="https://twitter.com/miyka_el/status/1278034094576844800">visual art project</a> is finally out - <a href="https://www.youtube.com/watch?v=DC1KHAxE7mo">7777 days of Noah</a>.
+👨‍🎨 Proud to release my unique <a href="https://twitter.com/miyka_el/status/1278034094576844800">visual art project</a> - <a href="https://www.youtube.com/watch?v=DC1KHAxE7mo">7777 days of Noah</a>.
