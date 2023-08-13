@@ -15,6 +15,7 @@ Supervision of Learners for the <a href="https://www.extensionschool.ch/applied-
 **Teaching**: Empowered over 1000 learners from various backgrounds, covering the full data science pipeline with an equal focus on all stages including data preparation, exploration, modeling, post-analysis investigation, results visualization and communication.
 
 **Mentoring**: Guided 100s of proof-of-concept projects from industry and research, across diverse sectors including finance, medicine, consumer service, energy, insurance, marketing, meteorology, robotics, transportation, and manufacturing, tailoring guidance to meet the unique needs of each domain.
+
 ___
 ### Workshops and Talks
 - **2020**: Conducted a comprehensive **2-day** MRI analysis workshop at the <a href="https://github.com/miykael/workshop_pybrain">University of Cambridge, UK</a> (2nd invitation), held a **3.5-hour** interactive hands-on Machine Learning talk to 400 participants at the <a href="https://appliedmldays.org/events/amld-epfl-2020/workshops/epfl-extension-school-workshop-machine-learning-and-data-visualization">SwissTech Convention Center, EPFL, Switzerland</a>, and gave a **1-hour** talk at the <a href="https://github.com/miykael/journal_club_uab">University of Alabama at Birmingham, USA</a> on neuroimaging toolboxes.
