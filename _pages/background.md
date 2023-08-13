@@ -31,7 +31,7 @@ Development, execution, and analysis of +8 neuroimaging experiments using MRI, E
 <p style="font-size:0.85rem; margin-bottom: 0">2013 - 2014</p>
 <p style="font-size:1.25rem; margin-bottom: 0"><b>Research Assistant in Neuroscience & Neuroimaging</b> · <i>INAPIC, Zurich</i></p>
 
-Development and maintenance of analysis software for behavioral, physiological & MRI data. Extensive support to research collaborators for data analysis.
+Development and maintenance of analysis software for behavioral, physiological & neuroimaging (MRI) data. Extensive support to research collaborators for data analysis.
 
 <p style="font-size:0.85rem; margin-bottom: 0">2011 - 2011</p>
 <p style="font-size:1.25rem; margin-bottom: 0"><b>Internship at Massachusetts Institute of Technology</b> · <i>MIT, Cambridge, USA</i></p>
