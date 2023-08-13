@@ -11,7 +11,7 @@ ___
 <p style="font-size:0.85rem; margin-bottom: 0">2023 - present</p>
 <p style="font-size:1.25rem; margin-bottom: 0"><b>Senior Machine Learning Staff Engineer</b> · <i>ams OSRAM, Martigny</i></p>
 
-With expanded responsibilities, I take on technical leadership in machine learning projects, encompassing vital signs monitoring, eye tracking, AR/VR, and spatial computing. My emphasis on edge AI leads to minimizing computational, memory, and energy costs, steering the development of highly efficient algorithms. My role entails driving projects to their required technical milestones with precision and creatively integrating machine learning with various sensor technologies.
+With my expanded responsibilities, I take on technical leadership in machine learning projects, including vital signs monitoring, eye tracking, AR/VR, and spatial computing. I concentrate on crafting elegant and innovative AI solutions, minimizing computational, memory, and energy costs, and steering the development of highly efficient algorithms. My role involves driving projects to their required technical milestones with precision, while creatively integrating machine learning with various sensor technologies.
 
 <p style="font-size:0.85rem; margin-bottom: 0">2022 - 2023</p>
 <p style="font-size:1.25rem; margin-bottom: 0"><b>Machine Learning Staff Engineer</b> · <i>ams OSRAM, Martigny</i></p>
@@ -21,7 +21,7 @@ Specializing in sensor fusion, optical solutions, and signal processing, I utili
 <p style="font-size:0.85rem; margin-bottom: 0">2019 - 2022</p>
 <p style="font-size:1.25rem; margin-bottom: 0"><b>Data Science Course Developer & Instructor</b> · <i>EPFL, Lausanne</i></p>
 
-**Content Director** for <a href="https://www.thats-ai.org/">That's AI</a>, I managed an informative online platform about Artificial Intelligence across three languages. My responsibilities include coordinating with marketing, front-end developers, business customers, and supervision of multiple content creators, web designers, language translators, and illustrators.<br>Additionally, as a **Course Developer and Instructor** for the "Applied Data Science: Machine Learning" program at the EPFL Extension School, I guided participants through proof-of-concept projects from various industries, optimized numerous company internal processes, and developed new teaching tools. My work also includes creating and executing AI workshops, hackathons, and conference talks, as well as collaborating with academic and private sector partners to identify opportunities for data-driven solutions across multiple industries.
+As **Content Director** for <a href="https://www.thats-ai.org/">That's AI</a>, I managed an informative online platform about AI across three languages, coordinating with marketing, front-end developers, business customers and supervised content creators, designers, and translators.<br>As a **Course Developer and Instructor** for the "Applied Data Science: Machine Learning" program at the EPFL Extension School, I guided 100s of participants through proof-of-concept projects from various industries, optimized numerous company internal processes, and developed new teaching tools. I created and executed AI workshops, hackathons, conference talks, and collaborated with academic and private sector partners to identify opportunities for data-driven solutions across multiple industries.
 
 <p style="font-size:0.85rem; margin-bottom: 0">2014 - 2016</p>
 <p style="font-size:1.25rem; margin-bottom: 0"><b>Research Collaborator in Neuroscience & Neuroimaging</b> · <i>CHUV, Lausanne</i></p>
@@ -31,7 +31,7 @@ Development, execution, and analysis of +8 neuroimaging experiments using MRI, E
 <p style="font-size:0.85rem; margin-bottom: 0">2013 - 2014</p>
 <p style="font-size:1.25rem; margin-bottom: 0"><b>Research Assistant in Neuroscience & Neuroimaging</b> · <i>INAPIC, Zurich</i></p>
 
-Development and maintenance of analysis software for behavioral, physiological & MRI data. Extensive support to research collaborators for data analysis.
+Development and maintenance of analysis software for behavioral, physiological & neuroimaging (MRI) data. Extensive support to research collaborators for data analysis.
 
 <p style="font-size:0.85rem; margin-bottom: 0">2011 - 2011</p>
 <p style="font-size:1.25rem; margin-bottom: 0"><b>Internship at Massachusetts Institute of Technology</b> · <i>MIT, Cambridge, USA</i></p>
