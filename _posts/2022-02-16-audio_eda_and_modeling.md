@@ -172,7 +172,7 @@ plt.show();
 
 # 2. Data cleaning
 
-Now that we understand a bit better what audio data looks like, let's visualize a few more examples. **Note:** You can download these four examples via these links: [Audio 1](https://www.dropbox.com/s/d18yep5a4ljrfcq/c4_sample-1.mp3?dl=1), [Audio 2](https://www.dropbox.com/s/kkowbp9on57ugoa/c4_sample-2.mp3?dl=1), [Audio 3](https://www.dropbox.com/s/skgx2pygubayh5h/c4_sample-3.mp3?dl=1), [Audio 4](https://www.dropbox.com/s/mdv4f2csuyefo17/c4_sample-4.mp3?dl=1).
+Now that we understand a bit better what audio data looks like, let's visualize a few more examples. **Note:** You can download these four examples via these links: [Audio 1](https://www.dropbox.com/scl/fi/ceu5qsyez4bd6u8t3vs5p/sample-1.mp3?rlkey=zbfhlubooqibxq3esgs2uj0n3&dl=1), [Audio 2](https://www.dropbox.com/scl/fi/3t83r5hixff5ukpsj4j2a/sample-2.mp3?rlkey=89i8mgih8fdtyfogofuk4f0oz&dl=1), [Audio 3](https://www.dropbox.com/scl/fi/szhl9e9nvsxa0hnqxq92g/sample-3.mp3?rlkey=ijc5r25mogyzj6mt2q712ez7r&dl=1), [Audio 4](https://www.dropbox.com/scl/fi/oblgdqg23inbiu7i7oe0l/sample-4.mp3?rlkey=untuktpabwvzklwnqb1woc6qk&dl=1).
 
 ```python
 # Visualization of four mp3 files
