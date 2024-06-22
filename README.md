@@ -12,7 +12,7 @@
 A simple, clean, and responsive [Jekyll](https://jekyllrb.com/) theme for academics.
 If you like the theme, give it a star!
 
-[![Preview](https://raw.githubusercontent.com/alshedivat/al-folio/master/assets/img/al-folio-preview.png)](https://alshedivat.github.io/al-folio/)
+[![Preview](https://github.com/alshedivat/al-folio/blob/master/readme_preview/al-folio-preview.png?raw=true)](https://alshedivat.github.io/al-folio/)
 
 
 ## User community
@@ -58,7 +58,7 @@ Feel free to add your own page(s) by sending a PR.
 <a href="https://julianstreyczek.github.io" target="_blank">★</a>
 <a href="https://sdaza.com" target="_blank">★</a>
 <a href="https://niweera.gq" target="_blank">★</a>
-   
+
 </td>
 </tr>
 <tr>
