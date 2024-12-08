@@ -1,4 +1,6 @@
+ADHD
 AMLD
+ASD
 Atlasreader
 AveragePooling
 BatchNormalization
@@ -15,6 +17,7 @@ ConfusionMatrixDisplay
 Conv
 ConvNet
 ConvNets
+DSP
 DataFrame
 DataLad
 Decile
@@ -84,6 +87,7 @@ OVGU
 OpenML
 OpenNeuro
 PCA
+PPG
 Param
 Parcellation
 PathEffects
@@ -248,6 +252,7 @@ ibn
 idx
 imbalancing
 img
+impactful
 imshow
 infos
 init
@@ -374,6 +379,7 @@ resnet
 rgb
 savefig
 savez
+scalable
 scaler
 scalers
 scikit

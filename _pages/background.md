@@ -57,12 +57,12 @@ ___
 
 <p style="font-size:0.85rem; margin-bottom: 0">2012 - 2014</p>
 <p style="font-size:1.25rem; margin-bottom: 0"><b>Master of Science in Neuroscience with minor in Neuroinformatics</b> · <i>University of Zurich</i></p>
-Explored computational models in neuroscience, with a thesis comparing neurological patterns in ASD (autism spectrum disorder) and ADHD via structural MRI data analysis. Lectures covered neuroinformatics, neurobiolo-gy, cognitive psychology, neuroimaging methods, AI, signal processing & computational vision.
+Explored computational models in neuroscience, with a thesis comparing neurological patterns in ASD (autism spectrum disorder) and ADHD via structural MRI data analysis. Lectures covered neuroinformatics, neurobiology, cognitive psychology, neuroimaging methods, AI, signal processing & computational vision.
 
 <p style="font-size:0.85rem; margin-bottom: 0">2007 - 2012</p>
 <p style="font-size:1.25rem; margin-bottom: 0"><b>Bachelor of Science in Psychology with minor in Neuroinformatics</b> · <i>University of Zurich</i></p>
 
-Studied the intersection of psychology and technology, focusing on how technological tools can enhance our understanding of cognitive and emotional processes, with lectures in neuroinformatics, statistics, neurosci-ence, informatics, biology, mathematics & AI.
+Studied the intersection of psychology and technology, focusing on how technological tools can enhance our understanding of cognitive and emotional processes, with lectures in neuroinformatics, statistics, neuroscience, informatics, biology, mathematics & AI.
 
 <br>
 
