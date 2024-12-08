@@ -10,33 +10,32 @@ ___
 
 <p style="font-size:0.85rem; margin-bottom: 0">2023 - present</p>
 <p style="font-size:1.25rem; margin-bottom: 0"><b>Senior Machine Learning Staff Engineer</b> · <i>ams OSRAM, Martigny</i></p>
-
-With my expanded responsibilities, I take on technical leadership in machine learning projects, including vital signs monitoring, eye tracking, AR/VR, and spatial computing. I concentrate on crafting elegant and innovative AI solutions, minimizing computational, memory, and energy costs, and steering the development of highly efficient algorithms. My role involves driving projects to their required technical milestones with precision, while creatively integrating machine learning with various sensor technologies.
+As a technical lead in AI development for next-gen wearable devices, I optimize signal processing pipelines (DSP), exploit nuanced information in latent spaces using specialized loss functions, and minimize computational costs for applications in vital signs monitoring (PPG, respiration), eye-tracking (gaze), AR/VR, and spatial computing on edge hardware. My role involves collaborating extensively with cross-functional engineering teams to translate complex research findings into robust, scalable AI solutions.
 
 <p style="font-size:0.85rem; margin-bottom: 0">2022 - 2023</p>
 <p style="font-size:1.25rem; margin-bottom: 0"><b>Machine Learning Staff Engineer</b> · <i>ams OSRAM, Martigny</i></p>
 
-Specializing in sensor fusion, optical solutions, and signal processing, I utilize vertical-cavity surface-emitting lasers (VCSELs) and spectroscopy photodiodes to develop advanced signal processing and machine learning techniques that enhance performance in spatial and biomedical sensing. My focus is on achieving real-time functionality in vital signs monitoring and pioneering innovative technologies like self-mixing interferometry (SMI), aiming for high-accuracy, low-power solutions at remarkable speeds.
+Spearheaded projects in sensor fusion, signal processing, and optical solutions, using machine learning—including generative models and constrained optimization — to enhance the performance of spatial and biomedical sensing devices. Developed real-time processing capabilities for vital signs monitoring (PPG, respiration) and eye-tracking (gaze) and pioneered innovative technologies like self-mixing interferometry (SMI), aiming for high-accuracy, low-power solutions at remarkable speeds.
 
 <p style="font-size:0.85rem; margin-bottom: 0">2019 - 2022</p>
 <p style="font-size:1.25rem; margin-bottom: 0"><b>Data Science Course Developer & Instructor</b> · <i>EPFL, Lausanne</i></p>
 
-As **Content Director** for <a href="https://www.thats-ai.org/">That's AI</a>, I managed an informative online platform about AI across three languages, coordinating with marketing, front-end developers, business customers and supervised content creators, designers, and translators.<br>As a **Course Developer and Instructor** for the "Applied Data Science: Machine Learning" program at the EPFL Extension School, I guided 100s of participants through proof-of-concept projects from various industries, optimized numerous company internal processes, and developed new teaching tools. I created and executed AI workshops, hackathons, conference talks, and collaborated with academic and private sector partners to identify opportunities for data-driven solutions across multiple industries.
+As an Applied **Machine Learning Course Developer and Instructor**, I mentored hundreds of participants through hands-on ML projects across various industries and optimized numerous company internal processes. I created and executed AI workshops, hackathons, conference talks, and collaborated with academic and industry partners to identify data-driven solutions. As **Content Director** for <a href="https://www.thats-ai.org/">That's AI</a>, I led the creation of an informative multilingual AI education platform, coordinating with content creators, designers, marketing, and front-end developers.
 
 <p style="font-size:0.85rem; margin-bottom: 0">2014 - 2016</p>
 <p style="font-size:1.25rem; margin-bottom: 0"><b>Research Collaborator in Neuroscience & Neuroimaging</b> · <i>CHUV, Lausanne</i></p>
 
-Development, execution, and analysis of +8 neuroimaging experiments using MRI, EEG, and eye-tracking, plus general software development and teaching.
+Developed, executed, and analyzed eight neuroimaging studies using MRI, EEG, and eye-tracking, focusing on neurological health conditions. Developed several software tools to enhance the analysis and interpretation of complex MRI and EEG data, focusing on performance and adaptability, optimizing processing pipelines for efficiency.
 
 <p style="font-size:0.85rem; margin-bottom: 0">2013 - 2014</p>
 <p style="font-size:1.25rem; margin-bottom: 0"><b>Research Assistant in Neuroscience & Neuroimaging</b> · <i>INAPIC, Zurich</i></p>
 
-Development and maintenance of analysis software for behavioral, physiological & neuroimaging (MRI) data. Extensive support to research collaborators for data analysis.
+Supported a range of projects by developing software tools for analyzing behavioral, physiological, and MRI data focused on aging; provided support to collaborators for data analysis, enhancing the accuracy and efficiency of research outcomes.
 
 <p style="font-size:0.85rem; margin-bottom: 0">2011 - 2011</p>
 <p style="font-size:1.25rem; margin-bottom: 0"><b>Internship at Massachusetts Institute of Technology</b> · <i>MIT, Cambridge, USA</i></p>
 
-Design and execution of experiments, development of neuroimaging software, technical support, and teaching. One-month extension due to very satisfactory work.
+Design and execution of neuroimaging research, development and optimization of signal processing software. Extended internship due to exceptional performance, emphasizing my ability to work autonomously and effectively in a research setting.
 
 <p style="font-size:0.85rem; margin-bottom: 0">2012 - 2017</p>
 <p style="font-size:1.25rem; margin-bottom: 0"><b>Special officer in the Psychological-Pedagogical Service of the Armed Forces</b> · <i>Swiss Army</i></p>
@@ -54,16 +53,16 @@ ___
 
 <p style="font-size:0.85rem; margin-bottom: 0">2016 - 2021</p>
 <p style="font-size:1.25rem; margin-bottom: 0"><b>PhD in Neuroscience</b> · <i>University of Lausanne</i></p>
-**Thesis**: <a href="/assets/pdf/Thesis_2021_PhD_Notter.pdf">Innovation and standardization of processing pipelines for functional MRI data analysis</a><br>**Work**: Development of 8 neuroimaging toolboxes to facilitate the processing and analysis of MRI, EEG, and eye-tracking data, focusing on human cognitive mechanisms such as multisensory integration and rhythm perception. Planning and execution of 7 research studies, including acquiring various datasets using novel measuring techniques. Analysis methods included classical statistical analysis, as well as machine learning approaches.
+**Thesis**: <a href="/assets/pdf/Thesis_2021_PhD_Notter.pdf">Innovation and standardization of processing pipelines for functional MRI data analysis</a><br>**Work**: Focused on optimizing neuroimaging data analysis pipelines using advanced machine learning techniques. Developed eight neuroimaging toolboxes facilitating efficient processing and analysis of MRI, EEG, and eye-tracking data. Executed seven research studies incorporating novel measuring techniques, emphasizing performance and adaptability.
 
 <p style="font-size:0.85rem; margin-bottom: 0">2012 - 2014</p>
 <p style="font-size:1.25rem; margin-bottom: 0"><b>Master of Science in Neuroscience with minor in Neuroinformatics</b> · <i>University of Zurich</i></p>
-**Thesis**: <a href="/assets/pdf/Thesis_2014_Master_Notter.pdf">Differences and similarities between the brains of children with attention deficit hyperactivity disorder and children with autism spectrum disorder - An analysis of 700 anatomical MRI scans</a><br>**Lectures** in neuroinformatics, neurobiology, cognitive psychology, neuroimaging methods, neural networks, models of computation & computational vision.
+Explored computational models in neuroscience, with a thesis comparing neurological patterns in ASD (autism spectrum disorder) and ADHD via structural MRI data analysis. Lectures covered neuroinformatics, neurobiolo-gy, cognitive psychology, neuroimaging methods, AI, signal processing & computational vision.
 
 <p style="font-size:0.85rem; margin-bottom: 0">2007 - 2012</p>
 <p style="font-size:1.25rem; margin-bottom: 0"><b>Bachelor of Science in Psychology with minor in Neuroinformatics</b> · <i>University of Zurich</i></p>
 
-**Thesis**: On achieving satisfaction and subjective well-being. A review of intervention studies from positive psychology.<br>**Lectures** in psychology, neuroinformatics, statistics, neuroscience, informatics, biology, mathematics & AI.
+Studied the intersection of psychology and technology, focusing on how technological tools can enhance our understanding of cognitive and emotional processes, with lectures in neuroinformatics, statistics, neurosci-ence, informatics, biology, mathematics & AI.
 
 <br>
 
