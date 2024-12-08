@@ -111,10 +111,10 @@ Why Jekyll? Read [Andrej Karpathy's blog post](https://karpathy.github.io/2014/0
 Assuming you have [Ruby](https://www.ruby-lang.org/en/downloads/) and [Bundler](https://bundler.io/) installed on your system (*hint: for ease of managing ruby gems, consider using [rbenv](https://github.com/rbenv/rbenv)*), first [fork](https://guides.github.com/activities/forking/) the theme from `github.com:alshedivat/al-folio` to `github.com:<your-username>/<your-repo-name>` and do the following:
 
 ```bash
-$ git clone git@github.com:<your-username>/<your-repo-name>.git
-$ cd <your-repo-name>
-$ bundle install
-$ bundle exec jekyll serve
+git clone git@github.com:<your-username>/<your-repo-name>.git
+cd <your-repo-name>
+bundle install
+bundle exec jekyll serve
 ```
 
 Now, feel free to customize the theme however you like (don't forget to change the name!).
@@ -149,7 +149,7 @@ Starting version [v0.3.5](https://github.com/alshedivat/al-folio/releases/tag/v0
 
 If you need to manually re-deploy your website to GitHub pages, run the deploy script from the root directory of your repository:
 ```bash
-$ ./bin/deploy
+./bin/deploy
 ```
 uses the `master` branch for the source code and deploys the webpage to `gh-pages`.
 
@@ -159,7 +159,7 @@ uses the `master` branch for the source code and deploys the webpage to `gh-page
 
 If you decide to not use GitHub Pages and host your page elsewhere, simply run:
 ```bash
-$ bundle exec jekyll build
+bundle exec jekyll build
 ```
 which will (re-)generate the static webpage in the `_site/` folder.
 Then simply copy the contents of the `_site/` foder to your hosting server.
@@ -179,7 +179,7 @@ Firstly, from the deployment repo dir, checkout the git branch hosting your publ
 
 Then from the website sources dir (commonly your al-folio fork's clone):
 ```bash
-$ bundle exec jekyll build --destination $HOME/repo/publishing-source
+bundle exec jekyll build --destination $HOME/repo/publishing-source
 ```
 
 This will instruct jekyll to deploy the website under `$HOME/repo/publishing-source`.
@@ -207,9 +207,9 @@ If you installed **al-folio** as described above, you can upgrade to the latest 
 
 ```bash
 # Assuming the current directory is <your-repo-name>
-$ git remote add upstream https://github.com/alshedivat/al-folio.git
-$ git fetch upstream
-$ git rebase upstream/v0.3.5
+git remote add upstream https://github.com/alshedivat/al-folio.git
+git fetch upstream
+git rebase upstream/v0.3.5
 ```
 
 If you have extensively customized a previous version, it might be trickier to upgrade.
