@@ -7,7 +7,7 @@ description: Implementing sophisticated neural networks for regression tasks
 
 In this final part of our series, we'll explore advanced TensorFlow concepts by building a sophisticated regression model. While Part 2 introduced basic neural networks for classification, we'll now tackle regression and demonstrate TensorFlow's powerful features for model customization and optimization. However, as in part 3, the purpose of this tutorial is to highlight the flexibility and capabilities of TensorFlow. Therefore, this showcase is mostly about introducing you to those advanced routines and not about how to create the best regression model.
 
-## Why Advanced Neural Networks?
+### Why Advanced Neural Networks?
 
 Complex real-world problems often require:
 - Custom model architectures
@@ -60,13 +60,16 @@ df.head()
 
     Shape of dataset: (4177, 11)
 
-|    |   Length |   Diameter |   Height |   Whole weight |   Shucked weight |   Viscera weight |   Shell weight |   Rings |   Sex_F |   Sex_I |   Sex_M |
-|---:|---------:|-----------:|---------:|---------------:|-----------------:|-----------------:|---------------:|--------:|--------:|--------:|--------:|
-|  0 |    0.455 |      0.365 |    0.095 |         0.514  |           0.2245 |           0.101  |          0.15  |      15 |       0 |       0 |       1 |
-|  1 |    0.35  |      0.265 |    0.09  |         0.2255 |           0.0995 |           0.0485 |          0.07  |       7 |       0 |       0 |       1 |
-|  2 |    0.53  |      0.42  |    0.135 |         0.677  |           0.2565 |           0.1415 |          0.21  |       9 |       1 |       0 |       0 |
-|  3 |    0.44  |      0.365 |    0.125 |         0.516  |           0.2155 |           0.114  |          0.155 |      10 |       0 |       0 |       1 |
-|  4 |    0.33  |      0.255 |    0.08  |         0.205  |           0.0895 |           0.0395 |          0.055 |       7 |       0 |       1 |       0 |
+|:--------:|:----------:|:--------:|:--------------:|:----------------:|:----------------:|:--------------:|:-------:|:-------:|:-------:|:-------:|
+|   Length |   Diameter |   Height |   Whole weight |   Shucked weight |   Viscera weight |   Shell weight |   Rings |   Sex_F |   Sex_I |   Sex_M |
+|:--------:|:----------:|:--------:|:--------------:|:----------------:|:----------------:|:--------------:|:-------:|:-------:|:-------:|:-------:|
+|    0.455 |      0.365 |    0.095 |         0.514  |           0.2245 |           0.101  |          0.15  |      15 |       0 |       0 |       1 |
+|    0.35  |      0.265 |    0.09  |         0.2255 |           0.0995 |           0.0485 |          0.07  |       7 |       0 |       0 |       1 |
+|    0.53  |      0.42  |    0.135 |         0.677  |           0.2565 |           0.1415 |          0.21  |       9 |       1 |       0 |       0 |
+|    0.44  |      0.365 |    0.125 |         0.516  |           0.2155 |           0.114  |          0.155 |      10 |       0 |       0 |       1 |
+|    0.33  |      0.255 |    0.08  |         0.205  |           0.0895 |           0.0395 |          0.055 |       7 |       0 |       1 |       0 |
+
+<br>
 
 Next, let's split the dataset into a train and test set.
 
@@ -287,8 +290,7 @@ def plot_history(history_file='history_log.csv', title=''):
 # Plot history information
 plot_history(history_file='history_log.csv', title="Training overview")
 ```
-<img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/ex_plots/
-ex_04_tensorflow_advanced_output_17_0.png" data-zoomable width=800px style="padding-top: 20px; padding-right: 20px;
+<img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/ex_plots/ex_04_tensorflow_advanced_output_17_0.png" data-zoomable width=800px style="padding-top: 20px; padding-right: 20px;
 padding-bottom: 20px; padding-left: 20px">
 
 ## Analyzing Model Performance
@@ -613,13 +615,16 @@ results = pd.concat(results).reset_index(drop=True).sort_values('loss_te')
 results
 ```
 
-|    | use_batch   | optimizers   |   learning_rate | kernel_regularizer   | kernel_init    | hidden     |   dropout_rate |   batch_size | activation   |   loss_tr |   MAE_tr |   loss_te |   MAE_te |   idx |
-|---:|:------------|:-------------|----------------:|:---------------------|:---------------|:-----------|---------------:|-------------:|:-------------|----------:|---------:|----------:|---------:|------:|
-|  1 | False       | sgd          |          0.001  |                      | glorot_uniform | [8, 4]     |            0.5 |          128 | tanh         |   5.2905  |  1.58287 |   6.25027 |  1.73029 | 13396 |
-|  0 | False       | sgd          |          0.0001 |                      | glorot_uniform | [8]        |            0   |          128 | selu         |   5.2939  |  1.64328 |   7.14837 |  1.8074  |  8794 |
-|  4 | False       | adam         |          0.0001 | l2                   | glorot_uniform | [8, 16, 8] |            0.5 |          128 | selu         |   6.94665 |  1.71511 |   8.04218 |  1.85146 | 10254 |
-|  2 | True        | sgd          |          0.0001 |                      | uniform        | [8, 4]     |            0.5 |           32 | relu         |   8.65953 |  2.05007 |  10.0391  |  2.14398 |  1355 |
-|  3 | True        | rmsprop      |          0.0001 |                      | he_uniform     | [8, 16, 8] |            0.5 |          128 | tanh         |  24.535   |  3.95683 |  26.6054  |  4.07911 | 13593 |
+|:-----------:|:------------:|:---------------:|:--------------------:|:--------------:|:----------:|:--------------:|:------------:|:------------:|:---------:|:--------:|:---------:|:--------:|:-----:|
+| use_batch   | optimizers   |   learning_rate | kernel_regularizer   | kernel_init    | hidden     |   dropout_rate |   batch_size | activation   |   loss_tr |   MAE_tr |   loss_te |   MAE_te |   idx |
+|:-----------:|:------------:|:---------------:|:--------------------:|:--------------:|:----------:|:--------------:|:------------:|:------------:|:---------:|:--------:|:---------:|:--------:|:-----:|
+| False       | sgd          |          0.001  |                      | glorot_uniform | [8, 4]     |            0.5 |          128 | tanh         |   5.2905  |  1.58287 |   6.25027 |  1.73029 | 13396 |
+| False       | sgd          |          0.0001 |                      | glorot_uniform | [8]        |            0   |          128 | selu         |   5.2939  |  1.64328 |   7.14837 |  1.8074  |  8794 |
+| False       | adam         |          0.0001 | l2                   | glorot_uniform | [8, 16, 8] |            0.5 |          128 | selu         |   6.94665 |  1.71511 |   8.04218 |  1.85146 | 10254 |
+| True        | sgd          |          0.0001 |                      | uniform        | [8, 4]     |            0.5 |           32 | relu         |   8.65953 |  2.05007 |  10.0391  |  2.14398 |  1355 |
+| True        | rmsprop      |          0.0001 |                      | he_uniform     | [8, 16, 8] |            0.5 |          128 | tanh         |  24.535   |  3.95683 |  26.6054  |  4.07911 | 13593 |
+
+<br>
 
 From this table, you could now perform a multitude of follow-up investigations. For example, take a look at the
 loss evolution during training:
@@ -645,7 +650,7 @@ In this final tutorial, we've covered:
 - Using callbacks for training optimization
 - Comparing different model approaches
 
-Key takeaways:
+**Key takeaways:**
 1. Complex architectures aren't always better
 2. Proper training procedures are crucial
 3. Model comparison helps choose the best approach
@@ -654,5 +659,5 @@ Key takeaways:
 
 Throughout this series, we've progressed from basic classification to advanced regression, covering both traditional machine learning and deep learning approaches. We've seen how Scikit-learn and TensorFlow complement each other, each offering unique strengths for different types of problems.
 
-[← Back to Part 3: Advanced Machine Learning with Scikit-learn]({{ site.baseurl }}/blog/2023/03_scikit_advanced)
+[← Back to Part 3]({{ site.baseurl }}/blog/2023/03_scikit_advanced) or
 [Return to Series Overview →]({{ site.baseurl }}/blog/2023/01_scikit_simple)

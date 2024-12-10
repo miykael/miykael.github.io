@@ -14,7 +14,7 @@ The series consists of four parts:
 3. **[Advanced Machine Learning with Scikit-learn]({{ site.baseurl }}/blog/2023/03_scikit_advanced)** (Part 3)<br>Exploring complex regression problems and model optimization
 4. **[Advanced Neural Networks with TensorFlow]({{ site.baseurl }}/blog/2023/04_tensorflow_advanced)** (Part 4)<br>Implementing sophisticated neural network architectures
 
-## Why These Tools?
+### Why These Tools?
 
 [Scikit-learn](https://scikit-learn.org/stable/) is Python's most popular machine learning library for a reason. It provides:
 - A consistent interface across different algorithms
@@ -408,7 +408,7 @@ We've seen how Scikit-learn's consistent API makes it easy to experiment with di
 
 In the next post, we'll tackle the same MNIST classification problem using TensorFlow, introducing neural networks and deep learning concepts. This will help you understand the differences between classical machine learning approaches and deep learning, and when to use each.
 
-Key takeaways:
+**Key takeaways:**
 1. Even simple models can achieve good performance on well-structured problems
 2. Start with simple models and gradually increase complexity
 3. Cross-validation is crucial for reliable performance estimation
@@ -418,4 +418,4 @@ Key takeaways:
 
 In Part 2, we'll explore how neural networks approach the same problem using TensorFlow, introducing deep learning concepts and comparing the two approaches.
 
-[Continue to Part 2: Basic Neural Networks with TensorFlow →]({{ site.baseurl }}/blog/2023/02_tensorflow_simple)
+[Continue to Part 2 →]({{ site.baseurl }}/blog/2023/02_tensorflow_simple)

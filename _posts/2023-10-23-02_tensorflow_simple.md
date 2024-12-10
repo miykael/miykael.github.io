@@ -8,7 +8,7 @@ description: Building your first neural network for image classification
 
 In this second part of our machine learning series, we'll implement the same MNIST classification task using [TensorFlow](https://www.tensorflow.org/). While Scikit-learn excels at classical machine learning, TensorFlow shines when building neural networks. We'll see how deep learning approaches differ from traditional methods and learn the basic concepts of neural network architecture.
 
-## Why Neural Networks?
+### Why Neural Networks?
 
 While our Scikit-learn models performed well in Part 1, neural networks offer several key advantages for image classification:
 - **Automatic feature learning**: No need to manually engineer features
@@ -291,7 +291,9 @@ plt.title("Confusion matrix")
 plt.show()
 ```
 
-<img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/ex_plots/ex_03_tensorflow_simple_output_22_0.png" data-zoomable width=800px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
+<div style="text-align: center">
+    <img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/ex_plots/ex_03_tensorflow_simple_output_22_0.png" data-zoomable width=500px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
+</div><br>
 
 ## 5. Model parameters
 
@@ -329,7 +331,7 @@ In this tutorial, we've introduced neural networks using TensorFlow:
 
 Our neural network achieved comparable accuracy to our Scikit-learn models (~99%), but this time on images with a higher resoltuion with the potential for even better performance through further optimization.
 
-Key takeaways:
+**Key takeaways:**
 1. Neural networks can work directly with structured data like images
 2. Architecture design is crucial for good performance
 3. Training requires careful parameter selection
@@ -338,5 +340,4 @@ Key takeaways:
 
 In Part 3, we'll explore more advanced machine learning concepts using Scikit-learn, focusing on regression problems and complex preprocessing pipelines.
 
-[← Back to Part 1: Getting Started with Scikit-learn]({{ site.baseurl }}/blog/2023/01_scikit_simple)
-[Continue to Part 3: Advanced Machine Learning with Scikit-learn →]({{ site.baseurl }}/blog/2023/03_scikit_advanced)
+[← Back to Part 1]({{ site.baseurl }}/blog/2023/01_scikit_simple) or [Continue to Part 3 →]({{ site.baseurl }}/blog/2023/03_scikit_advanced)
