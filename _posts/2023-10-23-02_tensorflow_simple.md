@@ -179,7 +179,7 @@ Before we can train the model we need to provide a few additional information:
   set with `validation_data`.
 
 Finding the right parameters for any of that, as well as establishing the right model architecture, is the
-black arts of any deep learning practisioners. For this example, let's just go with some proven default
+black arts of any deep learning practitioners. For this example, let's just go with some proven default
 parameters.
 
 ```python

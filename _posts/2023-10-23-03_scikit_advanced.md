@@ -37,7 +37,7 @@ The California Housing dataset contains information about houses in California d
 - Features on different scales
 - Complex relationships between variables
 
-The dataset iself contains information about the houses, including features like total area, lot shape, neighborhood information, overall quality, year built, etc. And the target feature that we would like to predict is the `SalePrice`.
+The dataset itself contains information about the houses, including features like total area, lot shape, neighborhood information, overall quality, year built, etc. And the target feature that we would like to predict is the `SalePrice`.
 
 Let's load the data and take a look:
 
@@ -138,7 +138,7 @@ If we look closer at the feature matrix X, we can see that of those 79 features,
 are of type 'object' (i.e. categorical features), and that some entries are missing. Plus, the target feature
 `SalePrice` has a right skewed value distribution.
 
-Therefore, if possible, our pipeline should be able to handle all of this picularities. Even better, let's try
+Therefore, if possible, our pipeline should be able to handle all of this peculiarities. Even better, let's try
 to setup a pipeline that helps us to find the optimal way how to preprocess this dataset.
 
 ## 2. Feature Analysis
@@ -464,7 +464,7 @@ Prediction accuracy on test data:  {score_te*100:.2f}%"
     Prediction accuracy on test data:  8.38%
 
 Great, the score seems reasonably good! But now that we know better which preprocessing routine seems to be the
-best (thanks to `RandomizedSearchCV`), let's go ahead and furhter fine-tune the ridge model.
+best (thanks to `RandomizedSearchCV`), let's go ahead and further fine-tune the ridge model.
 
 ## 8. Fine tune best preprocessing pipeline
 
@@ -476,7 +476,7 @@ To further fine tune the best preprocessing pipeline, we can just load the 'best
 # Select best estimator
 best_estimator = random_search.best_estimator_
 
-# Specify new parmeter grid to explore
+# Specify new parameter grid to explore
 param_grid = {'regressor__ridge__alpha': np.logspace(-5, 5, 51)}
 ```
 
@@ -562,7 +562,7 @@ final_estimator = grid_search.set_params(
 _ = final_estimator.fit(X_tr, y_tr)
 ```
 
-Now that the model is ready and trained, we can go ahead and performe the feature importance investigation via
+Now that the model is ready and trained, we can go ahead and perform the feature importance investigation via
 permutation testing. To showcase one additional feature, let's actually perform this routine twice, once while
 focusing on the `r2` of the model, and once while focusing on the `neg_mean_absolute_percentage_error`.
 

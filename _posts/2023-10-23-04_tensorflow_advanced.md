@@ -89,7 +89,7 @@ y_te = df_te['Rings']
 
     Size of training and test set: (3342, 11) | (835, 11)
 
-An important step for any machine learning project is appropraite features scaling. Now, we could use something
+An important step for any machine learning project is appropriate features scaling. Now, we could use something
 like `scipy` or `scikit-learn` to do this task. But let's see how this can also be done directly with
 TensorFlow.
 
@@ -443,7 +443,7 @@ kernel_init = [
     'normal',
 ]
 kernel_regularizer = [None, 'l1', 'l2', 'l1_l2']
-batche_sizes = [32, 128]
+batch_sizes = [32, 128]
 ```
 
 Now, let's put all of this into a parameter grid.
@@ -459,7 +459,7 @@ param_grid = dict(
     optimizers=optimizers,
     kernel_init=kernel_init,
     kernel_regularizer=kernel_regularizer,
-    batch_size=batche_sizes,
+    batch_size=batch_sizes,
 )
 
 # Go through the parameter grid
