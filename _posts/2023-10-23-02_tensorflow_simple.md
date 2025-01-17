@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ML in Python Part 2 - Neural Networks with TensorFlow
+title: Deep Learning Fundamentals - Building Neural Networks with TensorFlow
 date:   2023-10-23 13:00:00
 description: Building your first neural network for image classification
 
@@ -36,7 +36,7 @@ from tensorflow.keras import layers
 Unlike Scikit-learn, TensorFlow's MNIST dataset comes in a slightly different format. We'll keep the images in their original 2D shape (28x28 pixels) since neural networks can work directly with this structure - another advantage over traditional methods.
 
 ```python
-# Model and data parameters
+# Model parameters
 num_classes = 10  # One class for each digit (0-9)
 input_shape = (28, 28, 1)  # Height, width, and channels (1 for grayscale)
 
@@ -48,6 +48,7 @@ x_train = x_train.astype('float32') / 255.0
 x_test = x_test.astype('float32') / 255.0
 
 # Add channel dimension required by Conv2D layers
+# Shape changes from (samples, height, width) to (samples, height, width, channels)
 x_train = np.expand_dims(x_train, -1)
 x_test = np.expand_dims(x_test, -1)
 
@@ -57,6 +58,12 @@ print("x_test shape:", x_test.shape)
 
     x_train shape: (60000, 28, 28, 1)
     x_test shape: (10000, 28, 28, 1)
+
+Our dataset dimensions represent:
+- **60,000 training samples**: Much larger than scikit-learn's version for better learning
+- **28x28 pixels**: Higher resolution images than Part 1's 8x8 grid
+- **1 channel**: Grayscale images (RGB would be 3 channels)
+- **10,000 test samples**: Large test set for robust evaluation
 
 The final dimension (1) represents the color channel. Since MNIST contains grayscale images, we only need one channel, unlike RGB images which would have 3 channels.
 
@@ -68,36 +75,47 @@ multiple ways how we can set this up.
 
 For image classification, we'll use a Convolutional Neural Network (CNN). CNNs are specifically designed to work with image data through specialized layers:
 
-- **Convolutional layers**: Detect patterns like edges, textures, and shapes
-- **Pooling layers**: Reduce dimensionality while preserving important features
-- **Dense layers**: Combine detected features for final classification
-- **Dropout layers**: Prevent overfitting by randomly deactivating neurons
+- **Convolutional layers**: Extract spatial features like edges, textures, and shapes
+- **Pooling layers**: Reduce spatial dimensions while preserving important features
+- **Dense layers**: Combine extracted features for final classification
+- **Dropout layers**: Prevent overfitting by randomly deactivating neurons during training
 
-There are multiple ways to define a model in TensorFlow. We'll start with the most straightforward approach, which is a sequential model:
+There are multiple ways to define a model in TensorFlow. Let's explore two common approaches:
+
+### 1. Sequential API
+The Sequential API is the simplest way to build neural networks - layers are stacked linearly, one after another:
 
 ```python
-# Compact and sequential
+# Define model architecture using Sequential API
 model = keras.Sequential(
     [
-        layers.Conv2D(32, kernel_size=(3, 3), activation='relu',
+        # First Convolutional Block
+        layers.Conv2D(32, kernel_size=(3, 3), activation='relu',  # 32 filters, each 3x3 in size, detect basic patterns
                       input_shape=input_shape),
+        layers.MaxPooling2D(pool_size=(2, 2)),  # Reduces spatial dimensions by half while preserving features
+
+        # Second Convolutional Block
+        layers.Conv2D(64, kernel_size=(3, 3), activation='relu'),  # 64 filters detect more complex patterns
         layers.MaxPooling2D(pool_size=(2, 2)),
-        layers.Conv2D(64, kernel_size=(3, 3), activation='relu'),
-        layers.MaxPooling2D(pool_size=(2, 2)),
+
+        # Flatten 3D feature maps to 1D feature vector
         layers.Flatten(),
-        layers.Dropout(0.5),
-        layers.Dense(32, activation='relu'),
-        layers.Dropout(0.5),
+
+        # Dense layers for final classification
+        layers.Dropout(0.5),  # Prevents overfitting by randomly dropping 50% of connections
+        layers.Dense(32, activation='relu'),  # Hidden layer combines features
+
+        # Output layer for classification
         layers.Dense(num_classes, activation='softmax'),
     ]
 )
 ```
 
-To have a bit more control about the individual steps, we can also separate each individual part, and define
-the network architecture as follows.
+### 2. Layer-by-Layer Sequential API
+For more explicit control, we can separate each layer and activation:
 
 ```python
-# More precise and sequential
+# More precise and sequential approach
 model = keras.Sequential(
     [
         keras.Input(shape=input_shape),
@@ -118,13 +136,17 @@ model = keras.Sequential(
 )
 ```
 
-The two models are functionally identical, but this second version:
-- Allows finer control over layer placement
+The two models are functionally identical, but the layer-by-layer approach offers several advantages:
 - Makes it easier to insert additional layers like BatchNormalization
 - Provides more explicit activation functions
 - Makes the data flow more transparent
+- Allows finer control over layer parameters
 
-Next to this sequential API, there's also a functional one. We will cover that in the later, more advanced, TensorFlow example.
+Next to this sequential API, there's also a functional API.We'll explore this more flexible approach in our advanced TensorFlow tutorial, which allows for:
+- Multiple inputs and outputs
+- Layer sharing
+- Non-sequential layer connections
+- Complex architectures like residual networks
 
 Once the model is created, you can use the `summary()` method to get an overview of the network's architecture
 and the number of trainable and non-trainable parameters.
@@ -183,28 +205,24 @@ black arts of any deep learning practitioners. For this example, let's just go w
 parameters.
 
 ```python
-# Model parameters
-batch_size = 128
-epochs = 10
+# Training configuration
+batch_size = 128  # Number of samples processed before model update
+epochs = 10      # Number of complete passes through the dataset
 
-# Compile model with appropriate metrics and optimizers
+# Compile model with appropriate loss function and optimizer
 model.compile(
-    loss='sparse_categorical_crossentropy',
-    optimizer='adam',
-    metrics=['accuracy']
+    loss='sparse_categorical_crossentropy',  # Appropriate for integer labels
+    optimizer='adam',                        # Adaptive learning rate optimizer
+    metrics=['accuracy']                     # Track accuracy during training
 )
-```
 
-Now everything is ready that we can train our model.
-
-```python
-# Model training
+# Train the model
 history = model.fit(
     x_train,
     y_train,
     batch_size=batch_size,
     epochs=epochs,
-    validation_split=0.1
+    validation_split=0.1  # Use 10% of training data for validation
 )
 ```
 
@@ -229,6 +247,23 @@ history = model.fit(
     Epoch 10/10
     422/422 [==============================] - 4s 8ms/step - loss: 0.0775 - accuracy: 0.9773 - val_loss: 0.0355 - val_accuracy: 0.9905
 
+Let's analyze the training progression:
+- **Initial Performance (Epoch 1)**:
+  - Training: 81.17% accuracy, loss of 0.5902
+  - Validation: 97.00% accuracy, loss of 0.1014
+  - Shows rapid initial learning
+
+- **Final Performance (Epoch 10)**:
+  - Training: 97.73% accuracy, loss of 0.0775
+  - Validation: 99.05% accuracy, loss of 0.0355
+  - Excellent convergence with validation outperforming training
+
+- **Key Observations**:
+  - Consistent improvement across epochs
+  - Lower validation loss than training loss suggests good generalization
+  - Final accuracy exceeds our Scikit-learn model from Part 1
+  - No signs of overfitting as validation metrics remain stable
+
 ## 4. Model investigation
 
 If we stored the `model.fit()` output in a `history` variable, we can easily access and visualize the different
@@ -252,6 +287,9 @@ plt.show()
 ```
 
 <img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/ex_plots/ex_03_tensorflow_simple_output_16_0.png" data-zoomable width=800px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
+<div class="caption">
+    Figure 1: Training metrics over time showing model loss (left) and Mean Absolute Error (right) for both training and validation sets. The logarithmic scale helps visualize improvement across different magnitudes.
+</div>
 
 Once the model is trained we can also compute its score on the test set. For this we can use the `evaluate()`
 method.
@@ -321,6 +359,58 @@ plt.show()
 
 <img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/ex_plots/ex_03_tensorflow_simple_output_24_0.png" data-zoomable width=800px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
 
+### Common Deep Learning Pitfalls
+When starting with TensorFlow and neural networks, watch out for these common issues:
+
+1. **Data Preparation**
+   - (Almost) always scale input data (like we did with `/255.0`)
+   - Check for missing or invalid values
+   - Ensure consistent data types
+   ```python
+   # Example of proper data preparation
+   x_train = x_train.astype('float32') / 255.0
+   x_test = x_test.astype('float32') / 255.0
+   ```
+
+2. **Model Architecture**
+   - Start simple, add complexity only if needed
+   - Match output layer to your task (softmax for classification)
+   - Use appropriate layer sizes
+   ```python
+   # Example of clear, progressive architecture
+   model = keras.Sequential([
+       layers.Conv2D(32, kernel_size=(3, 3), activation='relu'),
+       layers.MaxPooling2D(pool_size=(2, 2)),
+       layers.Flatten(),
+       layers.Dense(10, activation='softmax')  # 10 classes
+   ])
+   ```
+
+3. **Training Issues**
+   - Monitor training metrics (loss not decreasing)
+   - Watch for overfitting (validation loss increasing)
+   - Use appropriate batch sizes
+   ```python
+   # Add validation monitoring during training
+   history = model.fit(
+       x_train, y_train,
+       validation_split=0.1,
+       batch_size=128,
+       epochs=10
+   )
+   ```
+
+4. **Memory Management**
+   - Clear unnecessary variables
+   - Use appropriate data types
+   - Watch batch sizes on limited hardware
+   ```python
+   # Free memory after training
+   import gc
+   gc.collect()
+   keras.backend.clear_session()
+   ```
+
 ## Summary and Next Steps
 
 In this tutorial, we've introduced neural networks using TensorFlow:
@@ -329,7 +419,7 @@ In this tutorial, we've introduced neural networks using TensorFlow:
 - Monitoring learning progress
 - Visualizing learned features
 
-Our neural network achieved comparable accuracy to our Scikit-learn models (~99%), but this time on images with a higher resoltuion with the potential for even better performance through further optimization.
+Our neural network achieved comparable accuracy to our Scikit-learn models (~99%), but this time on images with a higher resolution with the potential for even better performance through further optimization.
 
 **Key takeaways:**
 1. Neural networks can work directly with structured data like images
@@ -340,4 +430,5 @@ Our neural network achieved comparable accuracy to our Scikit-learn models (~99%
 
 In Part 3, we'll explore more advanced machine learning concepts using Scikit-learn, focusing on regression problems and complex preprocessing pipelines.
 
-[← Back to Part 1]({{ site.baseurl }}/blog/2023/01_scikit_simple) or [Continue to Part 3 →]({{ site.baseurl }}/blog/2023/03_scikit_advanced)
+[← Previous: Getting Started]({{ site.baseurl }}/blog/2023/01_scikit_simple) or
+[Next: Advanced Machine Learning →]({{ site.baseurl }}/blog/2023/03_scikit_advanced)

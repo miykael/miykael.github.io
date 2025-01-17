@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ML in Python Part 4 - Advanced Neural Networks with TensorFlow
+title: Advanced Deep Learning - Custom Neural Networks with TensorFlow
 date:   2023-10-23 15:00:00
 description: Implementing sophisticated neural networks for regression tasks
 ---
@@ -89,6 +89,13 @@ y_te = df_te['Rings']
 
     Size of training and test set: (3342, 11) | (835, 11)
 
+The abalone dataset dimensions represent:
+- **4,177 total samples**: Split into 3,342 training and 835 test samples
+- **11 features**: Including both physical measurements and categorical data:
+  - Physical attributes (length, diameter, height, weights)
+  - Categorical sex information (encoded as one-hot vectors)
+- **Target variable**: Number of rings (age indicator) to predict
+
 An important step for any machine learning project is appropriate features scaling. Now, we could use something
 like `scipy` or `scikit-learn` to do this task. But let's see how this can also be done directly with
 TensorFlow.
@@ -112,16 +119,17 @@ print(f"Variance parameters:\n{normalizer.adapt_variance.numpy()}")
     [0.01422794 0.00970037 0.00150639 0.23864637 0.04889446 0.0120052
      0.01888644 0.21536086 0.21956848 0.23055716]
 
-## 2. Model creation
+## 2. Model Creation
 
-Now that the data is ready, let's go ahead and create a simple model. This time using the functional API
-approach.
+Unlike our previous tutorial where we used the Sequential API, here we'll use TensorFlow's Functional API. The Functional API provides several key advantages:
 
-We're using the functional API instead of the sequential API because it offers:
-- More flexibility in layer connections
-- Ability to have multiple inputs/outputs
-- Better visualization of model architecture
-- Easier implementation of complex architectures later
+1. **Multiple Inputs/Outputs**: Can handle multiple input/output streams
+2. **Layer Sharing**: Reuse layers across different parts of the model
+3. **Non-Sequential Flow**: Create models with branches or multiple paths
+4. **Complex Architectures**: Easily implement advanced patterns like skip connections
+5. **Better Visualization**: Clearer view of data flow between layers
+
+Here's how we build a model using the Functional API:
 
 ```python
 # Create layers and connect them with functional API
@@ -130,7 +138,7 @@ input_layer = keras.Input(shape=(x_tr.shape[1],))
 # Normalize inputs using our pre-trained normalization layer
 x = normalizer(input_layer)
 
-# First dense layer with batch normalization and dropout
+# Build hidden layers with explicit connections
 x = layers.Dense(8)(x)
 x = layers.BatchNormalization()(x)  # Stabilizes training
 x = layers.ReLU()(x)                # Non-linear activation
@@ -145,7 +153,7 @@ x = layers.Dropout(0.5)(x)
 # Output layer for regression (no activation function)
 output_layer = layers.Dense(1)(x)
 
-# Create model by adding input and output layer
+# Create model by specifying inputs and outputs
 model = keras.Model(inputs=input_layer, outputs=output_layer)
 
 # Check model size
@@ -175,6 +183,9 @@ model.summary(show_trainable=False)
     Trainable params: 153
     Non-trainable params: 45
     _________________________________________________________________
+
+
+Notice how each layer is explicitly connected using function calls (e.g., `layers.Dense(8)(x)`). This syntax makes the data flow clear and allows for complex branching patterns that aren't possible with the Sequential API.
 
 Now that the model is ready, let's go ahead and compile it. During this process we can specify an appropriate
 optimizer as well as relevant metrics that we want to keep track of.
@@ -265,33 +276,39 @@ Once the model is trained we can go ahead and investigate performance during tra
 
 ```python
 def plot_history(history_file='history_log.csv', title=''):
+    # Load training history from CSV
+    history_log = pd.read_csv(history_file)
 
-    # Load history log
-    history_log = pd.read_csv(history_file, index_col=0)
+    # Create subplots for loss and MAE metrics
+    _, axs = plt.subplots(1, 2, figsize=(15, 4))
 
-    # Visualize history log
-    fig, axs = plt.subplots(1, 2, figsize=(12, 4))
+    # Plot loss metrics
     history_log.iloc[:, history_log.columns.str.contains('loss')].plot(
         title="Loss during training", ax=axs[0]
     )
+    # Plot MAE metrics
     history_log.iloc[:, history_log.columns.str.contains('MAE')].plot(
         title="MAE during training", ax=axs[1]
     )
+
+    # Configure axis labels and scales
     axs[0].set_ylabel("Loss")
     axs[1].set_ylabel("MAE")
     for idx in range(len(axs)):
         axs[idx].set_xlabel("Epoch [#]")
-        axs[idx].set_yscale('log')
+        axs[idx].set_yscale('log')  # Use log scale for better visualization of changes
 
     plt.suptitle(title, fontsize=14)
     plt.tight_layout()
     plt.show()
 
-# Plot history information
+# Plot training history
 plot_history(history_file='history_log.csv', title="Training overview")
 ```
-<img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/ex_plots/ex_04_tensorflow_advanced_output_17_0.png" data-zoomable width=800px style="padding-top: 20px; padding-right: 20px;
-padding-bottom: 20px; padding-left: 20px">
+<img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/ex_plots/ex_04_tensorflow_advanced_output_17_0.png" data-zoomable width=800px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
+<div class="caption">
+    Figure 1: Training progress showing loss and Mean Absolute Error (MAE) metrics over epochs. The logarithmic scale helps visualize improvements across different orders of magnitude.
+</div>
 
 ## Analyzing Model Performance
 
@@ -328,6 +345,15 @@ print("Test  - Loss: {:.3f} | MAE: {:.3f}".format(*test_results))
     Train - Loss: 6.264 | MAE: 1.696
     Test  - Loss: 7.393 | MAE: 1.778
 
+Let's break down these final performance metrics:
+- **Training Metrics**:
+  - Loss (6.264): Measures overall prediction error
+  - MAE (1.696): Average deviation of ~1.7 rings in age predictions
+- **Test Metrics**:
+  - Loss (7.393): ~18% higher than training, indicating some overfitting
+  - MAE (1.778): Predictions off by ~1.8 rings on average
+- **Practical Impact**: For abalone age prediction, being off by less than 2 rings is acceptable for most applications
+
 ## 5. Architecture fine-tuning
 
 Let's now go a step further and create a setup with which we can fine-tune the model architecture. While there
@@ -341,23 +367,37 @@ parameter grid.
 
 ```python
 def build_and_compile_model(
-    hidden=[8, 4],
-    activation='relu',
-    use_batch=True,
-    dropout_rate=0,
-    learning_rate=0.001,
-    optimizers='adam',
-    kernel_init='he_normal',
-    kernel_regularizer=None,
+    hidden=[8, 4],           # List defining sizes of hidden layers
+    activation='relu',       # Activation function for hidden layers
+    use_batch=True,          # Whether to use batch normalization
+    dropout_rate=0,          # Dropout rate for regularization
+    learning_rate=0.001,     # Initial learning rate
+    optimizers='adam',       # Choice of optimizer
+    kernel_init='he_normal', # Weight initialization strategy
+    kernel_regularizer=None, # Weight regularization method
 ):
+    """Creates and compiles a neural network model with specified architecture.
 
+    Args:
+        hidden: List of integers defining the size of each hidden layer
+        activation: Activation function to use in hidden layers
+        use_batch: Whether to use batch normalization between layers
+        dropout_rate: Rate of dropout for regularization (0 to 1)
+        learning_rate: Initial learning rate for optimizer
+        optimizers: Choice of optimization algorithm
+        kernel_init: Weight initialization strategy
+        kernel_regularizer: Weight regularization method
+
+    Returns:
+        Compiled Keras model ready for training
+    """
     # Create input layer
-    input_layer = keras.Input(shape=(10,))
+    input_layer = keras.Input(shape=(x_tr.shape[1],))
 
-    # Normalize data
+    # Normalize input data
     x = normalizer(input_layer)
 
-    # Create hidden layers and connect them with functional API
+    # Build hidden layers
     for idx, h in enumerate(hidden):
 
         # Add batch normalization if requested
@@ -376,13 +416,13 @@ def build_and_compile_model(
         if dropout_rate > 0:
             x = layers.Dropout(dropout_rate)(x)
 
-    # Establish output layer
+    # Add output layer (no activation for regression)
     output_layer = layers.Dense(1)(x)
 
-    # Create model by adding input and output layer
+    # Create and compile model
     model = keras.Model(inputs=input_layer, outputs=output_layer)
 
-    # Establish optimizer
+    # Configure optimizer based on selection
     if optimizers == 'adam':
         optimizer = keras.optimizers.Adam(learning_rate=learning_rate)
     elif optimizers == 'rmsprop':
@@ -390,7 +430,7 @@ def build_and_compile_model(
     elif optimizers == 'sgd':
         optimizer = keras.optimizers.SGD(learning_rate=learning_rate, nesterov=True)
 
-    # Compile model
+    # Compile model with loss and metrics
     model.compile(
         optimizer=optimizer,
         loss=keras.losses.MeanSquaredError(name='MSE'),
@@ -451,15 +491,15 @@ Now, let's put all of this into a parameter grid.
 ```python
 # Create parameter grid
 param_grid = dict(
-    hidden=hidden,
-    activation=activation,
-    use_batch=use_batch,
-    dropout_rate=dropout_rate,
-    learning_rate=learning_rate,
-    optimizers=optimizers,
-    kernel_init=kernel_init,
-    kernel_regularizer=kernel_regularizer,
-    batch_size=batch_sizes,
+    hidden=hidden,  # Network architectures from simple to complex
+    activation=activation,  # Different non-linearities for different data patterns
+    use_batch=use_batch,  # Batch normalization for training stability
+    dropout_rate=dropout_rate,  # Regularization to prevent overfitting
+    learning_rate=learning_rate,  # Controls step size during optimization
+    optimizers=optimizers,  # Different optimization strategies
+    kernel_init=kernel_init,  # Weight initialization methods
+    kernel_regularizer=kernel_regularizer,  # Weight penalties to prevent overfitting
+    batch_size=batch_sizes,  # Training batch sizes for different memory/speed tradeoffs
 )
 
 # Go through the parameter grid
@@ -641,6 +681,162 @@ plot_history(history_file=history_file, title="Training overview of best model")
 ```
 
 <img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/ex_plots/ex_04_tensorflow_advanced_output_33_0.png" data-zoomable width=800px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
+<div class="caption">
+    Figure 2: Training metrics for the best performing model architecture, showing both loss and MAE on training and validation sets. The consistent convergence suggests stable learning without overfitting.
+</div>
+
+### Advanced Deep Learning Pitfalls
+
+When working with complex neural networks and regression tasks, be aware of these advanced challenges:
+
+1. **Gradient Issues**
+   - Vanishing/exploding gradients in deep networks
+   - Unstable training with certain architectures
+   ```python
+   # Use gradient clipping to prevent explosions
+   optimizer = keras.optimizers.Adam(
+       clipnorm=1.0,
+       learning_rate=1e-3
+   )
+
+   # Add batch normalization to help with gradient flow
+   x = layers.Dense(64)(inputs)
+   x = layers.BatchNormalization()(x)
+   x = layers.ReLU()(x)
+   ```
+
+2. **Learning Rate Dynamics**
+   - Static learning rates often suboptimal
+   - Different layers may need different rates
+   ```python
+   # Implement learning rate schedule
+   initial_learning_rate = 0.1
+   decay_steps = 1000
+   decay_rate = 0.9
+
+   lr_schedule = keras.optimizers.schedules.ExponentialDecay(
+       initial_learning_rate,
+       decay_steps=decay_steps,
+       decay_rate=decay_rate
+   )
+
+   # Or use adaptive learning rate with warmup
+   warmup_steps = 1000
+   def warmup_cosine_decay(step):
+       warmup_rate = initial_learning_rate * step / warmup_steps
+       cosine_rate = tf.keras.experimental.CosineDecay(
+           initial_learning_rate, decay_steps
+       )(step)
+       return tf.where(step < warmup_steps, warmup_rate, cosine_rate)
+   ```
+
+3. **Complex Loss Functions**
+   - Multiple objectives need careful weighting
+   - Custom losses require gradient consideration
+   - Handle edge cases and numerical stability
+   ```python
+   class WeightedMSE(keras.losses.Loss):
+       def __init__(self, feature_weights, **kwargs):
+           super().__init__(**kwargs)
+           self.feature_weights = tf.constant(feature_weights, dtype=tf.float32)
+
+       def call(self, y_true, y_pred):
+           # Add small epsilon to prevent numerical issues
+           y_pred = tf.clip_by_value(y_pred, 1e-7, 1.0)
+           squared_errors = tf.square(y_true - y_pred)
+           weighted_errors = squared_errors * self.feature_weights
+           return tf.reduce_mean(weighted_errors, axis=-1)
+   ```
+
+4. **Data Pipeline Bottlenecks**
+   - I/O can become training bottleneck
+   - Memory constraints with large datasets
+   ```python
+   # Efficient data pipeline with prefetching
+   dataset = tf.data.Dataset.from_tensor_slices((x_tr, y_tr))
+   dataset = dataset.shuffle(buffer_size=1024)
+   dataset = dataset.batch(32)
+   dataset = dataset.prefetch(tf.data.AUTOTUNE)
+
+   # For large datasets, use generators
+   def data_generator():
+       while True:
+           for i in range(0, len(x_tr), batch_size):
+               yield x_tr[i:i+batch_size], y_tr[i:i+batch_size]
+   ```
+
+5. **Model Architecture Complexity**
+   - Deeper isn't always better
+   - Skip connections can help with gradient flow
+   ```python
+   # Example of residual connection
+   def residual_block(x, filters):
+       shortcut = x
+       x = layers.Conv2D(filters, 3, padding='same')(x)
+       x = layers.BatchNormalization()(x)
+       x = layers.ReLU()(x)
+       x = layers.Conv2D(filters, 3, padding='same')(x)
+       x = layers.BatchNormalization()(x)
+       x = layers.Add()([shortcut, x])  # Skip connection
+       return layers.ReLU()(x)
+   ```
+
+6. **Regularization Strategy**
+   - Different layers may need different regularization
+   - Combine multiple regularization techniques
+   ```python
+   # Comprehensive regularization strategy
+   x = layers.Dense(
+       64,
+       kernel_regularizer=keras.regularizers.l1_l2(l1=1e-5, l2=1e-4),
+       activity_regularizer=keras.regularizers.l1(1e-5)
+   )(x)
+   x = layers.BatchNormalization()(x)
+   x = layers.Dropout(0.5)(x)
+   ```
+
+7. **Model Debugging**
+   - Add metrics to monitor internal states
+   - Use callbacks for detailed inspection
+   - Clear unused variables and models
+   ```python
+   # Clear memory after training experiments
+   import gc
+
+   def cleanup_memory():
+       # Delete unused variables
+       del unused_model
+       # Force garbage collection
+       gc.collect()
+       # Clear TensorFlow session
+       tf.keras.backend.clear_session()
+
+   # Monitor layer states during training
+   class LayerStateCallback(keras.callbacks.Callback):
+       def on_epoch_end(self, epoch, logs=None):
+           layer_outputs = [layer.output for layer in self.model.layers]
+           inspection_model = keras.Model(
+               inputs=self.model.input,
+               outputs=layer_outputs
+           )
+           # Monitor layer statistics during training
+           layer_states = inspection_model.predict(x_val[:100])
+           for layer_idx, states in enumerate(layer_states):
+               print(f"Layer {layer_idx} stats:",
+                     f"mean={np.mean(states):.3f},",
+                     f"std={np.std(states):.3f}")
+
+           # Clean up inspection model
+           del inspection_model
+           gc.collect()
+   ```
+
+These advanced considerations become crucial when:
+- Working with complex architectures
+- Training on large datasets
+- Optimizing for specific performance metrics
+- Deploying models in production environments
+- Debugging training issues
 
 ## Summary and Series Conclusion
 
@@ -659,5 +855,5 @@ In this final tutorial, we've covered:
 
 Throughout this series, we've progressed from basic classification to advanced regression, covering both traditional machine learning and deep learning approaches. We've seen how Scikit-learn and TensorFlow complement each other, each offering unique strengths for different types of problems.
 
-[← Back to Part 3]({{ site.baseurl }}/blog/2023/03_scikit_advanced) or
+[← Previous: Advanced Machine Learning]({{ site.baseurl }}/blog/2023/03_scikit_advanced) or
 [Return to Series Overview →]({{ site.baseurl }}/blog/2023/01_scikit_simple)

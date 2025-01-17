@@ -1,18 +1,34 @@
 ---
 layout: post
-title: ML in Python Part 1 - Classification with Scikit-learn
+title: Getting Started with Machine Learning - Classification in Scikit-learn
 date:   2023-10-23 12:00:00
 description: Getting started with machine learning using Scikit-learn's classification tools
 ---
+
+This post is part of a comprehensive machine learning series that takes you from basic classification to advanced neural networks. Throughout these tutorials, you'll learn:
+
+1. **Getting Started with Machine Learning** (Current Post)
+   Basic classification using Scikit-learn with the MNIST dataset
+
+2. **Deep Learning Fundamentals**
+   Introduction to neural networks using TensorFlow
+
+3. **Advanced Machine Learning**
+   Complex regression pipelines with Scikit-learn
+
+4. **Advanced Deep Learning**
+   Sophisticated neural network architectures in TensorFlow
+
+Each tutorial builds upon concepts from previous posts while introducing new techniques and best practices. Whether you're new to machine learning or looking to expand your skills, this series provides hands-on experience with real-world datasets and modern ML tools.
 
 Have you ever wondered how to get started with machine learning? This series of posts will guide you through practical implementations using two of Python's most popular frameworks: Scikit-learn and TensorFlow. Whether you're a beginner looking to understand the basics or an experienced developer wanting to refresh your knowledge, we'll progress from basic classification tasks to more advanced regression problems.
 
 The series consists of four parts:
 
-1. **[Getting Started with Classification using Scikit-learn]({{ site.baseurl }}/blog/2023/01_scikit_simple)** (You are here)<br>Introduction to machine learning basics using the MNIST dataset
-2. **[Basic Neural Networks with TensorFlow]({{ site.baseurl }}/blog/2023/02_tensorflow_simple)** (Part 2)<br>Building your first neural network for image classification
-3. **[Advanced Machine Learning with Scikit-learn]({{ site.baseurl }}/blog/2023/03_scikit_advanced)** (Part 3)<br>Exploring complex regression problems and model optimization
-4. **[Advanced Neural Networks with TensorFlow]({{ site.baseurl }}/blog/2023/04_tensorflow_advanced)** (Part 4)<br>Implementing sophisticated neural network architectures
+1. **[Getting Started with Classification using Scikit-learn](../blog/2023/01_scikit_simple)** (You are here)<br>Introduction to machine learning basics using the MNIST dataset
+2. **[Basic Neural Networks with TensorFlow](../blog/2023/02_tensorflow_simple)** (Part 2)<br>Building your first neural network for image classification
+3. **[Advanced Machine Learning with Scikit-learn](../blog/2023/03_scikit_advanced)** (Part 3)<br>Exploring complex regression problems and model optimization
+4. **[Advanced Neural Networks with TensorFlow](../blog/2023/04_tensorflow_advanced)** (Part 4)<br>Implementing sophisticated neural network architectures
 
 ### Why These Tools?
 
@@ -73,7 +89,10 @@ for ax, image, label in zip(axes.ravel(), digits.images, digits.target):
 ```
 
 <div style="text-align: center">
-    <img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/ex_plots/ex_01_scikit_simple_output_5_0.png" data-zoomable width=600px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
+    <img class="img-fluid rounded z-depth-1" src="../assets/ex_plots/01_scikit_digits_sample.png" data-zoomable width=600px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
+    <div class="caption">
+        Figure 1: Sample of MNIST digits showing different handwritten numbers from 0-9. Each image is an 8x8 pixel grayscale representation.
+    </div>
 </div><br>
 
 ## 2. Split data into train and test set
@@ -111,15 +130,21 @@ score_tr = clf.score(X_tr, y_tr)
 score_te = clf.score(X_te, y_te)
 
 print(
-    f"Prediction accuracy on train data: {score_tr*100:.2f}%\n\
-Prediction accuracy on test data:  {score_te*100:.2f}%"
+    f"Model accuracy on train data: {score_tr*100:.2f}%\n\
+Model accuracy on test data:  {score_te*100:.2f}%"
 )
 ```
 
-    Prediction accuracy on train data: 100.00%
-    Prediction accuracy on test data:  96.67%
+    Model accuracy on train data: 100.00%
+    Model accuracy on test data:  96.67%
 
-As you can see, the model performed perfectly on the training set. No wonder, we tested the classifiers
+The model's performance metrics reveal several key insights:
+- **Perfect Training Accuracy (100%)**: This suggests the model has completely memorized the training data, which could indicate overfitting.
+- **Strong Test Accuracy (96.67%)**: Despite potential overfitting, the model generalizes well to unseen data.
+- **Train-Test Gap (3.33%)**: The difference between train and test accuracy suggests some overfitting, but it's within acceptable limits for this task.
+- **Practical Impact**: For digit recognition, 96.67% accuracy means the model would correctly identify about 967 out of 1000 handwritten digits, making it suitable for many real-world applications like postal code reading or form processing.
+
+As you can see, the model performed perfectly on the training set. No wonder, we tested the classifier's
 performance on the same data it was trained on. But is there way how we can improve the score on the test data?
 
 Yes there is. But for this we need to fine-tune our random forest classifier. Because as of now we only used
@@ -132,12 +157,11 @@ In short, the **training set** is used to train the parameter of a model, the **
 fine-tune the hyperparameter of a model, and the **test set** is used to see how well the fine-tuned model
 generalizes on never before seen data.
 
-A common practise for this train/validation split is the usage of a **cross-validation**. In short, the
-training data is iteratively split into training and validation set, where each split (or fold) is used once
-as the validation set. For an in-depth explanation on this, see
-[this helpful resource](https://scikit-learn.org/stable/modules/cross_validation.html).
+A common practice for model validation is k-fold [cross-validation](https://scikit-learn.org/stable/modules/cross_validation.html). In this approach, the
+training data is iteratively split into training and validation sets, where each split (or fold) is used once
+as the validation set.
 
-Now, we also mentioned fine-tuning our model. One way to do this, is to perform a **grid search**, i.e. running
+Now, we also mentioned fine-tuning our model. One way to do this, is to perform a [grid search](https://scikit-learn.org/stable/modules/grid_search.html), i.e. running
 the model with multiple parameter combinations and than deciding which ones work best.
 
 Luckily, `scikit-learn` provides a neat routine that combines the cross-validation with the grid search, called
@@ -148,10 +172,11 @@ So let's go ahead and set everything up.
 from sklearn.model_selection import GridSearchCV
 
 # Define parameter grid
-parameters = {'max_depth': [5, 25, 50], 'n_estimators': [1, 10, 50, 200]}
+parameters = {'max_depth': [5, 25, 50],  # Controls tree depth - lower values reduce overfitting
+             'n_estimators': [1, 10, 50, 200]}  # Number of trees in forest - more trees = better generalization
 
 # Put parameter grid and classifier model into GridSearchCV
-grid = GridSearchCV(clf, parameters, cv=5)
+grid = GridSearchCV(clf, parameters, cv=5)  # 5-fold cross-validation for robust evaluation
 
 # Train classifier on training data
 grid.fit(X_tr, y_tr)
@@ -161,13 +186,13 @@ score_tr = grid.score(X_tr, y_tr)
 score_te = grid.score(X_te, y_te)
 
 print(
-    f"Prediction accuracy on train data: {score_tr*100:.2f}%\n\
-Prediction accuracy on test data:  {score_te*100:.2f}%"
+    f"Model accuracy on train data: {score_tr*100:.2f}%\n\
+Model accuracy on test data:  {score_te*100:.2f}%"
 )
 ```
 
-    Prediction accuracy on train data: 100.00%
-    Prediction accuracy on test data:  97.22%
+    Model accuracy on train data: 100.00%
+    Model accuracy on test data:  97.22%
 
 Great, our score on the test set has improved. So let's see which parameter combination seems to be the best.
 
@@ -197,12 +222,16 @@ result_table = df_res.pivot(
     index='param_max_depth', columns='param_n_estimators', values='mean_test_score'
 )
 sns.heatmap(100 * result_table, annot=True, fmt='.2f', square=True, cbar=False)
-plt.title("Accuracy on validation set, based on model hyper-parameter")
-plt.show()
+plt.title("RF Accuracy on validation set, based on model hyper-parameter")
+plt.savefig('../assets/ex_plots/01_scikit_rf_heatmap.png', bbox_inches='tight', dpi=300)
+plt.close()
 ```
 
 <div style="text-align: center">
-    <img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/ex_plots/ex_01_scikit_simple_output_16_0.png" data-zoomable width=500px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
+    <img class="img-fluid rounded z-depth-1" src="../assets/ex_plots/01_scikit_rf_heatmap.png" data-zoomable width=500px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
+    <div class="caption">
+        Figure 2: Heatmap showing model accuracy (%) for different combinations of SVM hyperparameters gamma and C. Darker colors indicate better performance.
+    </div>
 </div><br>
 
 ## 5. Change model
@@ -218,7 +247,10 @@ from sklearn.svm import SVC
 clf = SVC(kernel='rbf')
 
 # Define parameter grid
-parameters = {'gamma': np.logspace(-5, -1, 5), 'C': np.logspace(-2, 2, 5)}
+parameters = {
+    'C': [0.01, 0.1, 1.0, 10.0, 100.0],  # Regularization parameter - higher values = more complex decision boundary
+    'gamma': [0.00001, 0.0001, 0.001, 0.01, 0.1]  # Kernel coefficient - higher values = more influence from nearby points
+}
 ```
 
 That's it! The rest can be used as before.
@@ -235,13 +267,17 @@ score_tr = grid.score(X_tr, y_tr)
 score_te = grid.score(X_te, y_te)
 
 print(
-    f"Prediction accuracy on train data: {score_tr*100:.2f}%\n\
-Prediction accuracy on test data:  {score_te*100:.2f}%"
+    f"Model accuracy on train data: {score_tr*100:.2f}%\n\
+Model accuracy on test data:  {score_te*100:.2f}%"
 )
 ```
 
-    Prediction accuracy on train data: 100.00%
-    Prediction accuracy on test data:  98.89%
+    Model accuracy on train data: 100.00%
+    Model accuracy on test data:  98.89%
+
+These results show significant improvements:
+- **Test Accuracy (98.89%)**: The SVM correctly identifies 989 out of 1000 digits
+- **Improvement (+2.22%)**: Compared to Random Forest, SVM reduces errors by about 67%
 
 Nice, this is much better. It seems for this particular dataset, with the hyper-parameter's we explored, SVM
 is a better model type.
@@ -274,12 +310,16 @@ result_table = df_res.pivot(
     index='param_gamma', columns='param_C', values='mean_test_score'
 )
 sns.heatmap(100 * result_table, annot=True, fmt='.2f', square=True)
-plt.title("Accuracy on validation set, based on model hyper-parameter")
-plt.show()
+plt.title("SVM Accuracy on validation set, based on model hyper-parameter")
+plt.savefig('../assets/ex_plots/01_scikit_svm_heatmap.png', bbox_inches='tight', dpi=300)
+plt.close()
 ```
 
 <div style="text-align: center">
-    <img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/ex_plots/ex_01_scikit_simple_output_24_0.png" data-zoomable width=500px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
+    <img class="img-fluid rounded z-depth-1" src="../assets/ex_plots/01_scikit_svm_heatmap.png" data-zoomable width=500px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
+    <div class="caption">
+        Figure 3: Confusion matrix showing the model's prediction performance across all digit classes. Diagonal elements represent correct predictions.
+    </div>
 </div><br>
 
 ## 6. Post-model investigation
@@ -330,11 +370,15 @@ cm = confusion_matrix(y_te, y_pred)
 sns.heatmap(pd.DataFrame(cm), annot=True, cbar=False, square=True)
 plt.xlabel("Predicted Class")
 plt.ylabel("True Class")
-plt.show()
+plt.savefig('../assets/ex_plots/01_scikit_confusion_matrix.png', bbox_inches='tight', dpi=300)
+plt.close()
 ```
 
 <div style="text-align: center">
-    <img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/ex_plots/ex_01_scikit_simple_output_29_0.png" data-zoomable width=500px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
+    <img class="img-fluid rounded z-depth-1" src="../assets/ex_plots/01_scikit_confusion_matrix.png" data-zoomable width=500px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
+    <div class="caption">
+        Figure 4: Feature importance heatmap showing which pixels in the 8x8 grid contribute most to the Random Forest's classification decisions.
+    </div>
 </div><br>
 
 ## 7. Additional model and results investigations
@@ -355,11 +399,16 @@ feature_importance_image = feat_import.reshape(8, 8)
 # Visualize the feature importance grid
 plt.figure(figsize=(5, 5))
 plt.imshow(feature_importance_image)
-plt.show()
+plt.title("RF Feature Importance")
+plt.savefig('../assets/ex_plots/01_scikit_feature_importance.png', bbox_inches='tight', dpi=300)
+plt.close()
 ```
 
 <div style="text-align: center">
-    <img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/ex_plots/ex_01_scikit_simple_output_31_0.png" data-zoomable width=500px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
+    <img class="img-fluid rounded z-depth-1" src="../assets/ex_plots/01_scikit_feature_importance.png" data-zoomable width=500px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
+    <div class="caption">
+        Figure 5: Most confidently predicted digits from the test set, showing examples where the model has highest prediction probabilities.
+    </div>
 </div><br>
 
 As you can see, feature in the center of the 8x8 grid seem to be more important for the classification task.
@@ -379,9 +428,14 @@ _, axes = plt.subplots(nrows=3, ncols=20, figsize=(9, 1.5))
 for ax, idx in zip(axes.ravel(), np.argsort(target_prob)[::-1]):
     ax.imshow(X_te[idx].reshape(8, 8), cmap=plt.cm.gray_r, interpolation='nearest')
     ax.set_axis_off()
+plt.savefig('../assets/ex_plots/01_scikit_confident_predictions.png', bbox_inches='tight', dpi=300)
+plt.close()
 ```
 
-<img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/ex_plots/ex_01_scikit_simple_output_33_0.png" data-zoomable width=800px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
+<img class="img-fluid rounded z-depth-1" src="../assets/ex_plots/01_scikit_confident_predictions.png" data-zoomable width=800px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
+<div class="caption">
+    Figure 6: Most confidently predicted digits from the test set, showing examples where the model has highest prediction probabilities.
+</div>
 
 And what about the difficult cases? For which digits does the model strugle the most to get above chance level?
 
@@ -391,9 +445,117 @@ _, axes = plt.subplots(nrows=3, ncols=20, figsize=(9, 1.5))
 for ax, idx in zip(axes.ravel(), np.argsort(target_prob)):
     ax.imshow(X_te[idx].reshape(8, 8), cmap=plt.cm.gray_r, interpolation='nearest')
     ax.set_axis_off()
+plt.savefig('../assets/ex_plots/01_scikit_uncertain_predictions.png', bbox_inches='tight', dpi=300)
+plt.close()
 ```
 
-<img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/ex_plots/ex_01_scikit_simple_output_35_0.png" data-zoomable width=800px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
+<img class="img-fluid rounded z-depth-1" src="../assets/ex_plots/01_scikit_uncertain_predictions.png" data-zoomable width=800px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
+<div class="caption">
+    Figure 7: Most challenging digits for the model to predict, showing examples where the model has lowest prediction confidence.
+</div>
+
+## Common Pitfalls in Machine Learning Classification
+
+Before wrapping up, let's discuss some important pitfalls to avoid when working on classification tasks:
+
+1. **Data Leakage**: Always split your data before any preprocessing or feature engineering
+    ```python
+    # Wrong: Preprocessing before split
+    X_scaled = preprocessing.scale(X)
+    X_tr, X_te, y_tr, y_te = train_test_split(X_scaled, y)
+
+    # Correct: Split first, then preprocess
+    X_tr, X_te, y_tr, y_te = train_test_split(X, y)
+    X_tr_scaled = preprocessing.scale(X_tr)
+    X_te_scaled = preprocessing.scale(X_te)
+    ```
+
+2. **Class Imbalance**: Always check your class distribution
+    ```python
+    # Using pandas for better visualization
+    import pandas as pd
+
+    # Show absolute and relative frequencies
+    class_dist = pd.Series(y).value_counts(normalize=True)
+    print("Class distribution (%):")
+    print(class_dist.mul(100).round(2))
+
+    # Visualize distribution
+    class_dist.plot(kind='bar')
+    plt.title('Class Distribution')
+    plt.xlabel('Class')
+    plt.ylabel('Frequency (%)')
+    ```
+
+3. **Overfitting**: Monitor these warning signs
+    - Large gap between training and validation scores
+    - Perfect training accuracy (like we saw with RandomForest)
+    - Poor generalization to new data
+    ```python
+    # Use cross-validation for robust estimates
+    from sklearn.model_selection import cross_val_score
+
+    scores = cross_val_score(clf, X_tr, y_tr, cv=5)
+    print(f"CV Scores: {scores}")
+    print(f"Mean: {scores.mean():.3f} (±{scores.std()*2:.3f})")
+    ```
+
+4. **Memory Management**: For large datasets, consider these approaches
+    ```python
+    # Use n_jobs parameter for parallel processing
+    rf = RandomForestClassifier(n_jobs=-1)  # Use all available cores
+
+    # Or batch processing with random forests
+    rf = RandomForestClassifier(max_samples=0.8)  # Use 80% of samples per tree
+    ```
+
+5. **Feature Scaling**: Different algorithms have different scaling requirements
+    ```python
+    # SVM requires scaling, Random Forests don't
+    from sklearn.preprocessing import StandardScaler
+
+    # For SVM
+    scaler = StandardScaler()
+    X_tr_scaled = scaler.fit_transform(X_tr)
+    X_te_scaled = scaler.transform(X_te)
+
+    # Random Forests can handle unscaled data
+    rf.fit(X_tr, y_tr)  # No scaling needed
+    ```
+
+6. **Model Selection Bias**: Don't use test set for model selection
+    ```python
+    # Wrong: Using test set for parameter tuning
+    for param in parameters:
+        clf.set_params(**param)
+        score = clf.fit(X_tr, y_tr).score(X_te, y_te)  # Don't do this!
+
+    # Correct: Use cross-validation
+    grid = GridSearchCV(clf, parameters, cv=5)
+    grid.fit(X_tr, y_tr)
+    # Only use test set for final evaluation
+    ```
+
+7. **Model Troubleshooting Tips**
+    ```python
+    # Check for data issues first
+    print("Missing values:", X.isnull().sum().sum())
+    print("Infinite values:", np.isinf(X.values).sum())
+
+    # Verify predictions are valid
+    y_pred = clf.predict(X_te)
+    if len(np.unique(y_pred)) == 1:
+        print("Warning: Model predicting single class!")
+
+    # Check probability calibration
+    y_prob = clf.predict_proba(X_te)
+    if np.any(y_prob > 1.0) or np.any(y_prob < 0.0):
+        print("Warning: Invalid probability predictions!")
+    ```
+
+8. **Common Error Messages and Solutions**
+   - `ValueError: Input contains NaN`: Clean your data before training
+   - `MemoryError`: Reduce batch size or use data generators
 
 ## Summary and Next Steps
 
@@ -418,4 +580,4 @@ In the next post, we'll tackle the same MNIST classification problem using Tenso
 
 In Part 2, we'll explore how neural networks approach the same problem using TensorFlow, introducing deep learning concepts and comparing the two approaches.
 
-[Continue to Part 2 →]({{ site.baseurl }}/blog/2023/02_tensorflow_simple)
+[Continue to Part 2 →](../blog/2023/02_tensorflow_simple)
