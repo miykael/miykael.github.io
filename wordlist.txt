@@ -459,6 +459,7 @@ recommender
 redu
 regressor
 regularizer
+regularizers
 relu
 repos
 resnet
