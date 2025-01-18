@@ -365,7 +365,7 @@ plt.show()
 ### Common Deep Learning Pitfalls
 When starting with TensorFlow and neural networks, watch out for these common issues:
 
-1. **Data Preparation**
+**Data Preparation**
    - (Almost) always scale input data (like we did with `/255.0`)
    - Check for missing or invalid values
    - Ensure consistent data types
@@ -376,7 +376,7 @@ x_train = x_train.astype('float32') / 255.0
 x_test = x_test.astype('float32') / 255.0
 ```
 
-2. **Model Architecture**
+**Model Architecture**
    - Start simple, add complexity only if needed
    - Match output layer to your task (softmax for classification)
    - Use appropriate layer sizes
@@ -391,7 +391,7 @@ model = keras.Sequential([
 ])
 ```
 
-3. **Training Issues**
+**Training Issues**
    - Monitor training metrics (loss not decreasing)
    - Watch for overfitting (validation loss increasing)
    - Use appropriate batch sizes
@@ -406,7 +406,7 @@ history = model.fit(
 )
 ```
 
-4. **Memory Management**
+**Memory Management**
    - Clear unnecessary variables
    - Use appropriate data types
    - Watch batch sizes on limited hardware

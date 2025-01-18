@@ -462,7 +462,7 @@ plt.close()
 
 Before wrapping up, let's discuss some important pitfalls to avoid when working on classification tasks:
 
-1. **Data Leakage**: Always split your data before any preprocessing or feature engineering
+**Data Leakage**: Always split your data before any preprocessing or feature engineering
 
 ```python
 # Wrong: Preprocessing before split
@@ -475,7 +475,7 @@ X_tr_scaled = preprocessing.scale(X_tr)
 X_te_scaled = preprocessing.scale(X_te)
 ```
 
-2. **Class Imbalance**: Always check your class distribution
+**Class Imbalance**: Always check your class distribution
 
 ```python
 # Using pandas for better visualization
@@ -493,7 +493,7 @@ plt.xlabel('Class')
 plt.ylabel('Frequency (%)')
 ```
 
-3. **Overfitting**: Monitor these warning signs
+**Overfitting**: Monitor these warning signs
     - Large gap between training and validation scores
     - Perfect training accuracy (like we saw with RandomForest)
     - Poor generalization to new data
@@ -507,7 +507,7 @@ print(f"CV Scores: {scores}")
 print(f"Mean: {scores.mean():.3f} (±{scores.std()*2:.3f})")
 ```
 
-4. **Memory Management**: For large datasets, consider these approaches
+**Memory Management**: For large datasets, consider these approaches
 
 ```python
 # Use n_jobs parameter for parallel processing
@@ -517,7 +517,7 @@ rf = RandomForestClassifier(n_jobs=-1)  # Use all available cores
 rf = RandomForestClassifier(max_samples=0.8)  # Use 80% of samples per tree
 ```
 
-5. **Feature Scaling**: Different algorithms have different scaling requirements
+**Feature Scaling**: Different algorithms have different scaling requirements
 
 ```python
 # SVM requires scaling, Random Forests don't
@@ -532,7 +532,7 @@ X_te_scaled = scaler.transform(X_te)
 rf.fit(X_tr, y_tr)  # No scaling needed
 ```
 
-6. **Model Selection Bias**: Don't use test set for model selection
+**Model Selection Bias**: Don't use test set for model selection
 
 ```python
 # Wrong: Using test set for parameter tuning
@@ -546,7 +546,7 @@ grid.fit(X_tr, y_tr)
 # Only use test set for final evaluation
 ```
 
-7. **Model Troubleshooting Tips**
+**Model Troubleshooting Tips**
 
 ```python
 # Check for data issues first
@@ -564,7 +564,7 @@ if np.any(y_prob > 1.0) or np.any(y_prob < 0.0):
     print("Warning: Invalid probability predictions!")
 ```
 
-8. **Common Error Messages and Solutions**
+**Common Error Messages and Solutions**
    - `ValueError: Input contains NaN`: Clean your data before training
    - `MemoryError`: Reduce batch size or use data generators
 

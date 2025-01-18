@@ -677,7 +677,7 @@ plot_history(history_file=history_file, title="Training overview of best model")
 
 When working with complex neural networks and regression tasks, be aware of these advanced challenges:
 
-1. **Gradient Issues**
+**Gradient Issues**
    - Vanishing/exploding gradients in deep networks
    - Unstable training with certain architectures
 
@@ -694,7 +694,7 @@ x = layers.BatchNormalization()(x)
 x = layers.ReLU()(x)
 ```
 
-2. **Learning Rate Dynamics**
+**Learning Rate Dynamics**
    - Static learning rates often suboptimal
    - Different layers may need different rates
 
@@ -720,7 +720,7 @@ def warmup_cosine_decay(step):
     return tf.where(step < warmup_steps, warmup_rate, cosine_rate)
 ```
 
-3. **Complex Loss Functions**
+**Complex Loss Functions**
    - Multiple objectives need careful weighting
    - Custom losses require gradient consideration
    - Handle edge cases and numerical stability
@@ -739,7 +739,7 @@ class WeightedMSE(keras.losses.Loss):
         return tf.reduce_mean(weighted_errors, axis=-1)
 ```
 
-4. **Data Pipeline Bottlenecks**
+**Data Pipeline Bottlenecks**
    - I/O can become training bottleneck
    - Memory constraints with large datasets
 
@@ -757,7 +757,7 @@ def data_generator():
             yield x_tr[i:i+batch_size], y_tr[i:i+batch_size]
 ```
 
-5. **Model Architecture Complexity**
+**Model Architecture Complexity**
    - Deeper isn't always better
    - Skip connections can help with gradient flow
 
@@ -774,7 +774,7 @@ def residual_block(x, filters):
     return layers.ReLU()(x)
 ```
 
-6. **Regularization Strategy**
+**Regularization Strategy**
 - Different layers may need different regularization
 - Combine multiple regularization techniques
 
@@ -789,7 +789,7 @@ x = layers.BatchNormalization()(x)
 x = layers.Dropout(0.5)(x)
 ```
 
-7. **Model Debugging**
+**Model Debugging**
    - Add metrics to monitor internal states
    - Use callbacks for detailed inspection
    - Clear unused variables and models
