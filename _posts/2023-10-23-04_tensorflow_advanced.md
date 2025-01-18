@@ -164,26 +164,26 @@ model.summary(show_trainable=False)
 
     Model: "model"
     _________________________________________________________________
-     Layer (type)                Output Shape              Param #
+    Layer (type)                 Output Shape               Param #
     =================================================================
-     input_1 (InputLayer)        [(None, 10)]              0
-     normalization (Normalizatio  (None, 10)               21
-     n)
-     dense (Dense)               (None, 8)                 88
-     batch_normalization (BatchN  (None, 8)                32
-     ormalization)
-     re_lu (ReLU)                (None, 8)                 0
-     dropout (Dropout)           (None, 8)                 0
-     dense_1 (Dense)             (None, 4)                 36
-     batch_normalization_1 (Batc  (None, 4)                16
-     hNormalization)
-     re_lu_1 (ReLU)              (None, 4)                 0
-     dropout_1 (Dropout)         (None, 4)                 0
-     dense_2 (Dense)             (None, 1)                 5
+    input_1 (InputLayer)        [(None, 10)]               0
+    normalization (Normalizati   (None, 10)                21
+    on)
+    dense (Dense)                (None, 8)                 88
+    batch_normalization (Batch   (None, 8)                 32
+    Normalization)
+    re_lu (ReLU)                 (None, 8)                 0
+    dropout (Dropout)            (None, 8)                 0
+    dense_1 (Dense)              (None, 4)                 36
+    batch_normalization_1 (Bat   (None, 4)                 16
+    chNormalization)
+    re_lu_1 (ReLU)               (None, 4)                 0
+    dropout_1 (Dropout)          (None, 4)                 0
+    dense_2 (Dense)              (None, 1)                 5
     =================================================================
-    Total params: 198
-    Trainable params: 153
-    Non-trainable params: 45
+    Total params: 198 (796.00 Byte)
+    Trainable params: 153 (612.00 Byte)
+    Non-trainable params: 45 (184.00 Byte)
     _________________________________________________________________
 
 
@@ -432,23 +432,24 @@ model.summary()
 
     Model: "model_1"
     _________________________________________________________________
-     Layer (type)                Output Shape              Param #
+    Layer (type)                Output Shape              Param #
     =================================================================
-     input_2 (InputLayer)        [(None, 10)]              0
-     normalization (Normalizatio  (None, 10)               21
-     n)
-     batch_normalization_2 (Batc  (None, 10)               40
-     hNormalization)
-     dense_3 (Dense)             (None, 8)                 88
-     batch_normalization_3 (Batc  (None, 8)                32
-     hNormalization)
-     dense_4 (Dense)             (None, 4)                 36
-     dense_5 (Dense)             (None, 1)                 5
+    input_2 (InputLayer)        [(None, 10)]              0
+    normalization (Normalizati  (None, 10)                21
+    on)
+    batch_normalization_2 (Bat  (None, 10)                40
+    chNormalization)
+    dense_3 (Dense)             (None, 8)                 88
+    batch_normalization_3 (Bat  (None, 8)                 32
+    chNormalization)
+    dense_4 (Dense)             (None, 4)                 36
+    dense_5 (Dense)             (None, 1)                 5
     =================================================================
-    Total params: 222
-    Trainable params: 165
-    Non-trainable params: 57
+    Total params: 222 (892.00 Byte)
+    Trainable params: 165 (660.00 Byte)
+    Non-trainable params: 57 (232.00 Byte)
     _________________________________________________________________
+
 
 Next step is the creation of the parameter grid. First, let's establish the different parameters we could
 explore.

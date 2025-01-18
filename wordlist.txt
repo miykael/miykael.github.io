@@ -183,8 +183,10 @@ autoencoder
 axs
 azim
 ba
+backend
 backpropagation
 basophils
+bbox
 bloodmnist
 bn
 bool
@@ -219,6 +221,7 @@ dataframe
 dataset
 datasets
 datetime
+del
 deltatime
 dendrogram
 df
@@ -267,6 +270,7 @@ fragmenter
 framerate
 func
 gaussian
+gc
 geolocation
 gif
 github
@@ -356,6 +360,7 @@ miykael
 mnist
 monocytes
 msno
+mul
 multisensory
 musicinformationretrieval
 nDimension
@@ -424,6 +429,8 @@ polytrans
 practise
 pre
 pred
+prefetch
+prefetching
 preprocess
 preprocessed
 preprocessing
@@ -502,6 +509,7 @@ tril
 uci
 umap
 univariate
+unscaled
 url
 va
 variational
