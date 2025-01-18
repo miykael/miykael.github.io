@@ -370,53 +370,53 @@ When starting with TensorFlow and neural networks, watch out for these common is
    - Check for missing or invalid values
    - Ensure consistent data types
 
-   ```python
-   # Example of proper data preparation
-   x_train = x_train.astype('float32') / 255.0
-   x_test = x_test.astype('float32') / 255.0
-   ```
+```python
+# Example of proper data preparation
+x_train = x_train.astype('float32') / 255.0
+x_test = x_test.astype('float32') / 255.0
+```
 
 2. **Model Architecture**
    - Start simple, add complexity only if needed
    - Match output layer to your task (softmax for classification)
    - Use appropriate layer sizes
 
-   ```python
-   # Example of clear, progressive architecture
-   model = keras.Sequential([
-       layers.Conv2D(32, kernel_size=(3, 3), activation='relu'),
-       layers.MaxPooling2D(pool_size=(2, 2)),
-       layers.Flatten(),
-       layers.Dense(10, activation='softmax')  # 10 classes
-   ])
-   ```
+```python
+# Example of clear, progressive architecture
+model = keras.Sequential([
+    layers.Conv2D(32, kernel_size=(3, 3), activation='relu'),
+    layers.MaxPooling2D(pool_size=(2, 2)),
+    layers.Flatten(),
+    layers.Dense(10, activation='softmax')  # 10 classes
+])
+```
 
 3. **Training Issues**
    - Monitor training metrics (loss not decreasing)
    - Watch for overfitting (validation loss increasing)
    - Use appropriate batch sizes
 
-   ```python
-   # Add validation monitoring during training
-   history = model.fit(
-       x_train, y_train,
-       validation_split=0.1,
-       batch_size=128,
-       epochs=10
-   )
-   ```
+```python
+# Add validation monitoring during training
+history = model.fit(
+    x_train, y_train,
+    validation_split=0.1,
+    batch_size=128,
+    epochs=10
+)
+```
 
 4. **Memory Management**
    - Clear unnecessary variables
    - Use appropriate data types
    - Watch batch sizes on limited hardware
 
-   ```python
-   # Free memory after training
-   import gc
-   gc.collect()
-   keras.backend.clear_session()
-   ```
+```python
+# Free memory after training
+import gc
+gc.collect()
+keras.backend.clear_session()
+```
 
 ## Summary and Next Steps
 

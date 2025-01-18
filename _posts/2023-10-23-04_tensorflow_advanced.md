@@ -681,150 +681,150 @@ When working with complex neural networks and regression tasks, be aware of thes
    - Vanishing/exploding gradients in deep networks
    - Unstable training with certain architectures
 
-   ```python
-   # Use gradient clipping to prevent explosions
-   optimizer = keras.optimizers.Adam(
-       clipnorm=1.0,
-       learning_rate=1e-3
-   )
+```python
+# Use gradient clipping to prevent explosions
+optimizer = keras.optimizers.Adam(
+    clipnorm=1.0,
+    learning_rate=1e-3
+)
 
-   # Add batch normalization to help with gradient flow
-   x = layers.Dense(64)(inputs)
-   x = layers.BatchNormalization()(x)
-   x = layers.ReLU()(x)
-   ```
+# Add batch normalization to help with gradient flow
+x = layers.Dense(64)(inputs)
+x = layers.BatchNormalization()(x)
+x = layers.ReLU()(x)
+```
 
 2. **Learning Rate Dynamics**
    - Static learning rates often suboptimal
    - Different layers may need different rates
 
-   ```python
-   # Implement learning rate schedule
-   initial_learning_rate = 0.1
-   decay_steps = 1000
-   decay_rate = 0.9
+```python
+# Implement learning rate schedule
+initial_learning_rate = 0.1
+decay_steps = 1000
+decay_rate = 0.9
 
-   lr_schedule = keras.optimizers.schedules.ExponentialDecay(
-       initial_learning_rate,
-       decay_steps=decay_steps,
-       decay_rate=decay_rate
-   )
+lr_schedule = keras.optimizers.schedules.ExponentialDecay(
+    initial_learning_rate,
+    decay_steps=decay_steps,
+    decay_rate=decay_rate
+)
 
-   # Or use adaptive learning rate with warmup
-   warmup_steps = 1000
-   def warmup_cosine_decay(step):
-       warmup_rate = initial_learning_rate * step / warmup_steps
-       cosine_rate = tf.keras.experimental.CosineDecay(
-           initial_learning_rate, decay_steps
-       )(step)
-       return tf.where(step < warmup_steps, warmup_rate, cosine_rate)
-   ```
+# Or use adaptive learning rate with warmup
+warmup_steps = 1000
+def warmup_cosine_decay(step):
+    warmup_rate = initial_learning_rate * step / warmup_steps
+    cosine_rate = tf.keras.experimental.CosineDecay(
+        initial_learning_rate, decay_steps
+    )(step)
+    return tf.where(step < warmup_steps, warmup_rate, cosine_rate)
+```
 
 3. **Complex Loss Functions**
    - Multiple objectives need careful weighting
    - Custom losses require gradient consideration
    - Handle edge cases and numerical stability
 
-   ```python
-   class WeightedMSE(keras.losses.Loss):
-       def __init__(self, feature_weights, **kwargs):
-           super().__init__(**kwargs)
-           self.feature_weights = tf.constant(feature_weights, dtype=tf.float32)
+```python
+class WeightedMSE(keras.losses.Loss):
+    def __init__(self, feature_weights, **kwargs):
+        super().__init__(**kwargs)
+        self.feature_weights = tf.constant(feature_weights, dtype=tf.float32)
 
-       def call(self, y_true, y_pred):
-           # Add small epsilon to prevent numerical issues
-           y_pred = tf.clip_by_value(y_pred, 1e-7, 1.0)
-           squared_errors = tf.square(y_true - y_pred)
-           weighted_errors = squared_errors * self.feature_weights
-           return tf.reduce_mean(weighted_errors, axis=-1)
-   ```
+    def call(self, y_true, y_pred):
+        # Add small epsilon to prevent numerical issues
+        y_pred = tf.clip_by_value(y_pred, 1e-7, 1.0)
+        squared_errors = tf.square(y_true - y_pred)
+        weighted_errors = squared_errors * self.feature_weights
+        return tf.reduce_mean(weighted_errors, axis=-1)
+```
 
 4. **Data Pipeline Bottlenecks**
    - I/O can become training bottleneck
    - Memory constraints with large datasets
 
-   ```python
-   # Efficient data pipeline with prefetching
-   dataset = tf.data.Dataset.from_tensor_slices((x_tr, y_tr))
-   dataset = dataset.shuffle(buffer_size=1024)
-   dataset = dataset.batch(32)
-   dataset = dataset.prefetch(tf.data.AUTOTUNE)
+```python
+# Efficient data pipeline with prefetching
+dataset = tf.data.Dataset.from_tensor_slices((x_tr, y_tr))
+dataset = dataset.shuffle(buffer_size=1024)
+dataset = dataset.batch(32)
+dataset = dataset.prefetch(tf.data.AUTOTUNE)
 
-   # For large datasets, use generators
-   def data_generator():
-       while True:
-           for i in range(0, len(x_tr), batch_size):
-               yield x_tr[i:i+batch_size], y_tr[i:i+batch_size]
-   ```
+# For large datasets, use generators
+def data_generator():
+    while True:
+        for i in range(0, len(x_tr), batch_size):
+            yield x_tr[i:i+batch_size], y_tr[i:i+batch_size]
+```
 
 5. **Model Architecture Complexity**
    - Deeper isn't always better
    - Skip connections can help with gradient flow
 
-   ```python
-   # Example of residual connection
-   def residual_block(x, filters):
-       shortcut = x
-       x = layers.Conv2D(filters, 3, padding='same')(x)
-       x = layers.BatchNormalization()(x)
-       x = layers.ReLU()(x)
-       x = layers.Conv2D(filters, 3, padding='same')(x)
-       x = layers.BatchNormalization()(x)
-       x = layers.Add()([shortcut, x])  # Skip connection
-       return layers.ReLU()(x)
-   ```
+```python
+# Example of residual connection
+def residual_block(x, filters):
+    shortcut = x
+    x = layers.Conv2D(filters, 3, padding='same')(x)
+    x = layers.BatchNormalization()(x)
+    x = layers.ReLU()(x)
+    x = layers.Conv2D(filters, 3, padding='same')(x)
+    x = layers.BatchNormalization()(x)
+    x = layers.Add()([shortcut, x])  # Skip connection
+    return layers.ReLU()(x)
+```
 
 6. **Regularization Strategy**
-   - Different layers may need different regularization
-   - Combine multiple regularization techniques
+- Different layers may need different regularization
+- Combine multiple regularization techniques
 
-   ```python
-   # Comprehensive regularization strategy
-   x = layers.Dense(
-       64,
-       kernel_regularizer=keras.regularizers.l1_l2(l1=1e-5, l2=1e-4),
-       activity_regularizer=keras.regularizers.l1(1e-5)
-   )(x)
-   x = layers.BatchNormalization()(x)
-   x = layers.Dropout(0.5)(x)
-   ```
+```python
+# Comprehensive regularization strategy
+x = layers.Dense(
+    64,
+    kernel_regularizer=keras.regularizers.l1_l2(l1=1e-5, l2=1e-4),
+    activity_regularizer=keras.regularizers.l1(1e-5)
+)(x)
+x = layers.BatchNormalization()(x)
+x = layers.Dropout(0.5)(x)
+```
 
 7. **Model Debugging**
    - Add metrics to monitor internal states
    - Use callbacks for detailed inspection
    - Clear unused variables and models
 
-   ```python
-   # Clear memory after training experiments
-   import gc
+```python
+# Clear memory after training experiments
+import gc
 
-   def cleanup_memory():
-       # Delete unused variables
-       del unused_model
-       # Force garbage collection
-       gc.collect()
-       # Clear TensorFlow session
-       tf.keras.backend.clear_session()
+def cleanup_memory():
+    # Delete unused variables
+    del unused_model
+    # Force garbage collection
+    gc.collect()
+    # Clear TensorFlow session
+    tf.keras.backend.clear_session()
 
-   # Monitor layer states during training
-   class LayerStateCallback(keras.callbacks.Callback):
-       def on_epoch_end(self, epoch, logs=None):
-           layer_outputs = [layer.output for layer in self.model.layers]
-           inspection_model = keras.Model(
-               inputs=self.model.input,
-               outputs=layer_outputs
-           )
-           # Monitor layer statistics during training
-           layer_states = inspection_model.predict(x_val[:100])
-           for layer_idx, states in enumerate(layer_states):
-               print(f"Layer {layer_idx} stats:",
-                     f"mean={np.mean(states):.3f},",
-                     f"std={np.std(states):.3f}")
+# Monitor layer states during training
+class LayerStateCallback(keras.callbacks.Callback):
+    def on_epoch_end(self, epoch, logs=None):
+        layer_outputs = [layer.output for layer in self.model.layers]
+        inspection_model = keras.Model(
+            inputs=self.model.input,
+            outputs=layer_outputs
+        )
+        # Monitor layer statistics during training
+        layer_states = inspection_model.predict(x_val[:100])
+        for layer_idx, states in enumerate(layer_states):
+            print(f"Layer {layer_idx} stats:",
+                    f"mean={np.mean(states):.3f},",
+                    f"std={np.std(states):.3f}")
 
-           # Clean up inspection model
-           del inspection_model
-           gc.collect()
-   ```
+        # Clean up inspection model
+        del inspection_model
+        gc.collect()
+```
 
 These advanced considerations become crucial when:
 - Working with complex architectures

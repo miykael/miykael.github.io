@@ -463,100 +463,106 @@ plt.close()
 Before wrapping up, let's discuss some important pitfalls to avoid when working on classification tasks:
 
 1. **Data Leakage**: Always split your data before any preprocessing or feature engineering
-    ```python
-    # Wrong: Preprocessing before split
-    X_scaled = preprocessing.scale(X)
-    X_tr, X_te, y_tr, y_te = train_test_split(X_scaled, y)
 
-    # Correct: Split first, then preprocess
-    X_tr, X_te, y_tr, y_te = train_test_split(X, y)
-    X_tr_scaled = preprocessing.scale(X_tr)
-    X_te_scaled = preprocessing.scale(X_te)
-    ```
+```python
+# Wrong: Preprocessing before split
+X_scaled = preprocessing.scale(X)
+X_tr, X_te, y_tr, y_te = train_test_split(X_scaled, y)
+
+# Correct: Split first, then preprocess
+X_tr, X_te, y_tr, y_te = train_test_split(X, y)
+X_tr_scaled = preprocessing.scale(X_tr)
+X_te_scaled = preprocessing.scale(X_te)
+```
 
 2. **Class Imbalance**: Always check your class distribution
-    ```python
-    # Using pandas for better visualization
-    import pandas as pd
 
-    # Show absolute and relative frequencies
-    class_dist = pd.Series(y).value_counts(normalize=True)
-    print("Class distribution (%):")
-    print(class_dist.mul(100).round(2))
+```python
+# Using pandas for better visualization
+import pandas as pd
 
-    # Visualize distribution
-    class_dist.plot(kind='bar')
-    plt.title('Class Distribution')
-    plt.xlabel('Class')
-    plt.ylabel('Frequency (%)')
-    ```
+# Show absolute and relative frequencies
+class_dist = pd.Series(y).value_counts(normalize=True)
+print("Class distribution (%):")
+print(class_dist.mul(100).round(2))
+
+# Visualize distribution
+class_dist.plot(kind='bar')
+plt.title('Class Distribution')
+plt.xlabel('Class')
+plt.ylabel('Frequency (%)')
+```
 
 3. **Overfitting**: Monitor these warning signs
     - Large gap between training and validation scores
     - Perfect training accuracy (like we saw with RandomForest)
     - Poor generalization to new data
 
-    ```python
-    # Use cross-validation for robust estimates
-    from sklearn.model_selection import cross_val_score
+```python
+# Use cross-validation for robust estimates
+from sklearn.model_selection import cross_val_score
 
-    scores = cross_val_score(clf, X_tr, y_tr, cv=5)
-    print(f"CV Scores: {scores}")
-    print(f"Mean: {scores.mean():.3f} (±{scores.std()*2:.3f})")
-    ```
+scores = cross_val_score(clf, X_tr, y_tr, cv=5)
+print(f"CV Scores: {scores}")
+print(f"Mean: {scores.mean():.3f} (±{scores.std()*2:.3f})")
+```
 
 4. **Memory Management**: For large datasets, consider these approaches
-    ```python
-    # Use n_jobs parameter for parallel processing
-    rf = RandomForestClassifier(n_jobs=-1)  # Use all available cores
 
-    # Or batch processing with random forests
-    rf = RandomForestClassifier(max_samples=0.8)  # Use 80% of samples per tree
-    ```
+```python
+# Use n_jobs parameter for parallel processing
+rf = RandomForestClassifier(n_jobs=-1)  # Use all available cores
+
+# Or batch processing with random forests
+rf = RandomForestClassifier(max_samples=0.8)  # Use 80% of samples per tree
+```
 
 5. **Feature Scaling**: Different algorithms have different scaling requirements
-    ```python
-    # SVM requires scaling, Random Forests don't
-    from sklearn.preprocessing import StandardScaler
 
-    # For SVM
-    scaler = StandardScaler()
-    X_tr_scaled = scaler.fit_transform(X_tr)
-    X_te_scaled = scaler.transform(X_te)
+```python
+# SVM requires scaling, Random Forests don't
+from sklearn.preprocessing import StandardScaler
 
-    # Random Forests can handle unscaled data
-    rf.fit(X_tr, y_tr)  # No scaling needed
-    ```
+# For SVM
+scaler = StandardScaler()
+X_tr_scaled = scaler.fit_transform(X_tr)
+X_te_scaled = scaler.transform(X_te)
+
+# Random Forests can handle unscaled data
+rf.fit(X_tr, y_tr)  # No scaling needed
+```
 
 6. **Model Selection Bias**: Don't use test set for model selection
-    ```python
-    # Wrong: Using test set for parameter tuning
-    for param in parameters:
-        clf.set_params(**param)
-        score = clf.fit(X_tr, y_tr).score(X_te, y_te)  # Don't do this!
 
-    # Correct: Use cross-validation
-    grid = GridSearchCV(clf, parameters, cv=5)
-    grid.fit(X_tr, y_tr)
-    # Only use test set for final evaluation
-    ```
+```python
+# Wrong: Using test set for parameter tuning
+for param in parameters:
+    clf.set_params(**param)
+    score = clf.fit(X_tr, y_tr).score(X_te, y_te)  # Don't do this!
+
+# Correct: Use cross-validation
+grid = GridSearchCV(clf, parameters, cv=5)
+grid.fit(X_tr, y_tr)
+# Only use test set for final evaluation
+```
 
 7. **Model Troubleshooting Tips**
-    ```python
-    # Check for data issues first
-    print("Missing values:", X.isnull().sum().sum())
-    print("Infinite values:", np.isinf(X.values).sum())
 
-    # Verify predictions are valid
-    y_pred = clf.predict(X_te)
-    if len(np.unique(y_pred)) == 1:
-        print("Warning: Model predicting single class!")
+```python
+# Check for data issues first
+print("Missing values:", X.isnull().sum().sum())
+print("Infinite values:", np.isinf(X.values).sum())
 
-    # Check probability calibration
-    y_prob = clf.predict_proba(X_te)
-    if np.any(y_prob > 1.0) or np.any(y_prob < 0.0):
-        print("Warning: Invalid probability predictions!")
-    ```
+# Verify predictions are valid
+y_pred = clf.predict(X_te)
+if len(np.unique(y_pred)) == 1:
+    print("Warning: Model predicting single class!")
+
+# Check probability calibration
+y_prob = clf.predict_proba(X_te)
+if np.any(y_prob > 1.0) or np.any(y_prob < 0.0):
+    print("Warning: Invalid probability predictions!")
+```
 
 8. **Common Error Messages and Solutions**
    - `ValueError: Input contains NaN`: Clean your data before training
@@ -585,4 +591,4 @@ In the next post, we'll tackle the same MNIST classification problem using Tenso
 
 In Part 2, we'll explore how neural networks approach the same problem using TensorFlow, introducing deep learning concepts and comparing the two approaches.
 
-[Continue to Part 2 →]({{ site.baseurl }}/blog/2023/02_tensorflow_simple)
+[Next: Deep Learning Fundamentals →]({{ site.baseurl }}/blog/2023/02_tensorflow_simple)
