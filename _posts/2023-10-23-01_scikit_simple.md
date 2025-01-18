@@ -495,6 +495,7 @@ Before wrapping up, let's discuss some important pitfalls to avoid when working 
     - Large gap between training and validation scores
     - Perfect training accuracy (like we saw with RandomForest)
     - Poor generalization to new data
+
     ```python
     # Use cross-validation for robust estimates
     from sklearn.model_selection import cross_val_score

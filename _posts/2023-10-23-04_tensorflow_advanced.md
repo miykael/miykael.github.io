@@ -680,6 +680,7 @@ When working with complex neural networks and regression tasks, be aware of thes
 1. **Gradient Issues**
    - Vanishing/exploding gradients in deep networks
    - Unstable training with certain architectures
+
    ```python
    # Use gradient clipping to prevent explosions
    optimizer = keras.optimizers.Adam(
@@ -696,6 +697,7 @@ When working with complex neural networks and regression tasks, be aware of thes
 2. **Learning Rate Dynamics**
    - Static learning rates often suboptimal
    - Different layers may need different rates
+
    ```python
    # Implement learning rate schedule
    initial_learning_rate = 0.1
@@ -722,6 +724,7 @@ When working with complex neural networks and regression tasks, be aware of thes
    - Multiple objectives need careful weighting
    - Custom losses require gradient consideration
    - Handle edge cases and numerical stability
+
    ```python
    class WeightedMSE(keras.losses.Loss):
        def __init__(self, feature_weights, **kwargs):
@@ -739,6 +742,7 @@ When working with complex neural networks and regression tasks, be aware of thes
 4. **Data Pipeline Bottlenecks**
    - I/O can become training bottleneck
    - Memory constraints with large datasets
+
    ```python
    # Efficient data pipeline with prefetching
    dataset = tf.data.Dataset.from_tensor_slices((x_tr, y_tr))
@@ -756,6 +760,7 @@ When working with complex neural networks and regression tasks, be aware of thes
 5. **Model Architecture Complexity**
    - Deeper isn't always better
    - Skip connections can help with gradient flow
+
    ```python
    # Example of residual connection
    def residual_block(x, filters):
@@ -772,6 +777,7 @@ When working with complex neural networks and regression tasks, be aware of thes
 6. **Regularization Strategy**
    - Different layers may need different regularization
    - Combine multiple regularization techniques
+
    ```python
    # Comprehensive regularization strategy
    x = layers.Dense(
@@ -787,6 +793,7 @@ When working with complex neural networks and regression tasks, be aware of thes
    - Add metrics to monitor internal states
    - Use callbacks for detailed inspection
    - Clear unused variables and models
+
    ```python
    # Clear memory after training experiments
    import gc

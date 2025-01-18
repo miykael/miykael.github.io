@@ -91,13 +91,16 @@ The Sequential API is the simplest way to build neural networks - layers are sta
 # Define model architecture using Sequential API
 model = keras.Sequential(
     [
-        # First Convolutional Block
-        layers.Conv2D(32, kernel_size=(3, 3), activation='relu',  # 32 filters, each 3x3 in size, detect basic patterns
-                      input_shape=input_shape),
-        layers.MaxPooling2D(pool_size=(2, 2)),  # Reduces spatial dimensions by half while preserving features
+        # First Convolutional Block (32 filters, each 3x3 in size, detect basic patterns)
+        layers.Conv2D(32, kernel_size=(3, 3), activation='relu', input_shape=input_shape),
 
-        # Second Convolutional Block
-        layers.Conv2D(64, kernel_size=(3, 3), activation='relu'),  # 64 filters detect more complex patterns
+        # MaxPooling2D: Reduces spatial dimensions by half while preserving features
+        layers.MaxPooling2D(pool_size=(2, 2)),
+
+        # Second Convolutional Block (64 filters, detect more complex patterns)
+        layers.Conv2D(64, kernel_size=(3, 3), activation='relu'),
+
+        # MaxPooling2D: Reduces spatial dimensions by half while preserving features
         layers.MaxPooling2D(pool_size=(2, 2)),
 
         # Flatten 3D feature maps to 1D feature vector
@@ -207,7 +210,7 @@ parameters.
 ```python
 # Training configuration
 batch_size = 128  # Number of samples processed before model update
-epochs = 10      # Number of complete passes through the dataset
+epochs = 10       # Number of complete passes through the dataset
 
 # Compile model with appropriate loss function and optimizer
 model.compile(
@@ -366,6 +369,7 @@ When starting with TensorFlow and neural networks, watch out for these common is
    - (Almost) always scale input data (like we did with `/255.0`)
    - Check for missing or invalid values
    - Ensure consistent data types
+
    ```python
    # Example of proper data preparation
    x_train = x_train.astype('float32') / 255.0
@@ -376,6 +380,7 @@ When starting with TensorFlow and neural networks, watch out for these common is
    - Start simple, add complexity only if needed
    - Match output layer to your task (softmax for classification)
    - Use appropriate layer sizes
+
    ```python
    # Example of clear, progressive architecture
    model = keras.Sequential([
@@ -390,6 +395,7 @@ When starting with TensorFlow and neural networks, watch out for these common is
    - Monitor training metrics (loss not decreasing)
    - Watch for overfitting (validation loss increasing)
    - Use appropriate batch sizes
+
    ```python
    # Add validation monitoring during training
    history = model.fit(
@@ -404,6 +410,7 @@ When starting with TensorFlow and neural networks, watch out for these common is
    - Clear unnecessary variables
    - Use appropriate data types
    - Watch batch sizes on limited hardware
+
    ```python
    # Free memory after training
    import gc

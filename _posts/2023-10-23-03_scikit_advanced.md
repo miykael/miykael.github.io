@@ -208,7 +208,7 @@ plt.xlabel("Price")
 plt.show()
 ```
 
-<img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/ex_plots/ex_02_scikit_advanced_output_10_0.png" data-zoomable width=800px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
+<img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/ex_plots/03_scikit_price_distribution.png" data-zoomable width=800px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
 <div class="caption">
     Figure 1: Data quality analysis showing the distribution of missing values and data types across features in the California Housing dataset.
 </div>
@@ -622,7 +622,7 @@ fig.tight_layout()
 plt.show()
 ```
 
-<img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/ex_plots/ex_02_scikit_advanced_output_43_0.png" data-zoomable width=800px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
+<img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/ex_plots/03_scikit_feature_importance.png" data-zoomable width=800px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
 <div class="caption">
     Figure 2: Feature importance analysis using permutation importance method. Box plots show the impact of each feature on model performance across multiple permutations, with larger values indicating more important features.
 </div>
