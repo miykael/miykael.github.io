@@ -66,6 +66,7 @@ Knebel
 LINEViewer
 LSOA
 Lausanne
+LayerStateCallback
 Lindquist
 LogisticRegression
 LotArea
@@ -359,6 +360,7 @@ multisensory
 musicinformationretrieval
 nDimension
 nFeatures
+nTop
 nan
 nanmean
 nanmedian
@@ -430,6 +432,7 @@ pretrained
 proba
 pupillometry
 pupillometryAnalyzer
+py
 pyin
 pyplot
 qO
