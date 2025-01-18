@@ -1,6 +1,7 @@
 ADHD
 AMLD
 ASD
+AUTOTUNE
 Atlasreader
 AveragePooling
 BatchNormalization
@@ -19,6 +20,7 @@ ConfusionMatrixDisplay
 Conv
 ConvNet
 ConvNets
+CosineDecay
 DSP
 DataFrame
 DataLad
@@ -29,6 +31,7 @@ EDA
 EPFL
 EXTS
 EarlyStopping
+ExponentialDecay
 FFT
 FH
 FSL
@@ -157,6 +160,7 @@ VCSELs
 VR
 VarianceScaling
 Viessman
+WeightedMSE
 WhitakerLab
 XYZ
 Zalando
@@ -176,6 +180,7 @@ argmax
 argmin
 argsort
 artefacts
+asarray
 astype
 atlasreader
 autodidactic
@@ -199,6 +204,7 @@ centroids
 cepstral
 cifar
 clf
+clipnorm
 clustermap
 cmap
 cnn
@@ -233,6 +239,7 @@ dprintyourbrain
 dropbox
 dropdown
 dropna
+dtype
 dtypes
 eScience
 edgecolor
@@ -315,6 +322,7 @@ interpretable
 io
 ipynb
 isin
+isinf
 isna
 isnull
 iter
@@ -325,6 +333,7 @@ jpg
 jpgs
 kaggle
 keras
+kwargs
 kws
 laude
 learn's
@@ -332,6 +341,7 @@ len
 librosa
 librosa's
 linalg
+linearities
 linestyles
 lineviewer
 linewidth
@@ -487,6 +497,7 @@ str
 stripplot
 strugle
 submenus
+suboptimal
 subsample
 summa
 suptitle
@@ -505,6 +516,7 @@ tkqpq
 totalling
 towardsdatascience
 tqdm
+tradeoffs
 tril
 uci
 umap
@@ -518,6 +530,7 @@ vlag
 vlines
 vstack
 vvtgz
+warmup
 wav
 waveforms
 waveplot
