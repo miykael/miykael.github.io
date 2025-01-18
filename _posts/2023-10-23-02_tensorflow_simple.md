@@ -8,6 +8,8 @@ description: Building your first neural network for image classification
 
 In this second part of our machine learning series, we'll implement the same MNIST classification task using [TensorFlow](https://www.tensorflow.org/). While Scikit-learn excels at classical machine learning, TensorFlow shines when building neural networks. We'll see how deep learning approaches differ from traditional methods and learn the basic concepts of neural network architecture.
 
+The complete code for this tutorial can be found in the [02_tensorflow_simple.py]({{ site.baseurl }}/scripts/02_tensorflow_simple.py) script.
+
 ### Why Neural Networks?
 
 While our Scikit-learn models performed well in Part 1, neural networks offer several key advantages for image classification:
@@ -155,29 +157,27 @@ and the number of trainable and non-trainable parameters.
 model.summary()
 ```
 
-    Model: "sequential_1"
+    Model: "sequential"
     _________________________________________________________________
-     Layer (type)                Output Shape              Param #
+    Layer (type)                    Output Shape              Param #
     =================================================================
-     conv2d_2 (Conv2D)           (None, 26, 26, 32)        320
-     re_lu (ReLU)                (None, 26, 26, 32)        0
-     max_pooling2d_2 (MaxPooling  (None, 13, 13, 32)       0
-     2D)
-     conv2d_3 (Conv2D)           (None, 11, 11, 64)        18496
-     re_lu_1 (ReLU)              (None, 11, 11, 64)        0
-     max_pooling2d_3 (MaxPooling  (None, 5, 5, 64)         0
-     2D)
-     flatten_1 (Flatten)         (None, 1600)              0
-     dropout_2 (Dropout)         (None, 1600)              0
-     dense_2 (Dense)             (None, 32)                51232
-     re_lu_2 (ReLU)              (None, 32)                0
-     dropout_3 (Dropout)         (None, 32)                0
-     dense_3 (Dense)             (None, 10)                330
-     softmax (Softmax)           (None, 10)                0
+    conv2d (Conv2D)                 (None, 26, 26, 32)        320
+    re_lu (ReLU)                    (None, 26, 26, 32)        0
+    max_pooling2d (MaxPooling2D)    (None, 13, 13, 32)        0
+    conv2d_1 (Conv2D)               (None, 11, 11, 64)        18496
+    re_lu_1 (ReLU)                  (None, 11, 11, 64)        0
+    max_pooling2d_1 (MaxPooling2D)  (None, 5, 5, 64)          0
+    flatten (Flatten)               (None, 1600)              0
+    dropout (Dropout)               (None, 1600)              0
+    dense (Dense)                   (None, 32)                51232
+    re_lu_2 (ReLU)                  (None, 32)                0
+    dropout_1 (Dropout)             (None, 32)                0
+    dense_1 (Dense)                 (None, 10)                330
+    softmax (Softmax)               (None, 10)                0
     =================================================================
-    Total params: 70,378
-    Trainable params: 70,378
-    Non-trainable params: 0
+    Total params: 70,378 (274.91 KB)
+    Trainable params: 70,378 (274.91 KB)
+    Non-trainable params: 0 (0.00 Byte)
     _________________________________________________________________
 
 This summary tells us several important things:
@@ -286,7 +286,7 @@ axs[1].set_ylabel("Accuracy")
 plt.show()
 ```
 
-<img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/ex_plots/ex_03_tensorflow_simple_output_16_0.png" data-zoomable width=800px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
+<img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/ex_plots/02_tensorflow_training_history.png" data-zoomable width=800px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
 <div class="caption">
     Figure 1: Training metrics over time showing model loss (left) and Mean Absolute Error (right) for both training and validation sets. The logarithmic scale helps visualize improvement across different magnitudes.
 </div>
@@ -330,7 +330,7 @@ plt.show()
 ```
 
 <div style="text-align: center">
-    <img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/ex_plots/ex_03_tensorflow_simple_output_22_0.png" data-zoomable width=500px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
+    <img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/ex_plots/02_tensorflow_confusion_matrix.png" data-zoomable width=500px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
 </div><br>
 
 ## 5. Model parameters
@@ -357,7 +357,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-<img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/ex_plots/ex_03_tensorflow_simple_output_24_0.png" data-zoomable width=800px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
+<img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/ex_plots/02_tensorflow_conv_kernels.png" data-zoomable width=800px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
 
 ### Common Deep Learning Pitfalls
 When starting with TensorFlow and neural networks, watch out for these common issues:

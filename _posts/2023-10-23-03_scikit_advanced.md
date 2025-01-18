@@ -8,6 +8,8 @@ description: Exploring complex regression problems and preprocessing pipelines
 
 In this third part of our series, we'll explore more sophisticated machine learning techniques using [Scikit-learn](https://scikit-learn.org/stable/). While Parts 1 and 2 focused on classification, we'll now tackle regression problems and learn how to build complex preprocessing pipelines. We'll use the California Housing dataset to demonstrate these concepts.
 
+The complete code for this tutorial can be found in the [03_scikit_advanced.py]({{ site.baseurl }}/scripts/03_scikit_advanced.py) script.
+
 **Note**: The purpose of this post is to highlight the flexibility and capabilities of scikit-learn's advanced features. Therefore, this tutorial focuses on introducing you to those advanced routines rather than creating the optimal regression model.
 
 ### Why Advanced Preprocessing?
@@ -437,16 +439,13 @@ import pandas as pd
 
 df_res = pd.DataFrame(res.cv_results_)
 df_res = df_res.iloc[:, ~df_res.columns.str.contains('time|split[0-9]*|rank|params')]
-new_columns = [
-    c.split('param_regressor__')[1] if 'param_regressor' in c else c
-    for c in df_res.columns
-]
-new_columns = [
-    c.split('preprocessor__')[1] if 'preprocessor__' in c else c for c in new_columns
-]
+new_columns = [c.split('param_regressor__')[1] if 'param_regressor' in c else c for c in df_res.columns]
+new_columns = [c.split('preprocessor__')[1] if 'preprocessor__' in c else c for c in new_columns]
 df_res.columns = new_columns
 df_res = df_res.sort_values('mean_test_score', ascending=False)
-df_res.head(10)
+
+print("\nTop 10 parameter combinations:")
+print(df_res.head(10))
 ```
 
 | :-------------: | :------------------: | :-----------------------------------------: | :-----------------------------: | :-------------------------------------: | :-----------------------------------------: | :--------------------------------: | :-------------------------------------------: | :-------------------------------------: | :----------------------------------------: | :----------------: | :---------------: | :-----------------: | :----------------: |
@@ -480,17 +479,13 @@ Prediction accuracy on test data:  {score_te*100:.2f}%"
 )
 ```
 
-    Prediction accuracy on train data: 7.10%
-    Prediction accuracy on test data:  8.38%
-
-# Add this interpretation
 Let's interpret these regression metrics in practical terms:
-- **Train Error (7.10%)**: On average, predictions deviate by 7.10% from true house prices
-  - For a $300,000 house, this means predictions are typically within ±$21,300
-- **Test Error (8.38%)**: Slightly higher error on unseen data
-  - For a $300,000 house, predictions are typically within ±$25,140
-- **Error Difference (1.28%)**: Small gap indicates good generalization
-- **Context**: For house price prediction, ~8% error is relatively good considering market volatility
+- **Train Error**: On average, predictions deviate by about 7-8% from true house prices
+  - For a $300,000 house, this means predictions are typically within ±$21,000-24,000
+- **Test Error**: Slightly higher error on unseen data
+  - For a $300,000 house, predictions are typically within ±$24,000-27,000
+- **Error Difference**: Small gap indicates good generalization
+- **Context**: For house price prediction, ~8-9% error is relatively good considering market volatility
 
 Great, the score seems reasonably good! But now that we know better which preprocessing routine seems to be the
 best (thanks to `RandomizedSearchCV`), let's go ahead and further fine-tune the ridge model.

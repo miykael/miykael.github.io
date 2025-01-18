@@ -7,6 +7,8 @@ description: Implementing sophisticated neural networks for regression tasks
 
 In this final part of our series, we'll explore advanced TensorFlow concepts by building a sophisticated regression model. While Part 2 introduced basic neural networks for classification, we'll now tackle regression and demonstrate TensorFlow's powerful features for model customization and optimization. However, as in part 3, the purpose of this tutorial is to highlight the flexibility and capabilities of TensorFlow. Therefore, this showcase is mostly about introducing you to those advanced routines and not about how to create the best regression model.
 
+The complete code for this tutorial can be found in the [04_tensorflow_advanced.py]({{ site.baseurl }}/scripts/04_tensorflow_advanced.py) script.
+
 ### Why Advanced Neural Networks?
 
 Complex real-world problems often require:
@@ -78,13 +80,13 @@ Next, let's split the dataset into a train and test set.
 df_tr = df.sample(frac=0.8, random_state=0)
 df_te = df.drop(df_tr.index)
 
-print(f"Size of training and test set: {df_tr.shape} | {df_te.shape}")
+# Separate target from features and convert to float32
+x_tr = np.asarray(df_tr.drop(columns=['Rings'])).astype('float32')
+x_te = np.asarray(df_te.drop(columns=['Rings'])).astype('float32')
+y_tr = np.asarray(df_tr['Rings']).astype('float32')
+y_te = np.asarray(df_te['Rings']).astype('float32')
 
-# Separate target from features
-x_tr = df_tr.drop(columns=['Rings'])
-x_te = df_te.drop(columns=['Rings'])
-y_tr = df_tr['Rings']
-y_te = df_te['Rings']
+print(f"Size of training and test set: {df_tr.shape} | {df_te.shape}")
 ```
 
     Size of training and test set: (3342, 11) | (835, 11)
@@ -105,7 +107,7 @@ TensorFlow.
 normalizer = tf.keras.layers.Normalization(axis=-1)
 
 # Train the layer to establish normalization parameters
-normalizer.adapt(np.array(x_tr))
+normalizer.adapt(x_tr)
 
 # Verify normalization parameters
 print(f"Mean parameters:\n{normalizer.adapt_mean.numpy()}\n")
@@ -305,7 +307,7 @@ def plot_history(history_file='history_log.csv', title=''):
 # Plot training history
 plot_history(history_file='history_log.csv', title="Training overview")
 ```
-<img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/ex_plots/ex_04_tensorflow_advanced_output_17_0.png" data-zoomable width=800px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
+<img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/ex_plots/04_tensorflow_training_history.png" data-zoomable width=800px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
 <div class="caption">
     Figure 1: Training progress showing loss and Mean Absolute Error (MAE) metrics over epochs. The logarithmic scale helps visualize improvements across different orders of magnitude.
 </div>
@@ -376,21 +378,6 @@ def build_and_compile_model(
     kernel_init='he_normal', # Weight initialization strategy
     kernel_regularizer=None, # Weight regularization method
 ):
-    """Creates and compiles a neural network model with specified architecture.
-
-    Args:
-        hidden: List of integers defining the size of each hidden layer
-        activation: Activation function to use in hidden layers
-        use_batch: Whether to use batch normalization between layers
-        dropout_rate: Rate of dropout for regularization (0 to 1)
-        learning_rate: Initial learning rate for optimizer
-        optimizers: Choice of optimization algorithm
-        kernel_init: Weight initialization strategy
-        kernel_regularizer: Weight regularization method
-
-    Returns:
-        Compiled Keras model ready for training
-    """
     # Create input layer
     input_layer = keras.Input(shape=(x_tr.shape[1],))
 
@@ -680,7 +667,7 @@ history_file = f'history_log_{gixd_best}.csv'
 plot_history(history_file=history_file, title="Training overview of best model")
 ```
 
-<img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/ex_plots/ex_04_tensorflow_advanced_output_33_0.png" data-zoomable width=800px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
+<img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/ex_plots/04_tensorflow_architecture_comparison.png" data-zoomable width=800px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
 <div class="caption">
     Figure 2: Training metrics for the best performing model architecture, showing both loss and MAE on training and validation sets. The consistent convergence suggests stable learning without overfitting.
 </div>

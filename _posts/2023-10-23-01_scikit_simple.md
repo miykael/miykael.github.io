@@ -9,15 +9,19 @@ This post is part of a comprehensive machine learning series that takes you from
 
 1. **Getting Started with Machine Learning** (Current Post)
    Basic classification using Scikit-learn with the MNIST dataset
+   ([View code]({{ site.baseurl }}/scripts/01_scikit_simple.py))
 
 2. **Deep Learning Fundamentals**
    Introduction to neural networks using TensorFlow
+   ([View code]({{ site.baseurl }}/scripts/02_tensorflow_simple.py))
 
 3. **Advanced Machine Learning**
    Complex regression pipelines with Scikit-learn
+   ([View code]({{ site.baseurl }}/scripts/03_scikit_advanced.py))
 
 4. **Advanced Deep Learning**
    Sophisticated neural network architectures in TensorFlow
+   ([View code]({{ site.baseurl }}/scripts/04_tensorflow_advanced.py))
 
 Each tutorial builds upon concepts from previous posts while introducing new techniques and best practices. Whether you're new to machine learning or looking to expand your skills, this series provides hands-on experience with real-world datasets and modern ML tools.
 
@@ -25,10 +29,10 @@ Have you ever wondered how to get started with machine learning? This series of 
 
 The series consists of four parts:
 
-1. **[Getting Started with Classification using Scikit-learn](../blog/2023/01_scikit_simple)** (You are here)<br>Introduction to machine learning basics using the MNIST dataset
-2. **[Basic Neural Networks with TensorFlow](../blog/2023/02_tensorflow_simple)** (Part 2)<br>Building your first neural network for image classification
-3. **[Advanced Machine Learning with Scikit-learn](../blog/2023/03_scikit_advanced)** (Part 3)<br>Exploring complex regression problems and model optimization
-4. **[Advanced Neural Networks with TensorFlow](../blog/2023/04_tensorflow_advanced)** (Part 4)<br>Implementing sophisticated neural network architectures
+1. **[Getting Started with Classification using Scikit-learn]({{ site.baseurl }}/blog/2023/01_scikit_simple)** (You are here)<br>Introduction to machine learning basics using the MNIST dataset
+2. **[Basic Neural Networks with TensorFlow]({{ site.baseurl }}/blog/2023/02_tensorflow_simple)** (Part 2)<br>Building your first neural network for image classification
+3. **[Advanced Machine Learning with Scikit-learn]({{ site.baseurl }}/blog/2023/03_scikit_advanced)** (Part 3)<br>Exploring complex regression problems and model optimization
+4. **[Advanced Neural Networks with TensorFlow]({{ site.baseurl }}/blog/2023/04_tensorflow_advanced)** (Part 4)<br>Implementing sophisticated neural network architectures
 
 ### Why These Tools?
 
@@ -89,7 +93,7 @@ for ax, image, label in zip(axes.ravel(), digits.images, digits.target):
 ```
 
 <div style="text-align: center">
-    <img class="img-fluid rounded z-depth-1" src="../assets/ex_plots/01_scikit_digits_sample.png" data-zoomable width=600px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
+    <img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/ex_plots/01_scikit_digits_sample.png" data-zoomable width=600px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
     <div class="caption">
         Figure 1: Sample of MNIST digits showing different handwritten numbers from 0-9. Each image is an 8x8 pixel grayscale representation.
     </div>
@@ -228,7 +232,7 @@ plt.close()
 ```
 
 <div style="text-align: center">
-    <img class="img-fluid rounded z-depth-1" src="../assets/ex_plots/01_scikit_rf_heatmap.png" data-zoomable width=500px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
+    <img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/ex_plots/01_scikit_rf_heatmap.png" data-zoomable width=500px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
     <div class="caption">
         Figure 2: Heatmap showing model accuracy (%) for different combinations of SVM hyperparameters gamma and C. Darker colors indicate better performance.
     </div>
@@ -316,7 +320,7 @@ plt.close()
 ```
 
 <div style="text-align: center">
-    <img class="img-fluid rounded z-depth-1" src="../assets/ex_plots/01_scikit_svm_heatmap.png" data-zoomable width=500px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
+    <img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/ex_plots/01_scikit_svm_heatmap.png" data-zoomable width=500px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
     <div class="caption">
         Figure 3: Confusion matrix showing the model's prediction performance across all digit classes. Diagonal elements represent correct predictions.
     </div>
@@ -375,7 +379,7 @@ plt.close()
 ```
 
 <div style="text-align: center">
-    <img class="img-fluid rounded z-depth-1" src="../assets/ex_plots/01_scikit_confusion_matrix.png" data-zoomable width=500px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
+    <img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/ex_plots/01_scikit_confusion_matrix.png" data-zoomable width=500px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
     <div class="caption">
         Figure 4: Feature importance heatmap showing which pixels in the 8x8 grid contribute most to the Random Forest's classification decisions.
     </div>
@@ -405,7 +409,7 @@ plt.close()
 ```
 
 <div style="text-align: center">
-    <img class="img-fluid rounded z-depth-1" src="../assets/ex_plots/01_scikit_feature_importance.png" data-zoomable width=500px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
+    <img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/ex_plots/01_scikit_feature_importance.png" data-zoomable width=500px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
     <div class="caption">
         Figure 5: Most confidently predicted digits from the test set, showing examples where the model has highest prediction probabilities.
     </div>
@@ -432,7 +436,7 @@ plt.savefig('../assets/ex_plots/01_scikit_confident_predictions.png', bbox_inche
 plt.close()
 ```
 
-<img class="img-fluid rounded z-depth-1" src="../assets/ex_plots/01_scikit_confident_predictions.png" data-zoomable width=800px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
+<img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/ex_plots/01_scikit_confident_predictions.png" data-zoomable width=800px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
 <div class="caption">
     Figure 6: Most confidently predicted digits from the test set, showing examples where the model has highest prediction probabilities.
 </div>
@@ -449,7 +453,7 @@ plt.savefig('../assets/ex_plots/01_scikit_uncertain_predictions.png', bbox_inche
 plt.close()
 ```
 
-<img class="img-fluid rounded z-depth-1" src="../assets/ex_plots/01_scikit_uncertain_predictions.png" data-zoomable width=800px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
+<img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/ex_plots/01_scikit_uncertain_predictions.png" data-zoomable width=800px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
 <div class="caption">
     Figure 7: Most challenging digits for the model to predict, showing examples where the model has lowest prediction confidence.
 </div>
@@ -580,4 +584,4 @@ In the next post, we'll tackle the same MNIST classification problem using Tenso
 
 In Part 2, we'll explore how neural networks approach the same problem using TensorFlow, introducing deep learning concepts and comparing the two approaches.
 
-[Continue to Part 2 →](../blog/2023/02_tensorflow_simple)
+[Continue to Part 2 →]({{ site.baseurl }}/blog/2023/02_tensorflow_simple)
