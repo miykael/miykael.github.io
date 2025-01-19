@@ -8,7 +8,7 @@ description: Exploring complex regression problems and preprocessing pipelines
 
 In this third part of our series, we'll explore more sophisticated machine learning techniques using [Scikit-learn](https://scikit-learn.org/stable/). While Parts 1 and 2 focused on classification, we'll now tackle regression problems and learn how to build complex preprocessing pipelines. We'll use the California Housing dataset to demonstrate these concepts.
 
-The complete code for this tutorial can be found in the [03_scikit_advanced.py]({{ site.baseurl }}/scripts/03_scikit_advanced.py) script.
+The complete code for this tutorial can be found in the [03_scikit_advanced.py]({{ site.baseurl }}/assets/scripts/03_scikit_advanced.py) script.
 
 **Note**: The purpose of this post is to highlight the flexibility and capabilities of scikit-learn's advanced features. Therefore, this tutorial focuses on introducing you to those advanced routines rather than creating the optimal regression model.
 

@@ -9,19 +9,19 @@ This post is part of a comprehensive machine learning series that takes you from
 
 1. **Getting Started with Machine Learning** (Current Post)
    Basic classification using Scikit-learn with the MNIST dataset
-   ([View code]({{ site.baseurl }}/scripts/01_scikit_simple.py))
+   ([View code]({{ site.baseurl }}/assets/scripts/01_scikit_simple.py))
 
 2. **Deep Learning Fundamentals**
    Introduction to neural networks using TensorFlow
-   ([View code]({{ site.baseurl }}/scripts/02_tensorflow_simple.py))
+   ([View code]({{ site.baseurl }}/assets/scripts/02_tensorflow_simple.py))
 
 3. **Advanced Machine Learning**
    Complex regression pipelines with Scikit-learn
-   ([View code]({{ site.baseurl }}/scripts/03_scikit_advanced.py))
+   ([View code]({{ site.baseurl }}/assets/scripts/03_scikit_advanced.py))
 
 4. **Advanced Deep Learning**
    Sophisticated neural network architectures in TensorFlow
-   ([View code]({{ site.baseurl }}/scripts/04_tensorflow_advanced.py))
+   ([View code]({{ site.baseurl }}/assets/scripts/04_tensorflow_advanced.py))
 
 Each tutorial builds upon concepts from previous posts while introducing new techniques and best practices. Whether you're new to machine learning or looking to expand your skills, this series provides hands-on experience with real-world datasets and modern ML tools.
 

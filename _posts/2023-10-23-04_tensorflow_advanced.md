@@ -7,7 +7,7 @@ description: Implementing sophisticated neural networks for regression tasks
 
 In this final part of our series, we'll explore advanced TensorFlow concepts by building a sophisticated regression model. While Part 2 introduced basic neural networks for classification, we'll now tackle regression and demonstrate TensorFlow's powerful features for model customization and optimization. However, as in part 3, the purpose of this tutorial is to highlight the flexibility and capabilities of TensorFlow. Therefore, this showcase is mostly about introducing you to those advanced routines and not about how to create the best regression model.
 
-The complete code for this tutorial can be found in the [04_tensorflow_advanced.py]({{ site.baseurl }}/scripts/04_tensorflow_advanced.py) script.
+The complete code for this tutorial can be found in the [04_tensorflow_advanced.py]({{ site.baseurl }}/assets/scripts/04_tensorflow_advanced.py) script.
 
 ### Why Advanced Neural Networks?
 

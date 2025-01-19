@@ -8,7 +8,7 @@ description: Building your first neural network for image classification
 
 In this second part of our machine learning series, we'll implement the same MNIST classification task using [TensorFlow](https://www.tensorflow.org/). While Scikit-learn excels at classical machine learning, TensorFlow shines when building neural networks. We'll see how deep learning approaches differ from traditional methods and learn the basic concepts of neural network architecture.
 
-The complete code for this tutorial can be found in the [02_tensorflow_simple.py]({{ site.baseurl }}/scripts/02_tensorflow_simple.py) script.
+The complete code for this tutorial can be found in the [02_tensorflow_simple.py]({{ site.baseurl }}/assets/scripts/02_tensorflow_simple.py) script.
 
 ### Why Neural Networks?
 
