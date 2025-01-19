@@ -62,16 +62,10 @@ df.head()
 
     Shape of dataset: (4177, 11)
 
-|:--------:|:----------:|:--------:|:--------------:|:----------------:|:----------------:|:--------------:|:-------:|:-------:|:-------:|:-------:|
-|   Length |   Diameter |   Height |   Whole weight |   Shucked weight |   Viscera weight |   Shell weight |   Rings |   Sex_F |   Sex_I |   Sex_M |
-|:--------:|:----------:|:--------:|:--------------:|:----------------:|:----------------:|:--------------:|:-------:|:-------:|:-------:|:-------:|
-|    0.455 |      0.365 |    0.095 |         0.514  |           0.2245 |           0.101  |          0.15  |      15 |       0 |       0 |       1 |
-|    0.35  |      0.265 |    0.09  |         0.2255 |           0.0995 |           0.0485 |          0.07  |       7 |       0 |       0 |       1 |
-|    0.53  |      0.42  |    0.135 |         0.677  |           0.2565 |           0.1415 |          0.21  |       9 |       1 |       0 |       0 |
-|    0.44  |      0.365 |    0.125 |         0.516  |           0.2155 |           0.114  |          0.155 |      10 |       0 |       0 |       1 |
-|    0.33  |      0.255 |    0.08  |         0.205  |           0.0895 |           0.0395 |          0.055 |       7 |       0 |       1 |       0 |
-
-<br>
+<img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/ex_plots/04_tensorflow_dataset_table.png" data-zoomable width=800px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
+<div class="caption">
+    Figure 1: Overview of the abalone dataset.
+</div>
 
 Next, let's split the dataset into a train and test set.
 
@@ -309,7 +303,7 @@ plot_history(history_file='history_log.csv', title="Training overview")
 ```
 <img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/ex_plots/04_tensorflow_training_history.png" data-zoomable width=800px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
 <div class="caption">
-    Figure 1: Training progress showing loss and Mean Absolute Error (MAE) metrics over epochs. The logarithmic scale helps visualize improvements across different orders of magnitude.
+    Figure 2: Training progress showing loss and Mean Absolute Error (MAE) metrics over epochs. The logarithmic scale helps visualize improvements across different orders of magnitude.
 </div>
 
 ## Analyzing Model Performance
@@ -582,28 +576,38 @@ for gixd in grid_idx:
     print(f"\tModel Parameters: {model.count_params()}\n\n")
 ```
 
-    Exploring: {'use_batch': False, 'optimizers': 'sgd', 'learning_rate': 0.0001, 'kernel_regularizer': None, 'kernel_init': 'glorot_uniform', 'hidden': [8], 'dropout_rate': 0, 'batch_size': 128, 'activation': 'selu'}
+    Exploring: {'use_batch': False, 'optimizers': 'sgd', 'learning_rate': 0.0001,
+                'kernel_regularizer': None, 'kernel_init': 'glorot_uniform', 'hidden': [8],
+                'dropout_rate': 0, 'batch_size': 128, 'activation': 'selu'}
         Train - Loss: 5.294 | MAE: 1.643
         Test  - Loss: 7.148 | MAE: 1.807
         Model Parameters: 118
 
-    Exploring: {'use_batch': False, 'optimizers': 'sgd', 'learning_rate': 0.001, 'kernel_regularizer': None, 'kernel_init': 'glorot_uniform', 'hidden': [8, 4], 'dropout_rate': 0.5, 'batch_size': 128, 'activation': 'tanh'}
+    Exploring: {'use_batch': False, 'optimizers': 'sgd', 'learning_rate': 0.001,
+                'kernel_regularizer': None, 'kernel_init': 'glorot_uniform', 'hidden': [8, 4],
+                'dropout_rate': 0.5, 'batch_size': 128, 'activation': 'tanh'}
         Train - Loss: 5.290 | MAE: 1.583
         Test  - Loss: 6.250 | MAE: 1.730
         Model Parameters: 150
 
-    Exploring: {'use_batch': True, 'optimizers': 'sgd', 'learning_rate': 0.0001, 'kernel_regularizer': None, 'kernel_init': 'uniform', 'hidden': [8, 4], 'dropout_rate': 0.5, 'batch_size': 32, 'activation': 'relu'}
+    Exploring: {'use_batch': True, 'optimizers': 'sgd', 'learning_rate': 0.0001,
+                'kernel_regularizer': None, 'kernel_init': 'uniform', 'hidden': [8, 4],
+                'dropout_rate': 0.5, 'batch_size': 32, 'activation': 'relu'}
     Epoch 195: early stopping
         Train - Loss: 8.660 | MAE: 2.050
         Test  - Loss: 10.039 | MAE: 2.144
         Model Parameters: 222
 
-    Exploring: {'use_batch': True, 'optimizers': 'rmsprop', 'learning_rate': 0.0001, 'kernel_regularizer': None, 'kernel_init': 'he_uniform', 'hidden': [8, 16, 8], 'dropout_rate': 0.5, 'batch_size': 128, 'activation': 'tanh'}
+    Exploring: {'use_batch': True, 'optimizers': 'rmsprop', 'learning_rate': 0.0001,
+                'kernel_regularizer': None, 'kernel_init': 'he_uniform', 'hidden': [8, 16, 8],
+                'dropout_rate': 0.5, 'batch_size': 128, 'activation': 'tanh'}
         Train - Loss: 24.535 | MAE: 3.957
         Test  - Loss: 26.605 | MAE: 4.079
         Model Parameters: 534
 
-    Exploring: {'use_batch': False, 'optimizers': 'adam', 'learning_rate': 0.0001, 'kernel_regularizer': 'l2', 'kernel_init': 'glorot_uniform', 'hidden': [8, 16, 8], 'dropout_rate': 0.5, 'batch_size': 128, 'activation': 'selu'}
+    Exploring: {'use_batch': False, 'optimizers': 'adam', 'learning_rate': 0.0001,
+                'kernel_regularizer': 'l2', 'kernel_init': 'glorot_uniform', 'hidden': [8, 16, 8],
+                'dropout_rate': 0.5, 'batch_size': 128, 'activation': 'selu'}
         Train - Loss: 6.947 | MAE: 1.715
         Test  - Loss: 8.042 | MAE: 1.851
         Model Parameters: 398
@@ -643,16 +647,10 @@ results = pd.concat(results).reset_index(drop=True).sort_values('loss_te')
 results
 ```
 
-|:-----------:|:------------:|:---------------:|:--------------------:|:--------------:|:----------:|:--------------:|:------------:|:------------:|:---------:|:--------:|:---------:|:--------:|:-----:|
-| use_batch   | optimizers   |   learning_rate | kernel_regularizer   | kernel_init    | hidden     |   dropout_rate |   batch_size | activation   |   loss_tr |   MAE_tr |   loss_te |   MAE_te |   idx |
-|:-----------:|:------------:|:---------------:|:--------------------:|:--------------:|:----------:|:--------------:|:------------:|:------------:|:---------:|:--------:|:---------:|:--------:|:-----:|
-| False       | sgd          |          0.001  |                      | glorot_uniform | [8, 4]     |            0.5 |          128 | tanh         |   5.2905  |  1.58287 |   6.25027 |  1.73029 | 13396 |
-| False       | sgd          |          0.0001 |                      | glorot_uniform | [8]        |            0   |          128 | selu         |   5.2939  |  1.64328 |   7.14837 |  1.8074  |  8794 |
-| False       | adam         |          0.0001 | l2                   | glorot_uniform | [8, 16, 8] |            0.5 |          128 | selu         |   6.94665 |  1.71511 |   8.04218 |  1.85146 | 10254 |
-| True        | sgd          |          0.0001 |                      | uniform        | [8, 4]     |            0.5 |           32 | relu         |   8.65953 |  2.05007 |  10.0391  |  2.14398 |  1355 |
-| True        | rmsprop      |          0.0001 |                      | he_uniform     | [8, 16, 8] |            0.5 |          128 | tanh         |  24.535   |  3.95683 |  26.6054  |  4.07911 | 13593 |
-
-<br>
+<img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/ex_plots/04_tensorflow_results_table.png" data-zoomable width=800px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
+<div class="caption">
+    Figure 5: Results table for the best performing model architecture, showing both loss and MAE on training and validation sets. The consistent convergence suggests stable learning without overfitting.
+</div>
 
 From this table, you could now perform a multitude of follow-up investigations. For example, take a look at the
 loss evolution during training:
@@ -670,7 +668,7 @@ plot_history(history_file=history_file, title="Training overview of best model")
 
 <img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/ex_plots/04_tensorflow_architecture_comparison.png" data-zoomable width=800px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
 <div class="caption">
-    Figure 2: Training metrics for the best performing model architecture, showing both loss and MAE on training and validation sets. The consistent convergence suggests stable learning without overfitting.
+    Figure 4: Training metrics for the best performing model architecture, showing both loss and MAE on training and validation sets. The consistent convergence suggests stable learning without overfitting.
 </div>
 
 ### Advanced Deep Learning Pitfalls

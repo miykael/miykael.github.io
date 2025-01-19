@@ -406,6 +406,9 @@ Prediction accuracy on test data:  {score_te*100:.2f}%"
 )
 ```
 
+    Prediction accuracy on train data: 7.08%
+    Prediction accuracy on test data:  9.09%
+
 Let's interpret these regression metrics in practical terms:
 - **Train Error**: On average, predictions deviate by about 7-8% from true house prices
   - For a $300,000 house, this means predictions are typically within ±$21,000-24,000

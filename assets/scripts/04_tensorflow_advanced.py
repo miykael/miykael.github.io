@@ -33,6 +33,7 @@ df = pd.read_csv(url, header=None, names=columns)
 # Convert categorical data to numerical
 df = pd.get_dummies(df)
 print(f"Shape of dataset: {df.shape}")
+df.head()
 
 # Split dataset into train and test set
 df_tr = df.sample(frac=0.8, random_state=0)

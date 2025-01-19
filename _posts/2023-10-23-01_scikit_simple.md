@@ -225,7 +225,7 @@ result_table = df_res.pivot(
 )
 sns.heatmap(100 * result_table, annot=True, fmt='.2f', square=True, cbar=False)
 plt.title("RF Accuracy on validation set, based on model hyper-parameter")
-plt.savefig('../assets/ex_plots/01_scikit_rf_heatmap.png', bbox_inches='tight', dpi=300)
+plt.savefig('01_scikit_rf_heatmap.png', bbox_inches='tight', dpi=300)
 plt.close()
 ```
 
@@ -309,7 +309,7 @@ result_table = df_res.pivot(
 )
 sns.heatmap(100 * result_table, annot=True, fmt='.2f', square=True)
 plt.title("SVM Accuracy on validation set, based on model hyper-parameter")
-plt.savefig('../assets/ex_plots/01_scikit_svm_heatmap.png', bbox_inches='tight', dpi=300)
+plt.savefig('01_scikit_svm_heatmap.png', bbox_inches='tight', dpi=300)
 plt.close()
 ```
 
@@ -368,7 +368,7 @@ cm = confusion_matrix(y_te, y_pred)
 sns.heatmap(pd.DataFrame(cm), annot=True, cbar=False, square=True)
 plt.xlabel("Predicted Class")
 plt.ylabel("True Class")
-plt.savefig('../assets/ex_plots/01_scikit_confusion_matrix.png', bbox_inches='tight', dpi=300)
+plt.savefig('01_scikit_confusion_matrix.png', bbox_inches='tight', dpi=300)
 plt.close()
 ```
 
@@ -398,7 +398,7 @@ feature_importance_image = feat_import.reshape(8, 8)
 plt.figure(figsize=(5, 5))
 plt.imshow(feature_importance_image)
 plt.title("RF Feature Importance")
-plt.savefig('../assets/ex_plots/01_scikit_feature_importance.png', bbox_inches='tight', dpi=300)
+plt.savefig('01_scikit_feature_importance.png', bbox_inches='tight', dpi=300)
 plt.close()
 ```
 
@@ -426,7 +426,7 @@ _, axes = plt.subplots(nrows=3, ncols=20, figsize=(9, 1.5))
 for ax, idx in zip(axes.ravel(), np.argsort(target_prob)[::-1]):
     ax.imshow(X_te[idx].reshape(8, 8), cmap=plt.cm.gray_r, interpolation='nearest')
     ax.set_axis_off()
-plt.savefig('../assets/ex_plots/01_scikit_confident_predictions.png', bbox_inches='tight', dpi=300)
+plt.savefig('01_scikit_confident_predictions.png', bbox_inches='tight', dpi=300)
 plt.close()
 ```
 
@@ -443,7 +443,7 @@ _, axes = plt.subplots(nrows=3, ncols=20, figsize=(9, 1.5))
 for ax, idx in zip(axes.ravel(), np.argsort(target_prob)):
     ax.imshow(X_te[idx].reshape(8, 8), cmap=plt.cm.gray_r, interpolation='nearest')
     ax.set_axis_off()
-plt.savefig('../assets/ex_plots/01_scikit_uncertain_predictions.png', bbox_inches='tight', dpi=300)
+plt.savefig('01_scikit_uncertain_predictions.png', bbox_inches='tight', dpi=300)
 plt.close()
 ```
 
