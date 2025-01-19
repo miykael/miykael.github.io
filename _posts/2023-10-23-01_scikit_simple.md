@@ -54,6 +54,8 @@ In this first post, we'll start with Scikit-learn and implement a basic classifi
 # Standard scientific Python imports
 import numpy as np
 import matplotlib.pyplot as plt
+import pandas as pd
+import seaborn as sns
 ```
 
 ## 1. Load dataset
@@ -213,15 +215,11 @@ and `n_estimators` with respect to the accuracy performance on the validation se
 
 ```python
 # Put insights from cross-validation grid search into pandas dataframe
-import pandas as pd
-
 df_res = pd.DataFrame(grid.cv_results_)
 df_res = df_res.iloc[:, df_res.columns.str.contains('mean_test_score|param_')]
 df_res = df_res.astype('float')
 
 # Plot results in table (works only when we investigate two hyper-parameters).
-import seaborn as sns
-
 result_table = df_res.pivot(
     index='param_max_depth', columns='param_n_estimators', values='mean_test_score'
 )
@@ -301,15 +299,11 @@ set?
 
 ```python
 # Put insights from cross-validation grid search into pandas dataframe
-import pandas as pd
-
 df_res = pd.DataFrame(grid.cv_results_)
 df_res = df_res.iloc[:, df_res.columns.str.contains('mean_test_score|param_')]
 df_res = df_res.astype('float')
 
 # Plot results in table (works only when we investigate two hyper-parameters).
-import seaborn as sns
-
 result_table = df_res.pivot(
     index='param_gamma', columns='param_C', values='mean_test_score'
 )
@@ -478,9 +472,6 @@ X_te_scaled = preprocessing.scale(X_te)
 **Class Imbalance**: Always check your class distribution
 
 ```python
-# Using pandas for better visualization
-import pandas as pd
-
 # Show absolute and relative frequencies
 class_dist = pd.Series(y).value_counts(normalize=True)
 print("Class distribution (%):")
