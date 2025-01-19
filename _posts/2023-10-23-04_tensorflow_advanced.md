@@ -649,7 +649,7 @@ results
 
 <img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/ex_plots/04_tensorflow_results_table.png" data-zoomable width=800px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
 <div class="caption">
-    Figure 5: Results table for the best performing model architecture, showing both loss and MAE on training and validation sets. The consistent convergence suggests stable learning without overfitting.
+    Figure 3: Results table for the best performing model architecture, showing both loss and MAE on training and validation sets. The consistent convergence suggests stable learning without overfitting.
 </div>
 
 From this table, you could now perform a multitude of follow-up investigations. For example, take a look at the

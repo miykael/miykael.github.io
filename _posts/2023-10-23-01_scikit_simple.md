@@ -5,25 +5,7 @@ date:   2023-10-23 12:00:00
 description: Getting started with machine learning using Scikit-learn's classification tools
 ---
 
-This post is part of a comprehensive machine learning series that takes you from basic classification to advanced neural networks. Throughout these tutorials, you'll learn:
-
-1. **Getting Started with Machine Learning** (Current Post)
-   Basic classification using Scikit-learn with the MNIST dataset
-   ([View code]({{ site.baseurl }}/assets/scripts/01_scikit_simple.py))
-
-2. **Deep Learning Fundamentals**
-   Introduction to neural networks using TensorFlow
-   ([View code]({{ site.baseurl }}/assets/scripts/02_tensorflow_simple.py))
-
-3. **Advanced Machine Learning**
-   Complex regression pipelines with Scikit-learn
-   ([View code]({{ site.baseurl }}/assets/scripts/03_scikit_advanced.py))
-
-4. **Advanced Deep Learning**
-   Sophisticated neural network architectures in TensorFlow
-   ([View code]({{ site.baseurl }}/assets/scripts/04_tensorflow_advanced.py))
-
-Each tutorial builds upon concepts from previous posts while introducing new techniques and best practices. Whether you're new to machine learning or looking to expand your skills, this series provides hands-on experience with real-world datasets and modern ML tools.
+This post is part of a comprehensive machine learning series that takes you from basic classification to advanced neural networks. Throughout these tutorials, you'll learn machine learning fundamentals using hands-on experience with real-world datasets and modern ML tools.
 
 Have you ever wondered how to get started with machine learning? This series of posts will guide you through practical implementations using two of Python's most popular frameworks: Scikit-learn and TensorFlow. Whether you're a beginner looking to understand the basics or an experienced developer wanting to refresh your knowledge, we'll progress from basic classification tasks to more advanced regression problems.
 

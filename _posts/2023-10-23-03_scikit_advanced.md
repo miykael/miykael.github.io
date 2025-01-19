@@ -178,7 +178,7 @@ So let's setup a pipeline that performs these different pre-processing routines:
 of categorical data to numerical data, data imputer for missing values, data scaling, potential dimensionality
 reduction, etc.
 
-### Handling categorical data
+### 4.1. Handling categorical data
 
 First, let's create a small pipeline that takes categorical data, fills missing values with `'missing'` and
 than applies one-hot encoding on these categorical features.
@@ -201,7 +201,7 @@ categorical_preprocessor = Pipeline(
 )
 ```
 
-### Handling numerical data
+### 4.2. Handling numerical data
 
 To handle numerical data we will use a slightly more advanced processing pipeline (to showcase some scikit-learn
 feature, not because it's the best thing to do). So let's first fill missing values with e.g. the mean of the
@@ -240,7 +240,7 @@ numeric_preprocessor = Pipeline(
 )
 ```
 
-### Combining preprocessing pipelines
+### 4.3. Combining preprocessing pipelines
 
 Now that we have a preprocessing pipeline for the categorical and numerical features, let's combine them into
 one preprocessing pipeline.
@@ -257,7 +257,7 @@ preprocessor = ColumnTransformer(
 )
 ```
 
-### Add regression model
+### 4.4. Add regression model
 
 After the data is preprocessed we want to hand it over to a regression estimator. For this purpose, let's chose
 a ridge regression.

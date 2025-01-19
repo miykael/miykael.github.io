@@ -84,7 +84,7 @@ For image classification, we'll use a Convolutional Neural Network (CNN). CNNs a
 
 There are multiple ways to define a model in TensorFlow. Let's explore two common approaches:
 
-### 1. Sequential API
+### 2.1. Sequential API
 The Sequential API is the simplest way to build neural networks - layers are stacked linearly, one after another:
 
 ```python
@@ -116,7 +116,7 @@ model = keras.Sequential(
 )
 ```
 
-### 2. Layer-by-Layer Sequential API
+### 2.2. Layer-by-Layer Sequential API
 For more explicit control, we can separate each layer and activation:
 
 ```python
