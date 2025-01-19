@@ -76,74 +76,9 @@ As you can see, we have 1460 samples (houses), each containing 79 features (i.e.
 X.iloc[:5, :5]
 ```
 
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>MSSubClass</th>
-      <th>MSZoning</th>
-      <th>LotFrontage</th>
-      <th>LotArea</th>
-      <th>Street</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>60.0</td>
-      <td>RL</td>
-      <td>65.0</td>
-      <td>8450.0</td>
-      <td>Pave</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>20.0</td>
-      <td>RL</td>
-      <td>80.0</td>
-      <td>9600.0</td>
-      <td>Pave</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>60.0</td>
-      <td>RL</td>
-      <td>68.0</td>
-      <td>11250.0</td>
-      <td>Pave</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>70.0</td>
-      <td>RL</td>
-      <td>60.0</td>
-      <td>9550.0</td>
-      <td>Pave</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>60.0</td>
-      <td>RL</td>
-      <td>84.0</td>
-      <td>14260.0</td>
-      <td>Pave</td>
-    </tr>
-  </tbody>
-</table>
+<img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/ex_plots/03_scikit_dataframe_01.png" data-zoomable width=800px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
+<div class="caption">
+    Figure 1: First 5 rows and 5 columns of the California Housing dataset.
 </div>
 
 If we look closer at the feature matrix X, we can see that of those 79 features, 36 are of type float and 43
@@ -209,7 +144,7 @@ plt.show()
 
 <img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/ex_plots/03_scikit_price_distribution.png" data-zoomable width=800px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
 <div class="caption">
-    Figure 1: Data quality analysis showing the distribution of missing values and data types across features in the California Housing dataset.
+    Figure 2: Data quality analysis showing the distribution of missing values and data types across features in the California Housing dataset.
 </div>
 
 This analysis reveals several important preprocessing needs:
@@ -450,21 +385,11 @@ print("\nTop 10 parameter combinations:")
 print(df_res.head(10))
 ```
 
-| :-------------: | :------------------: | :-----------------------------------------: | :-----------------------------: | :-------------------------------------: | :-----------------------------------------: | :--------------------------------: | :-------------------------------------------: | :-------------------------------------: | :----------------------------------------: | :----------------: | :---------------: | :-----------------: | :----------------: |
-|   ridge alpha | numerical scaler   | numerical polytrans interaction_only   |   numerical polytrans degree | numerical imputer_numeric strategy   | numerical imputer_numeric add_indicator   | numerical dim_reduction pca   |  numerical dim_reduction feat_selecter k | categorical imputer_cat strategy   | categorical imputer_cat add_indicator   |   mean_test_score |   std_test_score |   mean_train_score |   std_train_score |
-| :-------------: | :------------------: | :-----------------------------------------: | :-----------------------------: | :-------------------------------------: | :-----------------------------------------: | :--------------------------------: | :-------------------------------------------: | :-------------------------------------: | :----------------------------------------: | :----------------: | :---------------: | :-----------------: | :----------------: |
-|             10 | PowerTransformer()  | True                                     |                              1 | constant                               | False                                       | PCA(n_components=0.99)          |                                            5 | most_frequent                        | True                                      |        -0.0910812 |       0.00726406 |         -0.0690628 |        0.00763033 |
-|             10 | RobustScaler()      | True                                     |                              2 | mean                                   | False                                       | drop                            |                                          100 | most_frequent                        | False                                     |        -0.0914982 |       0.0101425  |         -0.0658095 |        0.00502802 |
-|             10 | PowerTransformer()  | False                                    |                              1 | most_frequent                          | False                                       | PCA(n_components=0.99)          |                                           25 | most_frequent                        | True                                      |        -0.0920796 |       0.00689614 |         -0.0685709 |        0.008111   |
-|             10 | PowerTransformer()  | True                                     |                              1 | median                                 | False                                       | PCA(n_components=0.9)           |                                           25 | most_frequent                        | True                                      |        -0.0922996 |       0.00720934 |         -0.0685542 |        0.0080486  |
-|             10 | RobustScaler()      | False                                    |                              2 | constant                               | True                                        | PCA(n_components=0.99)          |                                          100 | most_frequent                        | True                                      |        -0.0942421 |       0.0122098  |         -0.0646248 |        0.00574666 |
-|              1 | RobustScaler()      | True                                     |                              2 | most_frequent                          | False                                       | drop                            |                                          100 | most_frequent                        | False                                     |        -0.0947194 |       0.00546636 |         -0.0560936 |        0.00559328 |
-|             10 | StandardScaler()    | False                                    |                              2 | most_frequent                          | True                                        | PCA(n_components=0.9)           |                                          100 | constant                             | False                                     |        -0.0961898 |       0.0107717  |         -0.0603564 |        0.00414943 |
-|              1 | PowerTransformer()  | False                                    |                              1 | constant                               | True                                        | PCA(n_components=0.9)           |                                           25 | constant                             | True                                      |        -0.0968886 |       0.0075747  |         -0.0598735 |        0.00662794 |
-|              1 | PowerTransformer()  | False                                    |                              1 | most_frequent                          | True                                        | PCA(n_components=0.99)          |                                           25 | constant                             | False                                     |        -0.0971127 |       0.00728891 |         -0.0597802 |        0.00659613 |
-|              1 | PowerTransformer()  | True                                     |                              1 | median                                 | True                                        | PCA(n_components=0.99)          |                                            5 | most_frequent                        | False                                     |        -0.0971796 |       0.00667626 |         -0.0604481 |        0.00637354 |
+<img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/ex_plots/03_scikit_dataframe_02.png" data-zoomable width=800px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
+<div class="caption">
+    Figure 3: Results of RandomizedSearchCV showing top 10 parameter combinations ranked by mean test score. Each row represents a different combination of preprocessing and model parameters, helping identify the most effective configuration for the housing price prediction model.
+</div>
 
-<br>
 
 If you explore this table a bit you can better judge which parameter variations in your grid search are
 actually useful and which ones aren't. In this example we will not focus on this and directly continue with
@@ -626,7 +551,7 @@ plt.show()
 
 <img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/ex_plots/03_scikit_feature_importance.png" data-zoomable width=800px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
 <div class="caption">
-    Figure 2: Feature importance analysis using permutation importance method. Box plots show the impact of each feature on model performance across multiple permutations, with larger values indicating more important features.
+    Figure 4: Feature importance analysis using permutation importance method. Box plots show the impact of each feature on model performance across multiple permutations, with larger values indicating more important features.
 </div>
 
 ## Summary and Next Steps
