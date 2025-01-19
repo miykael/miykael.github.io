@@ -334,7 +334,10 @@ plt.show()
 
 <div style="text-align: center">
     <img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/ex_plots/02_tensorflow_confusion_matrix.png" data-zoomable width=500px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
-</div><br>
+</div>
+<div class="caption">
+    Figure 2: Confusion matrix showing model predictions across all digit classes. The strong diagonal pattern indicates high accuracy across all digits.
+</div>
 
 ## 5. Model parameters
 
@@ -361,6 +364,9 @@ plt.show()
 ```
 
 <img class="img-fluid rounded z-depth-1" src="{{ site.baseurl }}/assets/ex_plots/02_tensorflow_conv_kernels.png" data-zoomable width=800px style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
+<div class="caption">
+    Figure 3: Visualization of the 32 convolutional kernels learned by the first layer. Each 3x3 kernel acts as a feature detector, learning to identify basic patterns like edges, corners, and textures that are useful for digit recognition.
+</div>
 
 ### Common Deep Learning Pitfalls
 When starting with TensorFlow and neural networks, watch out for these common issues:
