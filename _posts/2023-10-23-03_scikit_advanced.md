@@ -28,7 +28,9 @@ As always, first, let's import the scientific Python packages we need.
 ```python
 # Standard scientific Python imports
 import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
+import seaborn as sns
 ```
 
 ## 1. Load Dataset
@@ -198,9 +200,6 @@ And visualizing the target variable distribution:
 
 ```python
 # Analyze target variable distribution
-import matplotlib.pyplot as plt
-import seaborn as sns
-
 plt.figure(figsize=(8, 4))
 sns.histplot(y, bins=50)
 plt.title("Distribution of House Prices")
@@ -435,10 +434,13 @@ Once the model has explored a fixed number of grid points, we can go ahead and l
 easiest is to just put everything into a pandas DataFrame and sort the entries by the best test score.
 
 ```python
-import pandas as pd
-
+# Create dataframe with results
 df_res = pd.DataFrame(res.cv_results_)
+
+# Remove columns that are not relevant for the analysis
 df_res = df_res.iloc[:, ~df_res.columns.str.contains('time|split[0-9]*|rank|params')]
+
+# Rename columns to make them more readable
 new_columns = [c.split('param_regressor__')[1] if 'param_regressor' in c else c for c in df_res.columns]
 new_columns = [c.split('preprocessor__')[1] if 'preprocessor__' in c else c for c in new_columns]
 df_res.columns = new_columns
