@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>
+
+  Michael P. Notter
+
+
+  | Advanced exploratory data analysis (EDA)
+
+</title>
+<meta name="description" content="Personal homepage of Michael P. Notter.
+">
+
+<!-- Open Graph -->
+
+
+<!-- Bootstrap & MDB -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha512-MoRNloxbStBcD8z3M/2BmnT+rg4IsMxPkXaGh2zD6LGNNFE80W3onsAhRcMAMrSoyWL9xD7Ert0men7vR8LUZg==" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" integrity="sha512-RO38pBRxYH3SoOprtPTD86JFOclM51/XTIdEPh5j8sj4tp8jmQIx26twG52UaLi//hQldfrh7e51WzP9wuP32Q==" crossorigin="anonymous" />
+
+<!-- Fonts & Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"  integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css" integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons">
+
+<!-- Code Syntax Highlighting -->
+<link rel="stylesheet" href="https://gitcdn.link/repo/jwarby/jekyll-pygments-themes/master/monokai.css" />
+
+<!-- Styles -->
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍💻</text></svg>">
+
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="canonical" href="https://miykael.github.io/blog/2022/advanced_eda/">
+
+
+<!-- Dark Mode -->
+<script src="/assets/js/theme.js"></script>
+<script src="/assets/js/dark_mode.js"></script>
+
+
+  </head>
+
+  <body class="fixed-top-nav ">
+
+    <!-- Header -->
+
+    <header>
+
+    <!-- Nav Bar -->
+    <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top">
+    <div class="container">
+      
+      <a class="navbar-brand title font-weight-lighter" href="https://miykael.github.io/">
+       <span class="font-weight-bold">Michael</span> P.  Notter
+      </a>
+      
+      <!-- Navbar Toggle -->
+      <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar top-bar"></span>
+        <span class="icon-bar middle-bar"></span>
+        <span class="icon-bar bottom-bar"></span>
+      </button>
+      <div class="collapse navbar-collapse text-right" id="navbarNav">
+        <ul class="navbar-nav ml-auto flex-nowrap">
+          <!-- About -->
+          <li class="nav-item ">
+            <a class="nav-link" href="/">
+              About
+              
+            </a>
+          </li>
+          
+          <!-- Blog -->
+          <li class="nav-item active">
+            <a class="nav-link" href="/blog/">
+              Blog
+              
+            </a>
+          </li>
+          
+          <!-- Other pages -->
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/background/">
+                Background
+                
+              </a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/projects/">
+                Projects
+                
+              </a>
+          </li>
+          
+          
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/publications/">
+                Publications
+                
+              </a>
+          </li>
+          
+          
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/teaching/">
+                Teaching
+                
+              </a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+            <div class="toggle-container">
+              <a id="light-toggle">
+                  <i class="fas fa-moon"></i>
+                  <i class="fas fa-sun"></i>
+              </a>
+            </div>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+    <!-- Content -->
+
+    <div class="container mt-5">
+      
+
+
+
+
+
+<div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Advanced exploratory data analysis (EDA)</h1>
+    <p class="post-meta">February 1, 2022</p>
+    <p class="post-tags">
+      <a href="/blog/2022"> <i class="fas fa-calendar fa-sm"></i> 2022 </a>
+      
+
+      
+
+    </p>
+  </header>
+
+  <article class="post-content">
+    <h2 id="how-to-quickly-get-a-handle-on-almost-any-tabular-dataset">How to quickly get a handle on almost any tabular dataset</h2>
+
+<p><em>[Find the Jupyter Notebook to this article <a href="https://github.com/miykael/miykael.github.io/blob/master/assets/nb/03_advanced_eda/nb_advanced_eda.ipynb" target="_blank" rel="noopener noreferrer">here</a>.]</em></p>
+
+<hr>
+
+<p>Getting a good feeling for a new dataset is not always easy, and takes time. However, a good and broad exploratory data analysis (EDA) can help a lot to understand your dataset, get a feeling for how things are connected and what needs to be done to properly process your dataset.</p>
+
+<p>In this article, we will touch upon multiple useful EDA routines. However, to keep things short and compact we might not always dig deeper or explain all of the implications. But in reality, spending enough time on a proper EDA to fully understand your dataset is a key part of any good data science project. As a rule of thumb, you probably will spend 80% of your time in data preparation and exploration and only 20% in actual machine learning modeling.</p>
+
+<p>Having said all this, let’s dive right into it!</p>
+<h2 id="investigation-of-structure-quality-and-content">Investigation of structure, quality and content</h2>
+
+<p>Overall, the EDA approach is very iterative. At the end of your investigation you might discover something that will require you to redo everything once more. That is normal! But to impose at least a little bit of structure, I propose the following structure for your investigations:</p>
+
+<ol>
+  <li>
+<strong>Structure investigation</strong>: Exploring the general shape of the dataset, as well as the data types of your features.</li>
+  <li>
+<strong>Quality investigation</strong>: Get a feeling for the general quality of the dataset, with regards to duplicates, missing values and unwanted entries.</li>
+  <li>
+<strong>Content investigation</strong>: Once the structure and quality of the dataset is understood, we can go ahead and perform a more in-depth exploration on the features values and look at how different features relate to each other.</li>
+</ol>
+
+<p>But first we need to find an interesting dataset. Let’s go ahead and load the <a href="https://www.openml.org/d/42803" target="_blank" rel="noopener noreferrer">road safety dataset</a> from <a href="https://www.openml.org/search?type=data" target="_blank" rel="noopener noreferrer">OpenML</a>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">sklearn.datasets</span> <span class="kn">import</span> <span class="n">fetch_openml</span>
+
+<span class="c1"># Download the dataset from openml
+</span><span class="n">dataset</span> <span class="o">=</span> <span class="nf">fetch_openml</span><span class="p">(</span><span class="n">data_id</span><span class="o">=</span><span class="mi">42803</span><span class="p">,</span> <span class="n">as_frame</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="c1"># Extract feature matrix X and show 5 random samples
+</span><span class="n">df_X</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">[</span><span class="sh">"</span><span class="s">frame</span><span class="sh">"</span><span class="p">]</span>
+</code></pre></div></div>
+
+<h1 id="1-structure-investigation">1. Structure Investigation</h1>
+
+<p>Before looking at the content of our feature matrix $X$, let’s first look at the general structure of the dataset. For example, how many columns and rows does the dataset have?</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Show size of the dataset
+</span><span class="n">df_X</span><span class="p">.</span><span class="n">shape</span>
+</code></pre></div></div>
+
+<pre><code class="language-code">(363243, 67)
+</code></pre>
+
+<p>So we know that this dataset has 363’243 samples and 67 features. And how many different data types do these 67 features contain?</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+
+<span class="c1"># Count how many times each data type is present in the dataset
+</span><span class="n">pd</span><span class="p">.</span><span class="nf">value_counts</span><span class="p">(</span><span class="n">df_X</span><span class="p">.</span><span class="n">dtypes</span><span class="p">)</span>
+</code></pre></div></div>
+
+<pre><code class="language-code">float64    61
+object      6
+dtype: int64
+</code></pre>
+
+<h2 id="11-structure-of-non-numerical-features">1.1. Structure of non-numerical features</h2>
+
+<p>Data types can be numerical and non-numerical. First, let’s take a closer look at the <strong>non-numerical</strong> entries.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Display non-numerical features
+</span><span class="n">df_X</span><span class="p">.</span><span class="nf">select_dtypes</span><span class="p">(</span><span class="n">exclude</span><span class="o">=</span><span class="sh">"</span><span class="s">number</span><span class="sh">"</span><span class="p">).</span><span class="nf">head</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Accident_Index</th>
+      <th>Sex_of_Driver</th>
+      <th>Date</th>
+      <th>Time</th>
+      <th>Local_Authority_(Highway)</th>
+      <th>LSOA_of_Accident_Location</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>201501BS70001</td>
+      <td>1.0</td>
+      <td>12/01/2015</td>
+      <td>18:45</td>
+      <td>E09000020</td>
+      <td>E01002825</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>201501BS70002</td>
+      <td>1.0</td>
+      <td>12/01/2015</td>
+      <td>07:50</td>
+      <td>E09000020</td>
+      <td>E01002820</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>201501BS70004</td>
+      <td>1.0</td>
+      <td>12/01/2015</td>
+      <td>18:08</td>
+      <td>E09000020</td>
+      <td>E01002833</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>201501BS70005</td>
+      <td>1.0</td>
+      <td>13/01/2015</td>
+      <td>07:40</td>
+      <td>E09000020</td>
+      <td>E01002874</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>201501BS70008</td>
+      <td>1.0</td>
+      <td>09/01/2015</td>
+      <td>07:30</td>
+      <td>E09000020</td>
+      <td>E01002814</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>Even though <code class="language-plaintext highlighter-rouge">Sex_of_Driver</code> is a numerical feature, it somehow was stored as a non-numerical one. This is sometimes due to some typo in data recording. So let’s take care of that:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Changes data type of 'Sex_of_Driver'
+</span><span class="n">df_X</span><span class="p">[</span><span class="sh">"</span><span class="s">Sex_of_Driver</span><span class="sh">"</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_X</span><span class="p">[</span><span class="sh">"</span><span class="s">Sex_of_Driver</span><span class="sh">"</span><span class="p">].</span><span class="nf">astype</span><span class="p">(</span><span class="sh">"</span><span class="s">float</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Using the <code class="language-plaintext highlighter-rouge">.describe()</code> function we can also investigate how many unique values each non-numerical feature has and with which frequency the most prominent value is present.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">df_X</span><span class="p">.</span><span class="nf">describe</span><span class="p">(</span><span class="n">exclude</span><span class="o">=</span><span class="sh">"</span><span class="s">number</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Accident_Index</th>
+      <th>Date</th>
+      <th>Time</th>
+      <th>Local_Authority_(Highway)</th>
+      <th>LSOA_of_Accident_Location</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>363243</td>
+      <td>319866</td>
+      <td>319822</td>
+      <td>319866</td>
+      <td>298758</td>
+    </tr>
+    <tr>
+      <th>unique</th>
+      <td>140056</td>
+      <td>365</td>
+      <td>1439</td>
+      <td>204</td>
+      <td>25979</td>
+    </tr>
+    <tr>
+      <th>top</th>
+      <td>201543P296025</td>
+      <td>14/02/2015</td>
+      <td>17:30</td>
+      <td>E10000017</td>
+      <td>E01028497</td>
+    </tr>
+    <tr>
+      <th>freq</th>
+      <td>1332</td>
+      <td>2144</td>
+      <td>2972</td>
+      <td>8457</td>
+      <td>1456</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p><br></p>
+
+<h2 id="12-structure-of-numerical-features">1.2. Structure of numerical features</h2>
+
+<p>Next, let’s take a closer look at the numerical features. More precisely, let’s investigate how many unique values each of these feature has. This process will give us some insights about the number of <strong>binary</strong> (2 unique values), <strong>ordinal</strong> (3 to ~10 unique values) and <strong>continuous</strong> (more than 10 unique values) features in the dataset.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># For each numerical feature compute number of unique entries
+</span><span class="n">unique_values</span> <span class="o">=</span> <span class="n">df_X</span><span class="p">.</span><span class="nf">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="sh">"</span><span class="s">number</span><span class="sh">"</span><span class="p">).</span><span class="nf">nunique</span><span class="p">().</span><span class="nf">sort_values</span><span class="p">()</span>
+
+<span class="c1"># Plot information with y-axis in log-scale
+</span><span class="n">unique_values</span><span class="p">.</span><span class="n">plot</span><span class="p">.</span><span class="nf">bar</span><span class="p">(</span><span class="n">logy</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="sh">"</span><span class="s">Unique values per feature</span><span class="sh">"</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/nb/03_advanced_eda/output_14_0.png" data-zoomable="" width="800px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+
+<h2 id="13-conclusion-of-structure-investigation">1.3. Conclusion of structure investigation</h2>
+
+<p>At the end of this first investigation, we should have a better understanding of the general structure of our dataset. Number of samples and features, what kind of data type each feature has, and how many of them are binary, ordinal, categorical or continuous. For an alternative way to get such kind of information you could also use <code class="language-plaintext highlighter-rouge">df_X.info()</code> or <code class="language-plaintext highlighter-rouge">df_X.describe()</code>.</p>
+
+<h1 id="2-quality-investigation">2. Quality Investigation</h1>
+
+<p>Before focusing on the actual content stored in these features, let’s first take a look at the general quality of the dataset. The goal is to have a global view on the dataset with regards to things like duplicates, missing values and unwanted entries or recording errors.</p>
+
+<h2 id="21-duplicates">2.1. Duplicates</h2>
+
+<p>Duplicates are entries that represent the same sample point multiple times. For example, if a measurement was registered twice by two different people. Detecting such duplicates is not always easy, as each dataset might have a unique identifier (e.g. an index number or recording time that is unique to each new sample) which you might want to ignore first.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Check number of duplicates while ignoring the index feature
+</span><span class="n">n_duplicates</span> <span class="o">=</span> <span class="n">df_X</span><span class="p">.</span><span class="nf">drop</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="sh">"</span><span class="s">Accident_Index</span><span class="sh">"</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">).</span><span class="nf">duplicated</span><span class="p">().</span><span class="nf">sum</span><span class="p">()</span>
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">You seem to have </span><span class="si">{</span><span class="n">n_duplicates</span><span class="si">}</span><span class="s"> duplicates in your database.</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<pre><code class="language-code">You seem to have 22 duplicates in your database.
+</code></pre>
+
+<p>To handle these duplicates you can just simply drop them with <code class="language-plaintext highlighter-rouge">.drop_duplicates()</code>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#  Extract column names of all features, except 'Accident_Index'
+</span><span class="n">columns_to_consider</span> <span class="o">=</span> <span class="n">df_X</span><span class="p">.</span><span class="nf">drop</span><span class="p">(</span><span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="sh">"</span><span class="s">Accident_Index</span><span class="sh">"</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">).</span><span class="n">columns</span>
+
+<span class="c1"># Drop duplicates based on 'columns_to_consider'
+</span><span class="n">df_X</span> <span class="o">=</span> <span class="n">df_X</span><span class="p">.</span><span class="nf">drop_duplicates</span><span class="p">(</span><span class="n">subset</span><span class="o">=</span><span class="n">columns_to_consider</span><span class="p">)</span>
+<span class="n">df_X</span><span class="p">.</span><span class="n">shape</span>
+</code></pre></div></div>
+
+<pre><code class="language-code">(363221, 67)
+</code></pre>
+
+<h2 id="22-missing-values">2.2. Missing values</h2>
+
+<p>Another quality issue worth to investigate are missing values. Having some missing values is normal. What we want to identify at this stage are big holes in the dataset, i.e. samples or features with a lot of missing values.</p>
+
+<h3 id="221-per-sample">2.2.1. Per sample</h3>
+
+<p>To look at number of missing values per sample we have multiple options. The most straight forward one is to simply visualize the output of <code class="language-plaintext highlighter-rouge">df_X.isna()</code>, with something like this:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="nf">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="n">df_X</span><span class="p">.</span><span class="nf">isna</span><span class="p">(),</span> <span class="n">aspect</span><span class="o">=</span><span class="sh">"</span><span class="s">auto</span><span class="sh">"</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="sh">"</span><span class="s">nearest</span><span class="sh">"</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="sh">"</span><span class="s">gray</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">xlabel</span><span class="p">(</span><span class="sh">"</span><span class="s">Column Number</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">ylabel</span><span class="p">(</span><span class="sh">"</span><span class="s">Sample Number</span><span class="sh">"</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/nb/03_advanced_eda/output_23_0.png" data-zoomable="" width="800px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+
+<p>This figure shows on the y-axis each of the 360’000 individual samples, and on the x-axis if any of the 67 features contains a missing value. While this is already a useful plot, an even better approach is to use the <a href="https://github.com/ResidentMario/missingno" target="_blank" rel="noopener noreferrer">missingno</a> library, to get a plot like this one:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">missingno</span> <span class="k">as</span> <span class="n">msno</span>
+
+<span class="n">msno</span><span class="p">.</span><span class="nf">matrix</span><span class="p">(</span><span class="n">df_X</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">sort</span><span class="o">=</span><span class="sh">"</span><span class="s">descending</span><span class="sh">"</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/nb/03_advanced_eda/output_25_0.png" data-zoomable="" width="800px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+
+<p>From both of these plots we can see that the dataset has a huge whole, caused by some samples where more than 50% of the feature values are missing. For those samples, filling the missing values with some replacement values is probably not a good idea.</p>
+
+<p>Therefore, let’s go ahead and drop samples that have more than 20% of missing values. The threshold is inspired by the information from the ‘Data Completeness’ column on the right of this figure.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">df_X</span> <span class="o">=</span> <span class="n">df_X</span><span class="p">.</span><span class="nf">dropna</span><span class="p">(</span><span class="n">thresh</span><span class="o">=</span><span class="n">df_X</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="mf">0.80</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">).</span><span class="nf">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">df_X</span><span class="p">.</span><span class="n">shape</span>
+</code></pre></div></div>
+
+<pre><code class="language-code">(319790, 67)
+</code></pre>
+
+<h3 id="222-per-feature">2.2.2. Per Feature</h3>
+
+<p>As a next step, let’s now look at the number of missing values per feature. For this we can use some <code class="language-plaintext highlighter-rouge">pandas</code> trickery to quickly identify the ratio of missing values <strong>per feature</strong>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">df_X</span><span class="p">.</span><span class="nf">isna</span><span class="p">().</span><span class="nf">mean</span><span class="p">().</span><span class="nf">sort_values</span><span class="p">().</span><span class="nf">plot</span><span class="p">(</span>
+    <span class="n">kind</span><span class="o">=</span><span class="sh">"</span><span class="s">bar</span><span class="sh">"</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+    <span class="n">title</span><span class="o">=</span><span class="sh">"</span><span class="s">Percentage of missing values per feature</span><span class="sh">"</span><span class="p">,</span>
+    <span class="n">ylabel</span><span class="o">=</span><span class="sh">"</span><span class="s">Ratio of missing values per feature</span><span class="sh">"</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/nb/03_advanced_eda/output_29_0.png" data-zoomable="" width="800px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+
+<p>From this figure we can see that most features don’t contain any missing values. Nonetheless, features like <code class="language-plaintext highlighter-rouge">2nd_Road_Class</code>, <code class="language-plaintext highlighter-rouge">Junction_Control</code>, <code class="language-plaintext highlighter-rouge">Age_of_Vehicle</code> still contain quite a lot of missing values. So let’s go ahead and remove any feature with more than 15% of missing values.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">df_X</span> <span class="o">=</span> <span class="n">df_X</span><span class="p">.</span><span class="nf">dropna</span><span class="p">(</span><span class="n">thresh</span><span class="o">=</span><span class="n">df_X</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mf">0.85</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">df_X</span><span class="p">.</span><span class="n">shape</span>
+</code></pre></div></div>
+
+<pre><code class="language-code">(319790, 60)
+</code></pre>
+
+<h3 id="223-small-side-note">2.2.3. Small side note</h3>
+
+<p><strong>Missing values</strong>: There is no strict order in removing missing values. For some datasets, tackling
+first the features and than the samples might be better. Furthermore, the threshold at which you decide
+to drop missing values per feature or sample changes from dataset to dataset, and depends on what you
+intend to do with the dataset later on.</p>
+
+<p><strong>Also</strong>, until now we only addressed the big holes in the dataset, not yet how we would fill the smaller gaps.
+This is content for another post.</p>
+
+<h2 id="23-unwanted-entries-and-recording-errors">2.3. Unwanted entries and recording errors</h2>
+
+<p>Another source of quality issues in a dataset can be due to unwanted entries or recording errors. It’s important to distinguish such samples from simple outliers. While outliers are data points that are unusual for a given feature distribution, <strong>unwanted entries or recording errors are samples that shouldn’t be there in the first place</strong>.</p>
+
+<p>For example, a temperature recording of 45°C in Switzerland might be an outlier (as in ‘very unusual’), while a recording at 90°C would be an error. Similarly, a temperature recording from the top of Mont Blanc might be physical possible, but most likely shouldn’t be included in a dataset about Swiss cities.</p>
+
+<p>Of course, detecting such errors and unwanted entries and distinguishing them from outliers is not always straight forward and depends highly on the dataset. One approach to this is to take a global view on the dataset and see if you can identify some very unusual patterns.</p>
+
+<h3 id="231-numerical-features">2.3.1. Numerical features</h3>
+
+<p>To plot this global view of the dataset, at least for the numerical features, you can use pandas’ <code class="language-plaintext highlighter-rouge">.plot()</code> function and combine it with the following parameters:</p>
+
+<ul>
+  <li>
+<code class="language-plaintext highlighter-rouge">lw=0</code>: <code class="language-plaintext highlighter-rouge">lw</code> stands for line width. <code class="language-plaintext highlighter-rouge">0</code> means that we don’t want to show any lines</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">marker="."</code>: Instead of lines, we tell the plot to use <code class="language-plaintext highlighter-rouge">.</code> as markers for each data point</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">subplots=True</code>: <code class="language-plaintext highlighter-rouge">subplots</code> tells <code class="language-plaintext highlighter-rouge">pandas</code> to plot each feature in a separate subplot</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">layout=(-1, 4)</code>: This parameter tells <code class="language-plaintext highlighter-rouge">pandas</code> how many rows and columns to use for the subplots. The <code class="language-plaintext highlighter-rouge">-1</code> means “as many as needed”, while the <code class="language-plaintext highlighter-rouge">2</code> means to use 2 columns per row.</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">figsize=(15, 30), markersize=1</code>: To make sure that the figure is big enough we recommend to have a figure height of roughly the number of features, and to adjust the <code class="language-plaintext highlighter-rouge">markersize</code> accordingly.</li>
+</ul>
+
+<p>So what does this plot look like?</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">df_X</span><span class="p">.</span><span class="nf">plot</span><span class="p">(</span><span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="sh">"</span><span class="s">.</span><span class="sh">"</span><span class="p">,</span> <span class="n">subplots</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+          <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">1</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/nb/03_advanced_eda/output_35_0.png" data-zoomable="" width="800px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+
+<p>Each point in this figure is a sample (i.e. a row) in our dataset and each subplot represents a different feature. The y-axis shows the feature value, while the x-axis is the sample index. These kind of plots can give you a lot of ideas for data cleaning and EDA. Usually it makes sense to invest as much time as needed until your happy with the output of this visualization.</p>
+
+<h3 id="232-non-numerical-features">2.3.2. Non-numerical features</h3>
+
+<p>Identifying <strong>unwanted entries</strong> or <strong>recording errors</strong> on non-numerical features is a bit more tricky. Given that at this point, we only want to investigate the general quality of the dataset. So what we can do is take a general look at how many unique values each of these non-numerical features contain, and how often their most frequent category is represented.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Extract descriptive properties of non-numerical features
+</span><span class="n">df_X</span><span class="p">.</span><span class="nf">describe</span><span class="p">(</span><span class="n">exclude</span><span class="o">=</span><span class="p">[</span><span class="sh">"</span><span class="s">number</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">datetime</span><span class="sh">"</span><span class="p">])</span>
+</code></pre></div></div>
+
+<div>
+<style scoped="">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Accident_Index</th>
+      <th>Date</th>
+      <th>Time</th>
+      <th>Local_Authority_(Highway)</th>
+      <th>LSOA_of_Accident_Location</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>319790</td>
+      <td>319790</td>
+      <td>319746</td>
+      <td>319790</td>
+      <td>298693</td>
+    </tr>
+    <tr>
+      <th>unique</th>
+      <td>123645</td>
+      <td>365</td>
+      <td>1439</td>
+      <td>204</td>
+      <td>25977</td>
+    </tr>
+    <tr>
+      <th>top</th>
+      <td>201543P296025</td>
+      <td>14/02/2015</td>
+      <td>17:30</td>
+      <td>E10000017</td>
+      <td>E01028497</td>
+    </tr>
+    <tr>
+      <th>freq</th>
+      <td>1332</td>
+      <td>2144</td>
+      <td>2969</td>
+      <td>8457</td>
+      <td>1456</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>There are multiple ways for how you could potentially streamline the quality investigation for each individual non-numerical features. None of them is perfect, and all of them will require some follow up investigation. But for the purpose of showcasing one such a solution, what we could do is loop through all non-numerical features and plot for each of them the number of occurrences per unique value.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Create figure object with 3 subplots
+</span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">subplots</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="c1"># Identify non-numerical features
+</span><span class="n">df_non_numerical</span> <span class="o">=</span> <span class="n">df_X</span><span class="p">.</span><span class="nf">select_dtypes</span><span class="p">(</span><span class="n">exclude</span><span class="o">=</span><span class="p">[</span><span class="sh">"</span><span class="s">number</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">datetime</span><span class="sh">"</span><span class="p">])</span>
+
+<span class="c1"># Loop through features and put each subplot on a matplotlib axis object
+</span><span class="k">for</span> <span class="n">col</span><span class="p">,</span> <span class="n">ax</span> <span class="ow">in</span> <span class="nf">zip</span><span class="p">(</span><span class="n">df_non_numerical</span><span class="p">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">axes</span><span class="p">.</span><span class="nf">ravel</span><span class="p">()):</span>
+
+    <span class="c1"># Selects one single feature and counts number of occurrences per unique value
+</span>    <span class="n">df_non_numerical</span><span class="p">[</span><span class="n">col</span><span class="p">].</span><span class="nf">value_counts</span><span class="p">().</span><span class="nf">plot</span><span class="p">(</span>
+
+        <span class="c1"># Plots this information in a figure with log-scaled y-axis
+</span>        <span class="n">logy</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="sh">"</span><span class="s">.</span><span class="sh">"</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+    
+<span class="n">plt</span><span class="p">.</span><span class="nf">tight_layout</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/nb/03_advanced_eda/output_40_0.png" data-zoomable="" width="800px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+
+<p>We can see that the most frequent accident (i.e. <code class="language-plaintext highlighter-rouge">Accident_Index</code>), had more than 100 people involved. Digging a bit deeper (i.e. looking at the individual features of this accident), we could identify that this accident happened on February 24th, 2015 at 11:55 in Cardiff UK. A quick internet search reveals that this entry corresponds to a luckily non-lethal accident including a minibus full of pensioners.</p>
+
+<p>The decision for what should be done with such rather unique entries is once more left in the the subjective hands of the person analyzing the dataset. Without any good justification for WHY, and only with the intention to show you the HOW - let’s go ahead and remove the 10 most frequent accidents from this dataset.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Collect entry values of the 10 most frequent accidents
+</span><span class="n">accident_ids</span> <span class="o">=</span> <span class="n">df_non_numerical</span><span class="p">[</span><span class="sh">"</span><span class="s">Accident_Index</span><span class="sh">"</span><span class="p">].</span><span class="nf">value_counts</span><span class="p">().</span><span class="nf">head</span><span class="p">(</span><span class="mi">10</span><span class="p">).</span><span class="n">index</span>
+
+<span class="c1"># Removes accidents from the 'accident_ids' list
+</span><span class="n">df_X</span> <span class="o">=</span> <span class="n">df_X</span><span class="p">[</span><span class="o">~</span><span class="n">df_X</span><span class="p">[</span><span class="sh">"</span><span class="s">Accident_Index</span><span class="sh">"</span><span class="p">].</span><span class="nf">isin</span><span class="p">(</span><span class="n">accident_ids</span><span class="p">)]</span>
+<span class="n">df_X</span><span class="p">.</span><span class="n">shape</span>
+</code></pre></div></div>
+
+<pre><code class="language-code">(317665, 60)
+</code></pre>
+
+<h2 id="24-conclusion-of-quality-investigation">2.4. Conclusion of quality investigation</h2>
+
+<p>At the end of this second investigation, we should have a better understanding of the general quality of our dataset. We looked at duplicates, missing values and unwanted entries or recording errors. It is important to point out that we didn’t discuss yet how to address the remaining missing values or outliers in the dataset. This is a task for the next investigation, but won’t be covered in this article.</p>
+
+<h1 id="3-content-investigation">3. Content Investigation</h1>
+
+<p>Up until now we only looked at the general structure and quality of the dataset. Let’s now go a step further and take a look at the actual content. In an ideal setting, such an investigation would be done feature by feature. But this becomes very cumbersome once you have more than 20-30 features.</p>
+
+<p>For this reason (and to keep this article as short as needed) we will explore three different approaches that can give you a very quick overview of the content stored in each feature and how they relate.</p>
+
+<h2 id="31-feature-distribution">3.1. Feature distribution</h2>
+
+<p>Looking at the value distribution of each feature is a great way to better understand the content of your data. Furthermore, it can help to guide your EDA, and provides a lot of useful information with regards to data cleaning and feature transformation. The quickest way to do this for numerical features is using histogram plots. Luckily, <code class="language-plaintext highlighter-rouge">pandas</code> comes with a builtin histogram function that allows the plotting of multiple features at once.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Plots the histogram for each numerical feature in a separate subplot
+</span><span class="n">df_X</span><span class="p">.</span><span class="nf">hist</span><span class="p">(</span><span class="n">bins</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">25</span><span class="p">),</span> <span class="n">layout</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">edgecolor</span><span class="o">=</span><span class="sh">"</span><span class="s">black</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">tight_layout</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/nb/03_advanced_eda/output_46_0.png" data-zoomable="" width="800px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+
+<p>There are a lot of very interesting things visible in this plot. For example…</p>
+
+<p><strong>Most frequent entry</strong>: Some features, such as <code class="language-plaintext highlighter-rouge">Towing_and_Articulation</code> or <code class="language-plaintext highlighter-rouge">Was_Vehicle_Left_Hand_Drive?</code> mostly contain entries of just one category. Using the <code class="language-plaintext highlighter-rouge">.mode()</code> function, we could for example extract the ratio of the most frequent entry for each feature and visualize that information.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Collects for each feature the most frequent entry
+</span><span class="n">most_frequent_entry</span> <span class="o">=</span> <span class="n">df_X</span><span class="p">.</span><span class="nf">mode</span><span class="p">()</span>
+
+<span class="c1"># Checks for each entry if it contains the most frequent entry
+</span><span class="n">df_freq</span> <span class="o">=</span> <span class="n">df_X</span><span class="p">.</span><span class="nf">eq</span><span class="p">(</span><span class="n">most_frequent_entry</span><span class="p">.</span><span class="n">values</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Computes the mean of the 'is_most_frequent' occurrence
+</span><span class="n">df_freq</span> <span class="o">=</span> <span class="n">df_freq</span><span class="p">.</span><span class="nf">mean</span><span class="p">().</span><span class="nf">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+
+<span class="c1"># Show the 5 top features with the highest ratio of singular value content
+</span><span class="nf">display</span><span class="p">(</span><span class="n">df_freq</span><span class="p">.</span><span class="nf">head</span><span class="p">())</span>
+
+<span class="c1"># Visualize the 'df_freq' table
+</span><span class="n">df_freq</span><span class="p">.</span><span class="n">plot</span><span class="p">.</span><span class="nf">bar</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">4</span><span class="p">));</span>
+</code></pre></div></div>
+
+<pre><code class="language-code">Pedestrian_Crossing-Human_Control    0.995259
+Was_Vehicle_Left_Hand_Drive?         0.990137
+Carriageway_Hazards                  0.983646
+Towing_and_Articulation              0.983221
+Vehicle_Location-Restricted_Lane     0.982088
+dtype: float64
+</code></pre>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/nb/03_advanced_eda/output_48_1.png" data-zoomable="" width="800px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+
+<p><strong>Skewed value distributions</strong>: Certain kind of numerical features can also show strongly non-gaussian distributions. In that case you might want to think about how you can transform these values to make them more normal distributed. For example, for right skewed data you could use a log-transformation.</p>
+
+<h2 id="32-feature-patterns">3.2. Feature patterns</h2>
+
+<p>Next step on the list is the investigation of feature specific patterns. The goal of this part is two fold:</p>
+
+<ol>
+  <li>Can we identify particular patterns within a feature that will help us to decide if some entries need to be dropped or modified?</li>
+  <li>Can we identify particular relationships between features that will help us to better understand our dataset?</li>
+</ol>
+
+<p>But before we dive into these two questions, let’s take a closer look at a few ‘randomly selected’ features.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">df_X</span><span class="p">[[</span><span class="sh">"</span><span class="s">Location_Northing_OSGR</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">1st_Road_Number</span><span class="sh">"</span><span class="p">,</span>
+      <span class="sh">"</span><span class="s">Journey_Purpose_of_Driver</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Pedestrian_Crossing-Physical_Facilities</span><span class="sh">"</span><span class="p">]].</span><span class="nf">plot</span><span class="p">(</span>
+    <span class="n">lw</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="sh">"</span><span class="s">.</span><span class="sh">"</span><span class="p">,</span> <span class="n">subplots</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">layout</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">markersize</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">6</span><span class="p">));</span>
+</code></pre></div></div>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/nb/03_advanced_eda/output_51_0.png" data-zoomable="" width="800px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+
+<p>In the top row, we can see features with continuous values (e.g. seemingly any number from the number line), while in the bottom row we have features with discrete values (e.g. 1, 2, 3 but not 2.34).</p>
+
+<p>While there are many ways we could explore our features for particular patterns, let’s simplify our option by deciding that we treat features with less than 25 unique features as <strong>discrete</strong> or <strong>ordinal</strong> features, and the other features as <strong>continuous</strong> features.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Creates mask to identify numerical features with more or less than 25 unique features
+</span><span class="n">cols_continuous</span> <span class="o">=</span> <span class="n">df_X</span><span class="p">.</span><span class="nf">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="sh">"</span><span class="s">number</span><span class="sh">"</span><span class="p">).</span><span class="nf">nunique</span><span class="p">()</span> <span class="o">&gt;=</span> <span class="mi">25</span>
+</code></pre></div></div>
+
+<h3 id="321-continuous-features">3.2.1. Continuous features</h3>
+
+<p>Now that we have a way to select the continuous features, let’s go ahead and use seaborn’s <code class="language-plaintext highlighter-rouge">pairplot</code> to visualize the relationships between these features. <strong>Important to note</strong>, seaborn’s pairplot routine can take a long time to create all subplots. Therefore we recommend to not use it for more than ~10 features at a time.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Create a new dataframe which only contains the continuous features
+</span><span class="n">df_continuous</span> <span class="o">=</span> <span class="n">df_X</span><span class="p">[</span><span class="n">cols_continuous</span><span class="p">[</span><span class="n">cols_continuous</span><span class="p">].</span><span class="n">index</span><span class="p">]</span>
+<span class="n">df_continuous</span><span class="p">.</span><span class="n">shape</span>
+</code></pre></div></div>
+
+<pre><code class="language-code">(317665, 11)
+</code></pre>
+
+<p>Given that in our case we only have 11 features, we can go ahead with the pairplot. Otherwise, using something like <code class="language-plaintext highlighter-rouge">df_continuous.iloc[:, :5]</code> could help to reduce the number of features to plot.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">seaborn</span> <span class="k">as</span> <span class="n">sns</span>
+
+<span class="n">sns</span><span class="p">.</span><span class="nf">pairplot</span><span class="p">(</span><span class="n">df_continuous</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">plot_kws</span><span class="o">=</span><span class="p">{</span><span class="sh">"</span><span class="s">s</span><span class="sh">"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="sh">"</span><span class="s">alpha</span><span class="sh">"</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">});</span>
+</code></pre></div></div>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/nb/03_advanced_eda/output_57_0.png" data-zoomable="" width="800px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+
+<p>There seems to be a strange relationship between a few features in the top left corner. <code class="language-plaintext highlighter-rouge">Location_Easting_OSGR</code> and <code class="language-plaintext highlighter-rouge">Longitude</code>, as well as <code class="language-plaintext highlighter-rouge">Location_Easting_OSGR</code> and <code class="language-plaintext highlighter-rouge">Latitude</code> seem to have a very strong linear relationship.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">sns</span><span class="p">.</span><span class="nf">pairplot</span><span class="p">(</span>
+    <span class="n">df_X</span><span class="p">,</span> <span class="n">plot_kws</span><span class="o">=</span><span class="p">{</span><span class="sh">"</span><span class="s">s</span><span class="sh">"</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="sh">"</span><span class="s">alpha</span><span class="sh">"</span><span class="p">:</span> <span class="mf">0.2</span><span class="p">},</span> <span class="n">hue</span><span class="o">=</span><span class="sh">"</span><span class="s">Police_Force</span><span class="sh">"</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="sh">"</span><span class="s">Spectral</span><span class="sh">"</span><span class="p">,</span>
+    <span class="n">x_vars</span><span class="o">=</span><span class="p">[</span><span class="sh">"</span><span class="s">Location_Easting_OSGR</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Location_Northing_OSGR</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Longitude</span><span class="sh">"</span><span class="p">],</span>
+    <span class="n">y_vars</span><span class="o">=</span><span class="sh">"</span><span class="s">Latitude</span><span class="sh">"</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/nb/03_advanced_eda/output_59_0.png" data-zoomable="" width="800px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+
+<p>Knowing that these features contain geographic information, a more in-depth EDA with regards to geolocation could be fruitful. However, for now we will leave the further investigation of this pairplot to the curious reader and continue with the exploration of the discrete and ordinal features.</p>
+
+<h3 id="322-discrete-and-ordinal-features">3.2.2. Discrete and ordinal features</h3>
+
+<p>Finding patterns in the discrete or ordinal features is a bit more tricky. But also here, some quick pandas and seaborn trickery can help us to get a general overview of our dataset. First, let’s select the columns we want to investigate.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Create a new dataframe which doesn't contain the numerical continuous features
+</span><span class="n">df_discrete</span> <span class="o">=</span> <span class="n">df_X</span><span class="p">[</span><span class="n">cols_continuous</span><span class="p">[</span><span class="o">~</span><span class="n">cols_continuous</span><span class="p">].</span><span class="n">index</span><span class="p">]</span>
+<span class="n">df_discrete</span><span class="p">.</span><span class="n">shape</span>
+</code></pre></div></div>
+
+<pre><code class="language-code">(317665, 44)
+</code></pre>
+
+<p>As always, there are multiple way for how we could investigate all of these features. Let’s try one example, using seaborn’s <code class="language-plaintext highlighter-rouge">stripplot()</code> together with a handy <code class="language-plaintext highlighter-rouge">zip()</code> for-loop for subplots.</p>
+
+<p><strong>Note</strong>, to spread the values out in the direction of the y-axis we need to chose one particular (hopefully informative) feature. While the ‘right’ feature can help to identify some interesting patterns, usually any continuous feature should do the trick. The main interest in this kind of plot is to see how many samples each discrete value contains.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+
+<span class="c1"># Establish number of columns and rows needed to plot all features
+</span><span class="n">n_cols</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">n_elements</span> <span class="o">=</span> <span class="nf">len</span><span class="p">(</span><span class="n">df_discrete</span><span class="p">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="n">n_rows</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">ceil</span><span class="p">(</span><span class="n">n_elements</span> <span class="o">/</span> <span class="n">n_cols</span><span class="p">).</span><span class="nf">astype</span><span class="p">(</span><span class="sh">"</span><span class="s">int</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="c1"># Specify y_value to spread data (ideally a continuous feature)
+</span><span class="n">y_value</span> <span class="o">=</span> <span class="n">df_X</span><span class="p">[</span><span class="sh">"</span><span class="s">Age_of_Driver</span><span class="sh">"</span><span class="p">]</span>
+
+<span class="c1"># Create figure object with as many rows and columns as needed
+</span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">subplots</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="n">n_cols</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="n">n_rows</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="n">n_rows</span> <span class="o">*</span> <span class="mf">2.5</span><span class="p">))</span>
+
+<span class="c1"># Loop through features and put each subplot on a matplotlib axis object
+</span><span class="k">for</span> <span class="n">col</span><span class="p">,</span> <span class="n">ax</span> <span class="ow">in</span> <span class="nf">zip</span><span class="p">(</span><span class="n">df_discrete</span><span class="p">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">axes</span><span class="p">.</span><span class="nf">ravel</span><span class="p">()):</span>
+    <span class="n">sns</span><span class="p">.</span><span class="nf">stripplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df_X</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y_value</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="sh">"</span><span class="s">tab10</span><span class="sh">"</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">tight_layout</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/nb/03_advanced_eda/output_64_0.png" data-zoomable="" width="800px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+
+<p>There are too many things to comment here, so let’s just focus on a few. In particular, let’s focus on 6 features where the values appear in some particular pattern or where some categories seem to be much less frequent than others. And to shake things up a bit, let’s now use the <code class="language-plaintext highlighter-rouge">Longitude</code> feature to stretch the values over the y-axis.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Specify features of interest
+</span><span class="n">selected_features</span> <span class="o">=</span> <span class="p">[</span><span class="sh">"</span><span class="s">Vehicle_Reference_df_res</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Towing_and_Articulation</span><span class="sh">"</span><span class="p">,</span>
+                     <span class="sh">"</span><span class="s">Skidding_and_Overturning</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Bus_or_Coach_Passenger</span><span class="sh">"</span><span class="p">,</span>
+                     <span class="sh">"</span><span class="s">Pedestrian_Road_Maintenance_Worker</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Age_Band_of_Driver</span><span class="sh">"</span><span class="p">]</span>
+
+<span class="c1"># Create a figure with 3 x 2 subplots
+</span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">subplots</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="c1"># Loop through these features and plot entries from each feature against `Latitude`
+</span><span class="k">for</span> <span class="n">col</span><span class="p">,</span> <span class="n">ax</span> <span class="ow">in</span> <span class="nf">zip</span><span class="p">(</span><span class="n">selected_features</span><span class="p">,</span> <span class="n">axes</span><span class="p">.</span><span class="nf">ravel</span><span class="p">()):</span>
+    <span class="n">sns</span><span class="p">.</span><span class="nf">stripplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df_X</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">df_X</span><span class="p">[</span><span class="sh">"</span><span class="s">Latitude</span><span class="sh">"</span><span class="p">],</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span>
+                  <span class="n">palette</span><span class="o">=</span><span class="sh">"</span><span class="s">tab10</span><span class="sh">"</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">tight_layout</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/nb/03_advanced_eda/output_66_0.png" data-zoomable="" width="800px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+
+<p>These kind of plots are already very informative, but they obscure regions where there are a lot of data points at once. For example, there seems to be a high density of points in some of the plots at the 52nd latitude. So let’s take a closer look with an appropriate plot, such as <code class="language-plaintext highlighter-rouge">violineplot</code> ( or <code class="language-plaintext highlighter-rouge">boxenplot</code> or <code class="language-plaintext highlighter-rouge">boxplot</code> for that matter). And to go a step further, let’s also separate each visualization by <code class="language-plaintext highlighter-rouge">Urban_or_Rural_Area</code>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Create a figure with 3 x 2 subplots
+</span><span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">subplots</span><span class="p">(</span><span class="n">ncols</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="c1"># Loop through these features and plot entries from each feature against `Latitude`
+</span><span class="k">for</span> <span class="n">col</span><span class="p">,</span> <span class="n">ax</span> <span class="ow">in</span> <span class="nf">zip</span><span class="p">(</span><span class="n">selected_features</span><span class="p">,</span> <span class="n">axes</span><span class="p">.</span><span class="nf">ravel</span><span class="p">()):</span>
+    <span class="n">sns</span><span class="p">.</span><span class="nf">violinplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df_X</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">df_X</span><span class="p">[</span><span class="sh">"</span><span class="s">Latitude</span><span class="sh">"</span><span class="p">],</span> <span class="n">palette</span><span class="o">=</span><span class="sh">"</span><span class="s">Set2</span><span class="sh">"</span><span class="p">,</span>
+                   <span class="n">split</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="sh">"</span><span class="s">Urban_or_Rural_Area</span><span class="sh">"</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">tight_layout</span><span class="p">();</span>
+</code></pre></div></div>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/nb/03_advanced_eda/output_68_0.png" data-zoomable="" width="800px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+
+<p>Interesting! We can see that some values on features are more frequent in urban, than in rural areas (and vice versa). Furthermore, as suspected, there seems to be a high density peak at latitude 51.5. This is very likely due to the more densely populated region around London (at 51.5074°).</p>
+
+<h2 id="33-feature-relationships">3.3. Feature relationships</h2>
+
+<p>Last, but not least, let’s take a look at relationships between features. More precisely how they correlate. The quickest way to do so is via pandas’ <code class="language-plaintext highlighter-rouge">.corr()</code> function. So let’s go ahead and compute the feature to feature correlation matrix for all numerical features.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Computes feature correlation
+</span><span class="n">df_corr</span> <span class="o">=</span> <span class="n">df_X</span><span class="p">.</span><span class="nf">corr</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="sh">"</span><span class="s">pearson</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>Note</strong>: Depending on the dataset and the kind of features (e.g. ordinal or continuous features) you might want to use the <code class="language-plaintext highlighter-rouge">spearman</code> method instead of the <code class="language-plaintext highlighter-rouge">pearson</code> method to compute the correlation. Whereas the <strong>Pearson</strong> correlation evaluates the linear relationship between two continuous variables, the <strong>Spearman</strong> correlation evaluates the monotonic relationship based on the ranked values for each feature. And to help with the interpretation of this correlation matrix, let’s use seaborn’s <code class="language-plaintext highlighter-rouge">.heatmap()</code> to visualize it.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Create labels for the correlation matrix
+</span><span class="n">labels</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">abs</span><span class="p">(</span><span class="n">df_corr</span><span class="p">)</span><span class="o">&gt;</span><span class="mf">0.75</span><span class="p">,</span> <span class="sh">"</span><span class="s">S</span><span class="sh">"</span><span class="p">,</span>
+                  <span class="n">np</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">abs</span><span class="p">(</span><span class="n">df_corr</span><span class="p">)</span><span class="o">&gt;</span><span class="mf">0.5</span><span class="p">,</span> <span class="sh">"</span><span class="s">M</span><span class="sh">"</span><span class="p">,</span>
+                           <span class="n">np</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">abs</span><span class="p">(</span><span class="n">df_corr</span><span class="p">)</span><span class="o">&gt;</span><span class="mf">0.25</span><span class="p">,</span> <span class="sh">"</span><span class="s">W</span><span class="sh">"</span><span class="p">,</span> <span class="sh">""</span><span class="p">)))</span>
+
+<span class="c1"># Plot correlation matrix
+</span><span class="n">plt</span><span class="p">.</span><span class="nf">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">15</span><span class="p">))</span>
+<span class="n">sns</span><span class="p">.</span><span class="nf">heatmap</span><span class="p">(</span><span class="n">df_corr</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">np</span><span class="p">.</span><span class="nf">eye</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">df_corr</span><span class="p">)),</span> <span class="n">square</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+            <span class="n">center</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="sh">''</span><span class="p">,</span> <span class="n">linewidths</span><span class="o">=</span><span class="p">.</span><span class="mi">5</span><span class="p">,</span>
+            <span class="n">cmap</span><span class="o">=</span><span class="sh">"</span><span class="s">vlag</span><span class="sh">"</span><span class="p">,</span> <span class="n">cbar_kws</span><span class="o">=</span><span class="p">{</span><span class="sh">"</span><span class="s">shrink</span><span class="sh">"</span><span class="p">:</span> <span class="mf">0.8</span><span class="p">});</span>
+</code></pre></div></div>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/nb/03_advanced_eda/output_73_0.png" data-zoomable="" width="800px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+
+<p>This looks already very interesting. We can see a few very strong correlations between some of the features. Now, if you’re interested actually ordering all of these different correlations, you could do something like this:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#  Creates a mask to remove the diagonal and the upper triangle.
+</span><span class="n">lower_triangle_mask</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">tril</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">ones</span><span class="p">(</span><span class="n">df_corr</span><span class="p">.</span><span class="n">shape</span><span class="p">),</span> <span class="n">k</span><span class="o">=-</span><span class="mi">1</span><span class="p">).</span><span class="nf">astype</span><span class="p">(</span><span class="sh">"</span><span class="s">bool</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="c1">#  Stack all correlations, after applying the mask
+</span><span class="n">df_corr_stacked</span> <span class="o">=</span> <span class="n">df_corr</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="n">lower_triangle_mask</span><span class="p">).</span><span class="nf">stack</span><span class="p">().</span><span class="nf">sort_values</span><span class="p">()</span>
+
+<span class="c1">#  Showing the lowest and highest correlations in the correlation matrix
+</span><span class="nf">display</span><span class="p">(</span><span class="n">df_corr_stacked</span><span class="p">)</span>
+</code></pre></div></div>
+
+<pre><code class="language-code">Local_Authority_(District)  Longitude                -0.509343
+                            Location_Easting_OSGR    -0.502919
+Police_Force                Longitude                -0.471327
+                            Location_Easting_OSGR    -0.461112
+Speed_limit                 1st_Road_Class           -0.438931
+                                                        ...   
+Age_Band_of_Casualty        Age_of_Casualty           0.974397
+Age_Band_of_Driver          Age_of_Driver             0.979019
+Local_Authority_(District)  Police_Force              0.984819
+Longitude                   Location_Easting_OSGR     0.999363
+Latitude                    Location_Northing_OSGR    0.999974
+Length: 1485, dtype: float64
+</code></pre>
+
+<p>As you can see, the investigation of feature correlations can be very informative. But looking at everything at once can sometimes be more confusing than helpful. So focusing only on one feature with something like <code class="language-plaintext highlighter-rouge">df_X.corrwith(df_X["Speed_limit"])</code> might be a better approach.</p>
+
+<p>Furthermore, correlations can be deceptive if a feature still contains a lot of missing values or extreme outliers. Therefore, it is always important to first make sure that your feature matrix is properly prepared before investigating these correlations.</p>
+
+<h2 id="34-conclusion-of-content-investigation">3.4. Conclusion of content investigation</h2>
+
+<p>At the end of this third investigation, we should have a better understanding of the content in our dataset. We looked at value distribution, feature patterns and feature correlations. However, these are certainly not all possible content investigation and data cleaning steps you could do. Additional steps would for example be outlier detection and removal, feature engineering and transformation, and more.</p>
+
+<h1 id="take-home-message">Take home message</h1>
+
+<p>A proper and detailed EDA takes time! It is a very iterative process that often makes you go back to the start, after you addressed another flaw in the dataset. This is normal! It’s the reason why we often say that 80% of any data science project is data preparation and EDA.</p>
+
+<p>But keep also in mind that an in-depth EDA can consume a lot of time. And just because something seems interesting doesn’t mean that you need to follow up on it. Always remind yourself what the dataset will be used for and tailor your investigations to support that goal. And sometimes it is also ok, to just do a quick-and-dirty data preparation and exploration. So that you can move on to the data modeling part rather quickly, and to establish a few preliminary baseline models perform some informative results investigation.</p>
+
+  </article>
+
+  
+
+</div>
+
+    </div>
+
+    <!-- Footer -->
+
+    
+<footer class="fixed-bottom">
+  <div class="container mt-0">
+    © Copyright 2025 Michael P. Notter.
+    Powered by <a href="http://jekyllrb.com/" target="_blank" rel="noopener noreferrer">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" target="_blank" rel="noopener noreferrer">al-folio</a> theme.
+
+    
+    
+  </div>
+</footer>
+
+
+
+  </body>
+
+  <!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+
+  <!-- Bootsrap & MDB scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.4/umd/popper.min.js" integrity="sha512-eUQ9hGdLjBjY3F41CScH3UX+4JDSI9zXeroz7hJ+RteoCaY+GP/LDoM8AO+Pt+DRFw3nXqsjh9Zsts8hnYv8/A==" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha512-M5KW3ztuIICmVIhjSqXe01oV2bpe248gOxqmlcYrEzAvws7Pw3z6BK0iGbrwvdrUQUhi3eXgtxp5I8PDo9YfjQ==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js" integrity="sha512-Mug9KHKmroQFMLm93zGrjhibM2z2Obg9l6qFG2qKjXEXkMp/VDkI4uju9m4QKPjWSwQ6O2qzZEnJDEeCw0Blcw==" crossorigin="anonymous"></script>
+
+  
+<!-- Mansory & imagesLoaded -->
+<script defer src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script defer src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+<script defer src="/assets/js/mansory.js" type="text/javascript"></script>
+
+
+  
+
+
+<!-- Medium Zoom JS -->
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+<script src="/assets/js/zoom.js"></script>
+
+
+<!-- Load Common JS -->
+<script src="/assets/js/common.js"></script>
+
+  
+<!-- MathJax -->
+<script type="text/javascript">
+  window.MathJax = {
+    tex: {
+      tags: 'ams'
+    }
+  };
+</script>
+<script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js"></script>
+<script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+
+
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-126030922-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+
+  gtag('config', 'UA-126030922-1');
+</script>
+
+
+
+
+
+
+</html>

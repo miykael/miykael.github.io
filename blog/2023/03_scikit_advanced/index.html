@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>
+
+  Michael P. Notter
+
+
+  | Advanced Machine Learning - Regression Pipelines in Scikit-learn
+
+</title>
+<meta name="description" content="Personal homepage of Michael P. Notter.
+">
+
+<!-- Open Graph -->
+
+
+<!-- Bootstrap & MDB -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha512-MoRNloxbStBcD8z3M/2BmnT+rg4IsMxPkXaGh2zD6LGNNFE80W3onsAhRcMAMrSoyWL9xD7Ert0men7vR8LUZg==" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" integrity="sha512-RO38pBRxYH3SoOprtPTD86JFOclM51/XTIdEPh5j8sj4tp8jmQIx26twG52UaLi//hQldfrh7e51WzP9wuP32Q==" crossorigin="anonymous" />
+
+<!-- Fonts & Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"  integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css" integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons">
+
+<!-- Code Syntax Highlighting -->
+<link rel="stylesheet" href="https://gitcdn.link/repo/jwarby/jekyll-pygments-themes/master/monokai.css" />
+
+<!-- Styles -->
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍💻</text></svg>">
+
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="canonical" href="https://miykael.github.io/blog/2023/03_scikit_advanced/">
+
+
+<!-- Dark Mode -->
+<script src="/assets/js/theme.js"></script>
+<script src="/assets/js/dark_mode.js"></script>
+
+
+  </head>
+
+  <body class="fixed-top-nav ">
+
+    <!-- Header -->
+
+    <header>
+
+    <!-- Nav Bar -->
+    <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top">
+    <div class="container">
+      
+      <a class="navbar-brand title font-weight-lighter" href="https://miykael.github.io/">
+       <span class="font-weight-bold">Michael</span> P.  Notter
+      </a>
+      
+      <!-- Navbar Toggle -->
+      <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar top-bar"></span>
+        <span class="icon-bar middle-bar"></span>
+        <span class="icon-bar bottom-bar"></span>
+      </button>
+      <div class="collapse navbar-collapse text-right" id="navbarNav">
+        <ul class="navbar-nav ml-auto flex-nowrap">
+          <!-- About -->
+          <li class="nav-item ">
+            <a class="nav-link" href="/">
+              About
+              
+            </a>
+          </li>
+          
+          <!-- Blog -->
+          <li class="nav-item active">
+            <a class="nav-link" href="/blog/">
+              Blog
+              
+            </a>
+          </li>
+          
+          <!-- Other pages -->
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/background/">
+                Background
+                
+              </a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/projects/">
+                Projects
+                
+              </a>
+          </li>
+          
+          
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/publications/">
+                Publications
+                
+              </a>
+          </li>
+          
+          
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/teaching/">
+                Teaching
+                
+              </a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+            <div class="toggle-container">
+              <a id="light-toggle">
+                  <i class="fas fa-moon"></i>
+                  <i class="fas fa-sun"></i>
+              </a>
+            </div>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+    <!-- Content -->
+
+    <div class="container mt-5">
+      
+
+
+
+
+
+<div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Advanced Machine Learning - Regression Pipelines in Scikit-learn</h1>
+    <p class="post-meta">October 23, 2023</p>
+    <p class="post-tags">
+      <a href="/blog/2023"> <i class="fas fa-calendar fa-sm"></i> 2023 </a>
+      
+
+      
+
+    </p>
+  </header>
+
+  <article class="post-content">
+    <p>In this third part of our series, we’ll explore more sophisticated machine learning techniques using <a href="https://scikit-learn.org/stable/" target="_blank" rel="noopener noreferrer">Scikit-learn</a>. While Parts 1 and 2 focused on classification, we’ll now tackle regression problems and learn how to build complex preprocessing pipelines. We’ll use the California Housing dataset to demonstrate these concepts.</p>
+
+<p>The complete code for this tutorial can be found in the <a href="/assets/scripts/03_scikit_advanced.py">03_scikit_advanced.py</a> script.</p>
+
+<p><strong>Note</strong>: The purpose of this post is to highlight the flexibility and capabilities of scikit-learn’s advanced features. Therefore, this tutorial focuses on introducing you to those advanced routines rather than creating the optimal regression model.</p>
+
+<h3 id="why-advanced-preprocessing">Why Advanced Preprocessing?</h3>
+
+<p>Real-world data rarely comes in a clean, ready-to-use format. Data scientists often spend more time preparing data than training models. Common preprocessing steps include:</p>
+<ul>
+  <li>
+<strong>Missing value imputation</strong>: Filling missing data points</li>
+  <li>
+<strong>Feature encoding</strong>: Converting categorical variables to numerical format</li>
+  <li>
+<strong>Feature scaling</strong>: Normalizing features to comparable ranges</li>
+  <li>
+<strong>Feature selection</strong>: Identifying most relevant variables</li>
+  <li>
+<strong>Feature engineering</strong>: Creating new features from existing ones</li>
+</ul>
+
+<p>Scikit-learn provides powerful tools to handle these challenges systematically. Let’s see how to combine them effectively into a preprocessing pipeline that can handle all these issues automatically.</p>
+
+<p>As always, first, let’s import the scientific Python packages we need.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Standard scientific Python imports
+</span><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="n">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">import</span> <span class="n">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="n">seaborn</span> <span class="k">as</span> <span class="n">sns</span>
+</code></pre></div></div>
+
+<h2 id="1-load-dataset">1. Load Dataset</h2>
+
+<p>The California Housing dataset contains information about houses in California districts. It’s a perfect dataset for demonstrating advanced preprocessing because it includes:</p>
+<ul>
+  <li>Both numerical and categorical features</li>
+  <li>Missing values that need handling</li>
+  <li>Features on different scales</li>
+  <li>Complex relationships between variables</li>
+</ul>
+
+<p>The dataset itself contains information about the houses, including features like total area, lot shape, neighborhood information, overall quality, year built, etc. And the target feature that we would like to predict is the <code class="language-plaintext highlighter-rouge">SalePrice</code>.</p>
+
+<p>Let’s load the data and take a look:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Load dataset
+</span><span class="kn">from</span> <span class="n">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>
+
+<span class="n">housing</span> <span class="o">=</span> <span class="n">datasets</span><span class="p">.</span><span class="nf">fetch_openml</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="sh">'</span><span class="s">house_prices</span><span class="sh">'</span><span class="p">)</span>
+
+<span class="c1"># Extract feature matrix X and target vector y
+</span><span class="n">X</span> <span class="o">=</span> <span class="n">housing</span><span class="p">[</span><span class="sh">'</span><span class="s">data</span><span class="sh">'</span><span class="p">].</span><span class="nf">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="sh">'</span><span class="s">Id</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">housing</span><span class="p">[</span><span class="sh">'</span><span class="s">target</span><span class="sh">'</span><span class="p">]</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Dimension of X: </span><span class="si">{</span><span class="n">X</span><span class="p">.</span><span class="n">shape</span><span class="si">}</span><span class="se">\n</span><span class="s">Dimension of y: </span><span class="si">{</span><span class="n">y</span><span class="p">.</span><span class="n">shape</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Dimension of X: (1460, 79)
+Dimension of y: (1460,)
+</code></pre></div></div>
+
+<p>The house price dataset contains:</p>
+<ul>
+  <li>
+<strong>1,460 samples</strong>: Each representing a different house sale</li>
+  <li>
+<strong>79 features</strong>: A mix of numerical and categorical characteristics including:
+    <ul>
+      <li>Property specifications (size, rooms, year built)</li>
+      <li>Location details (neighborhood, zoning)</li>
+      <li>Quality ratings (overall condition, materials)</li>
+    </ul>
+  </li>
+  <li>
+<strong>Target values</strong>: Continuous house sale prices in dollars</li>
+</ul>
+
+<p>As you can see, we have 1460 samples (houses), each containing 79 features (i.e. characteristics). Let’s examine the first few entries to better understand our data:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Show first few entries and columns of the dataset
+</span><span class="n">X</span><span class="p">.</span><span class="n">iloc</span><span class="p">[:</span><span class="mi">5</span><span class="p">,</span> <span class="p">:</span><span class="mi">5</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/ex_plots/03_scikit_dataframe_01.png" data-zoomable="" width="800px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+<div class="caption">
+    Figure 1: First 5 rows and 5 columns of the California Housing dataset.
+</div>
+
+<p>If we look closer at the feature matrix X, we can see that of those 79 features, 36 are of type float and 43
+are of type ‘object’ (i.e. categorical features), and that some entries are missing. Plus, the target feature
+<code class="language-plaintext highlighter-rouge">SalePrice</code> has a right skewed value distribution.</p>
+
+<p>Therefore, if possible, our pipeline should be able to handle all of this peculiarities. Even better, let’s try
+to setup a pipeline that helps us to find the optimal way how to preprocess this dataset.</p>
+
+<h2 id="2-feature-analysis">2. Feature Analysis</h2>
+
+<p>Before building our pipeline, let’s understand what we’re working with:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Quick overview of feature types
+</span><span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Feature types:</span><span class="sh">"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">X</span><span class="p">.</span><span class="n">dtypes</span><span class="p">.</span><span class="nf">value_counts</span><span class="p">())</span>
+
+<span class="c1"># Check for missing values
+</span><span class="n">missing_values</span> <span class="o">=</span> <span class="n">X</span><span class="p">.</span><span class="nf">isnull</span><span class="p">().</span><span class="nf">sum</span><span class="p">()</span>
+<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="se">\n</span><span class="s">Features with missing values:</span><span class="sh">"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">missing_values</span><span class="p">[</span><span class="n">missing_values</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">].</span><span class="nf">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">))</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Feature types:
+object     43
+int64      33
+float64     3
+Name: count, dtype: int64
+
+Features with missing values:
+PoolQC          1453
+MiscFeature     1406
+Alley           1369
+Fence           1179
+FireplaceQu      690
+LotFrontage      259
+GarageType        81
+GarageYrBlt       81
+GarageFinish      81
+GarageQual        81
+GarageCond        81
+BsmtExposure      38
+BsmtFinType2      38
+BsmtFinType1      37
+BsmtCond          37
+BsmtQual          37
+MasVnrArea         8
+MasVnrType         8
+Electrical         1
+dtype: int64
+</code></pre></div></div>
+
+<p>And visualizing the target variable distribution:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Analyze target variable distribution
+</span><span class="n">plt</span><span class="p">.</span><span class="nf">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">sns</span><span class="p">.</span><span class="nf">histplot</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">title</span><span class="p">(</span><span class="sh">"</span><span class="s">Distribution of House Prices</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">xlabel</span><span class="p">(</span><span class="sh">"</span><span class="s">Price</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/ex_plots/03_scikit_price_distribution.png" data-zoomable="" width="800px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+<div class="caption">
+    Figure 2: Data quality analysis showing the distribution of missing values and data types across features in the California Housing dataset.
+</div>
+
+<p>This analysis reveals several important preprocessing needs:</p>
+<ol>
+  <li>We have both numerical (float) and categorical (object) features</li>
+  <li>Several features have missing values</li>
+  <li>Our target variable (house prices) shows right skew</li>
+  <li>Features are on very different scales (e.g., year vs. price)</li>
+</ol>
+
+<p>These insights will guide our pipeline design.</p>
+
+<h2 id="3-split-data-into-train-and-test-set">3. Split data into train and test set</h2>
+
+<p>As always, let’s first go ahead and split the dataset into train and test set.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="n">X_tr</span><span class="p">,</span> <span class="n">X_te</span><span class="p">,</span> <span class="n">y_tr</span><span class="p">,</span> <span class="n">y_te</span> <span class="o">=</span> <span class="nf">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="4-building-the-pipeline">4. Building the Pipeline</h2>
+
+<p>One of Scikit-learn’s most powerful features is its Pipeline API. We’ll create a pipeline that:</p>
+<ol>
+  <li>Handles missing values differently for numerical and categorical features</li>
+  <li>Applies appropriate scaling to numerical features</li>
+  <li>Properly encodes categorical features</li>
+  <li>Optionally reduces dimensionality</li>
+  <li>Fits our chosen regression model</li>
+</ol>
+
+<p>So let’s setup a pipeline that performs these different pre-processing routines: Transformation
+of categorical data to numerical data, data imputer for missing values, data scaling, potential dimensionality
+reduction, etc.</p>
+
+<h3 id="41-handling-categorical-data">4.1. Handling categorical data</h3>
+
+<p>First, let’s create a small pipeline that takes categorical data, fills missing values with <code class="language-plaintext highlighter-rouge">'missing'</code> and
+than applies one-hot encoding on these categorical features.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">Pipeline</span>
+<span class="kn">from</span> <span class="n">sklearn.impute</span> <span class="kn">import</span> <span class="n">SimpleImputer</span>
+<span class="kn">from</span> <span class="n">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">OneHotEncoder</span>
+
+<span class="c1"># Define preprocessing pipeline for categorical features
+</span><span class="n">categorical_preprocessor</span> <span class="o">=</span> <span class="nc">Pipeline</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="c1"># Fill missing values with 'missing' string
+</span>        <span class="p">(</span><span class="sh">'</span><span class="s">imputer_cat</span><span class="sh">'</span><span class="p">,</span> <span class="nc">SimpleImputer</span><span class="p">(</span><span class="n">fill_value</span><span class="o">=</span><span class="sh">'</span><span class="s">missing</span><span class="sh">'</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="sh">'</span><span class="s">constant</span><span class="sh">'</span><span class="p">)),</span>
+
+        <span class="c1"># Convert categorical strings to one-hot encoded vectors
+</span>        <span class="c1"># handle_unknown='ignore' prevents errors with new categories at prediction time
+</span>        <span class="p">(</span><span class="sh">'</span><span class="s">onehot</span><span class="sh">'</span><span class="p">,</span> <span class="nc">OneHotEncoder</span><span class="p">(</span><span class="n">handle_unknown</span><span class="o">=</span><span class="sh">'</span><span class="s">ignore</span><span class="sh">'</span><span class="p">)),</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="42-handling-numerical-data">4.2. Handling numerical data</h3>
+
+<p>To handle numerical data we will use a slightly more advanced processing pipeline (to showcase some scikit-learn
+feature, not because it’s the best thing to do). So let’s first fill missing values with e.g. the mean of the
+feature, potentially apply a polynomial expansion to module non-linear relationships, apply a scaler and then
+potentially apply dimensionality reduction via PCA and/or by selecting only the “most relevant” features.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+<span class="kn">from</span> <span class="n">sklearn.feature_selection</span> <span class="kn">import</span> <span class="n">SelectKBest</span>
+<span class="kn">from</span> <span class="n">sklearn.feature_selection</span> <span class="kn">import</span> <span class="n">f_regression</span><span class="p">,</span> <span class="n">mutual_info_regression</span>
+<span class="kn">from</span> <span class="n">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">FeatureUnion</span>
+
+<span class="c1"># Create feature reduction pipeline combining PCA and feature selection
+</span><span class="n">dim_reduction</span> <span class="o">=</span> <span class="nc">FeatureUnion</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="p">(</span><span class="sh">'</span><span class="s">pca</span><span class="sh">'</span><span class="p">,</span> <span class="nc">PCA</span><span class="p">()),</span>  <span class="c1"># Dimensionality reduction using principal component analysis
+</span>        <span class="p">(</span><span class="sh">'</span><span class="s">feat_selecter</span><span class="sh">'</span><span class="p">,</span> <span class="nc">SelectKBest</span><span class="p">()),</span>  <span class="c1"># Select top K features based on statistical tests
+</span>    <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="kn">from</span> <span class="n">sklearn.preprocessing</span> <span class="kn">import</span> <span class="p">(</span><span class="n">PolynomialFeatures</span><span class="p">,</span> <span class="n">StandardScaler</span><span class="p">,</span>
+                                   <span class="n">RobustScaler</span><span class="p">,</span> <span class="n">PowerTransformer</span><span class="p">)</span>
+
+<span class="c1"># Package all relevant preprocessing routines for numerical data into one pipeline
+</span><span class="n">numeric_preprocessor</span> <span class="o">=</span> <span class="nc">Pipeline</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="c1"># Handle missing values in numerical features
+</span>        <span class="p">(</span><span class="sh">'</span><span class="s">imputer_numeric</span><span class="sh">'</span><span class="p">,</span> <span class="nc">SimpleImputer</span><span class="p">(</span>
+            <span class="n">missing_values</span><span class="o">=</span><span class="n">np</span><span class="p">.</span><span class="n">nan</span><span class="p">,</span>  <span class="c1"># Identify NaN values
+</span>            <span class="n">strategy</span><span class="o">=</span><span class="sh">'</span><span class="s">mean</span><span class="sh">'</span><span class="p">)),</span>  <span class="c1"># Replace with column mean
+</span>
+        <span class="p">(</span><span class="sh">'</span><span class="s">polytrans</span><span class="sh">'</span><span class="p">,</span> <span class="nc">PolynomialFeatures</span><span class="p">()),</span>  <span class="c1"># Create interaction terms between features
+</span>        <span class="p">(</span><span class="sh">'</span><span class="s">scaler</span><span class="sh">'</span><span class="p">,</span> <span class="nc">StandardScaler</span><span class="p">()),</span>  <span class="c1"># Normalize features to zero mean and unit variance
+</span>        <span class="p">(</span><span class="sh">'</span><span class="s">dim_reduction</span><span class="sh">'</span><span class="p">,</span> <span class="n">dim_reduction</span><span class="p">),</span>  <span class="c1"># Apply dimensionality reduction
+</span>    <span class="p">]</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="43-combining-preprocessing-pipelines">4.3. Combining preprocessing pipelines</h3>
+
+<p>Now that we have a preprocessing pipeline for the categorical and numerical features, let’s combine them into
+one preprocessing pipeline.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">sklearn.compose</span> <span class="kn">import</span> <span class="n">ColumnTransformer</span>
+
+<span class="n">preprocessor</span> <span class="o">=</span> <span class="nc">ColumnTransformer</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="p">(</span><span class="sh">'</span><span class="s">numerical</span><span class="sh">'</span><span class="p">,</span> <span class="n">numeric_preprocessor</span><span class="p">,</span> <span class="n">X</span><span class="p">.</span><span class="nf">select_dtypes</span><span class="p">(</span><span class="sh">'</span><span class="s">number</span><span class="sh">'</span><span class="p">).</span><span class="n">columns</span><span class="p">),</span>
+        <span class="p">(</span><span class="sh">'</span><span class="s">categorical</span><span class="sh">'</span><span class="p">,</span> <span class="n">categorical_preprocessor</span><span class="p">,</span> <span class="n">X</span><span class="p">.</span><span class="nf">select_dtypes</span><span class="p">(</span><span class="n">exclude</span><span class="o">=</span><span class="sh">'</span><span class="s">number</span><span class="sh">'</span><span class="p">).</span><span class="n">columns</span><span class="p">),</span>
+    <span class="p">],</span>
+    <span class="n">remainder</span><span class="o">=</span><span class="sh">'</span><span class="s">passthrough</span><span class="sh">'</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="44-add-regression-model">4.4. Add regression model</h3>
+
+<p>After the data is preprocessed we want to hand it over to a regression estimator. For this purpose, let’s chose
+a ridge regression.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">Ridge</span>
+
+<span class="n">ridge</span> <span class="o">=</span> <span class="nc">Ridge</span><span class="p">()</span>
+
+<span class="n">pipe</span> <span class="o">=</span> <span class="nc">Pipeline</span><span class="p">(</span><span class="n">steps</span><span class="o">=</span><span class="p">[</span>
+    <span class="p">(</span><span class="sh">'</span><span class="s">preprocessor</span><span class="sh">'</span><span class="p">,</span> <span class="n">preprocessor</span><span class="p">),</span>
+    <span class="p">(</span><span class="sh">'</span><span class="s">ridge</span><span class="sh">'</span><span class="p">,</span> <span class="nc">Ridge</span><span class="p">())</span>
+<span class="p">])</span>
+</code></pre></div></div>
+
+<p>As such, the pipeline would be finished. But because we know that our target feature <code class="language-plaintext highlighter-rouge">SalePrice</code> is right
+skewed, we should ideally apply a log-transformation before fitting the model. Instead of doing this
+transformation manually (and reverting it at the end), we can also use scikit-learn’s
+<code class="language-plaintext highlighter-rouge">TransformedTargetRegressor</code> to do that on the fly.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">sklearn.compose</span> <span class="kn">import</span> <span class="n">TransformedTargetRegressor</span>
+
+<span class="n">regressor</span> <span class="o">=</span> <span class="nc">TransformedTargetRegressor</span><span class="p">(</span>
+    <span class="n">regressor</span><span class="o">=</span><span class="n">pipe</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="n">np</span><span class="p">.</span><span class="n">log1p</span><span class="p">,</span> <span class="n">inverse_func</span><span class="o">=</span><span class="n">np</span><span class="p">.</span><span class="n">expm1</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="5-parameter-grid">5. Parameter grid</h2>
+
+<p>Before training our model, we should also define a parameter grid that allows us to fine-tune the processing
+and model parameters. Given our complex routine, we actually have a lot of parameter that we can play around
+with.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">ParameterGrid</span>
+
+<span class="c1"># Shorten key identifier by separating common prefix
+</span><span class="n">prefix</span> <span class="o">=</span> <span class="sh">'</span><span class="s">regressor__preprocessor__</span><span class="sh">'</span>
+
+<span class="c1"># Create parametergrid
+</span><span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span>
+
+    <span class="c1"># Explore imputers
+</span>    <span class="sa">f</span><span class="sh">'</span><span class="si">{</span><span class="n">prefix</span><span class="si">}</span><span class="s">numerical__imputer_numeric__add_indicator</span><span class="sh">'</span><span class="p">:</span> <span class="p">[</span><span class="bp">True</span><span class="p">,</span> <span class="bp">False</span><span class="p">],</span>
+    <span class="sa">f</span><span class="sh">'</span><span class="si">{</span><span class="n">prefix</span><span class="si">}</span><span class="s">numerical__imputer_numeric__strategy</span><span class="sh">'</span><span class="p">:</span> <span class="p">[</span>
+        <span class="sh">'</span><span class="s">mean</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">median</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">most_frequent</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">constant</span><span class="sh">'</span><span class="p">],</span>
+    <span class="sa">f</span><span class="sh">'</span><span class="si">{</span><span class="n">prefix</span><span class="si">}</span><span class="s">categorical__imputer_cat__add_indicator</span><span class="sh">'</span><span class="p">:</span> <span class="p">[</span><span class="bp">True</span><span class="p">,</span> <span class="bp">False</span><span class="p">],</span>
+    <span class="sa">f</span><span class="sh">'</span><span class="si">{</span><span class="n">prefix</span><span class="si">}</span><span class="s">categorical__imputer_cat__strategy</span><span class="sh">'</span><span class="p">:</span> <span class="p">[</span><span class="sh">'</span><span class="s">most_frequent</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">constant</span><span class="sh">'</span><span class="p">],</span>
+
+    <span class="c1"># Explore numerical preprocessors
+</span>    <span class="sa">f</span><span class="sh">'</span><span class="si">{</span><span class="n">prefix</span><span class="si">}</span><span class="s">numerical__polytrans__degree</span><span class="sh">'</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+    <span class="sa">f</span><span class="sh">'</span><span class="si">{</span><span class="n">prefix</span><span class="si">}</span><span class="s">numerical__polytrans__interaction_only</span><span class="sh">'</span><span class="p">:</span> <span class="p">[</span><span class="bp">False</span><span class="p">,</span> <span class="bp">True</span><span class="p">],</span>
+    <span class="sa">f</span><span class="sh">'</span><span class="si">{</span><span class="n">prefix</span><span class="si">}</span><span class="s">numerical__dim_reduction__pca</span><span class="sh">'</span><span class="p">:</span> <span class="p">[</span><span class="sh">'</span><span class="s">drop</span><span class="sh">'</span><span class="p">,</span> <span class="nc">PCA</span><span class="p">(</span><span class="mf">0.9</span><span class="p">),</span> <span class="nc">PCA</span><span class="p">(</span><span class="mf">0.99</span><span class="p">)],</span>
+    <span class="sa">f</span><span class="sh">'</span><span class="si">{</span><span class="n">prefix</span><span class="si">}</span><span class="s">numerical__dim_reduction__feat_selecter__k</span><span class="sh">'</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="sh">'</span><span class="s">all</span><span class="sh">'</span><span class="p">],</span>
+    <span class="sa">f</span><span class="sh">'</span><span class="si">{</span><span class="n">prefix</span><span class="si">}</span><span class="s">numerical__dim_reduction__feat_selecter__score_func</span><span class="sh">'</span><span class="p">:</span> <span class="p">[</span>
+        <span class="n">f_regression</span><span class="p">,</span> <span class="n">mutual_info_regression</span><span class="p">],</span>
+
+    <span class="c1"># Explore scalers
+</span>    <span class="sa">f</span><span class="sh">'</span><span class="si">{</span><span class="n">prefix</span><span class="si">}</span><span class="s">numerical__scaler</span><span class="sh">'</span><span class="p">:</span> <span class="p">[</span><span class="nc">StandardScaler</span><span class="p">(),</span> <span class="nc">RobustScaler</span><span class="p">(),</span> <span class="nc">PowerTransformer</span><span class="p">()],</span>
+
+    <span class="c1"># Explore regressor
+</span>    <span class="sh">'</span><span class="s">regressor__ridge__alpha</span><span class="sh">'</span><span class="p">:</span> <span class="n">np</span><span class="p">.</span><span class="nf">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">11</span><span class="p">),</span>
+<span class="p">}</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="nc">ParameterGrid</span><span class="p">(</span><span class="n">param_grid</span><span class="p">)))</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>101376
+</code></pre></div></div>
+
+<p>As you can see, we have more than 100’000 different parameter combinations that we could explore. So using a
+<code class="language-plaintext highlighter-rouge">GridSearchCV</code> routine and checking all of them individually would take way too much time. Luckily,
+scikit-learn also provides a <code class="language-plaintext highlighter-rouge">RandomizedSearchCV</code> routine, with which you can randomly explore a few parameter
+grid combinations.</p>
+
+<p>Furthermore, both <code class="language-plaintext highlighter-rouge">GridSearchCV</code> and <code class="language-plaintext highlighter-rouge">RandomizedSearchCV</code> routines also allow you to change the performance
+metric with which the model performs is scored. So let’s take <code class="language-plaintext highlighter-rouge">'neg_mean_absolute_percentage_error'</code> (for more
+see <a href="https://scikit-learn.org/stable/modules/model_evaluation.html" target="_blank" rel="noopener noreferrer">here</a>).</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">RandomizedSearchCV</span>
+
+<span class="n">random_search</span> <span class="o">=</span> <span class="nc">RandomizedSearchCV</span><span class="p">(</span>
+    <span class="n">regressor</span><span class="p">,</span>
+    <span class="n">param_grid</span><span class="p">,</span>
+    <span class="n">n_iter</span><span class="o">=</span><span class="mi">250</span><span class="p">,</span>
+    <span class="n">refit</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="n">cv</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">return_train_score</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">scoring</span><span class="o">=</span><span class="sh">'</span><span class="s">neg_mean_absolute_percentage_error</span><span class="sh">'</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="6-train-model">6. Train model</h2>
+
+<p>Everything is ready, so let’s go ahead and train the model.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">res</span> <span class="o">=</span> <span class="n">random_search</span><span class="p">.</span><span class="nf">fit</span><span class="p">(</span><span class="n">X_tr</span><span class="p">,</span> <span class="n">y_tr</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Fitting 2 folds for each of 250 candidates, totalling 500 fits
+</code></pre></div></div>
+
+<h2 id="7-performance-investigation-after-randomizedsearchcv">7. Performance investigation after RandomizedSearchCV</h2>
+
+<p>Once the model has explored a fixed number of grid points, we can go ahead and look at their performance. The
+easiest is to just put everything into a pandas DataFrame and sort the entries by the best test score.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Create dataframe with results
+</span><span class="n">df_res</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="nc">DataFrame</span><span class="p">(</span><span class="n">res</span><span class="p">.</span><span class="n">cv_results_</span><span class="p">)</span>
+
+<span class="c1"># Remove columns that are not relevant for the analysis
+</span><span class="n">df_res</span> <span class="o">=</span> <span class="n">df_res</span><span class="p">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="o">~</span><span class="n">df_res</span><span class="p">.</span><span class="n">columns</span><span class="p">.</span><span class="nb">str</span><span class="p">.</span><span class="nf">contains</span><span class="p">(</span><span class="sh">'</span><span class="s">time|split[0-9]*|rank|params</span><span class="sh">'</span><span class="p">)]</span>
+
+<span class="c1"># Rename columns to make them more readable
+</span><span class="n">new_columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="sh">'</span><span class="s">param_regressor__</span><span class="sh">'</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="sh">'</span><span class="s">param_regressor</span><span class="sh">'</span> <span class="ow">in</span> <span class="n">c</span> <span class="k">else</span> <span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df_res</span><span class="p">.</span><span class="n">columns</span><span class="p">]</span>
+<span class="n">new_columns</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="sh">'</span><span class="s">preprocessor__</span><span class="sh">'</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="sh">'</span><span class="s">preprocessor__</span><span class="sh">'</span> <span class="ow">in</span> <span class="n">c</span> <span class="k">else</span> <span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">new_columns</span><span class="p">]</span>
+<span class="n">df_res</span><span class="p">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">new_columns</span>
+<span class="n">df_res</span> <span class="o">=</span> <span class="n">df_res</span><span class="p">.</span><span class="nf">sort_values</span><span class="p">(</span><span class="sh">'</span><span class="s">mean_test_score</span><span class="sh">'</span><span class="p">,</span> <span class="n">ascending</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="se">\n</span><span class="s">Top 10 parameter combinations:</span><span class="sh">"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">df_res</span><span class="p">.</span><span class="nf">head</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/ex_plots/03_scikit_dataframe_02.png" data-zoomable="" width="800px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+<div class="caption">
+    Figure 3: Results of RandomizedSearchCV showing top 10 parameter combinations ranked by mean test score. Each row represents a different combination of preprocessing and model parameters, helping identify the most effective configuration for the housing price prediction model.
+</div>
+
+<p>If you explore this table a bit you can better judge which parameter variations in your grid search are
+actually useful and which ones aren’t. In this example we will not focus on this and directly continue with
+computing the model performance on the training and test set.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Evaluate model performance on training and test set
+</span><span class="n">score_tr</span> <span class="o">=</span> <span class="o">-</span><span class="n">random_search</span><span class="p">.</span><span class="nf">score</span><span class="p">(</span><span class="n">X_tr</span><span class="p">,</span> <span class="n">y_tr</span><span class="p">)</span>
+<span class="n">score_te</span> <span class="o">=</span> <span class="o">-</span><span class="n">random_search</span><span class="p">.</span><span class="nf">score</span><span class="p">(</span><span class="n">X_te</span><span class="p">,</span> <span class="n">y_te</span><span class="p">)</span>
+
+<span class="nf">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="sh">"</span><span class="s">Prediction accuracy on train data: </span><span class="si">{</span><span class="n">score_tr</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="p">.</span><span class="mi">2</span><span class="n">f</span><span class="si">}</span><span class="s">%</span><span class="se">\n\
+</span><span class="s">Prediction accuracy on test data:  </span><span class="si">{</span><span class="n">score_te</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="p">.</span><span class="mi">2</span><span class="n">f</span><span class="si">}</span><span class="s">%</span><span class="sh">"</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Prediction accuracy on train data: 7.08%
+Prediction accuracy on test data:  9.09%
+</code></pre></div></div>
+
+<p>Let’s interpret these regression metrics in practical terms:</p>
+<ul>
+  <li>
+<strong>Train Error</strong>: On average, predictions deviate by about 7-8% from true house prices
+    <ul>
+      <li>For a $300,000 house, this means predictions are typically within ±$21,000-24,000</li>
+    </ul>
+  </li>
+  <li>
+<strong>Test Error</strong>: Slightly higher error on unseen data
+    <ul>
+      <li>For a $300,000 house, predictions are typically within ±$24,000-27,000</li>
+    </ul>
+  </li>
+  <li>
+<strong>Error Difference</strong>: Small gap indicates good generalization</li>
+  <li>
+<strong>Context</strong>: For house price prediction, ~8-9% error is relatively good considering market volatility</li>
+</ul>
+
+<p>Great, the score seems reasonably good! But now that we know better which preprocessing routine seems to be the
+best (thanks to <code class="language-plaintext highlighter-rouge">RandomizedSearchCV</code>), let’s go ahead and further fine-tune the ridge model.</p>
+
+<h2 id="8-fine-tune-best-preprocessing-pipeline">8. Fine tune best preprocessing pipeline</h2>
+
+<p>To further fine tune the best preprocessing pipeline, we can just load the ‘best estimator’ from the
+<code class="language-plaintext highlighter-rouge">RandomizedSearchCV</code> exploration and specify a new parameter grid that we want to explore - this time with the
+<code class="language-plaintext highlighter-rouge">GridSearchCV</code> routine (so that we look at all grid points).</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Select best estimator
+</span><span class="n">best_estimator</span> <span class="o">=</span> <span class="n">random_search</span><span class="p">.</span><span class="n">best_estimator_</span>
+
+<span class="c1"># Specify new parameter grid to explore
+</span><span class="n">param_grid</span> <span class="o">=</span> <span class="p">{</span><span class="sh">'</span><span class="s">regressor__ridge__alpha</span><span class="sh">'</span><span class="p">:</span> <span class="n">np</span><span class="p">.</span><span class="nf">logspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">51</span><span class="p">)}</span>
+</code></pre></div></div>
+
+<p>To showcase one more additional thing, let’s go ahead and use a nested cross-validation routine to improve the
+generalization power of our model. In other words, in contrast to the previous approach where we separated the
+test from the train set only once, we will now also apply a cross validation approach on this split as well.
+Together with the cross validation in the grid search, we therefore use cross validation twice, hence the name
+“nested”.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Establish the two cross validations
+</span><span class="kn">from</span> <span class="n">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">KFold</span>
+
+<span class="n">inner_cv</span> <span class="o">=</span> <span class="nc">KFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">outer_cv</span> <span class="o">=</span> <span class="nc">KFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>And now, let’s combine all of this with and run the model.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span><span class="p">,</span> <span class="n">cross_validate</span>
+
+<span class="c1"># Create grid search object with parameter grid and inner cross validation
+</span><span class="n">grid_search</span> <span class="o">=</span> <span class="nc">GridSearchCV</span><span class="p">(</span>
+    <span class="n">best_estimator</span><span class="p">,</span>
+    <span class="n">param_grid</span><span class="p">,</span>
+    <span class="n">refit</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="n">cv</span><span class="o">=</span><span class="n">inner_cv</span><span class="p">,</span>
+    <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">scoring</span><span class="o">=</span><span class="sh">'</span><span class="s">neg_mean_absolute_percentage_error</span><span class="sh">'</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Train model with outer cross validation (and return estimators for post-model investigation)
+</span><span class="n">cv_results</span> <span class="o">=</span> <span class="nf">cross_validate</span><span class="p">(</span>
+    <span class="n">grid_search</span><span class="p">,</span>
+    <span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span>
+    <span class="n">cv</span><span class="o">=</span><span class="n">outer_cv</span><span class="p">,</span>
+    <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">return_estimator</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="n">return_train_score</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<p>Once the model has finished training, we can extract the different scores from the most outer loop and print
+their average score, as well as the standard deviation over the folds. Plus, the same thing can also be done
+for the most optimal ridge model parameter ‘alpha’. These information can give us some insights about the model
+generalization.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">df_nested</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="nc">DataFrame</span><span class="p">(</span><span class="n">cv_results</span><span class="p">)</span>
+<span class="n">cv_train_scores</span> <span class="o">=</span> <span class="o">-</span><span class="n">df_nested</span><span class="p">[</span><span class="sh">'</span><span class="s">train_score</span><span class="sh">'</span><span class="p">]</span>
+<span class="n">cv_test_scores</span> <span class="o">=</span> <span class="o">-</span><span class="n">df_nested</span><span class="p">[</span><span class="sh">'</span><span class="s">test_score</span><span class="sh">'</span><span class="p">]</span>
+<span class="n">cv_alphas</span> <span class="o">=</span> <span class="p">[</span><span class="n">c</span><span class="p">.</span><span class="n">best_params_</span><span class="p">[</span><span class="sh">'</span><span class="s">regressor__ridge__alpha</span><span class="sh">'</span><span class="p">]</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">df_nested</span><span class="p">[</span><span class="sh">'</span><span class="s">estimator</span><span class="sh">'</span><span class="p">]]</span>
+<span class="nf">print</span><span class="p">(</span>
+    <span class="sh">"</span><span class="s">Generalization score with hyperparameters tuning:</span><span class="se">\n</span><span class="sh">"</span>
+    <span class="sa">f</span><span class="sh">"</span><span class="s">  Train Score:    </span><span class="si">{</span><span class="n">cv_train_scores</span><span class="p">.</span><span class="nf">mean</span><span class="p">()</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="p">.</span><span class="mi">1</span><span class="n">f</span><span class="si">}</span><span class="s">% +/- </span><span class="si">{</span><span class="n">cv_train_scores</span><span class="p">.</span><span class="nf">std</span><span class="p">()</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="p">.</span><span class="mi">1</span><span class="n">f</span><span class="si">}</span><span class="s">%</span><span class="se">\n</span><span class="sh">"</span>
+    <span class="sa">f</span><span class="sh">"</span><span class="s">  Test Score:     </span><span class="si">{</span><span class="n">cv_test_scores</span><span class="p">.</span><span class="nf">mean</span><span class="p">()</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="p">.</span><span class="mi">1</span><span class="n">f</span><span class="si">}</span><span class="s">% +/- </span><span class="si">{</span><span class="n">cv_test_scores</span><span class="p">.</span><span class="nf">std</span><span class="p">()</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="p">.</span><span class="mi">1</span><span class="n">f</span><span class="si">}</span><span class="s">%</span><span class="se">\n</span><span class="sh">"</span>
+    <span class="sa">f</span><span class="sh">"</span><span class="s">  Optimal Alpha: </span><span class="si">{</span><span class="n">np</span><span class="p">.</span><span class="nf">mean</span><span class="p">(</span><span class="n">cv_alphas</span><span class="p">)</span><span class="si">:</span><span class="p">.</span><span class="mi">1</span><span class="n">f</span><span class="si">}</span><span class="s"> +/- </span><span class="si">{</span><span class="n">np</span><span class="p">.</span><span class="nf">std</span><span class="p">(</span><span class="n">cv_alphas</span><span class="p">)</span><span class="si">:</span><span class="p">.</span><span class="mi">1</span><span class="n">f</span><span class="si">}</span><span class="se">\n</span><span class="sh">"</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Generalization score with hyperparameters tuning:
+  Train Score:    7.6% +/- 0.9%
+  Test Score:     9.0% +/- 0.2%
+  Optimal Alpha: 29.6 +/- 23.8
+</code></pre></div></div>
+
+<h1 id="9-feature-importance-investigation-with-permutation-testing">9. Feature importance investigation with permutation testing</h1>
+
+<p>Some model provide some insights about feature importance (i.e. which features the model uses most for the
+prediction). However, this is sometimes prone to multiple issues. A better approach is to use a permutation
+approach. This approach performs the same model fitting (in this case based on the best model with the best
+hyper parameters) but during each iteration randomly shuffles a given feature and investigates how this
+perturbates the final score.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Select the best estimator with the best hyper parameter
+</span><span class="n">final_estimator</span> <span class="o">=</span> <span class="n">grid_search</span><span class="p">.</span><span class="nf">set_params</span><span class="p">(</span>
+    <span class="n">estimator__regressor__ridge__alpha</span><span class="o">=</span><span class="n">np</span><span class="p">.</span><span class="nf">mean</span><span class="p">(</span><span class="n">cv_alphas</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Fit this estimator to the initial training set
+</span><span class="n">_</span> <span class="o">=</span> <span class="n">final_estimator</span><span class="p">.</span><span class="nf">fit</span><span class="p">(</span><span class="n">X_tr</span><span class="p">,</span> <span class="n">y_tr</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Now that the model is ready and trained, we can go ahead and perform the feature importance investigation via
+permutation testing. To showcase one additional feature, let’s actually perform this routine twice, once while
+focusing on the <code class="language-plaintext highlighter-rouge">r2</code> of the model, and once while focusing on the <code class="language-plaintext highlighter-rouge">neg_mean_absolute_percentage_error</code>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">sklearn.inspection</span> <span class="kn">import</span> <span class="n">permutation_importance</span>
+
+<span class="n">scoring</span> <span class="o">=</span> <span class="p">[</span><span class="sh">'</span><span class="s">r2</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">neg_mean_absolute_percentage_error</span><span class="sh">'</span><span class="p">]</span>
+<span class="n">result</span> <span class="o">=</span> <span class="nf">permutation_importance</span><span class="p">(</span>
+    <span class="n">final_estimator</span><span class="p">,</span>
+    <span class="n">X_te</span><span class="p">,</span>
+    <span class="n">y_te</span><span class="p">,</span>
+    <span class="n">n_repeats</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">scoring</span><span class="o">=</span><span class="n">scoring</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<p>Once everything is computed, we can go ahead and plot the feature importance for each feature, separated by the
+two different scoring metrics.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">16</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">scoring</span><span class="p">):</span>
+
+    <span class="n">sorted_idx</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="n">s</span><span class="p">].</span><span class="n">importances_mean</span><span class="p">.</span><span class="nf">argsort</span><span class="p">()</span>
+
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="nf">boxplot</span><span class="p">(</span>
+        <span class="n">result</span><span class="p">[</span><span class="n">s</span><span class="p">].</span><span class="n">importances</span><span class="p">[</span><span class="n">sorted_idx</span><span class="p">].</span><span class="n">T</span><span class="p">,</span> <span class="n">vert</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">labels</span><span class="o">=</span><span class="n">X_te</span><span class="p">.</span><span class="n">columns</span><span class="p">[</span><span class="n">sorted_idx</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="nf">set_title</span><span class="p">(</span><span class="sh">"</span><span class="s">Permutation Importances (test set) | %s</span><span class="sh">"</span> <span class="o">%</span> <span class="n">s</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">.</span><span class="nf">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/ex_plots/03_scikit_feature_importance.png" data-zoomable="" width="800px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+<div class="caption">
+    Figure 4: Feature importance analysis using permutation importance method. Box plots show the impact of each feature on model performance across multiple permutations, with larger values indicating more important features.
+</div>
+
+<h2 id="summary-and-next-steps">Summary and Next Steps</h2>
+
+<p>In this tutorial, we’ve covered advanced scikit-learn concepts:</p>
+<ul>
+  <li>Building complex preprocessing pipelines</li>
+  <li>Handling mixed data types</li>
+  <li>Feature selection and engineering automatically</li>
+  <li>Implementing grid search with cross-validation</li>
+  <li>Model comparison and evaluation</li>
+  <li>Analyzing feature importance</li>
+</ul>
+
+<p><strong>Key takeaways:</strong></p>
+<ol>
+  <li>Preprocessing pipelines make complex workflows manageable</li>
+  <li>Grid search helps find optimal parameters systematically</li>
+  <li>Feature selection can improve model performance</li>
+  <li>Understanding feature importance aids model interpretation</li>
+  <li>Cross-validation provides robust performance estimates</li>
+</ol>
+
+<p>In Part 4, we’ll explore advanced neural network architectures with TensorFlow, building on both the neural network concepts from Part 2 and the preprocessing techniques we’ve learned here.</p>
+
+<p><a href="/blog/2023/02_tensorflow_simple">← Previous: Deep Learning Fundamentals</a> or
+<a href="/blog/2023/04_tensorflow_advanced">Next: Advanced Deep Learning →</a></p>
+
+  </article>
+
+  
+
+</div>
+
+    </div>
+
+    <!-- Footer -->
+
+    
+<footer class="fixed-bottom">
+  <div class="container mt-0">
+    © Copyright 2025 Michael P. Notter.
+    Powered by <a href="http://jekyllrb.com/" target="_blank" rel="noopener noreferrer">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" target="_blank" rel="noopener noreferrer">al-folio</a> theme.
+
+    
+    
+  </div>
+</footer>
+
+
+
+  </body>
+
+  <!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+
+  <!-- Bootsrap & MDB scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.4/umd/popper.min.js" integrity="sha512-eUQ9hGdLjBjY3F41CScH3UX+4JDSI9zXeroz7hJ+RteoCaY+GP/LDoM8AO+Pt+DRFw3nXqsjh9Zsts8hnYv8/A==" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha512-M5KW3ztuIICmVIhjSqXe01oV2bpe248gOxqmlcYrEzAvws7Pw3z6BK0iGbrwvdrUQUhi3eXgtxp5I8PDo9YfjQ==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js" integrity="sha512-Mug9KHKmroQFMLm93zGrjhibM2z2Obg9l6qFG2qKjXEXkMp/VDkI4uju9m4QKPjWSwQ6O2qzZEnJDEeCw0Blcw==" crossorigin="anonymous"></script>
+
+  
+<!-- Mansory & imagesLoaded -->
+<script defer src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script defer src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+<script defer src="/assets/js/mansory.js" type="text/javascript"></script>
+
+
+  
+
+
+<!-- Medium Zoom JS -->
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+<script src="/assets/js/zoom.js"></script>
+
+
+<!-- Load Common JS -->
+<script src="/assets/js/common.js"></script>
+
+  
+<!-- MathJax -->
+<script type="text/javascript">
+  window.MathJax = {
+    tex: {
+      tags: 'ams'
+    }
+  };
+</script>
+<script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js"></script>
+<script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+
+
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-126030922-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+
+  gtag('config', 'UA-126030922-1');
+</script>
+
+
+
+
+
+
+</html>
