@@ -8,7 +8,11 @@ nav: true
 ___
 ## Professional Experience
 
-<p style="font-size:0.85rem; margin-bottom: 0">2023 - present</p>
+<p style="font-size:0.85rem; margin-bottom: 0">2025 - present</p>
+<p style="font-size:1.25rem; margin-bottom: 0"><b>Lead AI Research Scientist</b> · <i>AlphaLum, Lausanne</i></p>
+Lead AI strategy, integration, and innovation across the company, optimizing advanced algorithms for ultra-efficient optical systems, smart sensing, and human-computer interfaces. Focused on delivering low-cost, high-performance solutions on resource-constrained devices. Ensure company-wide AI readiness through hands-on training and cross-disciplinary collaboration. Work closely with engineering teams and customers, leveraging the latest AI advancements to accelerate productivity, enhance technologies, and pioneer future breakthroughs.
+
+<p style="font-size:0.85rem; margin-bottom: 0">2023 - 2025</p>
 <p style="font-size:1.25rem; margin-bottom: 0"><b>Senior Machine Learning Staff Engineer</b> · <i>ams OSRAM, Martigny</i></p>
 As a technical lead in AI development for next-gen wearable devices, I optimize signal processing pipelines (DSP), exploit nuanced information in latent spaces using specialized loss functions, and minimize computational costs for applications in vital signs monitoring (PPG, respiration), eye-tracking (gaze), AR/VR, and spatial computing on edge hardware. My role involves collaborating extensively with cross-functional engineering teams to translate complex research findings into robust, scalable AI solutions.
 
