@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>
+
+  Michael P. Notter
+
+
+  | Advanced Deep Learning - Custom Neural Networks with TensorFlow
+
+</title>
+<meta name="description" content="Personal homepage of Michael P. Notter.
+">
+
+<!-- Open Graph -->
+
+
+<!-- Bootstrap & MDB -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha512-MoRNloxbStBcD8z3M/2BmnT+rg4IsMxPkXaGh2zD6LGNNFE80W3onsAhRcMAMrSoyWL9xD7Ert0men7vR8LUZg==" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" integrity="sha512-RO38pBRxYH3SoOprtPTD86JFOclM51/XTIdEPh5j8sj4tp8jmQIx26twG52UaLi//hQldfrh7e51WzP9wuP32Q==" crossorigin="anonymous" />
+
+<!-- Fonts & Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"  integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css" integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons">
+
+<!-- Code Syntax Highlighting -->
+<link rel="stylesheet" href="https://gitcdn.link/repo/jwarby/jekyll-pygments-themes/master/monokai.css" />
+
+<!-- Styles -->
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍💻</text></svg>">
+
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="canonical" href="https://miykael.github.io/blog/2023/04_tensorflow_advanced/">
+
+
+<!-- Dark Mode -->
+<script src="/assets/js/theme.js"></script>
+<script src="/assets/js/dark_mode.js"></script>
+
+
+  </head>
+
+  <body class="fixed-top-nav ">
+
+    <!-- Header -->
+
+    <header>
+
+    <!-- Nav Bar -->
+    <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top">
+    <div class="container">
+      
+      <a class="navbar-brand title font-weight-lighter" href="https://miykael.github.io/">
+       <span class="font-weight-bold">Michael</span> P.  Notter
+      </a>
+      
+      <!-- Navbar Toggle -->
+      <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar top-bar"></span>
+        <span class="icon-bar middle-bar"></span>
+        <span class="icon-bar bottom-bar"></span>
+      </button>
+      <div class="collapse navbar-collapse text-right" id="navbarNav">
+        <ul class="navbar-nav ml-auto flex-nowrap">
+          <!-- About -->
+          <li class="nav-item ">
+            <a class="nav-link" href="/">
+              About
+              
+            </a>
+          </li>
+          
+          <!-- Blog -->
+          <li class="nav-item active">
+            <a class="nav-link" href="/blog/">
+              Blog
+              
+            </a>
+          </li>
+          
+          <!-- Other pages -->
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/background/">
+                Background
+                
+              </a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/projects/">
+                Projects
+                
+              </a>
+          </li>
+          
+          
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/publications/">
+                Publications
+                
+              </a>
+          </li>
+          
+          
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/teaching/">
+                Teaching
+                
+              </a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+            <div class="toggle-container">
+              <a id="light-toggle">
+                  <i class="fas fa-moon"></i>
+                  <i class="fas fa-sun"></i>
+              </a>
+            </div>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+    <!-- Content -->
+
+    <div class="container mt-5">
+      
+
+
+
+
+
+<div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Advanced Deep Learning - Custom Neural Networks with TensorFlow</h1>
+    <p class="post-meta">October 23, 2023</p>
+    <p class="post-tags">
+      <a href="/blog/2023"> <i class="fas fa-calendar fa-sm"></i> 2023 </a>
+      
+
+      
+
+    </p>
+  </header>
+
+  <article class="post-content">
+    <p>In this final part of our series, we’ll explore advanced TensorFlow concepts by building a sophisticated regression model. While Part 2 introduced basic neural networks for classification, we’ll now tackle regression and demonstrate TensorFlow’s powerful features for model customization and optimization. However, as in part 3, the purpose of this tutorial is to highlight the flexibility and capabilities of TensorFlow. Therefore, this showcase is mostly about introducing you to those advanced routines and not about how to create the best regression model.</p>
+
+<p>The complete code for this tutorial can be found in the <a href="/assets/scripts/04_tensorflow_advanced.py">04_tensorflow_advanced.py</a> script.</p>
+
+<h3 id="why-advanced-neural-networks">Why Advanced Neural Networks?</h3>
+
+<p>Complex real-world problems often require:</p>
+<ul>
+  <li>Custom model architectures</li>
+  <li>Advanced optimization strategies</li>
+  <li>Robust training procedures</li>
+  <li>Model performance monitoring</li>
+</ul>
+
+<p>TensorFlow provides all these capabilities, and we’ll learn how to use them effectively.</p>
+
+<p>As always, first, let’s import the scientific Python packages we need.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="n">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">import</span> <span class="n">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="kn">import</span> <span class="n">tensorflow</span> <span class="k">as</span> <span class="n">tf</span>
+<span class="kn">from</span> <span class="n">tensorflow</span> <span class="kn">import</span> <span class="n">keras</span>
+<span class="kn">from</span> <span class="n">tensorflow.keras</span> <span class="kn">import</span> <span class="n">layers</span>
+</code></pre></div></div>
+
+<h2 id="1-dataset-preparation">1. Dataset Preparation</h2>
+
+<p>For the regression task we will use a small dataset about abalone marine snails. The dataset contains 8
+features from 4177 snails. In our regression task, we will use 7 of these features, to predict the number of
+rings a snail has (which determines their age).</p>
+
+<p>The abalone dataset is a classic regression problem where we try to predict the age of abalone (sea snails) based on physical measurements. While this might seem niche, it represents common challenges in regression:</p>
+<ul>
+  <li>Multiple input features of different types</li>
+  <li>A continuous target variable</li>
+  <li>Natural variability in the data</li>
+  <li>Non-linear relationships between features</li>
+</ul>
+
+<p>So let’s go ahead and bring the data into an appropriate shape.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Load and prepare dataset
+</span><span class="n">url</span> <span class="o">=</span> <span class="sh">'</span><span class="s">https://archive.ics.uci.edu/ml/machine-learning-databases/abalone/abalone.data</span><span class="sh">'</span>
+<span class="n">columns</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sh">'</span><span class="s">Sex</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Length</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Diameter</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Height</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Whole weight</span><span class="sh">'</span><span class="p">,</span>
+    <span class="sh">'</span><span class="s">Shucked weight</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Viscera weight</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Shell weight</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">Rings</span><span class="sh">'</span>
+<span class="p">]</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="nf">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">header</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="n">columns</span><span class="p">)</span>
+
+<span class="c1"># Convert categorical data to numerical
+</span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="nf">get_dummies</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Shape of dataset: </span><span class="si">{</span><span class="n">df</span><span class="p">.</span><span class="n">shape</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">df</span><span class="p">.</span><span class="nf">head</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Shape of dataset: (4177, 11)
+</code></pre></div></div>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/ex_plots/04_tensorflow_dataset_table.png" data-zoomable="" width="800px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+<div class="caption">
+    Figure 1: Overview of the abalone dataset.
+</div>
+
+<p>Next, let’s split the dataset into a train and test set.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Split dataset into train and test set
+</span><span class="n">df_tr</span> <span class="o">=</span> <span class="n">df</span><span class="p">.</span><span class="nf">sample</span><span class="p">(</span><span class="n">frac</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">df_te</span> <span class="o">=</span> <span class="n">df</span><span class="p">.</span><span class="nf">drop</span><span class="p">(</span><span class="n">df_tr</span><span class="p">.</span><span class="n">index</span><span class="p">)</span>
+
+<span class="c1"># Separate target from features and convert to float32
+</span><span class="n">x_tr</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">asarray</span><span class="p">(</span><span class="n">df_tr</span><span class="p">.</span><span class="nf">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="sh">'</span><span class="s">Rings</span><span class="sh">'</span><span class="p">])).</span><span class="nf">astype</span><span class="p">(</span><span class="sh">'</span><span class="s">float32</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">x_te</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">asarray</span><span class="p">(</span><span class="n">df_te</span><span class="p">.</span><span class="nf">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="sh">'</span><span class="s">Rings</span><span class="sh">'</span><span class="p">])).</span><span class="nf">astype</span><span class="p">(</span><span class="sh">'</span><span class="s">float32</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">y_tr</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">asarray</span><span class="p">(</span><span class="n">df_tr</span><span class="p">[</span><span class="sh">'</span><span class="s">Rings</span><span class="sh">'</span><span class="p">]).</span><span class="nf">astype</span><span class="p">(</span><span class="sh">'</span><span class="s">float32</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">y_te</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">asarray</span><span class="p">(</span><span class="n">df_te</span><span class="p">[</span><span class="sh">'</span><span class="s">Rings</span><span class="sh">'</span><span class="p">]).</span><span class="nf">astype</span><span class="p">(</span><span class="sh">'</span><span class="s">float32</span><span class="sh">'</span><span class="p">)</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Size of training and test set: </span><span class="si">{</span><span class="n">df_tr</span><span class="p">.</span><span class="n">shape</span><span class="si">}</span><span class="s"> | </span><span class="si">{</span><span class="n">df_te</span><span class="p">.</span><span class="n">shape</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Size of training and test set: (3342, 11) | (835, 11)
+</code></pre></div></div>
+
+<p>The abalone dataset dimensions represent:</p>
+<ul>
+  <li>
+<strong>4,177 total samples</strong>: Split into 3,342 training and 835 test samples</li>
+  <li>
+<strong>11 features</strong>: Including both physical measurements and categorical data:
+    <ul>
+      <li>Physical attributes (length, diameter, height, weights)</li>
+      <li>Categorical sex information (encoded as one-hot vectors)</li>
+    </ul>
+  </li>
+  <li>
+<strong>Target variable</strong>: Number of rings (age indicator) to predict</li>
+</ul>
+
+<p>An important step for any machine learning project is appropriate features scaling. Now, we could use something
+like <code class="language-plaintext highlighter-rouge">scipy</code> or <code class="language-plaintext highlighter-rouge">scikit-learn</code> to do this task. But let’s see how this can also be done directly with
+TensorFlow.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Normalize data with a keras layer
+</span><span class="n">normalizer</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">layers</span><span class="p">.</span><span class="nc">Normalization</span><span class="p">(</span><span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Train the layer to establish normalization parameters
+</span><span class="n">normalizer</span><span class="p">.</span><span class="nf">adapt</span><span class="p">(</span><span class="n">x_tr</span><span class="p">)</span>
+
+<span class="c1"># Verify normalization parameters
+</span><span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Mean parameters:</span><span class="se">\n</span><span class="si">{</span><span class="n">normalizer</span><span class="p">.</span><span class="n">adapt_mean</span><span class="p">.</span><span class="nf">numpy</span><span class="p">()</span><span class="si">}</span><span class="se">\n</span><span class="sh">"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Variance parameters:</span><span class="se">\n</span><span class="si">{</span><span class="n">normalizer</span><span class="p">.</span><span class="n">adapt_variance</span><span class="p">.</span><span class="nf">numpy</span><span class="p">()</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Mean parameters:
+[0.5240649  0.4077229  0.13945538 0.82737887 0.35884637 0.18079534
+ 0.23809911 0.313884   0.3255536  0.36056268]
+Variance parameters:
+[0.01422794 0.00970037 0.00150639 0.23864637 0.04889446 0.0120052
+ 0.01888644 0.21536086 0.21956848 0.23055716]
+</code></pre></div></div>
+
+<h2 id="2-model-creation">2. Model Creation</h2>
+
+<p>Unlike our previous tutorial where we used the Sequential API, here we’ll use TensorFlow’s Functional API. The Functional API provides several key advantages:</p>
+
+<ol>
+  <li>
+<strong>Multiple Inputs/Outputs</strong>: Can handle multiple input/output streams</li>
+  <li>
+<strong>Layer Sharing</strong>: Reuse layers across different parts of the model</li>
+  <li>
+<strong>Non-Sequential Flow</strong>: Create models with branches or multiple paths</li>
+  <li>
+<strong>Complex Architectures</strong>: Easily implement advanced patterns like skip connections</li>
+  <li>
+<strong>Better Visualization</strong>: Clearer view of data flow between layers</li>
+</ol>
+
+<p>Here’s how we build a model using the Functional API:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Create layers and connect them with functional API
+</span><span class="n">input_layer</span> <span class="o">=</span> <span class="n">keras</span><span class="p">.</span><span class="nc">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">x_tr</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],))</span>
+
+<span class="c1"># Normalize inputs using our pre-trained normalization layer
+</span><span class="n">x</span> <span class="o">=</span> <span class="nf">normalizer</span><span class="p">(</span><span class="n">input_layer</span><span class="p">)</span>
+
+<span class="c1"># Build hidden layers with explicit connections
+</span><span class="n">x</span> <span class="o">=</span> <span class="n">layers</span><span class="p">.</span><span class="nc">Dense</span><span class="p">(</span><span class="mi">8</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">layers</span><span class="p">.</span><span class="nc">BatchNormalization</span><span class="p">()(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># Stabilizes training
+</span><span class="n">x</span> <span class="o">=</span> <span class="n">layers</span><span class="p">.</span><span class="nc">ReLU</span><span class="p">()(</span><span class="n">x</span><span class="p">)</span>                <span class="c1"># Non-linear activation
+</span><span class="n">x</span> <span class="o">=</span> <span class="n">layers</span><span class="p">.</span><span class="nc">Dropout</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>          <span class="c1"># Prevents overfitting
+</span>
+<span class="c1"># Second dense layer with similar structure but fewer neurons
+</span><span class="n">x</span> <span class="o">=</span> <span class="n">layers</span><span class="p">.</span><span class="nc">Dense</span><span class="p">(</span><span class="mi">4</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">layers</span><span class="p">.</span><span class="nc">BatchNormalization</span><span class="p">()(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">layers</span><span class="p">.</span><span class="nc">ReLU</span><span class="p">()(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">layers</span><span class="p">.</span><span class="nc">Dropout</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="c1"># Output layer for regression (no activation function)
+</span><span class="n">output_layer</span> <span class="o">=</span> <span class="n">layers</span><span class="p">.</span><span class="nc">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="c1"># Create model by specifying inputs and outputs
+</span><span class="n">model</span> <span class="o">=</span> <span class="n">keras</span><span class="p">.</span><span class="nc">Model</span><span class="p">(</span><span class="n">inputs</span><span class="o">=</span><span class="n">input_layer</span><span class="p">,</span> <span class="n">outputs</span><span class="o">=</span><span class="n">output_layer</span><span class="p">)</span>
+
+<span class="c1"># Check model size
+</span><span class="n">model</span><span class="p">.</span><span class="nf">summary</span><span class="p">(</span><span class="n">show_trainable</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Model: "model"
+_________________________________________________________________
+Layer (type)                 Output Shape               Param #
+=================================================================
+input_1 (InputLayer)        [(None, 10)]               0
+normalization (Normalizati   (None, 10)                21
+on)
+dense (Dense)                (None, 8)                 88
+batch_normalization (Batch   (None, 8)                 32
+Normalization)
+re_lu (ReLU)                 (None, 8)                 0
+dropout (Dropout)            (None, 8)                 0
+dense_1 (Dense)              (None, 4)                 36
+batch_normalization_1 (Bat   (None, 4)                 16
+chNormalization)
+re_lu_1 (ReLU)               (None, 4)                 0
+dropout_1 (Dropout)          (None, 4)                 0
+dense_2 (Dense)              (None, 1)                 5
+=================================================================
+Total params: 198 (796.00 Byte)
+Trainable params: 153 (612.00 Byte)
+Non-trainable params: 45 (184.00 Byte)
+_________________________________________________________________
+</code></pre></div></div>
+
+<p>Notice how each layer is explicitly connected using function calls (e.g., <code class="language-plaintext highlighter-rouge">layers.Dense(8)(x)</code>). This syntax makes the data flow clear and allows for complex branching patterns that aren’t possible with the Sequential API.</p>
+
+<p>Now that the model is ready, let’s go ahead and compile it. During this process we can specify an appropriate
+optimizer as well as relevant metrics that we want to keep track of.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Compile model
+</span><span class="n">model</span><span class="p">.</span><span class="nf">compile</span><span class="p">(</span>
+    <span class="n">optimizer</span><span class="o">=</span><span class="n">keras</span><span class="p">.</span><span class="n">optimizers</span><span class="p">.</span><span class="nc">Adam</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">),</span>
+    <span class="n">loss</span><span class="o">=</span><span class="n">keras</span><span class="p">.</span><span class="n">losses</span><span class="p">.</span><span class="nc">MeanSquaredError</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="sh">'</span><span class="s">MSE</span><span class="sh">'</span><span class="p">),</span>
+    <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="n">keras</span><span class="p">.</span><span class="n">metrics</span><span class="p">.</span><span class="nc">MeanAbsoluteError</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="sh">'</span><span class="s">MAE</span><span class="sh">'</span><span class="p">)],</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<p>Before we move over to training the model, let’s first create a few useful callbacks. Callbacks are powerful tools that can:</p>
+<ul>
+  <li>Save the best model during training</li>
+  <li>Stop training early if no improvement is seen</li>
+  <li>Adjust learning rate dynamically</li>
+  <li>Log training metrics for later analysis</li>
+</ul>
+
+<p>These callbacks can be used to perform some interesting tasks before, during or after a batch, an epoch or training in general. We’ll implement several of these to create a robust training pipeline.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Save best performing model (based on validation loss) in checkpoint
+</span><span class="n">model_checkpoint_callback</span> <span class="o">=</span> <span class="n">keras</span><span class="p">.</span><span class="n">callbacks</span><span class="p">.</span><span class="nc">ModelCheckpoint</span><span class="p">(</span>
+    <span class="n">filepath</span><span class="o">=</span><span class="sh">'</span><span class="s">model_backup</span><span class="sh">'</span><span class="p">,</span>
+    <span class="n">save_weights_only</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+    <span class="n">monitor</span><span class="o">=</span><span class="sh">'</span><span class="s">val_loss</span><span class="sh">'</span><span class="p">,</span>
+    <span class="n">mode</span><span class="o">=</span><span class="sh">'</span><span class="s">min</span><span class="sh">'</span><span class="p">,</span>
+    <span class="n">save_best_only</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Store training history in csv file
+</span><span class="n">history_logger</span> <span class="o">=</span> <span class="n">keras</span><span class="p">.</span><span class="n">callbacks</span><span class="p">.</span><span class="nc">CSVLogger</span><span class="p">(</span>
+    <span class="sh">'</span><span class="s">history_log.csv</span><span class="sh">'</span><span class="p">,</span> <span class="n">separator</span><span class="o">=</span><span class="sh">'</span><span class="s">,</span><span class="sh">'</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="bp">False</span>
+<span class="p">)</span>
+
+<span class="c1"># Reduce learning rate on plateau
+</span><span class="n">reduce_lr_on_plateau</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">keras</span><span class="p">.</span><span class="n">callbacks</span><span class="p">.</span><span class="nc">ReduceLROnPlateau</span><span class="p">(</span>
+        <span class="n">monitor</span><span class="o">=</span><span class="sh">'</span><span class="s">val_loss</span><span class="sh">'</span><span class="p">,</span> <span class="n">factor</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">patience</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">min_lr</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span>
+    <span class="p">),</span>
+<span class="p">)</span>
+
+<span class="c1"># Use early stopping to stop learning once it doesn't improve anymore
+</span><span class="n">early_stopping</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">keras</span><span class="p">.</span><span class="n">callbacks</span><span class="p">.</span><span class="nc">EarlyStopping</span><span class="p">(</span><span class="n">monitor</span><span class="o">=</span><span class="sh">'</span><span class="s">val_loss</span><span class="sh">'</span><span class="p">,</span> <span class="n">patience</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="3-training">3. Training</h2>
+
+<p>The data is ready, the model is setup - we’re good to go!</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Train model
+</span><span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="nf">fit</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">x_tr</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">y_tr</span><span class="p">,</span>
+    <span class="n">validation_split</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+    <span class="n">shuffle</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span>
+    <span class="n">epochs</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+    <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span>
+        <span class="n">model_checkpoint_callback</span><span class="p">,</span>
+        <span class="n">history_logger</span><span class="p">,</span>
+        <span class="n">reduce_lr_on_plateau</span><span class="p">,</span>
+        <span class="n">early_stopping</span><span class="p">,</span>
+    <span class="p">],</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Epoch 1/200
+42/42 [==============================] - 2s 36ms/step - loss: 110.4277 - MAE: 9.9720 - val_loss: 104.8957 - val_MAE: 9.7636 - lr: 0.0010
+Epoch 2/200
+42/42 [==============================] - 1s 29ms/step - loss: 106.3978 - MAE: 9.7741 - val_loss: 101.7641 - val_MAE: 9.6255 - lr: 0.0010
+Epoch 3/200
+42/42 [==============================] - 1s 29ms/step - loss: 102.8426 - MAE: 9.5989 - val_loss: 99.2429 - val_MAE: 9.5080 - lr: 0.0010
+...
+Epoch 199/200
+42/42 [==============================] - 0s 8ms/step - loss: 9.5845 - MAE: 2.2097 - val_loss: 6.4356 - val_MAE: 1.7255 - lr: 0.0010
+Epoch 200/200
+42/42 [==============================] - 0s 8ms/step - loss: 8.9521 - MAE: 2.1254 - val_loss: 6.4109 - val_MAE: 1.7223 - lr: 0.0010
+</code></pre></div></div>
+
+<p>Once the model is trained we can go ahead and investigate performance during training. Instead of using the
+<code class="language-plaintext highlighter-rouge">history</code> variable, let’s load the same information from the CSV saved by the checkpoint.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">plot_history</span><span class="p">(</span><span class="n">history_file</span><span class="o">=</span><span class="sh">'</span><span class="s">history_log.csv</span><span class="sh">'</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sh">''</span><span class="p">):</span>
+    <span class="c1"># Load training history from CSV
+</span>    <span class="n">history_log</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="nf">read_csv</span><span class="p">(</span><span class="n">history_file</span><span class="p">)</span>
+
+    <span class="c1"># Create subplots for loss and MAE metrics
+</span>    <span class="n">_</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+    <span class="c1"># Plot loss metrics
+</span>    <span class="n">history_log</span><span class="p">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="n">history_log</span><span class="p">.</span><span class="n">columns</span><span class="p">.</span><span class="nb">str</span><span class="p">.</span><span class="nf">contains</span><span class="p">(</span><span class="sh">'</span><span class="s">loss</span><span class="sh">'</span><span class="p">)].</span><span class="nf">plot</span><span class="p">(</span>
+        <span class="n">title</span><span class="o">=</span><span class="sh">"</span><span class="s">Loss during training</span><span class="sh">"</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="c1"># Plot MAE metrics
+</span>    <span class="n">history_log</span><span class="p">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="n">history_log</span><span class="p">.</span><span class="n">columns</span><span class="p">.</span><span class="nb">str</span><span class="p">.</span><span class="nf">contains</span><span class="p">(</span><span class="sh">'</span><span class="s">MAE</span><span class="sh">'</span><span class="p">)].</span><span class="nf">plot</span><span class="p">(</span>
+        <span class="n">title</span><span class="o">=</span><span class="sh">"</span><span class="s">MAE during training</span><span class="sh">"</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Configure axis labels and scales
+</span>    <span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nf">set_ylabel</span><span class="p">(</span><span class="sh">"</span><span class="s">Loss</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="nf">set_ylabel</span><span class="p">(</span><span class="sh">"</span><span class="s">MAE</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">axs</span><span class="p">)):</span>
+        <span class="n">axs</span><span class="p">[</span><span class="n">idx</span><span class="p">].</span><span class="nf">set_xlabel</span><span class="p">(</span><span class="sh">"</span><span class="s">Epoch [#]</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">axs</span><span class="p">[</span><span class="n">idx</span><span class="p">].</span><span class="nf">set_yscale</span><span class="p">(</span><span class="sh">'</span><span class="s">log</span><span class="sh">'</span><span class="p">)</span>  <span class="c1"># Use log scale for better visualization of changes
+</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">suptitle</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
+
+<span class="c1"># Plot training history
+</span><span class="nf">plot_history</span><span class="p">(</span><span class="n">history_file</span><span class="o">=</span><span class="sh">'</span><span class="s">history_log.csv</span><span class="sh">'</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sh">"</span><span class="s">Training overview</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+<p><img class="img-fluid rounded z-depth-1" src="/assets/ex_plots/04_tensorflow_training_history.png" data-zoomable="" width="800px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+<div class="caption">
+    Figure 2: Training progress showing loss and Mean Absolute Error (MAE) metrics over epochs. The logarithmic scale helps visualize improvements across different orders of magnitude.
+</div>
+
+<h2 id="analyzing-model-performance">Analyzing Model Performance</h2>
+
+<p>Let’s examine our model’s performance from multiple angles:</p>
+<ul>
+  <li>Training history to check for overfitting</li>
+  <li>Prediction accuracy across different value ranges</li>
+  <li>Feature importance through a sensitivity analysis</li>
+  <li>Comparison with simpler baseline models</li>
+</ul>
+
+<p>This multi-faceted analysis helps us understand both where our model succeeds and where it might need improvement.</p>
+
+<p>Looking at the training history above, we can see that:</p>
+<ol>
+  <li>The model converges smoothly without major fluctuations</li>
+  <li>Validation metrics closely follow training metrics, suggesting no significant overfitting</li>
+  <li>Both MSE and MAE show consistent improvement throughout training</li>
+</ol>
+
+<h2 id="4-inference">4. Inference</h2>
+
+<p>The model training seems to have worked well. Let’s now go ahead and test the model. For this, let’s first load
+the best model - saved by the callback during training. This doesn’t need to be the same as the model at the
+end of the training.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Load best model
+</span><span class="n">model_best</span> <span class="o">=</span> <span class="n">keras</span><span class="p">.</span><span class="n">models</span><span class="p">.</span><span class="nf">load_model</span><span class="p">(</span><span class="sh">'</span><span class="s">model_backup</span><span class="sh">'</span><span class="p">)</span>
+
+<span class="c1"># Evaluate best model on test set
+</span><span class="n">train_results</span> <span class="o">=</span> <span class="n">model_best</span><span class="p">.</span><span class="nf">evaluate</span><span class="p">(</span><span class="n">x_tr</span><span class="p">,</span> <span class="n">y_tr</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">test_results</span> <span class="o">=</span> <span class="n">model_best</span><span class="p">.</span><span class="nf">evaluate</span><span class="p">(</span><span class="n">x_te</span><span class="p">,</span> <span class="n">y_te</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Train - Loss: {:.3f} | MAE: {:.3f}</span><span class="sh">"</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="o">*</span><span class="n">train_results</span><span class="p">))</span>
+<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Test  - Loss: {:.3f} | MAE: {:.3f}</span><span class="sh">"</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="o">*</span><span class="n">test_results</span><span class="p">))</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Train - Loss: 6.264 | MAE: 1.696
+Test  - Loss: 7.393 | MAE: 1.778
+</code></pre></div></div>
+
+<p>Let’s break down these final performance metrics:</p>
+<ul>
+  <li>
+<strong>Training Metrics</strong>:
+    <ul>
+      <li>Loss (6.264): Measures overall prediction error</li>
+      <li>MAE (1.696): Average deviation of ~1.7 rings in age predictions</li>
+    </ul>
+  </li>
+  <li>
+<strong>Test Metrics</strong>:
+    <ul>
+      <li>Loss (7.393): ~18% higher than training, indicating some overfitting</li>
+      <li>MAE (1.778): Predictions off by ~1.8 rings on average</li>
+    </ul>
+  </li>
+  <li>
+<strong>Practical Impact</strong>: For abalone age prediction, being off by less than 2 rings is acceptable for most applications</li>
+</ul>
+
+<h2 id="5-architecture-fine-tuning">5. Architecture fine-tuning</h2>
+
+<p>Let’s now go a step further and create a setup with which we can fine-tune the model architecture. While there
+are different frameworks, such as <a href="https://keras.io/keras_tuner/" target="_blank" rel="noopener noreferrer">KerasTuner</a> or
+<a href="https://www.adriangb.com/scikeras/stable/" target="_blank" rel="noopener noreferrer">Sci-Kears</a> - let’s perform a more manual approach.</p>
+
+<p>For this we need two things: <em>First</em>, a function that creates the model and sets the compiler, and <em>second</em> a
+parameter grid.</p>
+
+<h3 id="function-to-dynamically-create-a-model">Function to dynamically create a model</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">build_and_compile_model</span><span class="p">(</span>
+    <span class="n">hidden</span><span class="o">=</span><span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>           <span class="c1"># List defining sizes of hidden layers
+</span>    <span class="n">activation</span><span class="o">=</span><span class="sh">'</span><span class="s">relu</span><span class="sh">'</span><span class="p">,</span>       <span class="c1"># Activation function for hidden layers
+</span>    <span class="n">use_batch</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>          <span class="c1"># Whether to use batch normalization
+</span>    <span class="n">dropout_rate</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>          <span class="c1"># Dropout rate for regularization
+</span>    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span>     <span class="c1"># Initial learning rate
+</span>    <span class="n">optimizers</span><span class="o">=</span><span class="sh">'</span><span class="s">adam</span><span class="sh">'</span><span class="p">,</span>       <span class="c1"># Choice of optimizer
+</span>    <span class="n">kernel_init</span><span class="o">=</span><span class="sh">'</span><span class="s">he_normal</span><span class="sh">'</span><span class="p">,</span> <span class="c1"># Weight initialization strategy
+</span>    <span class="n">kernel_regularizer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="c1"># Weight regularization method
+</span><span class="p">):</span>
+    <span class="c1"># Create input layer
+</span>    <span class="n">input_layer</span> <span class="o">=</span> <span class="n">keras</span><span class="p">.</span><span class="nc">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">x_tr</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],))</span>
+
+    <span class="c1"># Normalize input data
+</span>    <span class="n">x</span> <span class="o">=</span> <span class="nf">normalizer</span><span class="p">(</span><span class="n">input_layer</span><span class="p">)</span>
+
+    <span class="c1"># Build hidden layers
+</span>    <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">h</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">hidden</span><span class="p">):</span>
+
+        <span class="c1"># Add batch normalization if requested
+</span>        <span class="k">if</span> <span class="n">use_batch</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">layers</span><span class="p">.</span><span class="nc">BatchNormalization</span><span class="p">()(</span><span class="n">x</span><span class="p">)</span>
+
+        <span class="c1"># Add dense layer with specific parameters
+</span>        <span class="n">x</span> <span class="o">=</span> <span class="n">layers</span><span class="p">.</span><span class="nc">Dense</span><span class="p">(</span>
+            <span class="n">h</span><span class="p">,</span>
+            <span class="n">activation</span><span class="o">=</span><span class="n">activation</span><span class="p">,</span>
+            <span class="n">kernel_initializer</span><span class="o">=</span><span class="n">kernel_init</span><span class="p">,</span>
+            <span class="n">kernel_regularizer</span><span class="o">=</span><span class="n">kernel_regularizer</span><span class="p">,</span>
+        <span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+
+        <span class="c1"># Add dropout layer if requested
+</span>        <span class="k">if</span> <span class="n">dropout_rate</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">layers</span><span class="p">.</span><span class="nc">Dropout</span><span class="p">(</span><span class="n">dropout_rate</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="c1"># Add output layer (no activation for regression)
+</span>    <span class="n">output_layer</span> <span class="o">=</span> <span class="n">layers</span><span class="p">.</span><span class="nc">Dense</span><span class="p">(</span><span class="mi">1</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="c1"># Create and compile model
+</span>    <span class="n">model</span> <span class="o">=</span> <span class="n">keras</span><span class="p">.</span><span class="nc">Model</span><span class="p">(</span><span class="n">inputs</span><span class="o">=</span><span class="n">input_layer</span><span class="p">,</span> <span class="n">outputs</span><span class="o">=</span><span class="n">output_layer</span><span class="p">)</span>
+
+    <span class="c1"># Configure optimizer based on selection
+</span>    <span class="k">if</span> <span class="n">optimizers</span> <span class="o">==</span> <span class="sh">'</span><span class="s">adam</span><span class="sh">'</span><span class="p">:</span>
+        <span class="n">optimizer</span> <span class="o">=</span> <span class="n">keras</span><span class="p">.</span><span class="n">optimizers</span><span class="p">.</span><span class="nc">Adam</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="n">learning_rate</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">optimizers</span> <span class="o">==</span> <span class="sh">'</span><span class="s">rmsprop</span><span class="sh">'</span><span class="p">:</span>
+        <span class="n">optimizer</span> <span class="o">=</span> <span class="n">keras</span><span class="p">.</span><span class="n">optimizers</span><span class="p">.</span><span class="nc">RMSprop</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="n">learning_rate</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">optimizers</span> <span class="o">==</span> <span class="sh">'</span><span class="s">sgd</span><span class="sh">'</span><span class="p">:</span>
+        <span class="n">optimizer</span> <span class="o">=</span> <span class="n">keras</span><span class="p">.</span><span class="n">optimizers</span><span class="p">.</span><span class="nc">SGD</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="n">learning_rate</span><span class="p">,</span> <span class="n">nesterov</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+    <span class="c1"># Compile model with loss and metrics
+</span>    <span class="n">model</span><span class="p">.</span><span class="nf">compile</span><span class="p">(</span>
+        <span class="n">optimizer</span><span class="o">=</span><span class="n">optimizer</span><span class="p">,</span>
+        <span class="n">loss</span><span class="o">=</span><span class="n">keras</span><span class="p">.</span><span class="n">losses</span><span class="p">.</span><span class="nc">MeanSquaredError</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="sh">'</span><span class="s">MSE</span><span class="sh">'</span><span class="p">),</span>
+        <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="n">keras</span><span class="p">.</span><span class="n">metrics</span><span class="p">.</span><span class="nc">MeanAbsoluteError</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="sh">'</span><span class="s">MAE</span><span class="sh">'</span><span class="p">)],</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">model</span>
+
+<span class="c1"># Use function to create model and report summary overview
+</span><span class="n">model</span> <span class="o">=</span> <span class="nf">build_and_compile_model</span><span class="p">()</span>
+<span class="n">model</span><span class="p">.</span><span class="nf">summary</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Model: "model_1"
+_________________________________________________________________
+Layer (type)                Output Shape              Param #
+=================================================================
+input_2 (InputLayer)        [(None, 10)]              0
+normalization (Normalizati  (None, 10)                21
+on)
+batch_normalization_2 (Bat  (None, 10)                40
+chNormalization)
+dense_3 (Dense)             (None, 8)                 88
+batch_normalization_3 (Bat  (None, 8)                 32
+chNormalization)
+dense_4 (Dense)             (None, 4)                 36
+dense_5 (Dense)             (None, 1)                 5
+=================================================================
+Total params: 222 (892.00 Byte)
+Trainable params: 165 (660.00 Byte)
+Non-trainable params: 57 (232.00 Byte)
+_________________________________________________________________
+</code></pre></div></div>
+
+<p>Next step is the creation of the parameter grid. First, let’s establish the different parameters we could
+explore.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Define exploration grid
+</span><span class="n">hidden</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">8</span><span class="p">],</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">8</span><span class="p">]]</span>
+<span class="n">activation</span> <span class="o">=</span> <span class="p">[</span><span class="sh">'</span><span class="s">relu</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">elu</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">selu</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">tanh</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">sigmoid</span><span class="sh">'</span><span class="p">]</span>
+<span class="n">use_batch</span> <span class="o">=</span> <span class="p">[</span><span class="bp">False</span><span class="p">,</span> <span class="bp">True</span><span class="p">]</span>
+<span class="n">dropout_rate</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]</span>
+<span class="n">learning_rate</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1e-3</span><span class="p">,</span> <span class="mf">1e-4</span><span class="p">]</span>
+<span class="n">optimizers</span> <span class="o">=</span> <span class="p">[</span><span class="sh">'</span><span class="s">adam</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">rmsprop</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">sgd</span><span class="sh">'</span><span class="p">]</span>
+<span class="n">kernel_init</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sh">'</span><span class="s">he_normal</span><span class="sh">'</span><span class="p">,</span>
+    <span class="sh">'</span><span class="s">he_uniform</span><span class="sh">'</span><span class="p">,</span>
+    <span class="sh">'</span><span class="s">glorot_normal</span><span class="sh">'</span><span class="p">,</span>
+    <span class="sh">'</span><span class="s">glorot_uniform</span><span class="sh">'</span><span class="p">,</span>
+    <span class="sh">'</span><span class="s">uniform</span><span class="sh">'</span><span class="p">,</span>
+    <span class="sh">'</span><span class="s">normal</span><span class="sh">'</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">kernel_regularizer</span> <span class="o">=</span> <span class="p">[</span><span class="bp">None</span><span class="p">,</span> <span class="sh">'</span><span class="s">l1</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">l2</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">l1_l2</span><span class="sh">'</span><span class="p">]</span>
+<span class="n">batch_sizes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">32</span><span class="p">,</span> <span class="mi">128</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>Now, let’s put all of this into a parameter grid.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Create parameter grid
+</span><span class="n">param_grid</span> <span class="o">=</span> <span class="nf">dict</span><span class="p">(</span>
+    <span class="n">hidden</span><span class="o">=</span><span class="n">hidden</span><span class="p">,</span>  <span class="c1"># Network architectures from simple to complex
+</span>    <span class="n">activation</span><span class="o">=</span><span class="n">activation</span><span class="p">,</span>  <span class="c1"># Different non-linearities for different data patterns
+</span>    <span class="n">use_batch</span><span class="o">=</span><span class="n">use_batch</span><span class="p">,</span>  <span class="c1"># Batch normalization for training stability
+</span>    <span class="n">dropout_rate</span><span class="o">=</span><span class="n">dropout_rate</span><span class="p">,</span>  <span class="c1"># Regularization to prevent overfitting
+</span>    <span class="n">learning_rate</span><span class="o">=</span><span class="n">learning_rate</span><span class="p">,</span>  <span class="c1"># Controls step size during optimization
+</span>    <span class="n">optimizers</span><span class="o">=</span><span class="n">optimizers</span><span class="p">,</span>  <span class="c1"># Different optimization strategies
+</span>    <span class="n">kernel_init</span><span class="o">=</span><span class="n">kernel_init</span><span class="p">,</span>  <span class="c1"># Weight initialization methods
+</span>    <span class="n">kernel_regularizer</span><span class="o">=</span><span class="n">kernel_regularizer</span><span class="p">,</span>  <span class="c1"># Weight penalties to prevent overfitting
+</span>    <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_sizes</span><span class="p">,</span>  <span class="c1"># Training batch sizes for different memory/speed tradeoffs
+</span><span class="p">)</span>
+
+<span class="c1"># Go through the parameter grid
+</span><span class="kn">from</span> <span class="n">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">ParameterGrid</span>
+
+<span class="n">grid</span> <span class="o">=</span> <span class="nc">ParameterGrid</span><span class="p">(</span><span class="n">param_grid</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Exploring </span><span class="si">{</span><span class="nf">len</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span><span class="si">}</span><span class="s"> network architectures.</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Exploring 17280 network architectures.
+</code></pre></div></div>
+
+<p>Ok… these are definitely too many grid points. So let’s shuffle the grid and explore a few iterations to get
+a better sense of what works and what doesn’t.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Number of grid points to explore
+</span><span class="n">nth</span> <span class="o">=</span> <span class="mi">5</span>
+
+<span class="c1"># Establish grid indecies, shuffle them and keep the first N-th entries
+</span><span class="n">grid_idx</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">arange</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">grid</span><span class="p">))</span>
+<span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">shuffle</span><span class="p">(</span><span class="n">grid_idx</span><span class="p">)</span>
+<span class="n">grid_idx</span> <span class="o">=</span> <span class="n">grid_idx</span><span class="p">[:</span><span class="n">nth</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>Now, we’re good to go!</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Loop through grid points
+</span><span class="k">for</span> <span class="n">gixd</span> <span class="ow">in</span> <span class="n">grid_idx</span><span class="p">:</span>
+
+    <span class="c1"># Select grid point
+</span>    <span class="n">g</span> <span class="o">=</span> <span class="n">grid</span><span class="p">[</span><span class="n">gixd</span><span class="p">]</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Exploring: </span><span class="si">{</span><span class="n">g</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+
+    <span class="c1"># Build and compile model
+</span>    <span class="n">model</span> <span class="o">=</span> <span class="nf">build_and_compile_model</span><span class="p">(</span>
+        <span class="n">hidden</span><span class="o">=</span><span class="n">g</span><span class="p">[</span><span class="sh">'</span><span class="s">hidden</span><span class="sh">'</span><span class="p">],</span>
+        <span class="n">activation</span><span class="o">=</span><span class="n">g</span><span class="p">[</span><span class="sh">'</span><span class="s">activation</span><span class="sh">'</span><span class="p">],</span>
+        <span class="n">use_batch</span><span class="o">=</span><span class="n">g</span><span class="p">[</span><span class="sh">'</span><span class="s">use_batch</span><span class="sh">'</span><span class="p">],</span>
+        <span class="n">dropout_rate</span><span class="o">=</span><span class="n">g</span><span class="p">[</span><span class="sh">'</span><span class="s">dropout_rate</span><span class="sh">'</span><span class="p">],</span>
+        <span class="n">learning_rate</span><span class="o">=</span><span class="n">g</span><span class="p">[</span><span class="sh">'</span><span class="s">learning_rate</span><span class="sh">'</span><span class="p">],</span>
+        <span class="n">optimizers</span><span class="o">=</span><span class="n">g</span><span class="p">[</span><span class="sh">'</span><span class="s">optimizers</span><span class="sh">'</span><span class="p">],</span>
+        <span class="n">kernel_init</span><span class="o">=</span><span class="n">g</span><span class="p">[</span><span class="sh">'</span><span class="s">kernel_init</span><span class="sh">'</span><span class="p">],</span>
+        <span class="n">kernel_regularizer</span><span class="o">=</span><span class="n">g</span><span class="p">[</span><span class="sh">'</span><span class="s">kernel_regularizer</span><span class="sh">'</span><span class="p">],</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Save best performing model (based on validation loss) in checkpoint
+</span>    <span class="n">backup_path</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">'</span><span class="s">model_backup_</span><span class="si">{</span><span class="n">gixd</span><span class="si">}</span><span class="sh">'</span>
+    <span class="n">model_checkpoint_callback</span> <span class="o">=</span> <span class="n">keras</span><span class="p">.</span><span class="n">callbacks</span><span class="p">.</span><span class="nc">ModelCheckpoint</span><span class="p">(</span>
+        <span class="n">filepath</span><span class="o">=</span><span class="n">backup_path</span><span class="p">,</span>
+        <span class="n">save_weights_only</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+        <span class="n">monitor</span><span class="o">=</span><span class="sh">'</span><span class="s">val_loss</span><span class="sh">'</span><span class="p">,</span>
+        <span class="n">mode</span><span class="o">=</span><span class="sh">'</span><span class="s">min</span><span class="sh">'</span><span class="p">,</span>
+        <span class="n">save_best_only</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Store training history in csv file
+</span>    <span class="n">history_file</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">'</span><span class="s">history_log_</span><span class="si">{</span><span class="n">gixd</span><span class="si">}</span><span class="s">.csv</span><span class="sh">'</span>
+    <span class="n">history_logger</span> <span class="o">=</span> <span class="n">keras</span><span class="p">.</span><span class="n">callbacks</span><span class="p">.</span><span class="nc">CSVLogger</span><span class="p">(</span>
+        <span class="n">history_file</span><span class="p">,</span> <span class="n">separator</span><span class="o">=</span><span class="sh">'</span><span class="s">,</span><span class="sh">'</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="bp">False</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Setup callbacks
+</span>    <span class="n">callbacks</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">model_checkpoint_callback</span><span class="p">,</span>
+        <span class="n">history_logger</span><span class="p">,</span>
+        <span class="n">reduce_lr_on_plateau</span><span class="p">,</span>
+        <span class="n">early_stopping</span><span class="p">,</span>
+    <span class="p">]</span>
+
+    <span class="c1"># Train model
+</span>    <span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="nf">fit</span><span class="p">(</span>
+        <span class="n">x</span><span class="o">=</span><span class="n">x_tr</span><span class="p">,</span>
+        <span class="n">y</span><span class="o">=</span><span class="n">y_tr</span><span class="p">,</span>
+        <span class="n">validation_split</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>
+        <span class="n">shuffle</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">batch_size</span><span class="o">=</span><span class="n">g</span><span class="p">[</span><span class="sh">'</span><span class="s">batch_size</span><span class="sh">'</span><span class="p">],</span>
+        <span class="n">epochs</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+        <span class="n">callbacks</span><span class="o">=</span><span class="n">callbacks</span><span class="p">,</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Load best model
+</span>    <span class="n">model_best</span> <span class="o">=</span> <span class="n">keras</span><span class="p">.</span><span class="n">models</span><span class="p">.</span><span class="nf">load_model</span><span class="p">(</span><span class="n">backup_path</span><span class="p">)</span>
+
+    <span class="c1"># Evaluate best model on test set
+</span>    <span class="n">train_results</span> <span class="o">=</span> <span class="n">model_best</span><span class="p">.</span><span class="nf">evaluate</span><span class="p">(</span><span class="n">x_tr</span><span class="p">,</span> <span class="n">y_tr</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">test_results</span> <span class="o">=</span> <span class="n">model_best</span><span class="p">.</span><span class="nf">evaluate</span><span class="p">(</span><span class="n">x_te</span><span class="p">,</span> <span class="n">y_te</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="se">\t</span><span class="s">Train - Loss: {:.3f} | MAE: {:.3f}</span><span class="sh">"</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="o">*</span><span class="n">train_results</span><span class="p">))</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="se">\t</span><span class="s">Test  - Loss: {:.3f} | MAE: {:.3f}</span><span class="sh">"</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="o">*</span><span class="n">test_results</span><span class="p">))</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="se">\t</span><span class="s">Model Parameters: </span><span class="si">{</span><span class="n">model</span><span class="p">.</span><span class="nf">count_params</span><span class="p">()</span><span class="si">}</span><span class="se">\n\n</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Exploring: {'use_batch': False, 'optimizers': 'sgd', 'learning_rate': 0.0001,
+            'kernel_regularizer': None, 'kernel_init': 'glorot_uniform', 'hidden': [8],
+            'dropout_rate': 0, 'batch_size': 128, 'activation': 'selu'}
+    Train - Loss: 5.294 | MAE: 1.643
+    Test  - Loss: 7.148 | MAE: 1.807
+    Model Parameters: 118
+
+Exploring: {'use_batch': False, 'optimizers': 'sgd', 'learning_rate': 0.001,
+            'kernel_regularizer': None, 'kernel_init': 'glorot_uniform', 'hidden': [8, 4],
+            'dropout_rate': 0.5, 'batch_size': 128, 'activation': 'tanh'}
+    Train - Loss: 5.290 | MAE: 1.583
+    Test  - Loss: 6.250 | MAE: 1.730
+    Model Parameters: 150
+
+Exploring: {'use_batch': True, 'optimizers': 'sgd', 'learning_rate': 0.0001,
+            'kernel_regularizer': None, 'kernel_init': 'uniform', 'hidden': [8, 4],
+            'dropout_rate': 0.5, 'batch_size': 32, 'activation': 'relu'}
+Epoch 195: early stopping
+    Train - Loss: 8.660 | MAE: 2.050
+    Test  - Loss: 10.039 | MAE: 2.144
+    Model Parameters: 222
+
+Exploring: {'use_batch': True, 'optimizers': 'rmsprop', 'learning_rate': 0.0001,
+            'kernel_regularizer': None, 'kernel_init': 'he_uniform', 'hidden': [8, 16, 8],
+            'dropout_rate': 0.5, 'batch_size': 128, 'activation': 'tanh'}
+    Train - Loss: 24.535 | MAE: 3.957
+    Test  - Loss: 26.605 | MAE: 4.079
+    Model Parameters: 534
+
+Exploring: {'use_batch': False, 'optimizers': 'adam', 'learning_rate': 0.0001,
+            'kernel_regularizer': 'l2', 'kernel_init': 'glorot_uniform', 'hidden': [8, 16, 8],
+            'dropout_rate': 0.5, 'batch_size': 128, 'activation': 'selu'}
+    Train - Loss: 6.947 | MAE: 1.715
+    Test  - Loss: 8.042 | MAE: 1.851
+    Model Parameters: 398
+</code></pre></div></div>
+
+<h2 id="6-fine-tuning-investigation">6. Fine-tuning investigation</h2>
+
+<p>Once the grid points were explored we can go ahead and investigate the best models.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Loop through grid points
+</span><span class="k">for</span> <span class="n">gixd</span> <span class="ow">in</span> <span class="n">grid_idx</span><span class="p">:</span>
+
+    <span class="c1"># Select grid point
+</span>    <span class="n">g</span> <span class="o">=</span> <span class="n">grid</span><span class="p">[</span><span class="n">gixd</span><span class="p">]</span>
+
+    <span class="c1"># Restore best model
+</span>    <span class="n">backup_path</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">'</span><span class="s">model_backup_</span><span class="si">{</span><span class="n">gixd</span><span class="si">}</span><span class="sh">'</span>
+    <span class="n">model_best</span> <span class="o">=</span> <span class="n">keras</span><span class="p">.</span><span class="n">models</span><span class="p">.</span><span class="nf">load_model</span><span class="p">(</span><span class="n">backup_path</span><span class="p">)</span>
+
+    <span class="c1"># Evaluate best model on test set
+</span>    <span class="n">train_results</span> <span class="o">=</span> <span class="n">model_best</span><span class="p">.</span><span class="nf">evaluate</span><span class="p">(</span><span class="n">x_tr</span><span class="p">,</span> <span class="n">y_tr</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">test_results</span> <span class="o">=</span> <span class="n">model_best</span><span class="p">.</span><span class="nf">evaluate</span><span class="p">(</span><span class="n">x_te</span><span class="p">,</span> <span class="n">y_te</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1"># Store information in table
+</span>    <span class="n">df_score</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="nc">Series</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+    <span class="n">df_score</span><span class="p">[</span><span class="sh">'</span><span class="s">loss_tr</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">train_results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">df_score</span><span class="p">[</span><span class="sh">'</span><span class="s">MAE_tr</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">train_results</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">df_score</span><span class="p">[</span><span class="sh">'</span><span class="s">loss_te</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">test_results</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">df_score</span><span class="p">[</span><span class="sh">'</span><span class="s">MAE_te</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">test_results</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">df_score</span><span class="p">[</span><span class="sh">'</span><span class="s">idx</span><span class="sh">'</span><span class="p">]</span> <span class="o">=</span> <span class="n">gixd</span>
+
+    <span class="n">results</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">df_score</span><span class="p">.</span><span class="nf">to_frame</span><span class="p">().</span><span class="n">T</span><span class="p">)</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="nf">concat</span><span class="p">(</span><span class="n">results</span><span class="p">).</span><span class="nf">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="bp">True</span><span class="p">).</span><span class="nf">sort_values</span><span class="p">(</span><span class="sh">'</span><span class="s">loss_te</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">results</span>
+</code></pre></div></div>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/ex_plots/04_tensorflow_results_table.png" data-zoomable="" width="800px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+<div class="caption">
+    Figure 3: Results table for the best performing model architecture, showing both loss and MAE on training and validation sets. The consistent convergence suggests stable learning without overfitting.
+</div>
+
+<p>From this table, you could now perform a multitude of follow-up investigations. For example, take a look at the
+loss evolution during training:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Get idx of best model
+</span><span class="n">gixd_best</span> <span class="o">=</span> <span class="n">results</span><span class="p">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># Load history file of best training
+</span><span class="n">history_file</span> <span class="o">=</span> <span class="sa">f</span><span class="sh">'</span><span class="s">history_log_</span><span class="si">{</span><span class="n">gixd_best</span><span class="si">}</span><span class="s">.csv</span><span class="sh">'</span>
+
+<span class="c1"># Plot training curves
+</span><span class="nf">plot_history</span><span class="p">(</span><span class="n">history_file</span><span class="o">=</span><span class="n">history_file</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="sh">"</span><span class="s">Training overview of best model</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/ex_plots/04_tensorflow_architecture_comparison.png" data-zoomable="" width="800px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+<div class="caption">
+    Figure 4: Training metrics for the best performing model architecture, showing both loss and MAE on training and validation sets. The consistent convergence suggests stable learning without overfitting.
+</div>
+
+<h3 id="advanced-deep-learning-pitfalls">Advanced Deep Learning Pitfalls</h3>
+
+<p>When working with complex neural networks and regression tasks, be aware of these advanced challenges:</p>
+
+<p><strong>Gradient Issues</strong></p>
+<ul>
+  <li>Vanishing/exploding gradients in deep networks</li>
+  <li>Unstable training with certain architectures</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Use gradient clipping to prevent explosions
+</span><span class="n">optimizer</span> <span class="o">=</span> <span class="n">keras</span><span class="p">.</span><span class="n">optimizers</span><span class="p">.</span><span class="nc">Adam</span><span class="p">(</span>
+    <span class="n">clipnorm</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">1e-3</span>
+<span class="p">)</span>
+
+<span class="c1"># Add batch normalization to help with gradient flow
+</span><span class="n">x</span> <span class="o">=</span> <span class="n">layers</span><span class="p">.</span><span class="nc">Dense</span><span class="p">(</span><span class="mi">64</span><span class="p">)(</span><span class="n">inputs</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">layers</span><span class="p">.</span><span class="nc">BatchNormalization</span><span class="p">()(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">layers</span><span class="p">.</span><span class="nc">ReLU</span><span class="p">()(</span><span class="n">x</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>Learning Rate Dynamics</strong></p>
+<ul>
+  <li>Static learning rates often suboptimal</li>
+  <li>Different layers may need different rates</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Implement learning rate schedule
+</span><span class="n">initial_learning_rate</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">decay_steps</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="n">decay_rate</span> <span class="o">=</span> <span class="mf">0.9</span>
+
+<span class="n">lr_schedule</span> <span class="o">=</span> <span class="n">keras</span><span class="p">.</span><span class="n">optimizers</span><span class="p">.</span><span class="n">schedules</span><span class="p">.</span><span class="nc">ExponentialDecay</span><span class="p">(</span>
+    <span class="n">initial_learning_rate</span><span class="p">,</span>
+    <span class="n">decay_steps</span><span class="o">=</span><span class="n">decay_steps</span><span class="p">,</span>
+    <span class="n">decay_rate</span><span class="o">=</span><span class="n">decay_rate</span>
+<span class="p">)</span>
+
+<span class="c1"># Or use adaptive learning rate with warmup
+</span><span class="n">warmup_steps</span> <span class="o">=</span> <span class="mi">1000</span>
+<span class="k">def</span> <span class="nf">warmup_cosine_decay</span><span class="p">(</span><span class="n">step</span><span class="p">):</span>
+    <span class="n">warmup_rate</span> <span class="o">=</span> <span class="n">initial_learning_rate</span> <span class="o">*</span> <span class="n">step</span> <span class="o">/</span> <span class="n">warmup_steps</span>
+    <span class="n">cosine_rate</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">experimental</span><span class="p">.</span><span class="nc">CosineDecay</span><span class="p">(</span>
+        <span class="n">initial_learning_rate</span><span class="p">,</span> <span class="n">decay_steps</span>
+    <span class="p">)(</span><span class="n">step</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">tf</span><span class="p">.</span><span class="nf">where</span><span class="p">(</span><span class="n">step</span> <span class="o">&lt;</span> <span class="n">warmup_steps</span><span class="p">,</span> <span class="n">warmup_rate</span><span class="p">,</span> <span class="n">cosine_rate</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>Complex Loss Functions</strong></p>
+<ul>
+  <li>Multiple objectives need careful weighting</li>
+  <li>Custom losses require gradient consideration</li>
+  <li>Handle edge cases and numerical stability</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">class</span> <span class="nc">WeightedMSE</span><span class="p">(</span><span class="n">keras</span><span class="p">.</span><span class="n">losses</span><span class="p">.</span><span class="n">Loss</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">feature_weights</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nf">super</span><span class="p">().</span><span class="nf">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">feature_weights</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="nf">constant</span><span class="p">(</span><span class="n">feature_weights</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">tf</span><span class="p">.</span><span class="n">float32</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">call</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">y_true</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">):</span>
+        <span class="c1"># Add small epsilon to prevent numerical issues
+</span>        <span class="n">y_pred</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="nf">clip_by_value</span><span class="p">(</span><span class="n">y_pred</span><span class="p">,</span> <span class="mf">1e-7</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+        <span class="n">squared_errors</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="nf">square</span><span class="p">(</span><span class="n">y_true</span> <span class="o">-</span> <span class="n">y_pred</span><span class="p">)</span>
+        <span class="n">weighted_errors</span> <span class="o">=</span> <span class="n">squared_errors</span> <span class="o">*</span> <span class="n">self</span><span class="p">.</span><span class="n">feature_weights</span>
+        <span class="k">return</span> <span class="n">tf</span><span class="p">.</span><span class="nf">reduce_mean</span><span class="p">(</span><span class="n">weighted_errors</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>Data Pipeline Bottlenecks</strong></p>
+<ul>
+  <li>I/O can become training bottleneck</li>
+  <li>Memory constraints with large datasets</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Efficient data pipeline with prefetching
+</span><span class="n">dataset</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">Dataset</span><span class="p">.</span><span class="nf">from_tensor_slices</span><span class="p">((</span><span class="n">x_tr</span><span class="p">,</span> <span class="n">y_tr</span><span class="p">))</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">.</span><span class="nf">shuffle</span><span class="p">(</span><span class="n">buffer_size</span><span class="o">=</span><span class="mi">1024</span><span class="p">)</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">.</span><span class="nf">batch</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="p">.</span><span class="nf">prefetch</span><span class="p">(</span><span class="n">tf</span><span class="p">.</span><span class="n">data</span><span class="p">.</span><span class="n">AUTOTUNE</span><span class="p">)</span>
+
+<span class="c1"># For large datasets, use generators
+</span><span class="k">def</span> <span class="nf">data_generator</span><span class="p">():</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nf">len</span><span class="p">(</span><span class="n">x_tr</span><span class="p">),</span> <span class="n">batch_size</span><span class="p">):</span>
+            <span class="k">yield</span> <span class="n">x_tr</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">batch_size</span><span class="p">],</span> <span class="n">y_tr</span><span class="p">[</span><span class="n">i</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">batch_size</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p><strong>Model Architecture Complexity</strong></p>
+<ul>
+  <li>Deeper isn’t always better</li>
+  <li>Skip connections can help with gradient flow</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Example of residual connection
+</span><span class="k">def</span> <span class="nf">residual_block</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">filters</span><span class="p">):</span>
+    <span class="n">shortcut</span> <span class="o">=</span> <span class="n">x</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">layers</span><span class="p">.</span><span class="nc">Conv2D</span><span class="p">(</span><span class="n">filters</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="sh">'</span><span class="s">same</span><span class="sh">'</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">layers</span><span class="p">.</span><span class="nc">BatchNormalization</span><span class="p">()(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">layers</span><span class="p">.</span><span class="nc">ReLU</span><span class="p">()(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">layers</span><span class="p">.</span><span class="nc">Conv2D</span><span class="p">(</span><span class="n">filters</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="sh">'</span><span class="s">same</span><span class="sh">'</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">layers</span><span class="p">.</span><span class="nc">BatchNormalization</span><span class="p">()(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">layers</span><span class="p">.</span><span class="nc">Add</span><span class="p">()([</span><span class="n">shortcut</span><span class="p">,</span> <span class="n">x</span><span class="p">])</span>  <span class="c1"># Skip connection
+</span>    <span class="k">return</span> <span class="n">layers</span><span class="p">.</span><span class="nc">ReLU</span><span class="p">()(</span><span class="n">x</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>Regularization Strategy</strong></p>
+<ul>
+  <li>Different layers may need different regularization</li>
+  <li>Combine multiple regularization techniques</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Comprehensive regularization strategy
+</span><span class="n">x</span> <span class="o">=</span> <span class="n">layers</span><span class="p">.</span><span class="nc">Dense</span><span class="p">(</span>
+    <span class="mi">64</span><span class="p">,</span>
+    <span class="n">kernel_regularizer</span><span class="o">=</span><span class="n">keras</span><span class="p">.</span><span class="n">regularizers</span><span class="p">.</span><span class="nf">l1_l2</span><span class="p">(</span><span class="n">l1</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">,</span> <span class="n">l2</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">),</span>
+    <span class="n">activity_regularizer</span><span class="o">=</span><span class="n">keras</span><span class="p">.</span><span class="n">regularizers</span><span class="p">.</span><span class="nf">l1</span><span class="p">(</span><span class="mf">1e-5</span><span class="p">)</span>
+<span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">layers</span><span class="p">.</span><span class="nc">BatchNormalization</span><span class="p">()(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">layers</span><span class="p">.</span><span class="nc">Dropout</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>Model Debugging</strong></p>
+<ul>
+  <li>Add metrics to monitor internal states</li>
+  <li>Use callbacks for detailed inspection</li>
+  <li>Clear unused variables and models</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Clear memory after training experiments
+</span><span class="kn">import</span> <span class="n">gc</span>
+
+<span class="k">def</span> <span class="nf">cleanup_memory</span><span class="p">():</span>
+    <span class="c1"># Delete unused variables
+</span>    <span class="k">del</span> <span class="n">unused_model</span>
+    <span class="c1"># Force garbage collection
+</span>    <span class="n">gc</span><span class="p">.</span><span class="nf">collect</span><span class="p">()</span>
+    <span class="c1"># Clear TensorFlow session
+</span>    <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">backend</span><span class="p">.</span><span class="nf">clear_session</span><span class="p">()</span>
+
+<span class="c1"># Monitor layer states during training
+</span><span class="k">class</span> <span class="nc">LayerStateCallback</span><span class="p">(</span><span class="n">keras</span><span class="p">.</span><span class="n">callbacks</span><span class="p">.</span><span class="n">Callback</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">on_epoch_end</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">epoch</span><span class="p">,</span> <span class="n">logs</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="n">layer_outputs</span> <span class="o">=</span> <span class="p">[</span><span class="n">layer</span><span class="p">.</span><span class="n">output</span> <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="n">self</span><span class="p">.</span><span class="n">model</span><span class="p">.</span><span class="n">layers</span><span class="p">]</span>
+        <span class="n">inspection_model</span> <span class="o">=</span> <span class="n">keras</span><span class="p">.</span><span class="nc">Model</span><span class="p">(</span>
+            <span class="n">inputs</span><span class="o">=</span><span class="n">self</span><span class="p">.</span><span class="n">model</span><span class="p">.</span><span class="nb">input</span><span class="p">,</span>
+            <span class="n">outputs</span><span class="o">=</span><span class="n">layer_outputs</span>
+        <span class="p">)</span>
+        <span class="c1"># Monitor layer statistics during training
+</span>        <span class="n">layer_states</span> <span class="o">=</span> <span class="n">inspection_model</span><span class="p">.</span><span class="nf">predict</span><span class="p">(</span><span class="n">x_val</span><span class="p">[:</span><span class="mi">100</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">layer_idx</span><span class="p">,</span> <span class="n">states</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">layer_states</span><span class="p">):</span>
+            <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Layer </span><span class="si">{</span><span class="n">layer_idx</span><span class="si">}</span><span class="s"> stats:</span><span class="sh">"</span><span class="p">,</span>
+                    <span class="sa">f</span><span class="sh">"</span><span class="s">mean=</span><span class="si">{</span><span class="n">np</span><span class="p">.</span><span class="nf">mean</span><span class="p">(</span><span class="n">states</span><span class="p">)</span><span class="si">:</span><span class="p">.</span><span class="mi">3</span><span class="n">f</span><span class="si">}</span><span class="s">,</span><span class="sh">"</span><span class="p">,</span>
+                    <span class="sa">f</span><span class="sh">"</span><span class="s">std=</span><span class="si">{</span><span class="n">np</span><span class="p">.</span><span class="nf">std</span><span class="p">(</span><span class="n">states</span><span class="p">)</span><span class="si">:</span><span class="p">.</span><span class="mi">3</span><span class="n">f</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+
+        <span class="c1"># Clean up inspection model
+</span>        <span class="k">del</span> <span class="n">inspection_model</span>
+        <span class="n">gc</span><span class="p">.</span><span class="nf">collect</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>These advanced considerations become crucial when:</p>
+<ul>
+  <li>Working with complex architectures</li>
+  <li>Training on large datasets</li>
+  <li>Optimizing for specific performance metrics</li>
+  <li>Deploying models in production environments</li>
+  <li>Debugging training issues</li>
+</ul>
+
+<h2 id="summary-and-series-conclusion">Summary and Series Conclusion</h2>
+
+<p>In this final tutorial, we’ve covered:</p>
+<ul>
+  <li>Building a regression model using TensorFlow’s functional API</li>
+  <li>Implementing custom normalization layers</li>
+  <li>Using callbacks for training optimization</li>
+  <li>Comparing different model approaches</li>
+</ul>
+
+<p><strong>Key takeaways:</strong></p>
+<ol>
+  <li>Complex architectures aren’t always better</li>
+  <li>Proper training procedures are crucial</li>
+  <li>Model comparison helps choose the best approach</li>
+  <li>Advanced features require careful tuning</li>
+  <li>Different architectures suit different problems</li>
+</ol>
+
+<p>Throughout this series, we’ve progressed from basic classification to advanced regression, covering both traditional machine learning and deep learning approaches. We’ve seen how Scikit-learn and TensorFlow complement each other, each offering unique strengths for different types of problems.</p>
+
+<p><a href="/blog/2023/03_scikit_advanced">← Previous: Advanced Machine Learning</a> or
+<a href="/blog/2023/01_scikit_simple">Return to Series Overview →</a></p>
+
+  </article>
+
+  
+
+</div>
+
+    </div>
+
+    <!-- Footer -->
+
+    
+<footer class="fixed-bottom">
+  <div class="container mt-0">
+    © Copyright 2025 Michael P. Notter.
+    Powered by <a href="http://jekyllrb.com/" target="_blank" rel="noopener noreferrer">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" target="_blank" rel="noopener noreferrer">al-folio</a> theme.
+
+    
+    
+  </div>
+</footer>
+
+
+
+  </body>
+
+  <!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+
+  <!-- Bootsrap & MDB scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.4/umd/popper.min.js" integrity="sha512-eUQ9hGdLjBjY3F41CScH3UX+4JDSI9zXeroz7hJ+RteoCaY+GP/LDoM8AO+Pt+DRFw3nXqsjh9Zsts8hnYv8/A==" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha512-M5KW3ztuIICmVIhjSqXe01oV2bpe248gOxqmlcYrEzAvws7Pw3z6BK0iGbrwvdrUQUhi3eXgtxp5I8PDo9YfjQ==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js" integrity="sha512-Mug9KHKmroQFMLm93zGrjhibM2z2Obg9l6qFG2qKjXEXkMp/VDkI4uju9m4QKPjWSwQ6O2qzZEnJDEeCw0Blcw==" crossorigin="anonymous"></script>
+
+  
+<!-- Mansory & imagesLoaded -->
+<script defer src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script defer src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+<script defer src="/assets/js/mansory.js" type="text/javascript"></script>
+
+
+  
+
+
+<!-- Medium Zoom JS -->
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+<script src="/assets/js/zoom.js"></script>
+
+
+<!-- Load Common JS -->
+<script src="/assets/js/common.js"></script>
+
+  
+<!-- MathJax -->
+<script type="text/javascript">
+  window.MathJax = {
+    tex: {
+      tags: 'ams'
+    }
+  };
+</script>
+<script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js"></script>
+<script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+
+
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-126030922-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+
+  gtag('config', 'UA-126030922-1');
+</script>
+
+
+
+
+
+
+</html>

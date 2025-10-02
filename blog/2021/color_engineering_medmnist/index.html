@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>
+
+  Michael P. Notter
+
+
+  | Color engineering for special images
+
+</title>
+<meta name="description" content="Personal homepage of Michael P. Notter.
+">
+
+<!-- Open Graph -->
+
+
+<!-- Bootstrap & MDB -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha512-MoRNloxbStBcD8z3M/2BmnT+rg4IsMxPkXaGh2zD6LGNNFE80W3onsAhRcMAMrSoyWL9xD7Ert0men7vR8LUZg==" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" integrity="sha512-RO38pBRxYH3SoOprtPTD86JFOclM51/XTIdEPh5j8sj4tp8jmQIx26twG52UaLi//hQldfrh7e51WzP9wuP32Q==" crossorigin="anonymous" />
+
+<!-- Fonts & Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"  integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css" integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons">
+
+<!-- Code Syntax Highlighting -->
+<link rel="stylesheet" href="https://gitcdn.link/repo/jwarby/jekyll-pygments-themes/master/monokai.css" />
+
+<!-- Styles -->
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍💻</text></svg>">
+
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="canonical" href="https://miykael.github.io/blog/2021/color_engineering_medmnist/">
+
+
+<!-- Dark Mode -->
+<script src="/assets/js/theme.js"></script>
+<script src="/assets/js/dark_mode.js"></script>
+
+
+  </head>
+
+  <body class="fixed-top-nav ">
+
+    <!-- Header -->
+
+    <header>
+
+    <!-- Nav Bar -->
+    <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top">
+    <div class="container">
+      
+      <a class="navbar-brand title font-weight-lighter" href="https://miykael.github.io/">
+       <span class="font-weight-bold">Michael</span> P.  Notter
+      </a>
+      
+      <!-- Navbar Toggle -->
+      <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar top-bar"></span>
+        <span class="icon-bar middle-bar"></span>
+        <span class="icon-bar bottom-bar"></span>
+      </button>
+      <div class="collapse navbar-collapse text-right" id="navbarNav">
+        <ul class="navbar-nav ml-auto flex-nowrap">
+          <!-- About -->
+          <li class="nav-item ">
+            <a class="nav-link" href="/">
+              About
+              
+            </a>
+          </li>
+          
+          <!-- Blog -->
+          <li class="nav-item active">
+            <a class="nav-link" href="/blog/">
+              Blog
+              
+            </a>
+          </li>
+          
+          <!-- Other pages -->
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/background/">
+                Background
+                
+              </a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/projects/">
+                Projects
+                
+              </a>
+          </li>
+          
+          
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/publications/">
+                Publications
+                
+              </a>
+          </li>
+          
+          
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/teaching/">
+                Teaching
+                
+              </a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+            <div class="toggle-container">
+              <a id="light-toggle">
+                  <i class="fas fa-moon"></i>
+                  <i class="fas fa-sun"></i>
+              </a>
+            </div>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+    <!-- Content -->
+
+    <div class="container mt-5">
+      
+
+
+
+
+
+<div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Color engineering for special images</h1>
+    <p class="post-meta">December 31, 2021</p>
+    <p class="post-tags">
+      <a href="/blog/2021"> <i class="fas fa-calendar fa-sm"></i> 2021 </a>
+      
+
+      
+
+    </p>
+  </header>
+
+  <article class="post-content">
+    <h2 id="how-to-improve-color-encoding-of-unnatural-images">How to improve color encoding of unnatural images</h2>
+
+<p><em>[Find the Jupyter Notebook to this article <a href="https://github.com/miykael/miykael.github.io/blob/master/assets/nb/02_color_engineering_medmnist/nb_color_engineering_medmnist.ipynb" target="_blank" rel="noopener noreferrer">here</a>.]</em></p>
+
+<hr>
+
+<p><strong>Not all images that are colorful, should be colorful.</strong> Or in other words, not all images that use RGB (red, green, blue) encoding should be using exactly these colors! In this article we will explore how different ways of feature engineering - i.e. spreading the original color values out - can help with improving the classification performance of a convolutional neural network.</p>
+
+<p>Note, there are numerous ways of how you can change and adapt the color encoding of RGB images (e.g. transforming RGB to HSV, LAB or XYZ values; <code class="language-plaintext highlighter-rouge">scikit-image</code> offers <a href="https://scikit-image.org/docs/stable/auto_examples/#manipulating-exposure-and-color-channels" target="_blank" rel="noopener noreferrer">many great routines</a> to do this) - however this article is not about that. It’s much more about thinking about what the data tries to capture and how to exploit that.</p>
+
+<p>To better highlight what I mean by that, let’s take a look at the following three datasets (each image shows 100s of individual images from that dataset):</p>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/nb/02_color_engineering_medmnist/medmnist.png" data-zoomable="" width="800px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+
+<p><em>These three datasets are part of the <a href="https://medmnist.com" target="_blank" rel="noopener noreferrer">MedMNIST</a> dataset - images are taken from the <a href="https://arxiv.org/pdf/2010.14925.pdf" target="_blank" rel="noopener noreferrer">corresponding paper</a>.</em></p>
+
+<p>What these datasets have in common is the fact that the individual images from a given dataset very much stick to a specific color range. While there are fluctuations in pink or red tones, for most of these images it is more important how the contrast differs between images than what the actual RGB color value represents.</p>
+
+<p>This offers us a unique opportunity for feature engineering. Instead of sticking with the original RGB color values, we can investigate if an adaptation of the dataset specific color space can help and improve our data science investigations.</p>
+
+<h1 id="the-data-set">The data set</h1>
+
+<p>To explore this topic, let’s use the augmented blood cell dataset (see original <a href="https://www.sciencedirect.com/science/article/pii/S2352340920303681" target="_blank" rel="noopener noreferrer">paper</a>) from <a href="https://medmnist.com" target="_blank" rel="noopener noreferrer">MedMNIST</a>. This dataset contains roughly 17’000 individual images from 10 different blood cell types.</p>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/nb/02_color_engineering_medmnist/blood_cell.jpg" data-zoomable="" width="800px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+
+<p><em>Image is taken from the original <a href="https://www.sciencedirect.com/science/article/pii/S2352340920303681" target="_blank" rel="noopener noreferrer">paper</a> and depicts the ten types of blood cell types that conform the dataset.</em></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Download dataset
+</span><span class="err">!</span><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">zenodo</span><span class="p">.</span><span class="n">org</span><span class="o">/</span><span class="n">record</span><span class="o">/</span><span class="mi">5208230</span><span class="o">/</span><span class="n">files</span><span class="o">/</span><span class="n">bloodmnist</span><span class="p">.</span><span class="n">npz</span>
+
+<span class="c1"># Load packages
+</span><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">from</span> <span class="n">glob</span> <span class="kn">import</span> <span class="n">glob</span>
+<span class="kn">import</span> <span class="n">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">from</span> <span class="n">tqdm.notebook</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">import</span> <span class="n">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+
+<span class="kn">import</span> <span class="n">seaborn</span> <span class="k">as</span> <span class="n">sns</span>
+
+<span class="n">sns</span><span class="p">.</span><span class="nf">set_context</span><span class="p">(</span><span class="sh">"</span><span class="s">talk</span><span class="sh">"</span><span class="p">)</span>
+<span class="o">%</span><span class="n">config</span> <span class="n">InlineBackend</span><span class="p">.</span><span class="n">figure_format</span> <span class="o">=</span> <span class="sh">'</span><span class="s">retina</span><span class="sh">'</span>
+
+<span class="c1"># Load data set
+</span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">load</span><span class="p">(</span><span class="sh">"</span><span class="s">bloodmnist.npz</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">X_tr</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="sh">"</span><span class="s">train_images</span><span class="sh">"</span><span class="p">].</span><span class="nf">astype</span><span class="p">(</span><span class="sh">"</span><span class="s">float32</span><span class="sh">"</span><span class="p">)</span> <span class="o">/</span> <span class="mi">255</span>
+<span class="n">X_va</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="sh">"</span><span class="s">val_images</span><span class="sh">"</span><span class="p">].</span><span class="nf">astype</span><span class="p">(</span><span class="sh">"</span><span class="s">float32</span><span class="sh">"</span><span class="p">)</span> <span class="o">/</span> <span class="mi">255</span>
+<span class="n">X_te</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="sh">"</span><span class="s">test_images</span><span class="sh">"</span><span class="p">].</span><span class="nf">astype</span><span class="p">(</span><span class="sh">"</span><span class="s">float32</span><span class="sh">"</span><span class="p">)</span> <span class="o">/</span> <span class="mi">255</span>
+<span class="n">y_tr</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="sh">"</span><span class="s">train_labels</span><span class="sh">"</span><span class="p">]</span>
+<span class="n">y_va</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="sh">"</span><span class="s">val_labels</span><span class="sh">"</span><span class="p">]</span>
+<span class="n">y_te</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="sh">"</span><span class="s">test_labels</span><span class="sh">"</span><span class="p">]</span>
+
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="sh">"</span><span class="s">basophils</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">eosinophils</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">erythroblasts</span><span class="sh">"</span><span class="p">,</span>
+          <span class="sh">"</span><span class="s">granulocytes_immature</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">lymphocytes</span><span class="sh">"</span><span class="p">,</span>
+          <span class="sh">"</span><span class="s">monocytes</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">neutrophils</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">platelets</span><span class="sh">"</span><span class="p">]</span>
+
+<span class="n">labels_tr</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="n">labels</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">y_tr</span><span class="p">.</span><span class="nf">ravel</span><span class="p">()])</span>
+<span class="n">labels_va</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="n">labels</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">y_va</span><span class="p">.</span><span class="nf">ravel</span><span class="p">()])</span>
+<span class="n">labels_te</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="n">labels</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">y_te</span><span class="p">.</span><span class="nf">ravel</span><span class="p">()])</span>
+</code></pre></div></div>
+
+<p>So let’s take a look at a few images from this dataset!</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">plot_dataset</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">Helper function to visualize first few images of a dataset.</span><span class="sh">"""</span>
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">subplots</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mf">15.5</span><span class="p">,</span> <span class="mi">16</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ax</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">axes</span><span class="p">.</span><span class="nf">flatten</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="n">X</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">ax</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">squeeze</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="n">cmap</span><span class="o">=</span><span class="sh">"</span><span class="s">gray</span><span class="sh">"</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ax</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">ax</span><span class="p">.</span><span class="nf">axis</span><span class="p">(</span><span class="sh">"</span><span class="s">off</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">ax</span><span class="p">.</span><span class="nf">set_aspect</span><span class="p">(</span><span class="sh">"</span><span class="s">equal</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">subplots_adjust</span><span class="p">(</span><span class="n">wspace</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
+
+<span class="c1"># Plot dataset
+</span><span class="nf">plot_dataset</span><span class="p">(</span><span class="n">X_tr</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/nb/02_color_engineering_medmnist/output_9_0.png" data-zoomable="" width="800px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+
+<p><strong>What you can see is the following:</strong> The background color, as well as the main target object color is in most of the cases the same (but not always)! To better understand why this offers us an opportunity for color value engineering, let’s take a look at the RGB color space that these images occupy.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Extract a few RGB color values
+</span><span class="n">X_colors</span> <span class="o">=</span> <span class="n">X_tr</span><span class="p">.</span><span class="nf">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)[::</span><span class="mi">100</span><span class="p">]</span>
+
+<span class="c1"># Plot color values in 3D space
+</span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># Loop through 3 different views
+</span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">view</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">([[</span><span class="o">-</span><span class="mi">45</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="p">[</span><span class="mi">40</span><span class="p">,</span> <span class="mi">80</span><span class="p">],</span> <span class="p">[</span><span class="mi">60</span><span class="p">,</span> <span class="mi">10</span><span class="p">]]):</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="p">.</span><span class="nf">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="sh">"</span><span class="s">3d</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">scatter</span><span class="p">(</span><span class="n">X_colors</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_colors</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">X_colors</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">facecolors</span><span class="o">=</span><span class="n">X_colors</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">set_xlabel</span><span class="p">(</span><span class="sh">"</span><span class="s">R</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">set_ylabel</span><span class="p">(</span><span class="sh">"</span><span class="s">G</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">set_zlabel</span><span class="p">(</span><span class="sh">"</span><span class="s">B</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="n">xaxis</span><span class="p">.</span><span class="nf">set_ticklabels</span><span class="p">([])</span>
+    <span class="n">ax</span><span class="p">.</span><span class="n">yaxis</span><span class="p">.</span><span class="nf">set_ticklabels</span><span class="p">([])</span>
+    <span class="n">ax</span><span class="p">.</span><span class="n">zaxis</span><span class="p">.</span><span class="nf">set_ticklabels</span><span class="p">([])</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">view_init</span><span class="p">(</span><span class="n">azim</span><span class="o">=</span><span class="n">view</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">elev</span><span class="o">=</span><span class="n">view</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">vertical_axis</span><span class="o">=</span><span class="sh">"</span><span class="s">z</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">set_zlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">suptitle</span><span class="p">(</span><span class="sh">"</span><span class="s">Colors in RGB space</span><span class="sh">"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/nb/02_color_engineering_medmnist/output_11_0.png" data-zoomable="" width="800px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+
+<p>These are three different views on the same RGB color space of the original dataset. What you can see is that this dataset only covers a small section of the full cube, i.e. all 16’777’216 possible color values. This offers us now three unique opportunities:</p>
+
+<ol>
+  <li>We could <strong>reduce the image complexity</strong> by transforming the RGB colors to <strong>grayscale images</strong>.</li>
+  <li>We could <strong>realign and stretch the color values</strong> so that the RGB values better fill the RGB color space.</li>
+  <li>We could <strong>reorient the color values</strong> so that the three cube axis stretch into the direction of highest variance. This is best done via a PCA approach.</li>
+</ol>
+
+<p><strong>Note:</strong> There are of course multiple other ways how we could manipulate our color values, but for this article, we will go with the three mentioned here.</p>
+
+<h1 id="data-set-augmentation">Data set augmentation</h1>
+
+<h2 id="1-grayscale-transformation">1. Grayscale transformation</h2>
+
+<p>First things first, let’s transform the RGB images to grayscale images (i.e. go from a 3D to a 1D data set). Note, grayscale images are not just a simple averaging of RGB, but a slight imbalanced weighting thereof. We will use <code class="language-plaintext highlighter-rouge">scikit-image</code>’s <code class="language-plaintext highlighter-rouge">rgb2gray</code> to perform this transformation. Furthermore, we will stretch the grayscale values to fully cover the 0 to 255 value range of images.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Install scikit-image if not already done
+</span><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">U</span> <span class="n">scikit</span><span class="o">-</span><span class="n">image</span>
+
+<span class="kn">from</span> <span class="n">skimage.color</span> <span class="kn">import</span> <span class="n">rgb2gray</span>
+
+<span class="c1"># Create grayscale images
+</span><span class="n">X_tr_gray</span> <span class="o">=</span> <span class="nf">rgb2gray</span><span class="p">(</span><span class="n">X_tr</span><span class="p">)[...,</span> <span class="bp">None</span><span class="p">]</span>
+<span class="n">X_va_gray</span> <span class="o">=</span> <span class="nf">rgb2gray</span><span class="p">(</span><span class="n">X_va</span><span class="p">)[...,</span> <span class="bp">None</span><span class="p">]</span>
+<span class="n">X_te_gray</span> <span class="o">=</span> <span class="nf">rgb2gray</span><span class="p">(</span><span class="n">X_te</span><span class="p">)[...,</span> <span class="bp">None</span><span class="p">]</span>
+
+<span class="c1"># Stretch color range to training min, max
+</span><span class="n">gmin_tr</span> <span class="o">=</span> <span class="n">X_tr_gray</span><span class="p">.</span><span class="nf">min</span><span class="p">()</span>
+<span class="n">X_tr_gray</span> <span class="o">-=</span> <span class="n">gmin_tr</span>
+<span class="n">X_va_gray</span> <span class="o">-=</span> <span class="n">gmin_tr</span>
+<span class="n">X_te_gray</span> <span class="o">-=</span> <span class="n">gmin_tr</span>
+
+<span class="n">gmax_tr</span> <span class="o">=</span> <span class="n">X_tr_gray</span><span class="p">.</span><span class="nf">max</span><span class="p">()</span>
+<span class="n">X_tr_gray</span> <span class="o">/=</span> <span class="n">gmax_tr</span>
+<span class="n">X_va_gray</span> <span class="o">/=</span> <span class="n">gmax_tr</span>
+<span class="n">X_te_gray</span> <span class="o">/=</span> <span class="n">gmax_tr</span>
+
+<span class="n">X_va_gray</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">clip</span><span class="p">(</span><span class="n">X_va_gray</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">X_te_gray</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">clip</span><span class="p">(</span><span class="n">X_te_gray</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Let’s take a look at how these grayscale color values are positioned in the previous RGB color space.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Put 1D values into 3D space
+</span><span class="n">X_tr_show</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">concatenate</span><span class="p">([</span><span class="n">X_tr_gray</span><span class="p">,</span> <span class="n">X_tr_gray</span><span class="p">,</span> <span class="n">X_tr_gray</span><span class="p">],</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Extract a few grayscale color values
+</span><span class="n">X_grays</span> <span class="o">=</span> <span class="n">X_tr_show</span><span class="p">.</span><span class="nf">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)[::</span><span class="mi">100</span><span class="p">]</span>
+
+<span class="c1"># Plot color values in 3D space
+</span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># Loop through 3 different views
+</span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">view</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">([[</span><span class="o">-</span><span class="mi">45</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="p">[</span><span class="mi">40</span><span class="p">,</span> <span class="mi">80</span><span class="p">],</span> <span class="p">[</span><span class="mi">60</span><span class="p">,</span> <span class="mi">10</span><span class="p">]]):</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="p">.</span><span class="nf">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="sh">"</span><span class="s">3d</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">scatter</span><span class="p">(</span><span class="n">X_grays</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_grays</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">X_grays</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">facecolors</span><span class="o">=</span><span class="n">X_grays</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">set_xlabel</span><span class="p">(</span><span class="sh">"</span><span class="s">R</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">set_ylabel</span><span class="p">(</span><span class="sh">"</span><span class="s">G</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">set_zlabel</span><span class="p">(</span><span class="sh">"</span><span class="s">B</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="n">xaxis</span><span class="p">.</span><span class="nf">set_ticklabels</span><span class="p">([])</span>
+    <span class="n">ax</span><span class="p">.</span><span class="n">yaxis</span><span class="p">.</span><span class="nf">set_ticklabels</span><span class="p">([])</span>
+    <span class="n">ax</span><span class="p">.</span><span class="n">zaxis</span><span class="p">.</span><span class="nf">set_ticklabels</span><span class="p">([])</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">view_init</span><span class="p">(</span><span class="n">azim</span><span class="o">=</span><span class="n">view</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">elev</span><span class="o">=</span><span class="n">view</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">vertical_axis</span><span class="o">=</span><span class="sh">"</span><span class="s">z</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">set_zlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">suptitle</span><span class="p">(</span><span class="sh">"</span><span class="s">Colors in Grayscale space</span><span class="sh">"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/nb/02_color_engineering_medmnist/output_17_0.png" data-zoomable="" width="800px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+
+<p>Not surprising, the grayscale color values lay exactly on the cube diagonal. As such we were able to reduce our three dimensional dataset to one dimension. Let’s take a look at how the cell images look like in grayscale format.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Plot dataset
+</span><span class="nf">plot_dataset</span><span class="p">(</span><span class="n">X_tr_gray</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/nb/02_color_engineering_medmnist/output_19_0.png" data-zoomable="" width="800px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+
+<h2 id="2-color-realigning-and-stretching">2. Color realigning and stretching</h2>
+
+<p>In the first RGB cube plot we saw that the color values of this dataset occupies only a part of the full cube. However, when comparing that point cloud to the black-white diagonal line from the second RGB cube plot, we can see that the original colors are off axis and slightly bend.</p>
+
+<p>To better illustrate what we mean by that, let’s try to find the equally spaced ‘cloud centroids’ (or center of masses) that support this point cloud.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Get RGB color values
+</span><span class="n">X_colors</span> <span class="o">=</span> <span class="n">X_tr</span><span class="p">.</span><span class="nf">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># Get distance of all color values to black (0,0,0)
+</span><span class="n">dist_origin</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="nf">norm</span><span class="p">(</span><span class="n">X_colors</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Find index of 0.1% smallest entry
+</span><span class="n">perc_sorted</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">argsort</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">abs</span><span class="p">(</span><span class="n">dist_origin</span> <span class="o">-</span> <span class="n">np</span><span class="p">.</span><span class="nf">percentile</span><span class="p">(</span><span class="n">dist_origin</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)))</span>
+
+<span class="c1"># Find centroid of lowest 0.1% RGBs
+</span><span class="n">centroid_low</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">mean</span><span class="p">(</span><span class="n">X_colors</span><span class="p">[</span><span class="n">perc_sorted</span><span class="p">][:</span> <span class="nf">len</span><span class="p">(</span><span class="n">X_colors</span><span class="p">)</span> <span class="o">//</span> <span class="mi">1000</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Order all RGB values with regards to distance to low centroid
+</span><span class="n">order_idx</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">argsort</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="nf">norm</span><span class="p">(</span><span class="n">X_colors</span> <span class="o">-</span> <span class="n">centroid_low</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="c1"># According to this order, divide all RGB values into N equal sized chunks
+</span><span class="n">nth</span> <span class="o">=</span> <span class="mi">256</span>
+<span class="n">splits</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array_split</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">arange</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">order_idx</span><span class="p">)),</span> <span class="n">nth</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Compute centroids, i.e. RGB mean values of each segment
+</span><span class="n">centroids</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="n">np</span><span class="p">.</span><span class="nf">median</span><span class="p">(</span><span class="n">X_colors</span><span class="p">[</span><span class="n">order_idx</span><span class="p">][</span><span class="n">s</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nf">tqdm</span><span class="p">(</span><span class="n">splits</span><span class="p">)])</span>
+
+<span class="c1"># Only keep centroids that are spaced enough
+</span><span class="n">new_centers</span> <span class="o">=</span> <span class="p">[</span><span class="n">centroids</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">centroids</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="n">np</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="nf">norm</span><span class="p">(</span><span class="n">new_centers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">centroids</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mf">0.03</span><span class="p">:</span>
+        <span class="n">new_centers</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">centroids</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="n">new_centers</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">(</span><span class="n">new_centers</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Once we have these centers, as before, let’s visualize them in the RGB color cube. And to support our point, let’s also add the grayscale diagonal to this plot.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Plot centroids in 3D space
+</span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># Loop through 3 different views
+</span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">view</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">([[</span><span class="o">-</span><span class="mi">45</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="p">[</span><span class="mi">40</span><span class="p">,</span> <span class="mi">80</span><span class="p">],</span> <span class="p">[</span><span class="mi">60</span><span class="p">,</span> <span class="mi">10</span><span class="p">]]):</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="p">.</span><span class="nf">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="sh">"</span><span class="s">3d</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">scatter</span><span class="p">(</span><span class="n">X_grays</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_grays</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">X_grays</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">facecolors</span><span class="o">=</span><span class="n">X_grays</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">scatter</span><span class="p">(</span>
+        <span class="n">new_centers</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="n">new_centers</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="n">new_centers</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span>
+        <span class="n">facecolors</span><span class="o">=</span><span class="n">new_centers</span><span class="p">,</span>
+        <span class="n">s</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">set_xlabel</span><span class="p">(</span><span class="sh">"</span><span class="s">R</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">set_ylabel</span><span class="p">(</span><span class="sh">"</span><span class="s">G</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">set_zlabel</span><span class="p">(</span><span class="sh">"</span><span class="s">B</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="n">xaxis</span><span class="p">.</span><span class="nf">set_ticklabels</span><span class="p">([])</span>
+    <span class="n">ax</span><span class="p">.</span><span class="n">yaxis</span><span class="p">.</span><span class="nf">set_ticklabels</span><span class="p">([])</span>
+    <span class="n">ax</span><span class="p">.</span><span class="n">zaxis</span><span class="p">.</span><span class="nf">set_ticklabels</span><span class="p">([])</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">set_zlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">view_init</span><span class="p">(</span><span class="n">azim</span><span class="o">=</span><span class="n">view</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">elev</span><span class="o">=</span><span class="n">view</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">vertical_axis</span><span class="o">=</span><span class="sh">"</span><span class="s">z</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">suptitle</span><span class="p">(</span><span class="sh">"</span><span class="s">Color centroids in RGB space</span><span class="sh">"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/nb/02_color_engineering_medmnist/output_23_0.png" data-zoomable="" width="800px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+
+<p>So how can we use these two information (the cloud centroids and the gray scale diagonal) to <strong>realign and stretch</strong> our original dataset? Well, one way to do so is the following:</p>
+
+<ol>
+  <li>For each color value in the original dataset we compute the distance vector to the closest cloud centroid.</li>
+  <li>Then we add this distance vector to the grayscale diagonal (i.e. realign the cloud centroids).</li>
+  <li>And as last step we stretch and clip color values to make sure that 99.9% all values are in the desired color range.</li>
+</ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Create grayscale diagonal centroids (equal numbers to cloud centroids)
+</span><span class="n">steps</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">linspace</span><span class="p">(</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="nf">len</span><span class="p">(</span><span class="n">new_centers</span><span class="p">))</span>
+
+<span class="c1"># Realign and stretch images
+</span><span class="n">X_tr_stretch</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">x</span> <span class="o">-</span> <span class="n">new_centers</span><span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="nf">argmin</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="nf">norm</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">new_centers</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))]</span>
+     <span class="o">+</span> <span class="n">steps</span><span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="nf">argmin</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="nf">norm</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">new_centers</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))]</span>
+     <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nf">tqdm</span><span class="p">(</span><span class="n">X_tr</span><span class="p">.</span><span class="nf">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))])</span>
+<span class="n">X_va_stretch</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">x</span> <span class="o">-</span> <span class="n">new_centers</span><span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="nf">argmin</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="nf">norm</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">new_centers</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))]</span>
+     <span class="o">+</span> <span class="n">steps</span><span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="nf">argmin</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="nf">norm</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">new_centers</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))]</span>
+     <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nf">tqdm</span><span class="p">(</span><span class="n">X_va</span><span class="p">.</span><span class="nf">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))])</span>
+<span class="n">X_te_stretch</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">x</span> <span class="o">-</span> <span class="n">new_centers</span><span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="nf">argmin</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="nf">norm</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">new_centers</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))]</span>
+     <span class="o">+</span> <span class="n">steps</span><span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="nf">argmin</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="nf">norm</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">new_centers</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))]</span>
+     <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nf">tqdm</span><span class="p">(</span><span class="n">X_te</span><span class="p">.</span><span class="nf">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))])</span>
+
+<span class="c1"># Stretch and clip data
+</span><span class="n">xmin_tr</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">percentile</span><span class="p">(</span><span class="n">X_tr_stretch</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">X_tr_stretch</span> <span class="o">-=</span> <span class="n">xmin_tr</span>
+<span class="n">X_va_stretch</span> <span class="o">-=</span> <span class="n">xmin_tr</span>
+<span class="n">X_te_stretch</span> <span class="o">-=</span> <span class="n">xmin_tr</span>
+<span class="n">xmax_tr</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">percentile</span><span class="p">(</span><span class="n">X_tr_stretch</span><span class="p">,</span> <span class="mf">99.95</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">X_tr_stretch</span> <span class="o">/=</span> <span class="n">xmax_tr</span>
+<span class="n">X_va_stretch</span> <span class="o">/=</span> <span class="n">xmax_tr</span>
+<span class="n">X_te_stretch</span> <span class="o">/=</span> <span class="n">xmax_tr</span>
+<span class="n">X_tr_stretch</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">clip</span><span class="p">(</span><span class="n">X_tr_stretch</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">X_va_stretch</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">clip</span><span class="p">(</span><span class="n">X_va_stretch</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">X_te_stretch</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">clip</span><span class="p">(</span><span class="n">X_te_stretch</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>So, what do the original RGB color values look like once they were realigned and stretched?</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Plot color values in 3D space
+</span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="n">stretch_colors</span> <span class="o">=</span> <span class="n">X_tr_stretch</span><span class="p">[::</span><span class="mi">100</span><span class="p">]</span>
+
+<span class="c1"># Loop through 3 different views
+</span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">view</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">([[</span><span class="o">-</span><span class="mi">45</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="p">[</span><span class="mi">40</span><span class="p">,</span> <span class="mi">80</span><span class="p">],</span> <span class="p">[</span><span class="mi">60</span><span class="p">,</span> <span class="mi">10</span><span class="p">]]):</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="p">.</span><span class="nf">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="sh">"</span><span class="s">3d</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">scatter</span><span class="p">(</span>
+        <span class="n">stretch_colors</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="n">stretch_colors</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span>
+        <span class="n">stretch_colors</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span>
+        <span class="n">facecolors</span><span class="o">=</span><span class="n">stretch_colors</span><span class="p">,</span>
+        <span class="n">s</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">set_xlabel</span><span class="p">(</span><span class="sh">"</span><span class="s">R</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">set_ylabel</span><span class="p">(</span><span class="sh">"</span><span class="s">G</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">set_zlabel</span><span class="p">(</span><span class="sh">"</span><span class="s">B</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="n">xaxis</span><span class="p">.</span><span class="nf">set_ticklabels</span><span class="p">([])</span>
+    <span class="n">ax</span><span class="p">.</span><span class="n">yaxis</span><span class="p">.</span><span class="nf">set_ticklabels</span><span class="p">([])</span>
+    <span class="n">ax</span><span class="p">.</span><span class="n">zaxis</span><span class="p">.</span><span class="nf">set_ticklabels</span><span class="p">([])</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">view_init</span><span class="p">(</span><span class="n">azim</span><span class="o">=</span><span class="n">view</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">elev</span><span class="o">=</span><span class="n">view</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">vertical_axis</span><span class="o">=</span><span class="sh">"</span><span class="s">z</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">set_zlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">suptitle</span><span class="p">(</span><span class="sh">"</span><span class="s">Colors in realigned and stretched space</span><span class="sh">"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/nb/02_color_engineering_medmnist/output_27_0.png" data-zoomable="" width="800px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+
+<p>That looks already very promising. The point cloud is much better aligned to the cube diagonal and it seems the point cloud is a bit more stretched into all directions. And what do the cellular images look like in this new color encoding?</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Convert data back into image space
+</span><span class="n">X_tr_stretch</span> <span class="o">=</span> <span class="n">X_tr_stretch</span><span class="p">.</span><span class="nf">reshape</span><span class="p">(</span><span class="n">X_tr</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">X_va_stretch</span> <span class="o">=</span> <span class="n">X_va_stretch</span><span class="p">.</span><span class="nf">reshape</span><span class="p">(</span><span class="n">X_va</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">X_te_stretch</span> <span class="o">=</span> <span class="n">X_te_stretch</span><span class="p">.</span><span class="nf">reshape</span><span class="p">(</span><span class="n">X_te</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="c1"># Plot dataset
+</span><span class="nf">plot_dataset</span><span class="p">(</span><span class="n">X_tr_stretch</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/nb/02_color_engineering_medmnist/output_29_0.png" data-zoomable="" width="800px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+
+<h2 id="3-pca-transformation">3. PCA transformation</h2>
+
+<p>Last but certainly not least of our three options, let’s use a PCA approach to transform the original RGB color values into a new 3D space, where each of these three new axis explains as much variance as possible. <strong>Note:</strong> For this approach we will use the original RGB color values, but we could of course also use the just realigned and stretched values as well.</p>
+
+<p>So what do the original RGB color values look like in this new PCA color space?</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Train PCA decomposition on original RGB values
+</span><span class="kn">from</span> <span class="n">sklearn.decomposition</span> <span class="kn">import</span> <span class="n">PCA</span>
+
+<span class="n">pca</span> <span class="o">=</span> <span class="nc">PCA</span><span class="p">()</span>
+<span class="n">pca</span><span class="p">.</span><span class="nf">fit</span><span class="p">(</span><span class="n">X_tr</span><span class="p">.</span><span class="nf">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+<span class="c1"># Transform all data sets into new PCA space
+</span><span class="n">X_tr_pca</span> <span class="o">=</span> <span class="n">pca</span><span class="p">.</span><span class="nf">transform</span><span class="p">(</span><span class="n">X_tr</span><span class="p">.</span><span class="nf">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">X_va_pca</span> <span class="o">=</span> <span class="n">pca</span><span class="p">.</span><span class="nf">transform</span><span class="p">(</span><span class="n">X_va</span><span class="p">.</span><span class="nf">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">X_te_pca</span> <span class="o">=</span> <span class="n">pca</span><span class="p">.</span><span class="nf">transform</span><span class="p">(</span><span class="n">X_te</span><span class="p">.</span><span class="nf">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+<span class="c1"># Stretch and clip data
+</span><span class="n">xmin_tr</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">percentile</span><span class="p">(</span><span class="n">X_tr_pca</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">X_tr_pca</span> <span class="o">-=</span> <span class="n">xmin_tr</span>
+<span class="n">X_va_pca</span> <span class="o">-=</span> <span class="n">xmin_tr</span>
+<span class="n">X_te_pca</span> <span class="o">-=</span> <span class="n">xmin_tr</span>
+<span class="n">xmax_tr</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">percentile</span><span class="p">(</span><span class="n">X_tr_pca</span><span class="p">,</span> <span class="mf">99.95</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">X_tr_pca</span> <span class="o">/=</span> <span class="n">xmax_tr</span>
+<span class="n">X_va_pca</span> <span class="o">/=</span> <span class="n">xmax_tr</span>
+<span class="n">X_te_pca</span> <span class="o">/=</span> <span class="n">xmax_tr</span>
+<span class="n">X_tr_pca</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">clip</span><span class="p">(</span><span class="n">X_tr_pca</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">X_va_pca</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">clip</span><span class="p">(</span><span class="n">X_va_pca</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">X_te_pca</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">clip</span><span class="p">(</span><span class="n">X_te_pca</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Flip first component
+</span><span class="n">X_tr_pca</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">X_tr_pca</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">X_va_pca</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">X_va_pca</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">X_te_pca</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">X_te_pca</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># Extract a few RGB color values
+</span><span class="n">X_colors</span> <span class="o">=</span> <span class="n">X_tr_pca</span><span class="p">[::</span><span class="mi">100</span><span class="p">].</span><span class="nf">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># Plot color values in 3D space
+</span><span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># Loop through 3 different views
+</span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">view</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">([[</span><span class="o">-</span><span class="mi">45</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="p">[</span><span class="mi">40</span><span class="p">,</span> <span class="mi">80</span><span class="p">],</span> <span class="p">[</span><span class="mi">60</span><span class="p">,</span> <span class="mi">10</span><span class="p">]]):</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="p">.</span><span class="nf">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="sh">"</span><span class="s">3d</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">scatter</span><span class="p">(</span><span class="n">X_colors</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_colors</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">X_colors</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">facecolors</span><span class="o">=</span><span class="n">X_colors</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">set_xlabel</span><span class="p">(</span><span class="sh">"</span><span class="s">PC1</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">set_ylabel</span><span class="p">(</span><span class="sh">"</span><span class="s">PC2</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">set_zlabel</span><span class="p">(</span><span class="sh">"</span><span class="s">PC3</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="n">xaxis</span><span class="p">.</span><span class="nf">set_ticklabels</span><span class="p">([])</span>
+    <span class="n">ax</span><span class="p">.</span><span class="n">yaxis</span><span class="p">.</span><span class="nf">set_ticklabels</span><span class="p">([])</span>
+    <span class="n">ax</span><span class="p">.</span><span class="n">zaxis</span><span class="p">.</span><span class="nf">set_ticklabels</span><span class="p">([])</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">view_init</span><span class="p">(</span><span class="n">azim</span><span class="o">=</span><span class="n">view</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">elev</span><span class="o">=</span><span class="n">view</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">vertical_axis</span><span class="o">=</span><span class="sh">"</span><span class="s">z</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">set_ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">set_zlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">suptitle</span><span class="p">(</span><span class="sh">"</span><span class="s">Colors in PCA space</span><span class="sh">"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/nb/02_color_engineering_medmnist/output_31_0.png" data-zoomable="" width="800px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+
+<p>Interesting, the stretching worked very well! But what about the images? Let’s see.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Convert data back into image space
+</span><span class="n">X_tr_pca</span> <span class="o">=</span> <span class="n">X_tr_pca</span><span class="p">.</span><span class="nf">reshape</span><span class="p">(</span><span class="n">X_tr</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">X_va_pca</span> <span class="o">=</span> <span class="n">X_va_pca</span><span class="p">.</span><span class="nf">reshape</span><span class="p">(</span><span class="n">X_va</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="n">X_te_pca</span> <span class="o">=</span> <span class="n">X_te_pca</span><span class="p">.</span><span class="nf">reshape</span><span class="p">(</span><span class="n">X_te</span><span class="p">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="c1"># Plot dataset
+</span><span class="nf">plot_dataset</span><span class="p">(</span><span class="n">X_tr_pca</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/nb/02_color_engineering_medmnist/output_33_0.png" data-zoomable="" width="800px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+
+<p>That looks interesting as well. Unique colors, e.g. background, nucleus and the thing that surrounds the nucleus all have unique colors. However, our PCA transformation also brought forward an artifact in the images - the cross like color border in the middle of the image. It is unclear where this is coming from, but I assume that it’s due to the dataset manipulation that MedMNIST introduced by downsampling the original dataset.</p>
+
+<h1 id="feature-correlation">Feature correlation</h1>
+
+<p>Before moving on to the next part of our investigation (i.e. testing if these color manipulation help a convolutional neural network to classify the 10 target classes), let’s take a quick look at how these new color values correlate to each other.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Combine all images in one big dataframe
+</span><span class="n">X_tr_all</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">vstack</span><span class="p">([</span><span class="n">X_tr</span><span class="p">.</span><span class="n">T</span><span class="p">,</span> <span class="n">X_tr_gray</span><span class="p">.</span><span class="n">T</span><span class="p">,</span> <span class="n">X_tr_stretch</span><span class="p">.</span><span class="n">T</span><span class="p">,</span> <span class="n">X_tr_pca</span><span class="p">.</span><span class="n">T</span><span class="p">]).</span><span class="n">T</span>
+<span class="n">X_va_all</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">vstack</span><span class="p">([</span><span class="n">X_va</span><span class="p">.</span><span class="n">T</span><span class="p">,</span> <span class="n">X_va_gray</span><span class="p">.</span><span class="n">T</span><span class="p">,</span> <span class="n">X_va_stretch</span><span class="p">.</span><span class="n">T</span><span class="p">,</span> <span class="n">X_va_pca</span><span class="p">.</span><span class="n">T</span><span class="p">]).</span><span class="n">T</span>
+<span class="n">X_te_all</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">vstack</span><span class="p">([</span><span class="n">X_te</span><span class="p">.</span><span class="n">T</span><span class="p">,</span> <span class="n">X_te_gray</span><span class="p">.</span><span class="n">T</span><span class="p">,</span> <span class="n">X_te_stretch</span><span class="p">.</span><span class="n">T</span><span class="p">,</span> <span class="n">X_te_pca</span><span class="p">.</span><span class="n">T</span><span class="p">]).</span><span class="n">T</span>
+
+<span class="c1"># Compute correlation matrix between all color features
+</span><span class="n">corr_all</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">corrcoef</span><span class="p">(</span><span class="n">X_tr_all</span><span class="p">.</span><span class="nf">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">X_tr_all</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]).</span><span class="n">T</span><span class="p">)</span>
+<span class="n">cols</span> <span class="o">=</span> <span class="p">[</span><span class="sh">"</span><span class="s">Red</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Green</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Blue</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Gray</span><span class="sh">"</span><span class="p">,</span>
+        <span class="sh">"</span><span class="s">Stretch1</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Stretch2</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Stretch3</span><span class="sh">"</span><span class="p">,</span>
+        <span class="sh">"</span><span class="s">PC1</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">PC2</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">PC3</span><span class="sh">"</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="nf">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="n">sns</span><span class="p">.</span><span class="nf">heatmap</span><span class="p">(</span>
+    <span class="mi">100</span> <span class="o">*</span> <span class="n">corr_all</span><span class="p">,</span>
+    <span class="n">square</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="n">center</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">annot</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="n">fmt</span><span class="o">=</span><span class="sh">"</span><span class="s">.0f</span><span class="sh">"</span><span class="p">,</span>
+    <span class="n">cbar</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+    <span class="n">xticklabels</span><span class="o">=</span><span class="n">cols</span><span class="p">,</span>
+    <span class="n">yticklabels</span><span class="o">=</span><span class="n">cols</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/nb/02_color_engineering_medmnist/output_36_0.png" data-zoomable="" width="500px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+
+<p>As we can see, many of the new color features correlate highly with the original RGB values (except for the 2nd and 3rd PCA features). So let’s see if any of our color manipulation help with the image classification.</p>
+
+<h1 id="testing-color-manipulations-in-image-classification">Testing color manipulations in image classification</h1>
+
+<p>Let’s see if our color manipulation is helping a convolutional neural network to classify the 8 target classes. To do so, let’s create a ‘smallish’ ResNet model and train it on all 4 versions of our dataset (i.e. original, grayscale, stretched, and PCA).</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># The code for this ResNet architecture was adapted from here:
+# https://towardsdatascience.com/building-a-resnet-in-keras-e8f1322a49ba
+</span><span class="kn">from</span> <span class="n">tensorflow</span> <span class="kn">import</span> <span class="n">Tensor</span>
+<span class="kn">from</span> <span class="n">tensorflow.keras.layers</span> <span class="kn">import</span> <span class="p">(</span><span class="n">Input</span><span class="p">,</span> <span class="n">Conv2D</span><span class="p">,</span> <span class="n">ReLU</span><span class="p">,</span> <span class="n">BatchNormalization</span><span class="p">,</span> <span class="n">Add</span><span class="p">,</span>
+                                     <span class="n">AveragePooling2D</span><span class="p">,</span> <span class="n">Flatten</span><span class="p">,</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">Dropout</span><span class="p">)</span>
+<span class="kn">from</span> <span class="n">tensorflow.keras.models</span> <span class="kn">import</span> <span class="n">Model</span>
+
+<span class="k">def</span> <span class="nf">relu_bn</span><span class="p">(</span><span class="n">inputs</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tensor</span><span class="p">:</span>
+    <span class="n">relu</span> <span class="o">=</span> <span class="nc">ReLU</span><span class="p">()(</span><span class="n">inputs</span><span class="p">)</span>
+    <span class="n">bn</span> <span class="o">=</span> <span class="nc">BatchNormalization</span><span class="p">()(</span><span class="n">relu</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">bn</span>
+
+<span class="k">def</span> <span class="nf">residual_block</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span> <span class="n">downsample</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">filters</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">kernel_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tensor</span><span class="p">:</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="nc">Conv2D</span><span class="p">(</span>
+        <span class="n">kernel_size</span><span class="o">=</span><span class="n">kernel_size</span><span class="p">,</span>
+        <span class="n">strides</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">downsample</span> <span class="k">else</span> <span class="mi">2</span><span class="p">),</span>
+        <span class="n">filters</span><span class="o">=</span><span class="n">filters</span><span class="p">,</span>
+        <span class="n">padding</span><span class="o">=</span><span class="sh">"</span><span class="s">same</span><span class="sh">"</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="nf">relu_bn</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="nc">Conv2D</span><span class="p">(</span><span class="n">kernel_size</span><span class="o">=</span><span class="n">kernel_size</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">filters</span><span class="o">=</span><span class="n">filters</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="sh">"</span><span class="s">same</span><span class="sh">"</span><span class="p">)(</span><span class="n">y</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">downsample</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="nc">Conv2D</span><span class="p">(</span><span class="n">kernel_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">filters</span><span class="o">=</span><span class="n">filters</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="sh">"</span><span class="s">same</span><span class="sh">"</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="nc">Add</span><span class="p">()([</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">])</span>
+    <span class="n">out</span> <span class="o">=</span> <span class="nf">relu_bn</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">out</span>
+
+
+<span class="k">def</span> <span class="nf">create_res_net</span><span class="p">(</span><span class="n">in_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">3</span><span class="p">)):</span>
+
+    <span class="n">inputs</span> <span class="o">=</span> <span class="nc">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="n">in_shape</span><span class="p">)</span>
+    <span class="n">num_filters</span> <span class="o">=</span> <span class="mi">32</span>
+
+    <span class="n">t</span> <span class="o">=</span> <span class="nc">BatchNormalization</span><span class="p">()(</span><span class="n">inputs</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="nc">Conv2D</span><span class="p">(</span><span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">filters</span><span class="o">=</span><span class="n">num_filters</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="sh">"</span><span class="s">same</span><span class="sh">"</span><span class="p">)(</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="nf">relu_bn</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+
+    <span class="n">num_blocks_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">num_blocks_list</span><span class="p">)):</span>
+        <span class="n">num_blocks</span> <span class="o">=</span> <span class="n">num_blocks_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">num_blocks</span><span class="p">):</span>
+            <span class="n">t</span> <span class="o">=</span> <span class="nf">residual_block</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">downsample</span><span class="o">=</span><span class="p">(</span><span class="n">j</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">i</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">),</span> <span class="n">filters</span><span class="o">=</span><span class="n">num_filters</span><span class="p">)</span>
+        <span class="n">num_filters</span> <span class="o">*=</span> <span class="mi">2</span>
+
+    <span class="n">t</span> <span class="o">=</span> <span class="nc">AveragePooling2D</span><span class="p">(</span><span class="mi">4</span><span class="p">)(</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="nc">Flatten</span><span class="p">()(</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="nc">Dense</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="sh">"</span><span class="s">relu</span><span class="sh">"</span><span class="p">)(</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="nc">Dropout</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)(</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">outputs</span> <span class="o">=</span> <span class="nc">Dense</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="sh">"</span><span class="s">softmax</span><span class="sh">"</span><span class="p">)(</span><span class="n">t</span><span class="p">)</span>
+
+    <span class="n">model</span> <span class="o">=</span> <span class="nc">Model</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">outputs</span><span class="p">)</span>
+
+    <span class="n">model</span><span class="p">.</span><span class="nf">compile</span><span class="p">(</span>
+        <span class="n">optimizer</span><span class="o">=</span><span class="sh">"</span><span class="s">adam</span><span class="sh">"</span><span class="p">,</span> <span class="n">loss</span><span class="o">=</span><span class="sh">"</span><span class="s">sparse_categorical_crossentropy</span><span class="sh">"</span><span class="p">,</span> <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="sh">"</span><span class="s">accuracy</span><span class="sh">"</span><span class="p">])</span>
+
+    <span class="k">return</span> <span class="n">model</span>
+
+<span class="k">def</span> <span class="nf">run_resnet</span><span class="p">(</span><span class="n">X_tr</span><span class="p">,</span> <span class="n">y_tr</span><span class="p">,</span> <span class="n">X_va</span><span class="p">,</span> <span class="n">y_va</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">Support function to train ResNet model</span><span class="sh">"""</span>
+
+    <span class="c1"># Create Model
+</span>    <span class="n">model</span> <span class="o">=</span> <span class="nf">create_res_net</span><span class="p">(</span><span class="n">in_shape</span><span class="o">=</span><span class="n">X_tr</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+
+    <span class="c1"># Creates 'EarlyStopping' callback
+</span>    <span class="kn">from</span> <span class="n">tensorflow</span> <span class="kn">import</span> <span class="n">keras</span>
+
+    <span class="n">earlystopping_cb</span> <span class="o">=</span> <span class="n">keras</span><span class="p">.</span><span class="n">callbacks</span><span class="p">.</span><span class="nc">EarlyStopping</span><span class="p">(</span>
+        <span class="n">patience</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">restore_best_weights</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+    <span class="c1"># Train model
+</span>    <span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="nf">fit</span><span class="p">(</span>
+        <span class="n">X_tr</span><span class="p">,</span>
+        <span class="n">y_tr</span><span class="p">,</span>
+        <span class="n">batch_size</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span>
+        <span class="n">epochs</span><span class="o">=</span><span class="n">epochs</span><span class="p">,</span>
+        <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="n">X_va</span><span class="p">,</span> <span class="n">y_va</span><span class="p">),</span>
+        <span class="n">callbacks</span><span class="o">=</span><span class="p">[</span><span class="n">earlystopping_cb</span><span class="p">],</span>
+        <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">model</span><span class="p">,</span> <span class="n">history</span>
+
+<span class="k">def</span> <span class="nf">plot_history</span><span class="p">(</span><span class="n">history</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">Support function to plot model history</span><span class="sh">"""</span>
+
+    <span class="c1"># Plots neural network performance metrics for train and validation
+</span>    <span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="nc">DataFrame</span><span class="p">(</span><span class="n">history</span><span class="p">.</span><span class="n">history</span><span class="p">)</span>
+    <span class="n">results</span><span class="p">[[</span><span class="sh">"</span><span class="s">accuracy</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">val_accuracy</span><span class="sh">"</span><span class="p">]].</span><span class="nf">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">results</span><span class="p">[[</span><span class="sh">"</span><span class="s">loss</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">val_loss</span><span class="sh">"</span><span class="p">]].</span><span class="nf">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">logy</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">plot_classification_report</span><span class="p">(</span><span class="n">X_te</span><span class="p">,</span> <span class="n">y_te</span><span class="p">,</span> <span class="n">model</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">Support function to plot classification report</span><span class="sh">"""</span>
+
+    <span class="c1"># Show classification report
+</span>    <span class="kn">from</span> <span class="n">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span>
+
+    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="nf">predict</span><span class="p">(</span><span class="n">X_te</span><span class="p">).</span><span class="nf">argmax</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="nf">classification_report</span><span class="p">(</span><span class="n">y_te</span><span class="p">.</span><span class="nf">ravel</span><span class="p">(),</span> <span class="n">y_pred</span><span class="p">))</span>
+
+    <span class="c1"># Show confusion matrix
+</span>    <span class="kn">from</span> <span class="n">sklearn.metrics</span> <span class="kn">import</span> <span class="n">ConfusionMatrixDisplay</span>
+
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">7</span><span class="p">))</span>
+    <span class="n">ConfusionMatrixDisplay</span><span class="p">.</span><span class="nf">from_predictions</span><span class="p">(</span>
+        <span class="n">y_te</span><span class="p">.</span><span class="nf">ravel</span><span class="p">(),</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">colorbar</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="sh">"</span><span class="s">inferno_r</span><span class="sh">"</span><span class="p">)</span>
+
+    <span class="kn">from</span> <span class="n">sklearn.metrics</span> <span class="kn">import</span> <span class="n">ConfusionMatrixDisplay</span>
+
+    <span class="n">ConfusionMatrixDisplay</span><span class="p">.</span><span class="nf">from_predictions</span><span class="p">(</span>
+        <span class="n">y_te</span><span class="p">.</span><span class="nf">ravel</span><span class="p">(),</span> <span class="n">y_pred</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="sh">"</span><span class="s">true</span><span class="sh">"</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+        <span class="n">values_format</span><span class="o">=</span><span class="sh">"</span><span class="s">.1f</span><span class="sh">"</span><span class="p">,</span> <span class="n">colorbar</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="sh">"</span><span class="s">inferno_r</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="classification-performance-on-original-data-set">Classification performance on original data set</h2>
+
+<p>Let’s establish a baseline by first training a ResNet model on the original dataset. The following shows the model’s performance (on accuracy and loss) during training.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Train model
+</span><span class="n">model_orig</span><span class="p">,</span> <span class="n">history_orig</span> <span class="o">=</span> <span class="nf">run_resnet</span><span class="p">(</span><span class="n">X_tr</span><span class="p">,</span> <span class="n">y_tr</span><span class="p">,</span> <span class="n">X_va</span><span class="p">,</span> <span class="n">y_va</span><span class="p">)</span>
+
+<span class="c1"># Show model performance during training
+</span><span class="nf">plot_history</span><span class="p">(</span><span class="n">history_orig</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/nb/02_color_engineering_medmnist/output_41_1.png" data-zoomable="" width="800px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+
+<p>Now that the model is trained, let’s see how well it’s capable in detecting the 8 target classes, by looking at the corresponding confusion matrices. On the left the confusion matrix shows the number of correctly/falsely identified samples, while on the right it shows the proportional values per target class.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Evaluate Model
+</span><span class="n">loss_orig_tr</span><span class="p">,</span> <span class="n">acc_orig_tr</span> <span class="o">=</span> <span class="n">model_orig</span><span class="p">.</span><span class="nf">evaluate</span><span class="p">(</span><span class="n">X_tr</span><span class="p">,</span> <span class="n">y_tr</span><span class="p">)</span>
+<span class="n">loss_orig_va</span><span class="p">,</span> <span class="n">acc_orig_va</span> <span class="o">=</span> <span class="n">model_orig</span><span class="p">.</span><span class="nf">evaluate</span><span class="p">(</span><span class="n">X_va</span><span class="p">,</span> <span class="n">y_va</span><span class="p">)</span>
+<span class="n">loss_orig_te</span><span class="p">,</span> <span class="n">acc_orig_te</span> <span class="o">=</span> <span class="n">model_orig</span><span class="p">.</span><span class="nf">evaluate</span><span class="p">(</span><span class="n">X_te</span><span class="p">,</span> <span class="n">y_te</span><span class="p">)</span>
+
+<span class="c1"># Report classification report and confusion matrix
+</span><span class="nf">plot_classification_report</span><span class="p">(</span><span class="n">X_te</span><span class="p">,</span> <span class="n">y_te</span><span class="p">,</span> <span class="n">model_orig</span><span class="p">)</span>
+</code></pre></div></div>
+
+<pre><code class="language-code">Train score: loss = 0.0537 - accuracy = 0.9817
+Valid score: loss = 0.1816 - accuracy = 0.9492
+Test score:  loss = 0.1952 - accuracy = 0.9421
+</code></pre>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/nb/02_color_engineering_medmnist/output_43_1.png" data-zoomable="" width="800px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+
+<h2 id="classification-performance-on-grayscale-data-set">Classification performance on grayscale data set</h2>
+
+<p>Now let’s do the same for the gray scale transformed images. How does the model performance during training look like?</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Train model
+</span><span class="n">model_gray</span><span class="p">,</span> <span class="n">history_gray</span> <span class="o">=</span> <span class="nf">run_resnet</span><span class="p">(</span><span class="n">X_tr_gray</span><span class="p">,</span> <span class="n">y_tr</span><span class="p">,</span> <span class="n">X_va_gray</span><span class="p">,</span> <span class="n">y_va</span><span class="p">)</span>
+
+<span class="c1"># Show model performance during training
+</span><span class="nf">plot_history</span><span class="p">(</span><span class="n">history_gray</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/nb/02_color_engineering_medmnist/output_45_0.png" data-zoomable="" width="800px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+
+<p>And what about the confusion matrices?</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Evaluate Model
+</span><span class="n">loss_gray_tr</span><span class="p">,</span> <span class="n">acc_gray_tr</span> <span class="o">=</span> <span class="n">model_gray</span><span class="p">.</span><span class="nf">evaluate</span><span class="p">(</span><span class="n">X_tr_gray</span><span class="p">,</span> <span class="n">y_tr</span><span class="p">)</span>
+<span class="n">loss_gray_va</span><span class="p">,</span> <span class="n">acc_gray_va</span> <span class="o">=</span> <span class="n">model_gray</span><span class="p">.</span><span class="nf">evaluate</span><span class="p">(</span><span class="n">X_va_gray</span><span class="p">,</span> <span class="n">y_va</span><span class="p">)</span>
+<span class="n">loss_gray_te</span><span class="p">,</span> <span class="n">acc_gray_te</span> <span class="o">=</span> <span class="n">model_gray</span><span class="p">.</span><span class="nf">evaluate</span><span class="p">(</span><span class="n">X_te_gray</span><span class="p">,</span> <span class="n">y_te</span><span class="p">)</span>
+
+<span class="c1"># Report classification report and confusion matrix
+</span><span class="nf">plot_classification_report</span><span class="p">(</span><span class="n">X_te_gray</span><span class="p">,</span> <span class="n">y_te</span><span class="p">,</span> <span class="n">model_gray</span><span class="p">)</span>
+</code></pre></div></div>
+
+<pre><code class="language-code">Train score: loss = 0.1118 - accuracy = 0.9619
+Valid score: loss = 0.2255 - accuracy = 0.9287
+Test score:  loss = 0.2407 - accuracy = 0.9220
+</code></pre>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/nb/02_color_engineering_medmnist/output_47_1.png" data-zoomable="" width="800px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+
+<h2 id="classification-performance-on-realigned-and-stretched-data-set">Classification performance on realigned and stretched data set</h2>
+
+<p>Now let’s do the same for the realigned and stretched images. How does the model performance during training look like?</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Train model
+</span><span class="n">model_stretch</span><span class="p">,</span> <span class="n">history_stretch</span> <span class="o">=</span> <span class="nf">run_resnet</span><span class="p">(</span><span class="n">X_tr_stretch</span><span class="p">,</span> <span class="n">y_tr</span><span class="p">,</span> <span class="n">X_va_stretch</span><span class="p">,</span> <span class="n">y_va</span><span class="p">)</span>
+
+<span class="c1"># Show model performance during training
+</span><span class="nf">plot_history</span><span class="p">(</span><span class="n">history_stretch</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/nb/02_color_engineering_medmnist/output_49_0.png" data-zoomable="" width="800px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+
+<p>And what about the confusion matrices?</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Evaluate Model
+</span><span class="n">loss_stretch_tr</span><span class="p">,</span> <span class="n">acc_stretch_tr</span> <span class="o">=</span> <span class="n">model_stretch</span><span class="p">.</span><span class="nf">evaluate</span><span class="p">(</span><span class="n">X_tr_stretch</span><span class="p">,</span> <span class="n">y_tr</span><span class="p">)</span>
+<span class="n">loss_stretch_va</span><span class="p">,</span> <span class="n">acc_stretch_va</span> <span class="o">=</span> <span class="n">model_stretch</span><span class="p">.</span><span class="nf">evaluate</span><span class="p">(</span><span class="n">X_va_stretch</span><span class="p">,</span> <span class="n">y_va</span><span class="p">)</span>
+<span class="n">loss_stretch_te</span><span class="p">,</span> <span class="n">acc_stretch_te</span> <span class="o">=</span> <span class="n">model_stretch</span><span class="p">.</span><span class="nf">evaluate</span><span class="p">(</span><span class="n">X_te_stretch</span><span class="p">,</span> <span class="n">y_te</span><span class="p">)</span>
+
+<span class="c1"># Report classification report and confusion matrix
+</span><span class="nf">plot_classification_report</span><span class="p">(</span><span class="n">X_te_stretch</span><span class="p">,</span> <span class="n">y_te</span><span class="p">,</span> <span class="n">model_stretch</span><span class="p">)</span>
+</code></pre></div></div>
+
+<pre><code class="language-code">Train score: loss = 0.0229 - accuracy = 0.9921
+Valid score: loss = 0.1672 - accuracy = 0.9533
+Test score:  loss = 0.1975 - accuracy = 0.9491
+</code></pre>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/nb/02_color_engineering_medmnist/output_51_1.png" data-zoomable="" width="800px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+
+<h2 id="classification-performance-on-pca-transformed-data-set">Classification performance on PCA transformed data set</h2>
+
+<p>Now let’s do the same for the PCA transformed images. How does the model performance during training look like?</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Train model
+</span><span class="n">model_pca</span><span class="p">,</span> <span class="n">history_pca</span> <span class="o">=</span> <span class="nf">run_resnet</span><span class="p">(</span><span class="n">X_tr_pca</span><span class="p">,</span> <span class="n">y_tr</span><span class="p">,</span> <span class="n">X_va_pca</span><span class="p">,</span> <span class="n">y_va</span><span class="p">)</span>
+
+<span class="c1"># Show model performance during training
+</span><span class="nf">plot_history</span><span class="p">(</span><span class="n">history_pca</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/nb/02_color_engineering_medmnist/output_53_0.png" data-zoomable="" width="800px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+
+<p>And what about the confusion matrices?</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Evaluate Model
+</span><span class="n">loss_pca_tr</span><span class="p">,</span> <span class="n">acc_pca_tr</span> <span class="o">=</span> <span class="n">model_pca</span><span class="p">.</span><span class="nf">evaluate</span><span class="p">(</span><span class="n">X_tr_pca</span><span class="p">,</span> <span class="n">y_tr</span><span class="p">)</span>
+<span class="n">loss_pca_va</span><span class="p">,</span> <span class="n">acc_pca_va</span> <span class="o">=</span> <span class="n">model_pca</span><span class="p">.</span><span class="nf">evaluate</span><span class="p">(</span><span class="n">X_va_pca</span><span class="p">,</span> <span class="n">y_va</span><span class="p">)</span>
+<span class="n">loss_pca_te</span><span class="p">,</span> <span class="n">acc_pca_te</span> <span class="o">=</span> <span class="n">model_pca</span><span class="p">.</span><span class="nf">evaluate</span><span class="p">(</span><span class="n">X_te_pca</span><span class="p">,</span> <span class="n">y_te</span><span class="p">)</span>
+
+<span class="c1"># Report classification report and confusion matrix
+</span><span class="nf">plot_classification_report</span><span class="p">(</span><span class="n">X_te_pca</span><span class="p">,</span> <span class="n">y_te</span><span class="p">,</span> <span class="n">model_pca</span><span class="p">)</span>
+</code></pre></div></div>
+
+<pre><code class="language-code">Train score: loss = 0.0289 - accuracy = 0.9918
+Valid score: loss = 0.1459 - accuracy = 0.9509
+Test score:  loss = 0.1898 - accuracy = 0.9448
+</code></pre>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/nb/02_color_engineering_medmnist/output_55_1.png" data-zoomable="" width="800px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+
+<h1 id="model-investigation">Model investigation</h1>
+
+<p>Now that we trained all of these individual models, let’s see how they relate and how they differ. First, let’s compare in what way these different models predict the same values by plotting their individual predictions for the test set next to each others.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Compute model specific predictions
+</span><span class="n">y_pred_orig</span> <span class="o">=</span> <span class="n">model_orig</span><span class="p">.</span><span class="nf">predict</span><span class="p">(</span><span class="n">X_te</span><span class="p">).</span><span class="nf">argmax</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y_pred_gray</span> <span class="o">=</span> <span class="n">model_gray</span><span class="p">.</span><span class="nf">predict</span><span class="p">(</span><span class="n">X_te_gray</span><span class="p">).</span><span class="nf">argmax</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y_pred_stretch</span> <span class="o">=</span> <span class="n">model_stretch</span><span class="p">.</span><span class="nf">predict</span><span class="p">(</span><span class="n">X_te_stretch</span><span class="p">).</span><span class="nf">argmax</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y_pred_pca</span> <span class="o">=</span> <span class="n">model_pca</span><span class="p">.</span><span class="nf">predict</span><span class="p">(</span><span class="n">X_te_pca</span><span class="p">).</span><span class="nf">argmax</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Aggregate all model predictions
+</span><span class="n">target</span> <span class="o">=</span> <span class="n">y_te</span><span class="p">.</span><span class="nf">ravel</span><span class="p">()</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="n">y_pred_orig</span><span class="p">,</span> <span class="n">y_pred_gray</span><span class="p">,</span> <span class="n">y_pred_stretch</span><span class="p">,</span> <span class="n">y_pred_pca</span><span class="p">])[</span>
+    <span class="p">:,</span> <span class="n">np</span><span class="p">.</span><span class="nf">argsort</span><span class="p">(</span><span class="n">target</span><span class="p">)]</span>
+
+<span class="c1"># Plot model individual predictions
+</span><span class="n">plt</span><span class="p">.</span><span class="nf">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="n">predictions</span><span class="p">,</span> <span class="n">aspect</span><span class="o">=</span><span class="sh">"</span><span class="s">auto</span><span class="sh">"</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="sh">"</span><span class="s">nearest</span><span class="sh">"</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="sh">"</span><span class="s">rainbow</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">xlabel</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Predictions for all </span><span class="si">{</span><span class="n">predictions</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s"> test samples</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">ylabel</span><span class="p">(</span><span class="sh">"</span><span class="s">Model</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">yticks</span><span class="p">(</span><span class="n">ticks</span><span class="o">=</span><span class="nf">range</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span> <span class="n">labels</span><span class="o">=</span><span class="p">[</span><span class="sh">"</span><span class="s">Orig</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Gray</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Stretched</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">PCA</span><span class="sh">"</span><span class="p">]);</span>
+</code></pre></div></div>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/nb/02_color_engineering_medmnist/output_57_0.png" data-zoomable="" width="800px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+
+<p>What we can see is that, except for the original dataset, none of the other models make mistakes in the 8th target class (here in red). So our manipulations seem to have been useful. And amongs the three approaches, the “realigned and stretched” dataset seems perform the best. To support this claim, let’s take a look at the test accuracies of our four models.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Collect accuracies
+</span><span class="n">accs_te</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="n">acc_orig_te</span><span class="p">,</span> <span class="n">acc_gray_te</span><span class="p">,</span> <span class="n">acc_stretch_te</span><span class="p">,</span> <span class="n">acc_pca_te</span><span class="p">])</span> <span class="o">*</span> <span class="mi">100</span>
+
+<span class="c1"># Plot accuracies
+</span><span class="n">plt</span><span class="p">.</span><span class="nf">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="nf">title</span><span class="p">(</span><span class="sh">"</span><span class="s">Test accuracy for our four models</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">bar</span><span class="p">([</span><span class="sh">"</span><span class="s">Orig</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Gray</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Stretched</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">PCA</span><span class="sh">"</span><span class="p">],</span> <span class="n">accs_te</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">hlines</span><span class="p">(</span><span class="n">accs_te</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">3.4</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="sh">"</span><span class="s">black</span><span class="sh">"</span><span class="p">,</span> <span class="n">linestyles</span><span class="o">=</span><span class="sh">"</span><span class="s">dotted</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">ylim</span><span class="p">(</span><span class="mi">90</span><span class="p">,</span> <span class="mi">98</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/nb/02_color_engineering_medmnist/output_59_0.png" data-zoomable="" width="600px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+
+<h1 id="model-stacking">Model stacking</h1>
+
+<p>Seeing that our 4 models all perform slightly different, let’s try to go one step further and train a “meta” model that uses the predictions of our 4 models as input.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Compute prediction probabilities for all models and data sets
+</span><span class="n">y_prob_tr_orig</span> <span class="o">=</span> <span class="n">model_orig</span><span class="p">.</span><span class="nf">predict</span><span class="p">(</span><span class="n">X_tr</span><span class="p">)</span>
+<span class="n">y_prob_tr_gray</span> <span class="o">=</span> <span class="n">model_gray</span><span class="p">.</span><span class="nf">predict</span><span class="p">(</span><span class="n">X_tr_gray</span><span class="p">)</span>
+<span class="n">y_prob_tr_stretch</span> <span class="o">=</span> <span class="n">model_stretch</span><span class="p">.</span><span class="nf">predict</span><span class="p">(</span><span class="n">X_tr_stretch</span><span class="p">)</span>
+<span class="n">y_prob_tr_pca</span> <span class="o">=</span> <span class="n">model_pca</span><span class="p">.</span><span class="nf">predict</span><span class="p">(</span><span class="n">X_tr_pca</span><span class="p">)</span>
+
+<span class="n">y_prob_va_orig</span> <span class="o">=</span> <span class="n">model_orig</span><span class="p">.</span><span class="nf">predict</span><span class="p">(</span><span class="n">X_va</span><span class="p">)</span>
+<span class="n">y_prob_va_gray</span> <span class="o">=</span> <span class="n">model_gray</span><span class="p">.</span><span class="nf">predict</span><span class="p">(</span><span class="n">X_va_gray</span><span class="p">)</span>
+<span class="n">y_prob_va_stretch</span> <span class="o">=</span> <span class="n">model_stretch</span><span class="p">.</span><span class="nf">predict</span><span class="p">(</span><span class="n">X_va_stretch</span><span class="p">)</span>
+<span class="n">y_prob_va_pca</span> <span class="o">=</span> <span class="n">model_pca</span><span class="p">.</span><span class="nf">predict</span><span class="p">(</span><span class="n">X_va_pca</span><span class="p">)</span>
+
+<span class="n">y_prob_te_orig</span> <span class="o">=</span> <span class="n">model_orig</span><span class="p">.</span><span class="nf">predict</span><span class="p">(</span><span class="n">X_te</span><span class="p">)</span>
+<span class="n">y_prob_te_gray</span> <span class="o">=</span> <span class="n">model_gray</span><span class="p">.</span><span class="nf">predict</span><span class="p">(</span><span class="n">X_te_gray</span><span class="p">)</span>
+<span class="n">y_prob_te_stretch</span> <span class="o">=</span> <span class="n">model_stretch</span><span class="p">.</span><span class="nf">predict</span><span class="p">(</span><span class="n">X_te_stretch</span><span class="p">)</span>
+<span class="n">y_prob_te_pca</span> <span class="o">=</span> <span class="n">model_pca</span><span class="p">.</span><span class="nf">predict</span><span class="p">(</span><span class="n">X_te_pca</span><span class="p">)</span>
+
+<span class="c1"># Combine prediction probabilities into meta data sets
+</span><span class="n">y_prob_tr</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">concatenate</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">y_prob_tr_orig</span><span class="p">,</span> <span class="n">y_prob_tr_gray</span><span class="p">,</span> <span class="n">y_prob_tr_stretch</span><span class="p">,</span> <span class="n">y_prob_tr_pca</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y_prob_va</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">concatenate</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">y_prob_va_orig</span><span class="p">,</span> <span class="n">y_prob_va_gray</span><span class="p">,</span> <span class="n">y_prob_va_stretch</span><span class="p">,</span> <span class="n">y_prob_va_pca</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">y_prob_te</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">concatenate</span><span class="p">(</span>
+    <span class="p">[</span><span class="n">y_prob_te_orig</span><span class="p">,</span> <span class="n">y_prob_te_gray</span><span class="p">,</span> <span class="n">y_prob_te_stretch</span><span class="p">,</span> <span class="n">y_prob_te_pca</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Combine training and validation dataset
+</span><span class="n">y_prob_train</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">concatenate</span><span class="p">([</span><span class="n">y_prob_tr</span><span class="p">,</span> <span class="n">y_prob_va</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">y_train</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">concatenate</span><span class="p">([</span><span class="n">y_tr</span><span class="p">,</span> <span class="n">y_va</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">).</span><span class="nf">ravel</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>There are many different classification models to choose from, but to keep it short and compact, let’s quickly train a multi-layer perceptron classifier and compare it’s score to the other four models.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">sklearn.neural_network</span> <span class="kn">import</span> <span class="n">MLPClassifier</span>
+
+<span class="c1"># Create MLP classifier
+</span><span class="n">clf</span> <span class="o">=</span> <span class="nc">MLPClassifier</span><span class="p">(</span>
+    <span class="n">hidden_layer_sizes</span><span class="o">=</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span> <span class="n">activation</span><span class="o">=</span><span class="sh">"</span><span class="s">relu</span><span class="sh">"</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="sh">"</span><span class="s">adam</span><span class="sh">"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.42</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">120</span><span class="p">,</span>
+    <span class="n">learning_rate</span><span class="o">=</span><span class="sh">"</span><span class="s">adaptive</span><span class="sh">"</span><span class="p">,</span> <span class="n">learning_rate_init</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span>
+    <span class="n">early_stopping</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">validation_fraction</span><span class="o">=</span><span class="mf">0.15</span><span class="p">)</span>
+
+<span class="c1"># Train model
+</span><span class="n">clf</span><span class="p">.</span><span class="nf">fit</span><span class="p">(</span><span class="n">y_prob_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Compute prediction accuracy of meta classifier
+</span><span class="n">acc_meta_te</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">mean</span><span class="p">(</span><span class="n">clf</span><span class="p">.</span><span class="nf">predict</span><span class="p">(</span><span class="n">y_prob_te</span><span class="p">)</span> <span class="o">==</span> <span class="n">y_te</span><span class="p">.</span><span class="nf">ravel</span><span class="p">())</span>
+
+<span class="c1"># Collect accuracies
+</span><span class="n">accs_te</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="n">acc_orig_te</span><span class="p">,</span> <span class="n">acc_gray_te</span><span class="p">,</span> <span class="n">acc_stretch_te</span><span class="p">,</span> <span class="n">acc_pca_te</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="n">accs_meta</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">acc_meta_te</span><span class="p">])</span> <span class="o">*</span> <span class="mi">100</span>
+
+<span class="c1"># Plot accuracies
+</span><span class="n">plt</span><span class="p">.</span><span class="nf">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="p">.</span><span class="nf">title</span><span class="p">(</span><span class="sh">"</span><span class="s">Test accuracy for all five models</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">bar</span><span class="p">([</span><span class="sh">"</span><span class="s">Orig</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Gray</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Stretched</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">PCA</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Meta</span><span class="sh">"</span><span class="p">],</span> <span class="n">accs_te</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">bar</span><span class="p">([</span><span class="sh">"</span><span class="s">Orig</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Gray</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Stretched</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">PCA</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">Meta</span><span class="sh">"</span><span class="p">],</span> <span class="n">accs_meta</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">hlines</span><span class="p">(</span><span class="n">accs_te</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">-</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">4.4</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="sh">"</span><span class="s">black</span><span class="sh">"</span><span class="p">,</span> <span class="n">linestyles</span><span class="o">=</span><span class="sh">"</span><span class="s">dotted</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">ylim</span><span class="p">(</span><span class="mi">90</span><span class="p">,</span> <span class="mi">98</span><span class="p">);</span>
+</code></pre></div></div>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/nb/02_color_engineering_medmnist/output_63_0.png" data-zoomable="" width="750px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+
+<p>Awesome! It worked! Training four different models on the original and three color transformed data sets, and then using these prediction probabilities to train a new meta classifier helped us to improve the initial prediction accuracy from 94% up to 96.4%!</p>
+
+  </article>
+
+  
+
+</div>
+
+    </div>
+
+    <!-- Footer -->
+
+    
+<footer class="fixed-bottom">
+  <div class="container mt-0">
+    © Copyright 2025 Michael P. Notter.
+    Powered by <a href="http://jekyllrb.com/" target="_blank" rel="noopener noreferrer">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" target="_blank" rel="noopener noreferrer">al-folio</a> theme.
+
+    
+    
+  </div>
+</footer>
+
+
+
+  </body>
+
+  <!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+
+  <!-- Bootsrap & MDB scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.4/umd/popper.min.js" integrity="sha512-eUQ9hGdLjBjY3F41CScH3UX+4JDSI9zXeroz7hJ+RteoCaY+GP/LDoM8AO+Pt+DRFw3nXqsjh9Zsts8hnYv8/A==" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha512-M5KW3ztuIICmVIhjSqXe01oV2bpe248gOxqmlcYrEzAvws7Pw3z6BK0iGbrwvdrUQUhi3eXgtxp5I8PDo9YfjQ==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js" integrity="sha512-Mug9KHKmroQFMLm93zGrjhibM2z2Obg9l6qFG2qKjXEXkMp/VDkI4uju9m4QKPjWSwQ6O2qzZEnJDEeCw0Blcw==" crossorigin="anonymous"></script>
+
+  
+<!-- Mansory & imagesLoaded -->
+<script defer src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script defer src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+<script defer src="/assets/js/mansory.js" type="text/javascript"></script>
+
+
+  
+
+
+<!-- Medium Zoom JS -->
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+<script src="/assets/js/zoom.js"></script>
+
+
+<!-- Load Common JS -->
+<script src="/assets/js/common.js"></script>
+
+  
+<!-- MathJax -->
+<script type="text/javascript">
+  window.MathJax = {
+    tex: {
+      tags: 'ams'
+    }
+  };
+</script>
+<script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js"></script>
+<script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+
+
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-126030922-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+
+  gtag('config', 'UA-126030922-1');
+</script>
+
+
+
+
+
+
+</html>

@@ -2,7 +2,7 @@
 <html lang="en">
 
   <head>
-    <meta http-equiv="refresh" content="3; url=https://miykael.github.io/" />
+    
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,7 +12,7 @@
   Michael P. Notter
 
 
-  | Page not found
+  | The fMRIflows logo
 
 </title>
 <meta name="description" content="Personal homepage of Michael P. Notter.
@@ -38,7 +38,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍💻</text></svg>">
 
 <link rel="stylesheet" href="/assets/css/main.css">
-<link rel="canonical" href="https://miykael.github.io/404.html">
+<link rel="canonical" href="https://miykael.github.io/blog/2019/fmriflows_logo/">
 
 
 <!-- Dark Mode -->
@@ -80,7 +80,7 @@
           </li>
           
           <!-- Blog -->
-          <li class="nav-item ">
+          <li class="nav-item active">
             <a class="nav-link" href="/blog/">
               Blog
               
@@ -183,17 +183,113 @@
     <!-- Content -->
 
     <div class="container mt-5">
-      <div class="post">
+      
+
+
+
+
+
+<div class="post">
 
   <header class="post-header">
-    <h1 class="post-title">Page not found</h1>
-    <p class="post-description">Looks like there has been a mistake. Nothing exists here.</p>
+    <h1 class="post-title">The fMRIflows logo</h1>
+    <p class="post-meta">October 29, 2019</p>
+    <p class="post-tags">
+      <a href="/blog/2019"> <i class="fas fa-calendar fa-sm"></i> 2019 </a>
+      
+
+      
+
+    </p>
   </header>
 
-  <article>
-    <p>You will be redirected to the main page within 3 seconds. If not redirected, please click <a href="https://miykael.github.io/">here</a>.</p>
+  <article class="post-content">
+    <h2 id="the-parcellation">The parcellation</h2>
+
+<p>While working on my <a href="https://github.com/miykael/parcellation_fragmenter" target="_blank" rel="noopener noreferrer">parcellation fragmenter toolbox</a>, I realized that this type of surface mesh on the human brain looks rather appealing. As a quick recap, the parcellation fragmenter allows you to take the cortical surface mesh (usually acquired with Freesurfer’s <code class="language-plaintext highlighter-rouge">recon-all</code> routine) and subdivide it into N-equal sized tiles.</p>
+
+<p>The trick behind this is rather smooth, using the surface mesh inflated to a sphere, we use K-mean clustering to equally tile the surface of the spheres into N regions. These regional labels can then be preserved when the surface mesh is brought back onto the cortex.</p>
+
+<p>The following figure shows how this parcellation is done with increasing N (from left to right: 16, 64, 256, 1024, 4096) and from top to bottom, how it looks like on the sphere, inflated cortical and actual cortical surface mesh.</p>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/img/blog_fmriflows_logo_collage.png" data-zoomable="" width="600px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px; background-color: #fff"></p>
+
+<p><br></p>
+
+<p>Beautiful, isn’t it? I had to share it!</p>
+
+<p><br></p>
+
+<div class="jekyll-twitter-plugin">
+<blockquote class="twitter-tweet">
+<p lang="en" dir="ltr">Here is something pretty! It was created with the new parcellation fragmenter (<a href="https://t.co/9VLCpr336Y" target="_blank" rel="noopener noreferrer">https://t.co/9VLCpr336Y</a>), developed by Kristian Eschenburg, <a href="https://twitter.com/kako_toro?ref_src=twsrc%5Etfw" target="_blank" rel="noopener noreferrer">@kako_toro</a>, Amanda Sidwell &amp; me during the <a href="https://twitter.com/hashtag/NHW18?src=hash&amp;ref_src=twsrc%5Etfw" target="_blank" rel="noopener noreferrer">#NHW18</a>. Thank's to <a href="https://twitter.com/hashtag/nilearn?src=hash&amp;ref_src=twsrc%5Etfw" target="_blank" rel="noopener noreferrer">#nilearn</a> &amp; <a href="https://twitter.com/hashtag/nibabel?src=hash&amp;ref_src=twsrc%5Etfw" target="_blank" rel="noopener noreferrer">#nibabel</a> creating this toolbox was straightforward and a lot of fun! <a href="https://t.co/LdqTCMSyrJ" target="_blank" rel="noopener noreferrer">pic.twitter.com/LdqTCMSyrJ</a></p>— Michael Notter (@miyka_el) <a href="https://twitter.com/miyka_el/status/1028027334245285889?ref_src=twsrc%5Etfw" target="_blank" rel="noopener noreferrer">August 10, 2018</a>
+</blockquote>
+<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</div>
+
+<h2 id="the-exploration">The exploration</h2>
+
+<p>After these appealing figures, I realized that I could use something like this as a logo for my newly developed neuroimaging toolbox, called <a href="https://github.com/miykael/fmriflows" target="_blank" rel="noopener noreferrer">fMRIflows</a>. I therefore went ahead and created multiple different visualizations.</p>
+
+<p>First, I explored different starting points for the color gradient.</p>
+
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        <img class="img-fluid rounded z-depth-1" src="/assets/img/blog_fmriflows_logo_gradient1.png" data-zoomable="" style="padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; background-color: #fff">
+    </div>
+    <div class="col-sm mt-3 mt-md-0">
+        <img class="img-fluid rounded z-depth-1" src="/assets/img/blog_fmriflows_logo_gradient2.png" data-zoomable="" style="padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; background-color: #fff">
+    </div>
+    <div class="col-sm mt-3 mt-md-0">
+        <img class="img-fluid rounded z-depth-1" src="/assets/img/blog_fmriflows_logo_gradient3.png" data-zoomable="">
+    </div>
+</div>
+
+<p><br></p>
+
+<p>I then wrote a little script that slowly shifts the gradient coloring to give the impression of a constant flow. To better explore which colormap to use, I created a few examples.</p>
+
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        <img class="img-fluid rounded z-depth-1" src="/assets/img/blog_fmriflows_logo_color1.gif" data-zoomable="" style="padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; background-color: #fff">
+    </div>
+    <div class="col-sm mt-3 mt-md-0">
+        <img class="img-fluid rounded z-depth-1" src="/assets/img/blog_fmriflows_logo_color2.gif" data-zoomable="" style="padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; background-color: #fff">
+    </div>
+    <div class="col-sm mt-3 mt-md-0">
+        <img class="img-fluid rounded z-depth-1" src="/assets/img/blog_fmriflows_logo_color3.gif" data-zoomable="" style="padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; background-color: #fff">
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        <img class="img-fluid rounded z-depth-1" src="/assets/img/blog_fmriflows_logo_color4.gif" data-zoomable="" style="padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; background-color: #fff">
+    </div>
+    <div class="col-sm mt-3 mt-md-0">
+        <img class="img-fluid rounded z-depth-1" src="/assets/img/blog_fmriflows_logo_color5.gif" data-zoomable="" style="padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; background-color: #fff">
+    </div>
+    <div class="col-sm mt-3 mt-md-0">
+        <img class="img-fluid rounded z-depth-1" src="/assets/img/blog_fmriflows_logo_color6.gif" data-zoomable="" style="padding-top: 10px; padding-right: 10px; padding-bottom: 10px; padding-left: 10px; background-color: #fff">
+    </div>
+</div>
+
+<p><br></p>
+
+<p>Personally, I prefer the <code class="language-plaintext highlighter-rouge">Spectral</code> colormap, and so I decided to use the last animation.</p>
+
+<h2 id="the-logo">The logo</h2>
+
+<p>And so, together with the help of my friend <a href="https://github.com/ofgulban" target="_blank" rel="noopener noreferrer">Faruk</a>, we created the fMRIflows logo…</p>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/img/blog_fmriflows_logo.png" data-zoomable="" width="600px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+
+<p>.. and the corresponding animation!</p>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/img/blog_fmriflows_logo.gif" data-zoomable="" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px; background-color: #fff"></p>
 
   </article>
+
+  
 
 </div>
 

@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>
+
+  Michael P. Notter
+
+
+  | Getting Started with Machine Learning - Classification in Scikit-learn
+
+</title>
+<meta name="description" content="Personal homepage of Michael P. Notter.
+">
+
+<!-- Open Graph -->
+
+
+<!-- Bootstrap & MDB -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha512-MoRNloxbStBcD8z3M/2BmnT+rg4IsMxPkXaGh2zD6LGNNFE80W3onsAhRcMAMrSoyWL9xD7Ert0men7vR8LUZg==" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" integrity="sha512-RO38pBRxYH3SoOprtPTD86JFOclM51/XTIdEPh5j8sj4tp8jmQIx26twG52UaLi//hQldfrh7e51WzP9wuP32Q==" crossorigin="anonymous" />
+
+<!-- Fonts & Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"  integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css" integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons">
+
+<!-- Code Syntax Highlighting -->
+<link rel="stylesheet" href="https://gitcdn.link/repo/jwarby/jekyll-pygments-themes/master/monokai.css" />
+
+<!-- Styles -->
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍💻</text></svg>">
+
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="canonical" href="https://miykael.github.io/blog/2023/01_scikit_simple/">
+
+
+<!-- Dark Mode -->
+<script src="/assets/js/theme.js"></script>
+<script src="/assets/js/dark_mode.js"></script>
+
+
+  </head>
+
+  <body class="fixed-top-nav ">
+
+    <!-- Header -->
+
+    <header>
+
+    <!-- Nav Bar -->
+    <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top">
+    <div class="container">
+      
+      <a class="navbar-brand title font-weight-lighter" href="https://miykael.github.io/">
+       <span class="font-weight-bold">Michael</span> P.  Notter
+      </a>
+      
+      <!-- Navbar Toggle -->
+      <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar top-bar"></span>
+        <span class="icon-bar middle-bar"></span>
+        <span class="icon-bar bottom-bar"></span>
+      </button>
+      <div class="collapse navbar-collapse text-right" id="navbarNav">
+        <ul class="navbar-nav ml-auto flex-nowrap">
+          <!-- About -->
+          <li class="nav-item ">
+            <a class="nav-link" href="/">
+              About
+              
+            </a>
+          </li>
+          
+          <!-- Blog -->
+          <li class="nav-item active">
+            <a class="nav-link" href="/blog/">
+              Blog
+              
+            </a>
+          </li>
+          
+          <!-- Other pages -->
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/background/">
+                Background
+                
+              </a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/projects/">
+                Projects
+                
+              </a>
+          </li>
+          
+          
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/publications/">
+                Publications
+                
+              </a>
+          </li>
+          
+          
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/teaching/">
+                Teaching
+                
+              </a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+            <div class="toggle-container">
+              <a id="light-toggle">
+                  <i class="fas fa-moon"></i>
+                  <i class="fas fa-sun"></i>
+              </a>
+            </div>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+    <!-- Content -->
+
+    <div class="container mt-5">
+      
+
+
+
+
+
+<div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Getting Started with Machine Learning - Classification in Scikit-learn</h1>
+    <p class="post-meta">October 23, 2023</p>
+    <p class="post-tags">
+      <a href="/blog/2023"> <i class="fas fa-calendar fa-sm"></i> 2023 </a>
+      
+
+      
+
+    </p>
+  </header>
+
+  <article class="post-content">
+    <p>This post is part of a comprehensive machine learning series that takes you from basic classification to advanced neural networks. Throughout these tutorials, you’ll learn machine learning fundamentals using hands-on experience with real-world datasets and modern ML tools.</p>
+
+<p>Have you ever wondered how to get started with machine learning? This series of posts will guide you through practical implementations using two of Python’s most popular frameworks: Scikit-learn and TensorFlow. Whether you’re a beginner looking to understand the basics or an experienced developer wanting to refresh your knowledge, we’ll progress from basic classification tasks to more advanced regression problems.</p>
+
+<p>The series consists of four parts:</p>
+
+<ol>
+  <li>
+<strong><a href="/blog/2023/01_scikit_simple">Getting Started with Classification using Scikit-learn</a></strong> (You are here)<br>Introduction to machine learning basics using the MNIST dataset</li>
+  <li>
+<strong><a href="/blog/2023/02_tensorflow_simple">Basic Neural Networks with TensorFlow</a></strong> (Part 2)<br>Building your first neural network for image classification</li>
+  <li>
+<strong><a href="/blog/2023/03_scikit_advanced">Advanced Machine Learning with Scikit-learn</a></strong> (Part 3)<br>Exploring complex regression problems and model optimization</li>
+  <li>
+<strong><a href="/blog/2023/04_tensorflow_advanced">Advanced Neural Networks with TensorFlow</a></strong> (Part 4)<br>Implementing sophisticated neural network architectures</li>
+</ol>
+
+<h3 id="why-these-tools">Why These Tools?</h3>
+
+<p><a href="https://scikit-learn.org/stable/" target="_blank" rel="noopener noreferrer">Scikit-learn</a> is Python’s most popular machine learning library for a reason. It provides:</p>
+<ul>
+  <li>A consistent interface across different algorithms</li>
+  <li>Extensive preprocessing capabilities</li>
+  <li>Built-in model evaluation tools</li>
+  <li>Excellent documentation and community support</li>
+</ul>
+
+<p><a href="https://www.tensorflow.org/" target="_blank" rel="noopener noreferrer">TensorFlow</a> complements Scikit-learn by offering:</p>
+<ul>
+  <li>Deep learning capabilities</li>
+  <li>GPU acceleration</li>
+  <li>Flexible model architecture design</li>
+  <li>Production-ready deployment options</li>
+</ul>
+
+<p>In this first post, we’ll start with Scikit-learn and implement a basic classification task using the MNIST dataset. This will establish fundamental concepts that we’ll build upon in later posts.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Standard scientific Python imports
+</span><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="n">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="kn">import</span> <span class="n">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">import</span> <span class="n">seaborn</span> <span class="k">as</span> <span class="n">sns</span>
+</code></pre></div></div>
+
+<h2 id="1-load-dataset">1. Load dataset</h2>
+
+<p>For our first machine learning task, we’ll use the famous MNIST dataset - a collection of handwritten digits that serves as a perfect introduction to image classification.  The MNIST dataset has become the “Hello World” of machine learning for good reason:</p>
+<ul>
+  <li>Simple to understand (handwritten digits from 0-9)</li>
+  <li>Small enough to train quickly</li>
+  <li>Complex enough to demonstrate real ML concepts</li>
+  <li>Perfect for learning classification basics</li>
+</ul>
+
+<p>Let’s start by loading and exploring this dataset:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Load dataset
+</span><span class="kn">from</span> <span class="n">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>
+
+<span class="n">digits</span> <span class="o">=</span> <span class="n">datasets</span><span class="p">.</span><span class="nf">load_digits</span><span class="p">()</span>
+
+<span class="c1"># Extract feature matrix X and target vector y
+</span><span class="n">X</span> <span class="o">=</span> <span class="n">digits</span><span class="p">[</span><span class="sh">'</span><span class="s">data</span><span class="sh">'</span><span class="p">]</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">digits</span><span class="p">[</span><span class="sh">'</span><span class="s">target</span><span class="sh">'</span><span class="p">]</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Dimension of X: </span><span class="si">{</span><span class="n">X</span><span class="p">.</span><span class="n">shape</span><span class="si">}</span><span class="se">\n</span><span class="s">Dimension of y: </span><span class="si">{</span><span class="n">y</span><span class="p">.</span><span class="n">shape</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Dimension of X: (1797, 64)
+Dimension of y: (1797,)
+</code></pre></div></div>
+
+<p>Each of our 1,797 samples contains 64 features, representing an 8 x 8 pixel grid of an image. Let’s reshape these features into their original pixel grid format for visualization.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">_</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">image</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="nf">zip</span><span class="p">(</span><span class="n">axes</span><span class="p">.</span><span class="nf">ravel</span><span class="p">(),</span> <span class="n">digits</span><span class="p">.</span><span class="n">images</span><span class="p">,</span> <span class="n">digits</span><span class="p">.</span><span class="n">target</span><span class="p">):</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="p">.</span><span class="n">cm</span><span class="p">.</span><span class="n">gray_r</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="sh">'</span><span class="s">nearest</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">set_title</span><span class="p">(</span><span class="sh">"</span><span class="s">Label: %i</span><span class="sh">"</span> <span class="o">%</span> <span class="n">label</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">set_axis_off</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div style="text-align: center">
+    <img class="img-fluid rounded z-depth-1" src="/assets/ex_plots/01_scikit_digits_sample.png" data-zoomable="" width="600px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
+    <div class="caption">
+        Figure 1: Sample of MNIST digits showing different handwritten numbers from 0-9. Each image is an 8x8 pixel grayscale representation.
+    </div>
+</div>
+<p><br></p>
+
+<h2 id="2-split-data-into-train-and-test-set">2. Split data into train and test set</h2>
+
+<p>Next, we need to perform a train/test split so that we can validate the final performance of our trained model.
+For the train/test split, we will use a 80:20 ratio. Furthermore, we will use the <code class="language-plaintext highlighter-rouge">stratify</code> parameter to
+ensure that the class distribution in the train and test set is preserved.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="n">X_tr</span><span class="p">,</span> <span class="n">X_te</span><span class="p">,</span> <span class="n">y_tr</span><span class="p">,</span> <span class="n">y_te</span> <span class="o">=</span> <span class="nf">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h2 id="3-train-model">3. Train model</h2>
+
+<p>For our first classification attempt, we’ll use a RandomForestClassifier. While there are many algorithms to choose from, Random Forests are an excellent starting point because they:</p>
+<ul>
+  <li>Handle both numerical and categorical data naturally</li>
+  <li>Require minimal preprocessing</li>
+  <li>Provide insights into feature importance</li>
+  <li>Are relatively robust against overfitting</li>
+  <li>Perform well even with default parameters</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+
+<span class="c1"># Define type of classifier
+</span><span class="n">clf</span> <span class="o">=</span> <span class="nc">RandomForestClassifier</span><span class="p">()</span>
+
+<span class="c1"># Train classifier on training data
+</span><span class="n">clf</span><span class="p">.</span><span class="nf">fit</span><span class="p">(</span><span class="n">X_tr</span><span class="p">,</span> <span class="n">y_tr</span><span class="p">)</span>
+
+<span class="c1"># Evaluate model performance on training and test set
+</span><span class="n">score_tr</span> <span class="o">=</span> <span class="n">clf</span><span class="p">.</span><span class="nf">score</span><span class="p">(</span><span class="n">X_tr</span><span class="p">,</span> <span class="n">y_tr</span><span class="p">)</span>
+<span class="n">score_te</span> <span class="o">=</span> <span class="n">clf</span><span class="p">.</span><span class="nf">score</span><span class="p">(</span><span class="n">X_te</span><span class="p">,</span> <span class="n">y_te</span><span class="p">)</span>
+
+<span class="nf">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="sh">"</span><span class="s">Model accuracy on train data: </span><span class="si">{</span><span class="n">score_tr</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="p">.</span><span class="mi">2</span><span class="n">f</span><span class="si">}</span><span class="s">%</span><span class="se">\n\
+</span><span class="s">Model accuracy on test data:  </span><span class="si">{</span><span class="n">score_te</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="p">.</span><span class="mi">2</span><span class="n">f</span><span class="si">}</span><span class="s">%</span><span class="sh">"</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Model accuracy on train data: 100.00%
+Model accuracy on test data:  96.67%
+</code></pre></div></div>
+
+<p>The model’s performance metrics reveal several key insights:</p>
+<ul>
+  <li>
+<strong>Perfect Training Accuracy (100%)</strong>: This suggests the model has completely memorized the training data, which could indicate overfitting.</li>
+  <li>
+<strong>Strong Test Accuracy (96.67%)</strong>: Despite potential overfitting, the model generalizes well to unseen data.</li>
+  <li>
+<strong>Train-Test Gap (3.33%)</strong>: The difference between train and test accuracy suggests some overfitting, but it’s within acceptable limits for this task.</li>
+  <li>
+<strong>Practical Impact</strong>: For digit recognition, 96.67% accuracy means the model would correctly identify about 967 out of 1000 handwritten digits, making it suitable for many real-world applications like postal code reading or form processing.</li>
+</ul>
+
+<p>As you can see, the model performed perfectly on the training set. No wonder, we tested the classifier’s
+performance on the same data it was trained on. But is there way how we can improve the score on the test data?</p>
+
+<p>Yes there is. But for this we need to fine-tune our random forest classifier. Because as of now we only used
+the classifier with it’s default parameters.</p>
+
+<h2 id="4-fine-tune-model">4. Fine-tune model</h2>
+
+<p>To fine-tune our classifier model we need to split our dataset into a third part, the so called validation set.
+In short, the <strong>training set</strong> is used to train the parameter of a model, the <strong>validation set</strong> is used to
+fine-tune the hyperparameter of a model, and the <strong>test set</strong> is used to see how well the fine-tuned model
+generalizes on never before seen data.</p>
+
+<p>A common practice for model validation is k-fold <a href="https://scikit-learn.org/stable/modules/cross_validation.html" target="_blank" rel="noopener noreferrer">cross-validation</a>. In this approach, the
+training data is iteratively split into training and validation sets, where each split (or fold) is used once
+as the validation set.</p>
+
+<p>Now, we also mentioned fine-tuning our model. One way to do this, is to perform a <a href="https://scikit-learn.org/stable/modules/grid_search.html" target="_blank" rel="noopener noreferrer">grid search</a>, i.e. running
+the model with multiple parameter combinations and than deciding which ones work best.</p>
+
+<p>Luckily, <code class="language-plaintext highlighter-rouge">scikit-learn</code> provides a neat routine that combines the cross-validation with the grid search, called
+<a href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html" target="_blank" rel="noopener noreferrer"><code class="language-plaintext highlighter-rouge">GridSearchCV</code></a>.
+So let’s go ahead and set everything up.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">GridSearchCV</span>
+
+<span class="c1"># Define parameter grid
+</span><span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="sh">'</span><span class="s">max_depth</span><span class="sh">'</span><span class="p">:</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span>  <span class="c1"># Controls tree depth - lower values reduce overfitting
+</span>             <span class="sh">'</span><span class="s">n_estimators</span><span class="sh">'</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">200</span><span class="p">]}</span>  <span class="c1"># Number of trees in forest - more trees = better generalization
+</span>
+<span class="c1"># Put parameter grid and classifier model into GridSearchCV
+</span><span class="n">grid</span> <span class="o">=</span> <span class="nc">GridSearchCV</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>  <span class="c1"># 5-fold cross-validation for robust evaluation
+</span>
+<span class="c1"># Train classifier on training data
+</span><span class="n">grid</span><span class="p">.</span><span class="nf">fit</span><span class="p">(</span><span class="n">X_tr</span><span class="p">,</span> <span class="n">y_tr</span><span class="p">)</span>
+
+<span class="c1"># Evaluate model performance on training and test set
+</span><span class="n">score_tr</span> <span class="o">=</span> <span class="n">grid</span><span class="p">.</span><span class="nf">score</span><span class="p">(</span><span class="n">X_tr</span><span class="p">,</span> <span class="n">y_tr</span><span class="p">)</span>
+<span class="n">score_te</span> <span class="o">=</span> <span class="n">grid</span><span class="p">.</span><span class="nf">score</span><span class="p">(</span><span class="n">X_te</span><span class="p">,</span> <span class="n">y_te</span><span class="p">)</span>
+
+<span class="nf">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="sh">"</span><span class="s">Model accuracy on train data: </span><span class="si">{</span><span class="n">score_tr</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="p">.</span><span class="mi">2</span><span class="n">f</span><span class="si">}</span><span class="s">%</span><span class="se">\n\
+</span><span class="s">Model accuracy on test data:  </span><span class="si">{</span><span class="n">score_te</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="p">.</span><span class="mi">2</span><span class="n">f</span><span class="si">}</span><span class="s">%</span><span class="sh">"</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Model accuracy on train data: 100.00%
+Model accuracy on test data:  97.22%
+</code></pre></div></div>
+
+<p>Great, our score on the test set has improved. So let’s see which parameter combination seems to be the best.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Show best random forest classifier
+</span><span class="n">best_rf</span> <span class="o">=</span> <span class="n">grid</span><span class="p">.</span><span class="n">best_estimator_</span>
+<span class="n">best_rf</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>RandomForestClassifier(max_depth=25, n_estimators=200)
+</code></pre></div></div>
+
+<p>Now, to better understand how the different parameters relate to model performance, let’s plot the <code class="language-plaintext highlighter-rouge">max_depth</code>
+and <code class="language-plaintext highlighter-rouge">n_estimators</code> with respect to the accuracy performance on the validation set.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Put insights from cross-validation grid search into pandas dataframe
+</span><span class="n">df_res</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="nc">DataFrame</span><span class="p">(</span><span class="n">grid</span><span class="p">.</span><span class="n">cv_results_</span><span class="p">)</span>
+<span class="n">df_res</span> <span class="o">=</span> <span class="n">df_res</span><span class="p">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="n">df_res</span><span class="p">.</span><span class="n">columns</span><span class="p">.</span><span class="nb">str</span><span class="p">.</span><span class="nf">contains</span><span class="p">(</span><span class="sh">'</span><span class="s">mean_test_score|param_</span><span class="sh">'</span><span class="p">)]</span>
+<span class="n">df_res</span> <span class="o">=</span> <span class="n">df_res</span><span class="p">.</span><span class="nf">astype</span><span class="p">(</span><span class="sh">'</span><span class="s">float</span><span class="sh">'</span><span class="p">)</span>
+
+<span class="c1"># Plot results in table (works only when we investigate two hyper-parameters).
+</span><span class="n">result_table</span> <span class="o">=</span> <span class="n">df_res</span><span class="p">.</span><span class="nf">pivot</span><span class="p">(</span>
+    <span class="n">index</span><span class="o">=</span><span class="sh">'</span><span class="s">param_max_depth</span><span class="sh">'</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="sh">'</span><span class="s">param_n_estimators</span><span class="sh">'</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="sh">'</span><span class="s">mean_test_score</span><span class="sh">'</span>
+<span class="p">)</span>
+<span class="n">sns</span><span class="p">.</span><span class="nf">heatmap</span><span class="p">(</span><span class="mi">100</span> <span class="o">*</span> <span class="n">result_table</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="sh">'</span><span class="s">.2f</span><span class="sh">'</span><span class="p">,</span> <span class="n">square</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">cbar</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">title</span><span class="p">(</span><span class="sh">"</span><span class="s">RF Accuracy on validation set, based on model hyper-parameter</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">savefig</span><span class="p">(</span><span class="sh">'</span><span class="s">01_scikit_rf_heatmap.png</span><span class="sh">'</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="sh">'</span><span class="s">tight</span><span class="sh">'</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div style="text-align: center">
+    <img class="img-fluid rounded z-depth-1" src="/assets/ex_plots/01_scikit_rf_heatmap.png" data-zoomable="" width="500px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
+    <div class="caption">
+        Figure 2: Heatmap showing model accuracy (%) for different combinations of SVM hyperparameters gamma and C. Darker colors indicate better performance.
+    </div>
+</div>
+<p><br></p>
+
+<h2 id="5-change-model">5. Change model</h2>
+
+<p>The great thing about <code class="language-plaintext highlighter-rouge">scikit-learn</code> is that the framework is very dynamic. The only thing we need to change to
+do the same classification with a Support Vector Machine (SVM) for example, is changing the model and the
+parameter grid we want to explore.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Create support vector classifier object
+</span><span class="kn">from</span> <span class="n">sklearn.svm</span> <span class="kn">import</span> <span class="n">SVC</span>
+
+<span class="n">clf</span> <span class="o">=</span> <span class="nc">SVC</span><span class="p">(</span><span class="n">kernel</span><span class="o">=</span><span class="sh">'</span><span class="s">rbf</span><span class="sh">'</span><span class="p">)</span>
+
+<span class="c1"># Define parameter grid
+</span><span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="sh">'</span><span class="s">C</span><span class="sh">'</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">100.0</span><span class="p">],</span>  <span class="c1"># Regularization parameter - higher values = more complex decision boundary
+</span>    <span class="sh">'</span><span class="s">gamma</span><span class="sh">'</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.00001</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]</span>  <span class="c1"># Kernel coefficient - higher values = more influence from nearby points
+</span><span class="p">}</span>
+</code></pre></div></div>
+
+<p>That’s it! The rest can be used as before.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Put parameter grid and classifier model into GridSearchCV
+</span><span class="n">grid</span> <span class="o">=</span> <span class="nc">GridSearchCV</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># Train classifier on training data
+</span><span class="n">grid</span><span class="p">.</span><span class="nf">fit</span><span class="p">(</span><span class="n">X_tr</span><span class="p">,</span> <span class="n">y_tr</span><span class="p">)</span>
+
+<span class="c1"># Evaluate model performance on training and test set
+</span><span class="n">score_tr</span> <span class="o">=</span> <span class="n">grid</span><span class="p">.</span><span class="nf">score</span><span class="p">(</span><span class="n">X_tr</span><span class="p">,</span> <span class="n">y_tr</span><span class="p">)</span>
+<span class="n">score_te</span> <span class="o">=</span> <span class="n">grid</span><span class="p">.</span><span class="nf">score</span><span class="p">(</span><span class="n">X_te</span><span class="p">,</span> <span class="n">y_te</span><span class="p">)</span>
+
+<span class="nf">print</span><span class="p">(</span>
+    <span class="sa">f</span><span class="sh">"</span><span class="s">Model accuracy on train data: </span><span class="si">{</span><span class="n">score_tr</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="p">.</span><span class="mi">2</span><span class="n">f</span><span class="si">}</span><span class="s">%</span><span class="se">\n\
+</span><span class="s">Model accuracy on test data:  </span><span class="si">{</span><span class="n">score_te</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="p">.</span><span class="mi">2</span><span class="n">f</span><span class="si">}</span><span class="s">%</span><span class="sh">"</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Model accuracy on train data: 100.00%
+Model accuracy on test data:  98.89%
+</code></pre></div></div>
+
+<p>These results show significant improvements:</p>
+<ul>
+  <li>
+<strong>Test Accuracy (98.89%)</strong>: The SVM correctly identifies 989 out of 1000 digits</li>
+  <li>
+<strong>Improvement (+2.22%)</strong>: Compared to Random Forest, SVM reduces errors by about 67%</li>
+</ul>
+
+<p>Nice, this is much better. It seems for this particular dataset, with the hyper-parameter’s we explored, SVM
+is a better model type.</p>
+
+<p>As before, let’s take a look at the model with the best parameters.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Show best SVM classifier
+</span><span class="n">best_svm</span> <span class="o">=</span> <span class="n">grid</span><span class="p">.</span><span class="n">best_estimator_</span>
+<span class="n">best_svm</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SVC(C=10.0, gamma=0.001)
+</code></pre></div></div>
+
+<p>And once more, how do these two hyper-parameters relate to the performance metric <code class="language-plaintext highlighter-rouge">accuracy</code> in the validation
+set?</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Put insights from cross-validation grid search into pandas dataframe
+</span><span class="n">df_res</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="nc">DataFrame</span><span class="p">(</span><span class="n">grid</span><span class="p">.</span><span class="n">cv_results_</span><span class="p">)</span>
+<span class="n">df_res</span> <span class="o">=</span> <span class="n">df_res</span><span class="p">.</span><span class="n">iloc</span><span class="p">[:,</span> <span class="n">df_res</span><span class="p">.</span><span class="n">columns</span><span class="p">.</span><span class="nb">str</span><span class="p">.</span><span class="nf">contains</span><span class="p">(</span><span class="sh">'</span><span class="s">mean_test_score|param_</span><span class="sh">'</span><span class="p">)]</span>
+<span class="n">df_res</span> <span class="o">=</span> <span class="n">df_res</span><span class="p">.</span><span class="nf">astype</span><span class="p">(</span><span class="sh">'</span><span class="s">float</span><span class="sh">'</span><span class="p">)</span>
+
+<span class="c1"># Plot results in table (works only when we investigate two hyper-parameters).
+</span><span class="n">result_table</span> <span class="o">=</span> <span class="n">df_res</span><span class="p">.</span><span class="nf">pivot</span><span class="p">(</span>
+    <span class="n">index</span><span class="o">=</span><span class="sh">'</span><span class="s">param_gamma</span><span class="sh">'</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="sh">'</span><span class="s">param_C</span><span class="sh">'</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="sh">'</span><span class="s">mean_test_score</span><span class="sh">'</span>
+<span class="p">)</span>
+<span class="n">sns</span><span class="p">.</span><span class="nf">heatmap</span><span class="p">(</span><span class="mi">100</span> <span class="o">*</span> <span class="n">result_table</span><span class="p">,</span> <span class="n">annot</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">fmt</span><span class="o">=</span><span class="sh">'</span><span class="s">.2f</span><span class="sh">'</span><span class="p">,</span> <span class="n">square</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">title</span><span class="p">(</span><span class="sh">"</span><span class="s">SVM Accuracy on validation set, based on model hyper-parameter</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">savefig</span><span class="p">(</span><span class="sh">'</span><span class="s">01_scikit_svm_heatmap.png</span><span class="sh">'</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="sh">'</span><span class="s">tight</span><span class="sh">'</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div style="text-align: center">
+    <img class="img-fluid rounded z-depth-1" src="/assets/ex_plots/01_scikit_svm_heatmap.png" data-zoomable="" width="500px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
+    <div class="caption">
+        Figure 3: Confusion matrix showing the model's prediction performance across all digit classes. Diagonal elements represent correct predictions.
+    </div>
+</div>
+<p><br></p>
+
+<h2 id="6-post-model-investigation">6. Post-model investigation</h2>
+
+<p>Last but certainly not least, let’s investigate the prediction quality of our classifier. Two great routines
+that you can use for that are <code class="language-plaintext highlighter-rouge">scikit-learn</code>s
+<a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.classification_report.html" target="_blank" rel="noopener noreferrer"><code class="language-plaintext highlighter-rouge">classification_report</code></a> and
+<a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.classification_report.html" target="_blank" rel="noopener noreferrer"><code class="language-plaintext highlighter-rouge">confusion_matrix</code></a>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Predict class predictions on the test set
+</span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">best_svm</span><span class="p">.</span><span class="nf">predict</span><span class="p">(</span><span class="n">X_te</span><span class="p">)</span>
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Print classification report
+</span><span class="kn">from</span> <span class="n">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="nf">classification_report</span><span class="p">(</span><span class="n">y_te</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>              precision    recall  f1-score   support
+           0       1.00      1.00      1.00        36
+           1       1.00      1.00      1.00        36
+           2       1.00      1.00      1.00        35
+           3       1.00      1.00      1.00        37
+           4       1.00      1.00      1.00        36
+           5       0.97      0.97      0.97        37
+           6       1.00      1.00      1.00        36
+           7       0.97      1.00      0.99        36
+           8       0.97      1.00      0.99        35
+           9       0.97      0.92      0.94        36
+    accuracy                           0.99       360
+   macro avg       0.99      0.99      0.99       360
+weighted avg       0.99      0.99      0.99       360
+</code></pre></div></div>
+
+<p>As you can see, while the scores are comparable between classes, some clearly are harder to detect than others.
+To help better understand which target classes are confused more often than others, we can look at the
+confusion matrix.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Compute confusion matrix
+</span><span class="kn">from</span> <span class="n">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span>
+
+<span class="n">cm</span> <span class="o">=</span> <span class="nf">confusion_matrix</span><span class="p">(</span><span class="n">y_te</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">)</span>
+<span class="n">sns</span><span class="p">.</span><span class="nf">heatmap</span><span class="p">(</span><span class="n">pd</span><span class="p">.</span><span class="nc">DataFrame</span><span class="p">(</span><span class="n">cm</span><span class="p">),</span> <span class="n">annot</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">cbar</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span> <span class="n">square</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">xlabel</span><span class="p">(</span><span class="sh">"</span><span class="s">Predicted Class</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">ylabel</span><span class="p">(</span><span class="sh">"</span><span class="s">True Class</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">savefig</span><span class="p">(</span><span class="sh">'</span><span class="s">01_scikit_confusion_matrix.png</span><span class="sh">'</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="sh">'</span><span class="s">tight</span><span class="sh">'</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div style="text-align: center">
+    <img class="img-fluid rounded z-depth-1" src="/assets/ex_plots/01_scikit_confusion_matrix.png" data-zoomable="" width="500px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
+    <div class="caption">
+        Figure 4: Feature importance heatmap showing which pixels in the 8x8 grid contribute most to the Random Forest's classification decisions.
+    </div>
+</div>
+<p><br></p>
+
+<h2 id="7-additional-model-and-results-investigations">7. Additional model and results investigations</h2>
+
+<p>Depending on the classifier model you chose, you can investigate many additional things, once your model is
+trained.</p>
+
+<p>For example, <code class="language-plaintext highlighter-rouge">RandomForest</code> model provide a <code class="language-plaintext highlighter-rouge">feature_importances_</code> attribute that allows you to investigate
+which of your features is helping the most with the classification task.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Collect feature importances from RF model
+</span><span class="n">feat_import</span> <span class="o">=</span> <span class="n">best_rf</span><span class="p">.</span><span class="n">feature_importances_</span>
+
+<span class="c1"># Putting the 64 feature importance values back into 8x8 pixel grid
+</span><span class="n">feature_importance_image</span> <span class="o">=</span> <span class="n">feat_import</span><span class="p">.</span><span class="nf">reshape</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+
+<span class="c1"># Visualize the feature importance grid
+</span><span class="n">plt</span><span class="p">.</span><span class="nf">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="n">feature_importance_image</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">title</span><span class="p">(</span><span class="sh">"</span><span class="s">RF Feature Importance</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">savefig</span><span class="p">(</span><span class="sh">'</span><span class="s">01_scikit_feature_importance.png</span><span class="sh">'</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="sh">'</span><span class="s">tight</span><span class="sh">'</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div style="text-align: center">
+    <img class="img-fluid rounded z-depth-1" src="/assets/ex_plots/01_scikit_feature_importance.png" data-zoomable="" width="500px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px">
+    <div class="caption">
+        Figure 5: Most confidently predicted digits from the test set, showing examples where the model has highest prediction probabilities.
+    </div>
+</div>
+<p><br></p>
+
+<p>As you can see, feature in the center of the 8x8 grid seem to be more important for the classification task.</p>
+
+<p>Other interesting post-modeling tasks could be the investigation of the prediction probabilities per sample.
+For example: What do images look like of digits with 100% prediction probability?</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Compute prediction probabilities
+</span><span class="n">y_prob</span> <span class="o">=</span> <span class="n">best_rf</span><span class="p">.</span><span class="nf">predict_proba</span><span class="p">(</span><span class="n">X_te</span><span class="p">)</span>
+
+<span class="c1"># Extract prediction probabilities of target class
+</span><span class="n">target_prob</span> <span class="o">=</span> <span class="p">[</span><span class="n">e</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">e</span><span class="p">,</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">zip</span><span class="p">(</span><span class="n">y_prob</span><span class="p">,</span> <span class="n">y_te</span><span class="p">)]</span>
+
+<span class="c1"># Plot images of easiest to predict samples
+</span><span class="n">_</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nf">zip</span><span class="p">(</span><span class="n">axes</span><span class="p">.</span><span class="nf">ravel</span><span class="p">(),</span> <span class="n">np</span><span class="p">.</span><span class="nf">argsort</span><span class="p">(</span><span class="n">target_prob</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="n">X_te</span><span class="p">[</span><span class="n">idx</span><span class="p">].</span><span class="nf">reshape</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="p">.</span><span class="n">cm</span><span class="p">.</span><span class="n">gray_r</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="sh">'</span><span class="s">nearest</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">set_axis_off</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">savefig</span><span class="p">(</span><span class="sh">'</span><span class="s">01_scikit_confident_predictions.png</span><span class="sh">'</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="sh">'</span><span class="s">tight</span><span class="sh">'</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/ex_plots/01_scikit_confident_predictions.png" data-zoomable="" width="800px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+<div class="caption">
+    Figure 6: Most confidently predicted digits from the test set, showing examples where the model has highest prediction probabilities.
+</div>
+
+<p>And what about the difficult cases? For which digits does the model strugle the most to get above chance level?</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Plot images of easiest to predict samples
+</span><span class="n">_</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">ax</span><span class="p">,</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nf">zip</span><span class="p">(</span><span class="n">axes</span><span class="p">.</span><span class="nf">ravel</span><span class="p">(),</span> <span class="n">np</span><span class="p">.</span><span class="nf">argsort</span><span class="p">(</span><span class="n">target_prob</span><span class="p">)):</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="n">X_te</span><span class="p">[</span><span class="n">idx</span><span class="p">].</span><span class="nf">reshape</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="n">plt</span><span class="p">.</span><span class="n">cm</span><span class="p">.</span><span class="n">gray_r</span><span class="p">,</span> <span class="n">interpolation</span><span class="o">=</span><span class="sh">'</span><span class="s">nearest</span><span class="sh">'</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">set_axis_off</span><span class="p">()</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">savefig</span><span class="p">(</span><span class="sh">'</span><span class="s">01_scikit_uncertain_predictions.png</span><span class="sh">'</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="sh">'</span><span class="s">tight</span><span class="sh">'</span><span class="p">,</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/ex_plots/01_scikit_uncertain_predictions.png" data-zoomable="" width="800px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+<div class="caption">
+    Figure 7: Most challenging digits for the model to predict, showing examples where the model has lowest prediction confidence.
+</div>
+
+<h2 id="common-pitfalls-in-machine-learning-classification">Common Pitfalls in Machine Learning Classification</h2>
+
+<p>Before wrapping up, let’s discuss some important pitfalls to avoid when working on classification tasks:</p>
+
+<p><strong>Data Leakage</strong>: Always split your data before any preprocessing or feature engineering</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Wrong: Preprocessing before split
+</span><span class="n">X_scaled</span> <span class="o">=</span> <span class="n">preprocessing</span><span class="p">.</span><span class="nf">scale</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="n">X_tr</span><span class="p">,</span> <span class="n">X_te</span><span class="p">,</span> <span class="n">y_tr</span><span class="p">,</span> <span class="n">y_te</span> <span class="o">=</span> <span class="nf">train_test_split</span><span class="p">(</span><span class="n">X_scaled</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+
+<span class="c1"># Correct: Split first, then preprocess
+</span><span class="n">X_tr</span><span class="p">,</span> <span class="n">X_te</span><span class="p">,</span> <span class="n">y_tr</span><span class="p">,</span> <span class="n">y_te</span> <span class="o">=</span> <span class="nf">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">X_tr_scaled</span> <span class="o">=</span> <span class="n">preprocessing</span><span class="p">.</span><span class="nf">scale</span><span class="p">(</span><span class="n">X_tr</span><span class="p">)</span>
+<span class="n">X_te_scaled</span> <span class="o">=</span> <span class="n">preprocessing</span><span class="p">.</span><span class="nf">scale</span><span class="p">(</span><span class="n">X_te</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>Class Imbalance</strong>: Always check your class distribution</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Show absolute and relative frequencies
+</span><span class="n">class_dist</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="nc">Series</span><span class="p">(</span><span class="n">y</span><span class="p">).</span><span class="nf">value_counts</span><span class="p">(</span><span class="n">normalize</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Class distribution (%):</span><span class="sh">"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">class_dist</span><span class="p">.</span><span class="nf">mul</span><span class="p">(</span><span class="mi">100</span><span class="p">).</span><span class="nf">round</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+
+<span class="c1"># Visualize distribution
+</span><span class="n">class_dist</span><span class="p">.</span><span class="nf">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="sh">'</span><span class="s">bar</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">title</span><span class="p">(</span><span class="sh">'</span><span class="s">Class Distribution</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">xlabel</span><span class="p">(</span><span class="sh">'</span><span class="s">Class</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">ylabel</span><span class="p">(</span><span class="sh">'</span><span class="s">Frequency (%)</span><span class="sh">'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>Overfitting</strong>: Monitor these warning signs
+    - Large gap between training and validation scores
+    - Perfect training accuracy (like we saw with RandomForest)
+    - Poor generalization to new data</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Use cross-validation for robust estimates
+</span><span class="kn">from</span> <span class="n">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">cross_val_score</span>
+
+<span class="n">scores</span> <span class="o">=</span> <span class="nf">cross_val_score</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_tr</span><span class="p">,</span> <span class="n">y_tr</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">CV Scores: </span><span class="si">{</span><span class="n">scores</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Mean: </span><span class="si">{</span><span class="n">scores</span><span class="p">.</span><span class="nf">mean</span><span class="p">()</span><span class="si">:</span><span class="p">.</span><span class="mi">3</span><span class="n">f</span><span class="si">}</span><span class="s"> (±</span><span class="si">{</span><span class="n">scores</span><span class="p">.</span><span class="nf">std</span><span class="p">()</span><span class="o">*</span><span class="mi">2</span><span class="si">:</span><span class="p">.</span><span class="mi">3</span><span class="n">f</span><span class="si">}</span><span class="s">)</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>Memory Management</strong>: For large datasets, consider these approaches</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Use n_jobs parameter for parallel processing
+</span><span class="n">rf</span> <span class="o">=</span> <span class="nc">RandomForestClassifier</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Use all available cores
+</span>
+<span class="c1"># Or batch processing with random forests
+</span><span class="n">rf</span> <span class="o">=</span> <span class="nc">RandomForestClassifier</span><span class="p">(</span><span class="n">max_samples</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>  <span class="c1"># Use 80% of samples per tree
+</span></code></pre></div></div>
+
+<p><strong>Feature Scaling</strong>: Different algorithms have different scaling requirements</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># SVM requires scaling, Random Forests don't
+</span><span class="kn">from</span> <span class="n">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">StandardScaler</span>
+
+<span class="c1"># For SVM
+</span><span class="n">scaler</span> <span class="o">=</span> <span class="nc">StandardScaler</span><span class="p">()</span>
+<span class="n">X_tr_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="p">.</span><span class="nf">fit_transform</span><span class="p">(</span><span class="n">X_tr</span><span class="p">)</span>
+<span class="n">X_te_scaled</span> <span class="o">=</span> <span class="n">scaler</span><span class="p">.</span><span class="nf">transform</span><span class="p">(</span><span class="n">X_te</span><span class="p">)</span>
+
+<span class="c1"># Random Forests can handle unscaled data
+</span><span class="n">rf</span><span class="p">.</span><span class="nf">fit</span><span class="p">(</span><span class="n">X_tr</span><span class="p">,</span> <span class="n">y_tr</span><span class="p">)</span>  <span class="c1"># No scaling needed
+</span></code></pre></div></div>
+
+<p><strong>Model Selection Bias</strong>: Don’t use test set for model selection</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Wrong: Using test set for parameter tuning
+</span><span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">parameters</span><span class="p">:</span>
+    <span class="n">clf</span><span class="p">.</span><span class="nf">set_params</span><span class="p">(</span><span class="o">**</span><span class="n">param</span><span class="p">)</span>
+    <span class="n">score</span> <span class="o">=</span> <span class="n">clf</span><span class="p">.</span><span class="nf">fit</span><span class="p">(</span><span class="n">X_tr</span><span class="p">,</span> <span class="n">y_tr</span><span class="p">).</span><span class="nf">score</span><span class="p">(</span><span class="n">X_te</span><span class="p">,</span> <span class="n">y_te</span><span class="p">)</span>  <span class="c1"># Don't do this!
+</span>
+<span class="c1"># Correct: Use cross-validation
+</span><span class="n">grid</span> <span class="o">=</span> <span class="nc">GridSearchCV</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">parameters</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">grid</span><span class="p">.</span><span class="nf">fit</span><span class="p">(</span><span class="n">X_tr</span><span class="p">,</span> <span class="n">y_tr</span><span class="p">)</span>
+<span class="c1"># Only use test set for final evaluation
+</span></code></pre></div></div>
+
+<p><strong>Model Troubleshooting Tips</strong></p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Check for data issues first
+</span><span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Missing values:</span><span class="sh">"</span><span class="p">,</span> <span class="n">X</span><span class="p">.</span><span class="nf">isnull</span><span class="p">().</span><span class="nf">sum</span><span class="p">().</span><span class="nf">sum</span><span class="p">())</span>
+<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Infinite values:</span><span class="sh">"</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="nf">isinf</span><span class="p">(</span><span class="n">X</span><span class="p">.</span><span class="n">values</span><span class="p">).</span><span class="nf">sum</span><span class="p">())</span>
+
+<span class="c1"># Verify predictions are valid
+</span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="p">.</span><span class="nf">predict</span><span class="p">(</span><span class="n">X_te</span><span class="p">)</span>
+<span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">unique</span><span class="p">(</span><span class="n">y_pred</span><span class="p">))</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Warning: Model predicting single class!</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="c1"># Check probability calibration
+</span><span class="n">y_prob</span> <span class="o">=</span> <span class="n">clf</span><span class="p">.</span><span class="nf">predict_proba</span><span class="p">(</span><span class="n">X_te</span><span class="p">)</span>
+<span class="k">if</span> <span class="n">np</span><span class="p">.</span><span class="nf">any</span><span class="p">(</span><span class="n">y_prob</span> <span class="o">&gt;</span> <span class="mf">1.0</span><span class="p">)</span> <span class="ow">or</span> <span class="n">np</span><span class="p">.</span><span class="nf">any</span><span class="p">(</span><span class="n">y_prob</span> <span class="o">&lt;</span> <span class="mf">0.0</span><span class="p">):</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Warning: Invalid probability predictions!</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>Common Error Messages and Solutions</strong></p>
+<ul>
+  <li>
+<code class="language-plaintext highlighter-rouge">ValueError: Input contains NaN</code>: Clean your data before training</li>
+  <li>
+<code class="language-plaintext highlighter-rouge">MemoryError</code>: Reduce batch size or use data generators</li>
+</ul>
+
+<h2 id="summary-and-next-steps">Summary and Next Steps</h2>
+
+<p>In this first tutorial, we’ve covered the fundamentals of machine learning with Scikit-learn:</p>
+<ul>
+  <li>Loading and visualizing data</li>
+  <li>Splitting data into training and test sets</li>
+  <li>Training a basic classifier</li>
+  <li>Fine-tuning model parameters</li>
+  <li>Evaluating model performance</li>
+</ul>
+
+<p>We’ve seen how Scikit-learn’s consistent API makes it easy to experiment with different algorithms and preprocessing techniques. The RandomForest classifier achieved 97.22% accuracy, while the SVM performed even better at 98.89%.</p>
+
+<p>In the next post, we’ll tackle the same MNIST classification problem using TensorFlow, introducing neural networks and deep learning concepts. This will help you understand the differences between classical machine learning approaches and deep learning, and when to use each.</p>
+
+<p><strong>Key takeaways:</strong></p>
+<ol>
+  <li>Even simple models can achieve good performance on well-structured problems</li>
+  <li>Start with simple models and gradually increase complexity</li>
+  <li>Cross-validation is crucial for reliable performance estimation</li>
+  <li>Grid search helps find optimal parameters systematically</li>
+  <li>Always keep a separate test set for final evaluation</li>
+  <li>Look beyond accuracy to understand model performance</li>
+</ol>
+
+<p>In Part 2, we’ll explore how neural networks approach the same problem using TensorFlow, introducing deep learning concepts and comparing the two approaches.</p>
+
+<p><a href="/blog/2023/02_tensorflow_simple">Next: Deep Learning Fundamentals →</a></p>
+
+  </article>
+
+  
+
+</div>
+
+    </div>
+
+    <!-- Footer -->
+
+    
+<footer class="fixed-bottom">
+  <div class="container mt-0">
+    © Copyright 2025 Michael P. Notter.
+    Powered by <a href="http://jekyllrb.com/" target="_blank" rel="noopener noreferrer">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" target="_blank" rel="noopener noreferrer">al-folio</a> theme.
+
+    
+    
+  </div>
+</footer>
+
+
+
+  </body>
+
+  <!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+
+  <!-- Bootsrap & MDB scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.4/umd/popper.min.js" integrity="sha512-eUQ9hGdLjBjY3F41CScH3UX+4JDSI9zXeroz7hJ+RteoCaY+GP/LDoM8AO+Pt+DRFw3nXqsjh9Zsts8hnYv8/A==" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha512-M5KW3ztuIICmVIhjSqXe01oV2bpe248gOxqmlcYrEzAvws7Pw3z6BK0iGbrwvdrUQUhi3eXgtxp5I8PDo9YfjQ==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js" integrity="sha512-Mug9KHKmroQFMLm93zGrjhibM2z2Obg9l6qFG2qKjXEXkMp/VDkI4uju9m4QKPjWSwQ6O2qzZEnJDEeCw0Blcw==" crossorigin="anonymous"></script>
+
+  
+<!-- Mansory & imagesLoaded -->
+<script defer src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script defer src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+<script defer src="/assets/js/mansory.js" type="text/javascript"></script>
+
+
+  
+
+
+<!-- Medium Zoom JS -->
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+<script src="/assets/js/zoom.js"></script>
+
+
+<!-- Load Common JS -->
+<script src="/assets/js/common.js"></script>
+
+  
+<!-- MathJax -->
+<script type="text/javascript">
+  window.MathJax = {
+    tex: {
+      tags: 'ams'
+    }
+  };
+</script>
+<script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js"></script>
+<script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+
+
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-126030922-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+
+  gtag('config', 'UA-126030922-1');
+</script>
+
+
+
+
+
+
+</html>

@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>
+
+  Michael P. Notter
+
+
+  | Watch how AI learns to classify images
+
+</title>
+<meta name="description" content="Personal homepage of Michael P. Notter.
+">
+
+<!-- Open Graph -->
+
+
+<!-- Bootstrap & MDB -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha512-MoRNloxbStBcD8z3M/2BmnT+rg4IsMxPkXaGh2zD6LGNNFE80W3onsAhRcMAMrSoyWL9xD7Ert0men7vR8LUZg==" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" integrity="sha512-RO38pBRxYH3SoOprtPTD86JFOclM51/XTIdEPh5j8sj4tp8jmQIx26twG52UaLi//hQldfrh7e51WzP9wuP32Q==" crossorigin="anonymous" />
+
+<!-- Fonts & Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"  integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css" integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons">
+
+<!-- Code Syntax Highlighting -->
+<link rel="stylesheet" href="https://gitcdn.link/repo/jwarby/jekyll-pygments-themes/master/monokai.css" />
+
+<!-- Styles -->
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍💻</text></svg>">
+
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="canonical" href="https://miykael.github.io/blog/2021/AI_classification_under_the_hood/">
+
+
+<!-- Dark Mode -->
+<script src="/assets/js/theme.js"></script>
+<script src="/assets/js/dark_mode.js"></script>
+
+
+  </head>
+
+  <body class="fixed-top-nav ">
+
+    <!-- Header -->
+
+    <header>
+
+    <!-- Nav Bar -->
+    <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top">
+    <div class="container">
+      
+      <a class="navbar-brand title font-weight-lighter" href="https://miykael.github.io/">
+       <span class="font-weight-bold">Michael</span> P.  Notter
+      </a>
+      
+      <!-- Navbar Toggle -->
+      <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar top-bar"></span>
+        <span class="icon-bar middle-bar"></span>
+        <span class="icon-bar bottom-bar"></span>
+      </button>
+      <div class="collapse navbar-collapse text-right" id="navbarNav">
+        <ul class="navbar-nav ml-auto flex-nowrap">
+          <!-- About -->
+          <li class="nav-item ">
+            <a class="nav-link" href="/">
+              About
+              
+            </a>
+          </li>
+          
+          <!-- Blog -->
+          <li class="nav-item active">
+            <a class="nav-link" href="/blog/">
+              Blog
+              
+            </a>
+          </li>
+          
+          <!-- Other pages -->
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/background/">
+                Background
+                
+              </a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/projects/">
+                Projects
+                
+              </a>
+          </li>
+          
+          
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/publications/">
+                Publications
+                
+              </a>
+          </li>
+          
+          
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/teaching/">
+                Teaching
+                
+              </a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+            <div class="toggle-container">
+              <a id="light-toggle">
+                  <i class="fas fa-moon"></i>
+                  <i class="fas fa-sun"></i>
+              </a>
+            </div>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+    <!-- Content -->
+
+    <div class="container mt-5">
+      
+
+
+
+
+
+<div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Watch how AI learns to classify images</h1>
+    <p class="post-meta">December 27, 2021</p>
+    <p class="post-tags">
+      <a href="/blog/2021"> <i class="fas fa-calendar fa-sm"></i> 2021 </a>
+      
+
+      
+
+    </p>
+  </header>
+
+  <article class="post-content">
+    <h2 id="looking-under-the-hood-of-machine-learning-routines-while-they-learn-about-things">Looking under the hood of machine learning routines while they learn about things.</h2>
+
+<p><em>[Find the Jupyter Notebook to this article <a href="https://github.com/miykael/miykael.github.io/blob/master/assets/nb/01_ai_classifier_under_hood/nb_ai_classification_under_the_hood.ipynb" target="_blank" rel="noopener noreferrer">here</a>.]</em></p>
+
+<hr>
+
+<p>There exist already many tutorial and demos that show nicely how machine learning routines can learn from images and do wondrous tasks. And so, this article is not about what they can do, nor about the code to get there, but about what’s happening while the machines are learning.</p>
+
+<p>I hope that the animations in this article can show in an intuitive way, how current machine learning routines start from randomness and learn very quickly how to extract meaningful features from data to solve a given task in a efficient and impressive way. So let’s jump right into it!</p>
+
+<h2 id="the-data-set">The data set</h2>
+
+<p>First things first, we need a data set and a problem. Mixing things up slightly, lets use the <a href="https://github.com/zalandoresearch/fashion-mnist" target="_blank" rel="noopener noreferrer">Fashion MNIST</a> dataset and a classification task. In short, the Fashion MNIST contains 70’000 Zalando clothing items, where each item is a 28 x 28 pixel, gray-scaled image, belonging to 10 different clothing categories.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="n">tensorflow</span> <span class="k">as</span> <span class="n">tf</span>
+
+<span class="c1"># Load and prepare dataset
+</span><span class="n">fashion_mnist</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">datasets</span><span class="p">.</span><span class="n">fashion_mnist</span>
+<span class="p">(</span><span class="n">X_tr</span><span class="p">,</span> <span class="n">y_tr</span><span class="p">),</span> <span class="p">(</span><span class="n">X_te</span><span class="p">,</span> <span class="n">y_te</span><span class="p">)</span> <span class="o">=</span> <span class="n">fashion_mnist</span><span class="p">.</span><span class="nf">load_data</span><span class="p">()</span>
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sh">"</span><span class="s">T-shirt/top</span><span class="sh">"</span><span class="p">,</span>
+    <span class="sh">"</span><span class="s">Trouser</span><span class="sh">"</span><span class="p">,</span>
+    <span class="sh">"</span><span class="s">Pullover</span><span class="sh">"</span><span class="p">,</span>
+    <span class="sh">"</span><span class="s">Dress</span><span class="sh">"</span><span class="p">,</span>
+    <span class="sh">"</span><span class="s">Coat</span><span class="sh">"</span><span class="p">,</span>
+    <span class="sh">"</span><span class="s">Sandal</span><span class="sh">"</span><span class="p">,</span>
+    <span class="sh">"</span><span class="s">Shirt</span><span class="sh">"</span><span class="p">,</span>
+    <span class="sh">"</span><span class="s">Sneaker</span><span class="sh">"</span><span class="p">,</span>
+    <span class="sh">"</span><span class="s">Bag</span><span class="sh">"</span><span class="p">,</span>
+    <span class="sh">"</span><span class="s">Ankle boot</span><span class="sh">"</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">labels_tr</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="n">labels</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">y_tr</span><span class="p">])</span>
+<span class="n">labels_te</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="n">labels</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">y_te</span><span class="p">])</span>
+</code></pre></div></div>
+
+<p>Before going any further, let’s take a quick look at a few of these images.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="c1"># Plot a few random clothing items
+</span><span class="n">size</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">choice</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">arange</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">y_tr</span><span class="p">)),</span> <span class="n">size</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">subplots</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">16</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ax</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">axes</span><span class="p">.</span><span class="nf">flatten</span><span class="p">()):</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">set_title</span><span class="p">(</span><span class="n">labels_tr</span><span class="p">[</span><span class="n">idx</span><span class="p">][</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="n">X_tr</span><span class="p">[</span><span class="n">idx</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="sh">"</span><span class="s">binary</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">axis</span><span class="p">(</span><span class="sh">"</span><span class="s">off</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">set_aspect</span><span class="p">(</span><span class="sh">"</span><span class="s">equal</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">tight_layout</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/nb/01_ai_classifier_under_hood/output_6_0.png" data-zoomable="" width="800px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+
+<p>Looking at these images we can see that some categories look rather homogenious, while others are quite diverse. So let’s take a closer look at these target categories (i.e. classes) and how they might relate to each other.</p>
+
+<p>A simple way to do this is by looking at the class averages and investigating how they correlate to each other.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Look at class averages
+</span><span class="n">class_averages</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ax</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">axes</span><span class="p">.</span><span class="nf">flatten</span><span class="p">()):</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">set_title</span><span class="p">(</span><span class="n">labels</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">class_average</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">mean</span><span class="p">(</span><span class="n">X_tr</span><span class="p">[</span><span class="n">y_tr</span> <span class="o">==</span> <span class="n">i</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="mi">255</span>
+    <span class="n">class_averages</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">class_average</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="n">class_average</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="sh">"</span><span class="s">binary</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">axis</span><span class="p">(</span><span class="sh">"</span><span class="s">off</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">set_aspect</span><span class="p">(</span><span class="sh">"</span><span class="s">equal</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/nb/01_ai_classifier_under_hood/output_8_0.png" data-zoomable="" width="800px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+
+<p>As we assumed, categories like <code class="language-plaintext highlighter-rouge">Trouser</code>, <code class="language-plaintext highlighter-rouge">Pullover</code> and <code class="language-plaintext highlighter-rouge">T-shirt/top</code> are rather heterogenous (i.e. sharp), while <code class="language-plaintext highlighter-rouge">Dress</code>, <code class="language-plaintext highlighter-rouge">Sandal</code> and <code class="language-plaintext highlighter-rouge">Bag</code> are a bit vague.</p>
+
+<p>And how do these classes relate to each other? For this we will just simply investigate how correlated each of these class averages are, and then order this correlation matrix, by using seaborn’s hierarchically-clustered heatmap <code class="language-plaintext highlighter-rouge">sns.clustermap()</code>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="kn">import</span> <span class="n">seaborn</span> <span class="k">as</span> <span class="n">sns</span>
+
+<span class="c1"># Correlate class averages and plot hierarchically-clustered heatmap
+</span><span class="n">corr</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">corrcoef</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">reshape</span><span class="p">(</span><span class="n">class_averages</span><span class="p">,</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)))</span>
+<span class="n">df_corr</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="nc">DataFrame</span><span class="p">(</span><span class="n">corr</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">labels</span><span class="p">)</span>
+<span class="n">cm</span> <span class="o">=</span> <span class="n">sns</span><span class="p">.</span><span class="nf">clustermap</span><span class="p">(</span>
+    <span class="mi">100</span> <span class="o">*</span> <span class="n">df_corr</span><span class="p">,</span>
+    <span class="n">cmap</span><span class="o">=</span><span class="sh">"</span><span class="s">coolwarm</span><span class="sh">"</span><span class="p">,</span>
+    <span class="n">annot</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+    <span class="n">cbar</span><span class="o">=</span><span class="bp">False</span><span class="p">,</span>
+    <span class="n">fmt</span><span class="o">=</span><span class="sh">"</span><span class="s">.0f</span><span class="sh">"</span><span class="p">,</span>
+    <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="n">cm</span><span class="p">.</span><span class="n">ax_row_dendrogram</span><span class="p">.</span><span class="nf">set_visible</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">cm</span><span class="p">.</span><span class="n">ax_col_dendrogram</span><span class="p">.</span><span class="nf">set_visible</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">cm</span><span class="p">.</span><span class="n">cax</span><span class="p">.</span><span class="nf">set_visible</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/nb/01_ai_classifier_under_hood/output_10_0.png" data-zoomable="" width="500px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+
+<p>Great, there seems to be some structure. Given this correlation matrix, we could assume that a machine learning model will have more problem to differentiate <code class="language-plaintext highlighter-rouge">Shirt</code>, <code class="language-plaintext highlighter-rouge">Pullover</code> and <code class="language-plaintext highlighter-rouge">Coat</code> from one another than from other classes. Similar thing for <code class="language-plaintext highlighter-rouge">Sandal</code> and <code class="language-plaintext highlighter-rouge">Sneakers</code>, etc.</p>
+
+<h1 id="unsupervised-learning">Unsupervised Learning</h1>
+
+<p>Now that we know our data set a bit better and have an intuition for when our machine learning models might struggle, we can go ahead and train them. First, let’s start with an unsupervised learning approach, specifically with <a href="https://umap-learn.readthedocs.io/en/latest/" target="_blank" rel="noopener noreferrer">UMAP</a>, i.e. Uniform Manifold Approximation and Projection for Dimension Reduction.</p>
+
+<p>The details about how UMAP works are not important here, but what you should know is the following: This unsupervised learning method tries to find a lower-dimensional manifold on which our high-dimensional data set lies. Once this manifold is known (or estimated), we can try to unfold and flatten it onto a 2-dimensional plane and visualize it in a human-understandable form. In contrast to other similar approaches (e.g. t-SNE), UMAP allows the reduction to more than just two dimensions and also contains a <code class="language-plaintext highlighter-rouge">.transfrom()</code> function, meaning that the mapping can even be reversed for new samples in the dataset.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">umap</span>
+
+<span class="c1"># Get samples into a 1D shape
+</span><span class="n">data</span> <span class="o">=</span> <span class="n">X_tr</span><span class="p">.</span><span class="nf">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">28</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="mf">255.0</span>
+
+<span class="c1"># Train UMAP model
+</span><span class="n">transformer</span> <span class="o">=</span> <span class="n">umap</span><span class="p">.</span><span class="nc">UMAP</span><span class="p">(</span>
+    <span class="n">n_neighbors</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span>
+    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.33</span><span class="p">,</span>  <span class="c1"># Lower than usual to slow down model improvement for visualization
+</span>    <span class="n">min_dist</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span>  <span class="c1"># Chosen to lead to a nice final spread of point cloud
+</span>    <span class="n">n_epochs</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span>
+    <span class="n">n_jobs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>  <span class="c1"># Keeping it sequential to extract epochs one after the other
+</span><span class="p">)</span>
+<span class="n">embedding</span> <span class="o">=</span> <span class="n">transformer</span><span class="p">.</span><span class="nf">fit_transform</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>As many such machine learning models, the model is initiated with more or less random parameters and then slowly optimizes to an impressive end result. To fully appreciate how well this works, it is important to understand that this routine doesn’t know about the target classes, and as such only works with similarities in the high-dimensional space.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">matplotlib.patheffects</span> <span class="k">as</span> <span class="n">PathEffects</span>
+
+
+<span class="k">def</span> <span class="nf">plot_umap</span><span class="p">(</span><span class="n">embedding</span><span class="p">,</span> <span class="n">y_tr</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
+
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">subplot</span><span class="p">(</span><span class="n">aspect</span><span class="o">=</span><span class="sh">"</span><span class="s">equal</span><span class="sh">"</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="p">.</span><span class="nf">scatter</span><span class="p">(</span><span class="o">*</span><span class="n">embedding</span><span class="p">.</span><span class="n">T</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="n">y_tr</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="sh">"</span><span class="s">Spectral</span><span class="sh">"</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">step</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">title_txt</span> <span class="o">=</span> <span class="sh">"</span><span class="s">Original data</span><span class="sh">"</span>
+    <span class="k">elif</span> <span class="n">step</span> <span class="o">==</span> <span class="mi">121</span><span class="p">:</span>
+        <span class="n">title_txt</span> <span class="o">=</span> <span class="sh">"</span><span class="s">Transformed Data</span><span class="sh">"</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">title_txt</span> <span class="o">=</span> <span class="sh">"</span><span class="s">Iteration Step: %03d</span><span class="sh">"</span> <span class="o">%</span> <span class="n">step</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">title</span><span class="p">(</span><span class="n">title_txt</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">28</span><span class="p">)</span>
+
+    <span class="n">cbar</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">colorbar</span><span class="p">(</span><span class="n">boundaries</span><span class="o">=</span><span class="n">np</span><span class="p">.</span><span class="nf">arange</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">cbar</span><span class="p">.</span><span class="nf">set_ticks</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+    <span class="n">cbar</span><span class="p">.</span><span class="nf">set_ticklabels</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="p">.</span><span class="nf">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">17</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">7</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">axis</span><span class="p">(</span><span class="sh">"</span><span class="s">off</span><span class="sh">"</span><span class="p">)</span>
+
+    <span class="c1"># We add the labels for each class
+</span>    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">t</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">labels</span><span class="p">):</span>
+        <span class="c1"># Position of each label
+</span>        <span class="n">xtext</span><span class="p">,</span> <span class="n">ytext</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">median</span><span class="p">(</span><span class="n">embedding</span><span class="p">[</span><span class="n">y_tr</span> <span class="o">==</span> <span class="n">i</span><span class="p">,</span> <span class="p">:],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">txt</span> <span class="o">=</span> <span class="n">ax</span><span class="p">.</span><span class="nf">text</span><span class="p">(</span><span class="n">xtext</span><span class="p">,</span> <span class="n">ytext</span><span class="p">,</span> <span class="nf">str</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
+        <span class="n">txt</span><span class="p">.</span><span class="nf">set_path_effects</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">PathEffects</span><span class="p">.</span><span class="nc">Stroke</span><span class="p">(</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">foreground</span><span class="o">=</span><span class="sh">"</span><span class="s">w</span><span class="sh">"</span><span class="p">),</span> <span class="n">PathEffects</span><span class="p">.</span><span class="nc">Normal</span><span class="p">()]</span>
+        <span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">tight_layout</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">fig</span>
+
+<span class="c1"># Optimize UMAP 128 times and store each step in an image
+</span><span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">128</span><span class="p">):</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="nf">plot_umap</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">load</span><span class="p">(</span><span class="sh">"</span><span class="s">emb_%04d.npz</span><span class="sh">"</span> <span class="o">%</span> <span class="n">n</span><span class="p">)[</span><span class="sh">"</span><span class="s">embedding</span><span class="sh">"</span><span class="p">],</span> <span class="n">y_tr</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+    <span class="n">fig</span><span class="p">.</span><span class="nf">savefig</span><span class="p">(</span><span class="sh">"</span><span class="s">fig_%04d.jpeg</span><span class="sh">"</span> <span class="o">%</span> <span class="n">n</span><span class="p">)</span>
+    <span class="n">fig</span><span class="p">.</span><span class="nf">clf</span><span class="p">()</span>
+
+<span class="c1"># Remove first figure as it is confusing
+</span><span class="err">!</span><span class="n">rm</span> <span class="n">fig_0000</span><span class="p">.</span><span class="n">jpeg</span>
+
+<span class="c1"># Duplicate first and last figure to have a "resting phase" impression
+</span><span class="err">!</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">1.</span><span class="p">.</span><span class="mi">12</span><span class="p">};</span> <span class="n">do</span> <span class="n">cp</span> <span class="n">fig_0001</span><span class="p">.</span><span class="n">jpeg</span> <span class="n">fig_0001_</span><span class="err">$</span><span class="n">i</span><span class="p">.</span><span class="n">jpeg</span><span class="p">;</span> <span class="n">done</span>
+<span class="err">!</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">1.</span><span class="p">.</span><span class="mi">12</span><span class="p">};</span> <span class="n">do</span> <span class="n">cp</span> <span class="n">fig_0127</span><span class="p">.</span><span class="n">jpeg</span> <span class="n">fig_0127_</span><span class="err">$</span><span class="n">i</span><span class="p">.</span><span class="n">jpeg</span><span class="p">;</span> <span class="n">done</span>
+
+<span class="c1"># Transform jpgs into video
+</span><span class="err">!</span><span class="n">ffmpeg</span> <span class="o">-</span><span class="n">y</span> <span class="o">-</span><span class="n">framerate</span> <span class="mi">12</span> <span class="o">-</span><span class="n">pattern_type</span> <span class="n">glob</span> <span class="o">-</span><span class="n">i</span> <span class="sh">'</span><span class="s">fig*.jpeg</span><span class="sh">'</span> <span class="n">umap_animation</span><span class="p">.</span><span class="n">gif</span>
+
+<span class="c1"># Remove temporary files
+</span><span class="err">!</span><span class="n">rm</span> <span class="n">fig_</span><span class="o">*</span><span class="p">.</span><span class="n">jpeg</span> <span class="n">emb_</span><span class="o">*</span><span class="p">.</span><span class="n">npz</span>
+
+<span class="c1"># Visualize gif
+</span><span class="kn">from</span> <span class="n">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="nc">Image</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="sh">"</span><span class="s">umap_animation.gif</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/nb/01_ai_classifier_under_hood/umap_animation.gif" data-zoomable="" width="800px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+
+<p>Nice, isn’t it? What is especially nice to see is that the UMAP projection supports our assumption from the hierarchically-clustered heatmap from before. Or in other words, target classes that are highly correlated with each other also seem to overlap on the lower-dimensional manifold.</p>
+
+<div class="alert alert-success">
+  <strong>Note:</strong> To create this animation, you need to slightly adapt UMAP's source code (<a href="https://github.com/lmcinnes/umap/blob/c060b65c208f3fdfd8abf1296adb4d9882cdac4e/umap/layouts.py#L396" target="_blank" rel="noopener noreferrer">here</a>) and save each <code>head_embedding</code> to a new file (e.g. <code>np.savez(filename, embedding=head_embedding)</code>.
+</div>
+
+<h1 id="supervised-learning">Supervised Learning</h1>
+
+<p>Let’s now explore what we can do if we chose a supervised learning approach and provide the machine learning model with the target class labels. While this would also be possible with a UMAP approach, let’s switch gears a bit and use a <strong>convolutional neural network</strong>, or short CNN, instead. A CNN is a particular kind of neural network that is specialized for analyzing data with spatial structure (e.g. images or time-series data).</p>
+
+<p>In short, what a CNN tries to do is the following: Find meaningful patterns in an image that help to differentiate target classes. For example, does one class of images have more straight lines than others, or more “wavy bits”? Do some images have more dots or wrinkles, do they have handles or shoe laces, etc. The CNN tries to find specific image patterns that are unique to some classes. Once it knows what kind of patterns can be found, it can use this information to predict if an image looks more than one class or another.</p>
+
+<h2 id="another-data-set">Another data set</h2>
+
+<p>To better illustrate the wonder of such CNNs, let’s also go to a bit more naturalistic dataset: The <a href="https://en.wikipedia.org/wiki/CIFAR-10" target="_blank" rel="noopener noreferrer">CIFAR-10</a>. Similar to the Fashion-MNIST dataset, this data set contains 70’000 color images, with a pixel resolution of 32 x 32, of 10 different target classes: <code class="language-plaintext highlighter-rouge">airplane</code>, <code class="language-plaintext highlighter-rouge">automobile</code>, <code class="language-plaintext highlighter-rouge">bird</code>, <code class="language-plaintext highlighter-rouge">cat</code>, <code class="language-plaintext highlighter-rouge">deer</code>, <code class="language-plaintext highlighter-rouge">dog</code>, <code class="language-plaintext highlighter-rouge">frog</code>, <code class="language-plaintext highlighter-rouge">horse</code>, <code class="language-plaintext highlighter-rouge">ship</code> and <code class="language-plaintext highlighter-rouge">truck</code>. Let’s have a quick look at this dataset:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="n">tensorflow</span> <span class="k">as</span> <span class="n">tf</span>
+
+<span class="c1"># Load and prepare dataset
+</span><span class="p">(</span><span class="n">X_tr</span><span class="p">,</span> <span class="n">y_tr</span><span class="p">),</span> <span class="p">(</span><span class="n">X_te</span><span class="p">,</span> <span class="n">y_te</span><span class="p">)</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">datasets</span><span class="p">.</span><span class="n">cifar10</span><span class="p">.</span><span class="nf">load_data</span><span class="p">()</span>
+<span class="n">y_tr</span> <span class="o">=</span> <span class="n">y_tr</span><span class="p">.</span><span class="nf">ravel</span><span class="p">()</span>
+<span class="n">y_te</span> <span class="o">=</span> <span class="n">y_te</span><span class="p">.</span><span class="nf">ravel</span><span class="p">()</span>
+
+<span class="n">labels</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="sh">"</span><span class="s">airplane</span><span class="sh">"</span><span class="p">,</span>
+    <span class="sh">"</span><span class="s">automobile</span><span class="sh">"</span><span class="p">,</span>
+    <span class="sh">"</span><span class="s">bird</span><span class="sh">"</span><span class="p">,</span>
+    <span class="sh">"</span><span class="s">cat</span><span class="sh">"</span><span class="p">,</span>
+    <span class="sh">"</span><span class="s">deer</span><span class="sh">"</span><span class="p">,</span>
+    <span class="sh">"</span><span class="s">dog</span><span class="sh">"</span><span class="p">,</span>
+    <span class="sh">"</span><span class="s">frog</span><span class="sh">"</span><span class="p">,</span>
+    <span class="sh">"</span><span class="s">horse</span><span class="sh">"</span><span class="p">,</span>
+    <span class="sh">"</span><span class="s">ship</span><span class="sh">"</span><span class="p">,</span>
+    <span class="sh">"</span><span class="s">truck</span><span class="sh">"</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">labels_tr</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="n">labels</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">y_tr</span><span class="p">])</span>
+<span class="n">labels_te</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span><span class="n">labels</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">y_te</span><span class="p">])</span>
+
+<span class="c1"># Prepare dataset for CNN
+</span><span class="n">x_train</span> <span class="o">=</span> <span class="n">X_tr</span><span class="p">.</span><span class="nf">astype</span><span class="p">(</span><span class="sh">"</span><span class="s">float32</span><span class="sh">"</span><span class="p">)</span> <span class="o">/</span> <span class="mf">127.5</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="n">x_test</span> <span class="o">=</span> <span class="n">X_te</span><span class="p">.</span><span class="nf">astype</span><span class="p">(</span><span class="sh">"</span><span class="s">float32</span><span class="sh">"</span><span class="p">)</span> <span class="o">/</span> <span class="mf">127.5</span> <span class="o">-</span> <span class="mi">1</span>
+
+<span class="kn">from</span> <span class="n">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="c1"># Split train and validation set
+</span><span class="n">x_train</span><span class="p">,</span> <span class="n">x_valid</span><span class="p">,</span> <span class="n">y_tr</span><span class="p">,</span> <span class="n">y_va</span> <span class="o">=</span> <span class="nf">train_test_split</span><span class="p">(</span>
+    <span class="n">x_train</span><span class="p">,</span> <span class="n">y_tr</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">y_tr</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,)</span>
+
+<span class="kn">import</span> <span class="n">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="c1"># Plot a few random clothing items
+</span><span class="n">size</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">idx</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">choice</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">arange</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">y_tr</span><span class="p">)),</span> <span class="n">size</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">subplots</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">16</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">ax</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">axes</span><span class="p">.</span><span class="nf">flatten</span><span class="p">()):</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">set_title</span><span class="p">(</span><span class="n">labels_tr</span><span class="p">[</span><span class="n">idx</span><span class="p">][</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="n">X_tr</span><span class="p">[</span><span class="n">idx</span><span class="p">][</span><span class="n">i</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="sh">"</span><span class="s">binary</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">axis</span><span class="p">(</span><span class="sh">"</span><span class="s">off</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">set_aspect</span><span class="p">(</span><span class="sh">"</span><span class="s">equal</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">tight_layout</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/nb/01_ai_classifier_under_hood/output_23_0.png" data-zoomable="" width="800px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+
+<h2 id="model-creation">Model creation</h2>
+
+<p>Next, let’s create a simple convolutional neural network, using TensorFlow:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">tensorflow</span> <span class="k">as</span> <span class="n">tf</span>
+<span class="kn">from</span> <span class="n">tensorflow</span> <span class="kn">import</span> <span class="n">keras</span>
+<span class="kn">from</span> <span class="n">tensorflow.keras</span> <span class="kn">import</span> <span class="n">layers</span>
+
+<span class="c1"># Create Conv Net
+</span><span class="n">inputs</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="nc">Input</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+
+<span class="c1"># Entry block
+</span><span class="n">x</span> <span class="o">=</span> <span class="n">layers</span><span class="p">.</span><span class="nc">Conv2D</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">padding</span><span class="o">=</span><span class="sh">"</span><span class="s">same</span><span class="sh">"</span><span class="p">,</span>
+    <span class="n">kernel_initializer</span><span class="o">=</span><span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">initializers</span><span class="p">.</span><span class="nc">TruncatedNormal</span><span class="p">(</span><span class="n">stddev</span><span class="o">=</span><span class="mf">0.01</span><span class="p">))(</span><span class="n">inputs</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">layers</span><span class="p">.</span><span class="nc">Activation</span><span class="p">(</span><span class="sh">"</span><span class="s">relu</span><span class="sh">"</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">layers</span><span class="p">.</span><span class="nc">MaxPooling2D</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="mi">2</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">layers</span><span class="p">.</span><span class="nc">Conv2D</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">padding</span><span class="o">=</span><span class="sh">"</span><span class="s">same</span><span class="sh">"</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="sh">"</span><span class="s">relu</span><span class="sh">"</span><span class="p">,</span>
+    <span class="n">kernel_initializer</span><span class="o">=</span><span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">initializers</span><span class="p">.</span><span class="nc">TruncatedNormal</span><span class="p">(</span><span class="n">stddev</span><span class="o">=</span><span class="mf">0.01</span><span class="p">))(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">layers</span><span class="p">.</span><span class="nc">MaxPooling2D</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">strides</span><span class="o">=</span><span class="mi">2</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">layers</span><span class="p">.</span><span class="nc">Flatten</span><span class="p">()(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">layers</span><span class="p">.</span><span class="nc">Dropout</span><span class="p">(</span><span class="mf">0.25</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">layers</span><span class="p">.</span><span class="nc">Dense</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="sh">"</span><span class="s">relu</span><span class="sh">"</span><span class="p">,</span>
+    <span class="n">kernel_initializer</span><span class="o">=</span><span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">initializers</span><span class="p">.</span><span class="nc">VarianceScaling</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="mi">2</span><span class="p">))(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">layers</span><span class="p">.</span><span class="nc">BatchNormalization</span><span class="p">()(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">outputs</span> <span class="o">=</span> <span class="n">layers</span><span class="p">.</span><span class="nc">Dense</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="n">activation</span><span class="o">=</span><span class="sh">"</span><span class="s">softmax</span><span class="sh">"</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="nc">Model</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">outputs</span><span class="p">)</span>
+
+<span class="n">model</span><span class="p">.</span><span class="nf">compile</span><span class="p">(</span>
+    <span class="n">optimizer</span><span class="o">=</span><span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="n">optimizers</span><span class="p">.</span><span class="nc">Adam</span><span class="p">(</span><span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.0005</span><span class="p">),</span>
+    <span class="n">loss</span><span class="o">=</span><span class="sh">"</span><span class="s">sparse_categorical_crossentropy</span><span class="sh">"</span><span class="p">,</span>
+    <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="sh">"</span><span class="s">accuracy</span><span class="sh">"</span><span class="p">])</span>
+
+<span class="n">model</span><span class="p">.</span><span class="nf">summary</span><span class="p">()</span>
+</code></pre></div></div>
+
+<pre><code class="language-code">Model: "model_1"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ input_1  (InputLayer)          [(None, 32, 32, 3)]    0         
+ conv2d_2  (Conv2D)              (None, 32, 32, 64)    4864      
+ activation_3 (Activation)       (None, 32, 32, 64)    0         
+ max_pooling2d_4 (MaxPooling2D)  (None, 16, 16, 64)    0         
+ conv2d_5 (Conv2D)               (None, 16, 16, 64)    36928     
+ max_pooling2d_6 (MaxPooling2D)  (None, 8, 8, 64)      0         
+ flatten_7 (Flatten)             (None, 4096)          0         
+ dropout_8 (Dropout)             (None, 4096)          0         
+ dense_9 (Dense)                 (None, 256)           1048832   
+ batch_normalization_10 (Batch   (None, 256)           1024      
+ Normalization)                                                  
+ dense_11 (Dense)                (None, 10)            2570      
+=================================================================
+Total params: 1,094,218
+Trainable params: 1,093,706
+Non-trainable params: 512
+_________________________________________________________________
+</code></pre>
+
+<p>This is certainly not the most efficient, nor the best performing network, but it allows us to observe the inner workings of a neural network. But before we go ahead and train the network, let’s take a look at the ‘raw’ and untrained version of it.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">plot_first_layer_kernels</span><span class="p">(</span><span class="n">kernels</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+
+    <span class="c1"># Create a grid of subplots
+</span>    <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+
+    <span class="c1"># Remove gaps between suplots
+</span>    <span class="n">plt</span><span class="p">.</span><span class="nf">subplots_adjust</span><span class="p">(</span><span class="n">wspace</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1"># Plot the 64 kernels from the first convolutional layer
+</span>    <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">axis</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">axes</span><span class="p">.</span><span class="nf">flatten</span><span class="p">()):</span>
+        <span class="c1"># Get i-th kernel (shape: 5x5x3)
+</span>        <span class="n">kernel</span> <span class="o">=</span> <span class="n">kernels</span><span class="p">[:,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="n">j</span><span class="p">]</span>
+
+        <span class="c1"># Rescale values between 0 and 1
+</span>        <span class="n">kernel</span> <span class="o">-=</span> <span class="n">kernel</span><span class="p">.</span><span class="nf">min</span><span class="p">()</span>  <span class="c1"># Rescale between 0 and max
+</span>        <span class="n">kernel</span> <span class="o">/=</span> <span class="n">kernel</span><span class="p">.</span><span class="nf">max</span><span class="p">()</span>  <span class="c1"># Rescale between 0 and 1
+</span>
+        <span class="c1"># Plot kernel with imshow()
+</span>        <span class="n">axis</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="n">kernel</span><span class="p">)</span>
+        <span class="n">axis</span><span class="p">.</span><span class="nf">get_xaxis</span><span class="p">().</span><span class="nf">set_visible</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>  <span class="c1"># disable x-axis
+</span>        <span class="n">axis</span><span class="p">.</span><span class="nf">get_yaxis</span><span class="p">().</span><span class="nf">set_visible</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>  <span class="c1"># disable y-axis
+</span>    <span class="n">plt</span><span class="p">.</span><span class="nf">suptitle</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">fig</span>
+
+<span class="nf">plot_first_layer_kernels</span><span class="p">(</span><span class="n">model</span><span class="p">.</span><span class="nf">get_weights</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span>
+</code></pre></div></div>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/nb/01_ai_classifier_under_hood/output_31_0.png" data-zoomable="" width="400px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+
+<p>This is a picture of the first 16 convolutional kernels (or filters). In other words, what the CNN sees (or looks for) in the very first input layer.</p>
+
+<p>Right now, all of the convolutional neural network’s parameter are randomly set. In other words, the ConvNet doesn’t know what to look for, its ‘eyes’ are still untrained. And so, if we give this untrained neural network an image to classify, it performs very poorly, and doesn’t really know which of the 10 classes to pick from.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">predict_single_image</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_te</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">idx</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+
+    <span class="c1"># Compute predictions
+</span>    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="nf">predict</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>
+
+    <span class="c1"># Prepare image
+</span>    <span class="n">img</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">squeeze</span><span class="p">(</span><span class="n">x_test</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span>
+    <span class="n">img</span> <span class="o">-=</span> <span class="n">img</span><span class="p">.</span><span class="nf">min</span><span class="p">()</span>
+    <span class="n">img</span> <span class="o">/=</span> <span class="n">img</span><span class="p">.</span><span class="nf">max</span><span class="p">()</span>
+
+    <span class="c1"># Get class probabilities
+</span>    <span class="n">probability</span> <span class="o">=</span> <span class="n">y_pred</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">*</span> <span class="mi">100</span>
+
+    <span class="c1"># Get class names
+</span>    <span class="n">class_names</span> <span class="o">=</span> <span class="n">labels</span>
+
+    <span class="c1"># Get predicted and true label of image
+</span>    <span class="n">predicted_idx</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">argmax</span><span class="p">(</span><span class="n">probability</span><span class="p">)</span>
+    <span class="n">predicted_prob</span> <span class="o">=</span> <span class="n">probability</span><span class="p">[</span><span class="n">predicted_idx</span><span class="p">]</span>
+    <span class="n">predicted_label</span> <span class="o">=</span> <span class="n">class_names</span><span class="p">[</span><span class="n">predicted_idx</span><span class="p">]</span>
+
+    <span class="kn">import</span> <span class="n">matplotlib.gridspec</span> <span class="k">as</span> <span class="n">gridspec</span>
+
+    <span class="c1"># Plot overview figure
+</span>    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+    <span class="n">gs</span> <span class="o">=</span> <span class="n">gridspec</span><span class="p">.</span><span class="nc">GridSpec</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">width_ratios</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+
+    <span class="c1"># Plot image
+</span>    <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">title</span><span class="p">(</span><span class="sh">"</span><span class="s">Image</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="sh">"</span><span class="s">binary</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">grid</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">xticks</span><span class="p">([])</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">yticks</span><span class="p">([])</span>
+
+    <span class="c1"># Add information text to image
+</span>    <span class="n">info_txt</span> <span class="o">=</span> <span class="sh">"</span><span class="se">\n</span><span class="s">This is to {:.02f}% a {}!</span><span class="sh">"</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="n">predicted_prob</span><span class="p">,</span> <span class="n">predicted_label</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">xlabel</span><span class="p">(</span><span class="n">info_txt</span><span class="p">,</span> <span class="n">fontdict</span><span class="o">=</span><span class="p">{</span><span class="sh">"</span><span class="s">size</span><span class="sh">"</span><span class="p">:</span> <span class="mi">21</span><span class="p">})</span>
+
+    <span class="c1"># Plot prediction probabilities
+</span>    <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">title</span><span class="p">(</span><span class="sh">"</span><span class="s">Prediction Probability</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">y_pos</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">arange</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">probability</span><span class="p">))</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">barh</span><span class="p">(</span><span class="n">y_pos</span><span class="p">,</span> <span class="n">probability</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="sh">"</span><span class="s">#BFBFBF</span><span class="sh">"</span><span class="p">)</span>
+
+    <span class="c1"># Set y-label text
+</span>    <span class="n">y_label_text</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="sh">"</span><span class="s">{}: {:5.2f}%</span><span class="sh">"</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">probability</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">e</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">class_names</span><span class="p">)</span>
+    <span class="p">]</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">set_yticks</span><span class="p">(</span><span class="n">y_pos</span><span class="p">)</span>
+    <span class="n">ax</span><span class="p">.</span><span class="nf">set_yticklabels</span><span class="p">(</span><span class="n">y_label_text</span><span class="p">)</span>
+    <span class="n">ylim</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">plt</span><span class="p">.</span><span class="nf">ylim</span><span class="p">())</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">vlines</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="nf">len</span><span class="p">(</span><span class="n">probability</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span><span class="p">,</span> <span class="o">*</span><span class="n">ylim</span><span class="p">,</span> <span class="n">linestyles</span><span class="o">=</span><span class="sh">"</span><span class="s">:</span><span class="sh">"</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">ylim</span><span class="p">(</span><span class="n">ylim</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="p">.</span><span class="nf">tight_layout</span><span class="p">()</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
+
+<span class="nf">predict_single_image</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_te</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">idx</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/nb/01_ai_classifier_under_hood/output_34_0.png" data-zoomable="" width="800px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+
+<p>The illustration above shows with which class probability this untrained CNN would predict the dog shown in the image.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">matplotlib.gridspec</span> <span class="k">as</span> <span class="n">gridspec</span>
+
+<span class="k">def</span> <span class="nf">predict_multiple_images</span><span class="p">(</span>
+    <span class="n">model</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_te</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">nimg</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">title_idx</span><span class="o">=</span><span class="bp">None</span>
+<span class="p">):</span>
+
+    <span class="c1"># Set random seed
+</span>    <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">seed</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+
+    <span class="c1"># Compute predictions
+</span>    <span class="n">y_pred</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="nf">predict</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>
+
+    <span class="kn">from</span> <span class="n">sklearn.utils</span> <span class="kn">import</span> <span class="n">shuffle</span>
+
+    <span class="n">imgs</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">squeeze</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>
+    <span class="n">img_ids</span> <span class="o">=</span> <span class="nf">shuffle</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">arange</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">x_test</span><span class="p">)))</span>
+
+    <span class="c1"># Plot first N image prediction information
+</span>    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="n">nimg</span> <span class="o">*</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+    <span class="n">gs</span> <span class="o">=</span> <span class="n">gridspec</span><span class="p">.</span><span class="nc">GridSpec</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">nimg</span><span class="p">,</span> <span class="n">height_ratios</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+
+    <span class="k">for</span> <span class="n">i_pos</span><span class="p">,</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">img_ids</span><span class="p">[:</span><span class="n">nimg</span><span class="p">]):</span>
+
+        <span class="c1"># Get image
+</span>        <span class="n">img</span> <span class="o">=</span> <span class="n">imgs</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+
+        <span class="c1"># Get probability
+</span>        <span class="n">probability</span> <span class="o">=</span> <span class="n">y_pred</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+
+        <span class="c1"># Get predicted and true label of image
+</span>        <span class="n">predicted_label</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">argmax</span><span class="p">(</span><span class="n">probability</span><span class="p">)</span>
+        <span class="n">true_label</span> <span class="o">=</span> <span class="n">y_te</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+
+        <span class="c1"># Get class names
+</span>        <span class="n">class_names</span> <span class="o">=</span> <span class="n">labels</span>
+
+        <span class="c1"># Identify the text color
+</span>        <span class="k">if</span> <span class="n">predicted_label</span> <span class="o">==</span> <span class="n">true_label</span><span class="p">:</span>
+            <span class="n">color</span> <span class="o">=</span> <span class="sh">"</span><span class="s">#004CFF</span><span class="sh">"</span>
+            <span class="n">info_txt</span> <span class="o">=</span> <span class="sh">"</span><span class="s">{} {:2.1f}%</span><span class="se">\n</span><span class="s">Correct!</span><span class="sh">"</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span>
+                <span class="n">class_names</span><span class="p">[</span><span class="n">predicted_label</span><span class="p">],</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="nf">max</span><span class="p">(</span><span class="n">probability</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">color</span> <span class="o">=</span> <span class="sh">"</span><span class="s">#F50000</span><span class="sh">"</span>
+            <span class="n">info_txt</span> <span class="o">=</span> <span class="sh">"</span><span class="s">{} {:2.1f}%</span><span class="se">\n</span><span class="s">Actually: {}</span><span class="sh">"</span><span class="p">.</span><span class="nf">format</span><span class="p">(</span>
+                <span class="n">class_names</span><span class="p">[</span><span class="n">predicted_label</span><span class="p">],</span>
+                <span class="mi">100</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="nf">max</span><span class="p">(</span><span class="n">probability</span><span class="p">),</span>
+                <span class="n">class_names</span><span class="p">[</span><span class="n">true_label</span><span class="p">],</span>
+            <span class="p">)</span>
+
+        <span class="c1"># Plot prediction probabilities
+</span>        <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">i_pos</span><span class="p">])</span>
+        <span class="n">pred_plot</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">bar</span><span class="p">(</span><span class="nf">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">probability</span><span class="p">)),</span> <span class="n">probability</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="sh">"</span><span class="s">#BFBFBF</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">pred_plot</span><span class="p">[</span><span class="n">predicted_label</span><span class="p">].</span><span class="nf">set_color</span><span class="p">(</span><span class="sh">"</span><span class="s">#FF4747</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">pred_plot</span><span class="p">[</span><span class="n">true_label</span><span class="p">].</span><span class="nf">set_color</span><span class="p">(</span><span class="sh">"</span><span class="s">#477EFF</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">xlim</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">plt</span><span class="p">.</span><span class="nf">xlim</span><span class="p">())</span>
+        <span class="n">plt</span><span class="p">.</span><span class="nf">hlines</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="nf">len</span><span class="p">(</span><span class="n">probability</span><span class="p">),</span> <span class="o">*</span><span class="n">xlim</span><span class="p">,</span> <span class="n">linestyles</span><span class="o">=</span><span class="sh">"</span><span class="s">:</span><span class="sh">"</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">plt</span><span class="p">.</span><span class="nf">xlim</span><span class="p">(</span><span class="n">xlim</span><span class="p">)</span>
+        <span class="n">plt</span><span class="p">.</span><span class="nf">ylim</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="n">plt</span><span class="p">.</span><span class="nf">xticks</span><span class="p">([])</span>
+        <span class="n">plt</span><span class="p">.</span><span class="nf">yticks</span><span class="p">([])</span>
+        <span class="n">plt</span><span class="p">.</span><span class="nf">title</span><span class="p">(</span><span class="sh">"</span><span class="s">Class Probability</span><span class="sh">"</span><span class="p">)</span>
+
+        <span class="c1"># Plot image
+</span>        <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">subplot</span><span class="p">(</span><span class="n">gs</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="n">i_pos</span><span class="p">])</span>
+        <span class="n">img</span> <span class="o">-=</span> <span class="n">img</span><span class="p">.</span><span class="nf">min</span><span class="p">()</span>
+        <span class="n">img</span> <span class="o">/=</span> <span class="n">img</span><span class="p">.</span><span class="nf">max</span><span class="p">()</span>
+        <span class="n">plt</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="sh">"</span><span class="s">binary</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">plt</span><span class="p">.</span><span class="nf">grid</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+        <span class="n">plt</span><span class="p">.</span><span class="nf">xticks</span><span class="p">([])</span>
+        <span class="n">plt</span><span class="p">.</span><span class="nf">yticks</span><span class="p">([])</span>
+
+        <span class="c1"># Add information text to image
+</span>        <span class="n">plt</span><span class="p">.</span><span class="nf">xlabel</span><span class="p">(</span><span class="n">info_txt</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="p">.</span><span class="nf">suptitle</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Epoch: </span><span class="si">{</span><span class="n">title_idx</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">tight_layout</span><span class="p">()</span>
+    <span class="n">fig</span><span class="p">.</span><span class="nf">savefig</span><span class="p">(</span><span class="sh">"</span><span class="s">pred_%03d_%04d.jpg</span><span class="sh">"</span> <span class="o">%</span> <span class="p">(</span><span class="n">seed</span><span class="p">,</span> <span class="n">title_idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">fig</span><span class="p">.</span><span class="nf">clf</span><span class="p">()</span>
+
+<span class="nf">predict_multiple_images</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_te</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">nimg</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">title_idx</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/nb/01_ai_classifier_under_hood/output_35_0.jpg" data-zoomable="" width="800px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+
+<p>This is the same plot as with the dog above, but this time for six different images. The blue bar shows the probability of the class it should have predicted and the red one, the class probability of the wrongly predicted class. For now, all of these probabilities are at 10%, i.e. chance level.</p>
+
+<h2 id="model-training">Model training</h2>
+
+<p>Let’s now go ahead and train this model. There’s an endless depth to explaining how this actually works, but in simple terms, the model looks at a few images (i.e., a batch), tries to predict the target classes of these images, looks at how wrong it was and corrects its internal parameters accordingly.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Create some helper lists for results storage
+</span><span class="n">scores</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">kernels</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">activations</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Specify how many epochs to train for
+</span><span class="n">N</span> <span class="o">=</span> <span class="mi">48</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+    <span class="n">history</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="nf">fit</span><span class="p">(</span>
+        <span class="n">x_train</span><span class="p">,</span>
+        <span class="n">y_tr</span><span class="p">,</span>
+        <span class="n">batch_size</span><span class="o">=</span><span class="p">((</span><span class="n">i</span> <span class="o">//</span> <span class="mi">6</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span><span class="p">,</span>
+        <span class="n">shuffle</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+        <span class="n">epochs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="n">x_valid</span><span class="p">,</span> <span class="n">y_va</span><span class="p">),</span>
+        <span class="n">steps_per_epoch</span><span class="o">=</span><span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Store kernels in array
+</span>    <span class="n">kernels</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">model</span><span class="p">.</span><span class="nf">get_weights</span><span class="p">()[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="c1"># Store activation maps in array
+</span>    <span class="n">img</span> <span class="o">=</span> <span class="n">x_test</span><span class="p">[</span><span class="mi">16</span><span class="p">]</span>
+    <span class="n">model_conv</span> <span class="o">=</span> <span class="n">tf</span><span class="p">.</span><span class="n">keras</span><span class="p">.</span><span class="nc">Model</span><span class="p">(</span><span class="n">model</span><span class="p">.</span><span class="nb">input</span><span class="p">,</span> <span class="n">model</span><span class="p">.</span><span class="n">layers</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">output</span><span class="p">)</span>
+    <span class="n">activations</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">model_conv</span><span class="p">.</span><span class="nf">predict</span><span class="p">(</span><span class="n">img</span><span class="p">[</span><span class="bp">None</span><span class="p">,</span> <span class="p">...]))</span>
+
+    <span class="c1"># Stores scores in array
+</span>    <span class="n">scores</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">history</span><span class="p">.</span><span class="n">history</span><span class="p">)</span>
+
+    <span class="c1"># Save predictions to image
+</span>    <span class="k">for</span> <span class="n">sidx</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">12</span><span class="p">):</span>
+        <span class="nf">predict_multiple_images</span><span class="p">(</span>
+            <span class="n">model</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_te</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">nimg</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="n">sidx</span><span class="p">,</span> <span class="n">title_idx</span><span class="o">=</span><span class="n">i</span>
+        <span class="p">)</span>
+
+<span class="c1"># Save relevant outputs in numpy and pandas frameworks
+</span><span class="n">kernels</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">(</span><span class="n">kernels</span><span class="p">)</span>
+<span class="n">activations</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">(</span><span class="n">activations</span><span class="p">)</span>
+<span class="n">scores</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="nf">concat</span><span class="p">([</span><span class="n">pd</span><span class="p">.</span><span class="nc">DataFrame</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">scores</span><span class="p">]).</span><span class="nf">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">plot_first_layer_view</span><span class="p">(</span><span class="n">activation_maps</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">Helper function to plot kernels of first conv layer</span><span class="sh">"""</span>
+
+    <span class="c1"># Create a grid of subplots
+</span>    <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+    <span class="c1"># Remove gaps between suplots
+</span>    <span class="n">plt</span><span class="p">.</span><span class="nf">subplots_adjust</span><span class="p">(</span><span class="n">wspace</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">hspace</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1"># Plot the activation maps of the 1st conv. layer for the sample image
+</span>    <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">axis</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">axes</span><span class="p">.</span><span class="nf">flatten</span><span class="p">()):</span>
+        <span class="c1"># Get activation map of the i-th filter
+</span>        <span class="n">activation</span> <span class="o">=</span> <span class="n">activation_maps</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="n">j</span><span class="p">]</span>
+
+        <span class="c1"># Rescale values between 0 and 1
+</span>        <span class="n">activation</span> <span class="o">-=</span> <span class="n">activation</span><span class="p">.</span><span class="nf">min</span><span class="p">()</span>  <span class="c1"># Rescale between 0 and max
+</span>        <span class="n">activation</span> <span class="o">/=</span> <span class="n">activation</span><span class="p">.</span><span class="nf">max</span><span class="p">()</span>  <span class="c1"># Rescale between 0 and 1
+</span>
+        <span class="c1"># Plot it with imshow()
+</span>        <span class="n">axis</span><span class="p">.</span><span class="nf">imshow</span><span class="p">(</span><span class="n">activation</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="sh">"</span><span class="s">gray</span><span class="sh">"</span><span class="p">)</span>
+        <span class="n">axis</span><span class="p">.</span><span class="nf">axis</span><span class="p">(</span><span class="sh">"</span><span class="s">off</span><span class="sh">"</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="p">.</span><span class="nf">suptitle</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">fig</span>
+
+<span class="c1"># Loop through results and create informative plots
+</span><span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">scores</span><span class="p">)):</span>
+
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="nf">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+
+    <span class="c1"># Plot first layer kernels
+</span>    <span class="n">fig_kernel</span> <span class="o">=</span> <span class="nf">plot_first_layer_kernels</span><span class="p">(</span><span class="n">kernels</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span>
+    <span class="n">fig_kernel</span><span class="p">.</span><span class="nf">savefig</span><span class="p">(</span><span class="sh">"</span><span class="s">temp.jpg</span><span class="sh">"</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="sh">"</span><span class="s">tight</span><span class="sh">"</span><span class="p">,</span> <span class="n">pad_inches</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nf">imshow</span><span class="p">(</span><span class="n">plt</span><span class="p">.</span><span class="nf">imread</span><span class="p">(</span><span class="sh">"</span><span class="s">temp.jpg</span><span class="sh">"</span><span class="p">))</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nf">axis</span><span class="p">(</span><span class="sh">"</span><span class="s">off</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nf">set_title</span><span class="p">(</span><span class="sh">"</span><span class="s">Kernel</span><span class="sh">"</span><span class="p">)</span>
+
+    <span class="c1"># Plot first layer kernels
+</span>    <span class="n">fig_activation</span> <span class="o">=</span> <span class="nf">plot_first_layer_view</span><span class="p">(</span><span class="n">activations</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span>
+    <span class="n">fig_activation</span><span class="p">.</span><span class="nf">savefig</span><span class="p">(</span><span class="sh">"</span><span class="s">temp.jpg</span><span class="sh">"</span><span class="p">,</span> <span class="n">bbox_inches</span><span class="o">=</span><span class="sh">"</span><span class="s">tight</span><span class="sh">"</span><span class="p">,</span> <span class="n">pad_inches</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="nf">imshow</span><span class="p">(</span><span class="n">plt</span><span class="p">.</span><span class="nf">imread</span><span class="p">(</span><span class="sh">"</span><span class="s">temp.jpg</span><span class="sh">"</span><span class="p">))</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="nf">axis</span><span class="p">(</span><span class="sh">"</span><span class="s">off</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="nf">set_title</span><span class="p">(</span><span class="sh">"</span><span class="s">View</span><span class="sh">"</span><span class="p">)</span>
+
+    <span class="c1"># Plot validation curves
+</span>    <span class="n">scores</span><span class="p">[[</span><span class="sh">"</span><span class="s">accuracy</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">val_accuracy</span><span class="sh">"</span><span class="p">]].</span><span class="n">iloc</span><span class="p">[:</span> <span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="p">:].</span><span class="nf">plot</span><span class="p">(</span>
+        <span class="n">xlabel</span><span class="o">=</span><span class="sh">"</span><span class="s">Epochs</span><span class="sh">"</span><span class="p">,</span>
+        <span class="n">ylabel</span><span class="o">=</span><span class="sh">"</span><span class="s">Accuracy</span><span class="sh">"</span><span class="p">,</span>
+        <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="nf">len</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.8</span><span class="p">),</span>
+        <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">),</span>
+        <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+    <span class="p">)</span>
+    <span class="n">axes</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="nf">set_title</span><span class="p">(</span><span class="sh">"</span><span class="s">Learning Curve</span><span class="sh">"</span><span class="p">)</span>
+
+    <span class="n">acc</span> <span class="o">=</span> <span class="n">scores</span><span class="p">.</span><span class="n">loc</span><span class="p">[</span><span class="n">idx</span><span class="p">,</span> <span class="sh">"</span><span class="s">val_accuracy</span><span class="sh">"</span><span class="p">]</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">suptitle</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="s">Epoch: </span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s"> | Accuracy </span><span class="si">{</span><span class="n">acc</span><span class="o">*</span><span class="mi">100</span><span class="si">:</span><span class="p">.</span><span class="mi">2</span><span class="n">f</span><span class="si">}</span><span class="s">%</span><span class="sh">"</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="nf">tight_layout</span><span class="p">()</span>
+    <span class="n">fig</span><span class="p">.</span><span class="nf">savefig</span><span class="p">(</span><span class="sh">"</span><span class="s">conv_%04d.jpg</span><span class="sh">"</span> <span class="o">%</span> <span class="p">(</span><span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="n">fig</span><span class="p">.</span><span class="nf">clf</span><span class="p">()</span>
+
+<span class="c1"># Duplicate first and last figure to have a "resting phase" impression
+</span><span class="err">!</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">1.</span><span class="p">.</span><span class="mi">4</span><span class="p">};</span> <span class="n">do</span> <span class="n">cp</span> <span class="n">conv_0001</span><span class="p">.</span><span class="n">jpg</span> <span class="n">conv_0001_</span><span class="err">$</span><span class="n">i</span><span class="p">.</span><span class="n">jpg</span><span class="p">;</span> <span class="n">done</span>
+<span class="err">!</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">1.</span><span class="p">.</span><span class="mi">4</span><span class="p">};</span> <span class="n">do</span> <span class="n">cp</span> <span class="n">conv_0048</span><span class="p">.</span><span class="n">jpg</span> <span class="n">conv_0048_</span><span class="err">$</span><span class="n">i</span><span class="p">.</span><span class="n">jpg</span><span class="p">;</span> <span class="n">done</span>
+
+<span class="c1"># Concatenate images into a gif
+</span><span class="err">!</span><span class="n">ffmpeg</span> <span class="o">-</span><span class="n">y</span> <span class="o">-</span><span class="n">framerate</span> <span class="mi">4</span> <span class="o">-</span><span class="n">pattern_type</span> <span class="n">glob</span> <span class="o">-</span><span class="n">i</span> <span class="sh">'</span><span class="s">conv*.jpg</span><span class="sh">'</span> <span class="n">cnn_training</span><span class="p">.</span><span class="n">gif</span>
+
+<span class="c1"># Show gif
+</span><span class="kn">from</span> <span class="n">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="nc">Image</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="sh">"</span><span class="s">cnn_training.gif</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/nb/01_ai_classifier_under_hood/cnn_training.gif" data-zoomable="" width="800px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+
+<p>What we can see here is the learning of a convolutional neural network model, in action. On the <strong>left</strong>, we can see the different convolutions (also called kernels), the neural network is learning. These are the particular features the network tries to find (e.g. horizontal lines, color shifts from red to green, circular patterns, etc.). In the <strong>middle</strong> we can see how each of these convolutions sees the puppy image from before, and on the <strong>right</strong> we can see how the overall accuracy of the model (on the training and validation set) slowly increases through the 48 epochs we trained the network for.</p>
+
+<p>To verify that the model improved its prediction capability, let’s take another look at the puppy classification from before.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">predict_single_image</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">x_test</span><span class="p">,</span> <span class="n">y_te</span><span class="p">,</span> <span class="n">labels</span><span class="p">,</span> <span class="n">idx</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/nb/01_ai_classifier_under_hood/output_46_0.png" data-zoomable="" width="800px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+
+<p>Much better! Actually, when we compute the overall accuracy this model would reach on a never before seen test set of 10’000 images, it reaches an average prediction accuracy of 65.89%.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">loss</span><span class="p">,</span> <span class="n">acc</span> <span class="o">=</span> <span class="n">model</span><span class="p">.</span><span class="nf">evaluate</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_te</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">Accuracy on test set: %f</span><span class="sh">"</span> <span class="o">%</span> <span class="n">acc</span><span class="p">)</span>
+</code></pre></div></div>
+
+<pre><code class="language-code">313/313 [==========] - 3s 11ms/step - loss: 1.1656 - accuracy: 0.6589
+Accuracy on test set: 0.658900
+</code></pre>
+
+<p>Last but not least, and for fun, let’s select a few images from this test set and see how the individual prediction probabilities become more and more opinionated during training.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Duplicate first and last figure to have a "resting phase" impression
+</span><span class="err">!</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">1.</span><span class="p">.</span><span class="mi">4</span><span class="p">};</span> <span class="n">do</span> <span class="n">cp</span> <span class="n">pred_000_0000</span><span class="p">.</span><span class="n">jpg</span> <span class="n">pred_000_0000_</span><span class="err">$</span><span class="n">i</span><span class="p">.</span><span class="n">jpg</span><span class="p">;</span> <span class="n">done</span>
+<span class="err">!</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">{</span><span class="mf">1.</span><span class="p">.</span><span class="mi">4</span><span class="p">};</span> <span class="n">do</span> <span class="n">cp</span> <span class="n">pred_000_0048</span><span class="p">.</span><span class="n">jpg</span> <span class="n">pred_000_0048_</span><span class="err">$</span><span class="n">i</span><span class="p">.</span><span class="n">jpg</span><span class="p">;</span> <span class="n">done</span>
+
+<span class="c1"># Concatenate images into a gif
+</span><span class="err">!</span><span class="n">ffmpeg</span> <span class="o">-</span><span class="n">y</span> <span class="o">-</span><span class="n">framerate</span> <span class="mi">4</span> <span class="o">-</span><span class="n">pattern_type</span> <span class="n">glob</span> <span class="o">-</span><span class="n">i</span> <span class="sh">'</span><span class="s">pred_000_*.jpg</span><span class="sh">'</span> <span class="n">cnn_predictions</span><span class="p">.</span><span class="n">gif</span>
+
+<span class="c1"># Removes temporary files
+</span><span class="err">!</span><span class="n">rm</span> <span class="n">conv_0</span><span class="o">*</span><span class="p">.</span><span class="n">jpg</span> <span class="n">pred_0</span><span class="o">*</span><span class="p">.</span><span class="n">jpg</span> <span class="n">temp</span><span class="p">.</span><span class="n">jpg</span>
+
+<span class="c1"># Show gif
+</span><span class="kn">from</span> <span class="n">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="nc">Image</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="sh">"</span><span class="s">cnn_predictions.gif</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><img class="img-fluid rounded z-depth-1" src="/assets/nb/01_ai_classifier_under_hood/cnn_predictions.gif" data-zoomable="" width="800px" style="padding-top: 20px; padding-right: 20px; padding-bottom: 20px; padding-left: 20px"></p>
+
+  </article>
+
+  
+
+</div>
+
+    </div>
+
+    <!-- Footer -->
+
+    
+<footer class="fixed-bottom">
+  <div class="container mt-0">
+    © Copyright 2025 Michael P. Notter.
+    Powered by <a href="http://jekyllrb.com/" target="_blank" rel="noopener noreferrer">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" target="_blank" rel="noopener noreferrer">al-folio</a> theme.
+
+    
+    
+  </div>
+</footer>
+
+
+
+  </body>
+
+  <!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+
+  <!-- Bootsrap & MDB scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.4/umd/popper.min.js" integrity="sha512-eUQ9hGdLjBjY3F41CScH3UX+4JDSI9zXeroz7hJ+RteoCaY+GP/LDoM8AO+Pt+DRFw3nXqsjh9Zsts8hnYv8/A==" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha512-M5KW3ztuIICmVIhjSqXe01oV2bpe248gOxqmlcYrEzAvws7Pw3z6BK0iGbrwvdrUQUhi3eXgtxp5I8PDo9YfjQ==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js" integrity="sha512-Mug9KHKmroQFMLm93zGrjhibM2z2Obg9l6qFG2qKjXEXkMp/VDkI4uju9m4QKPjWSwQ6O2qzZEnJDEeCw0Blcw==" crossorigin="anonymous"></script>
+
+  
+<!-- Mansory & imagesLoaded -->
+<script defer src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script defer src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+<script defer src="/assets/js/mansory.js" type="text/javascript"></script>
+
+
+  
+
+
+<!-- Medium Zoom JS -->
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+<script src="/assets/js/zoom.js"></script>
+
+
+<!-- Load Common JS -->
+<script src="/assets/js/common.js"></script>
+
+  
+<!-- MathJax -->
+<script type="text/javascript">
+  window.MathJax = {
+    tex: {
+      tags: 'ams'
+    }
+  };
+</script>
+<script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js"></script>
+<script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+
+
+  
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-126030922-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() { dataLayer.push(arguments); }
+  gtag('js', new Date());
+
+  gtag('config', 'UA-126030922-1');
+</script>
+
+
+
+
+
+
+</html>
