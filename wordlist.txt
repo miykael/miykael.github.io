@@ -2,6 +2,7 @@ ADHD
 AMLD
 ASD
 AUTOTUNE
+AlphaLum
 Atlasreader
 AveragePooling
 BatchNormalization
@@ -317,6 +318,7 @@ init
 initializer
 initializers
 inplace
+inproceedings
 interferometry
 interpretable
 io
