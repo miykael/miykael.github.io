@@ -9,7 +9,7 @@ ___
 ## Professional Experience
 
 <p style="font-size:0.85rem; margin-bottom: 0">2025 - present</p>
-<p style="font-size:1.25rem; margin-bottom: 0"><b>Lead AI Research Scientist</b> · <i>AlphaLum, Lausanne</i></p>
+<p style="font-size:1.25rem; margin-bottom: 0"><b>Principal AI Scientist</b> · <i>AlphaLum, Lausanne</i></p>
 Lead AI strategy, integration, and innovation across the company, optimizing advanced algorithms for ultra-efficient optical systems, smart sensing, and human-computer interfaces. Focused on delivering low-cost, high-performance solutions on resource-constrained devices. Ensure company-wide AI readiness through hands-on training and cross-disciplinary collaboration. Work closely with engineering teams and customers, leveraging the latest AI advancements to accelerate productivity, enhance technologies, and pioneer future breakthroughs.
 
 <p style="font-size:0.85rem; margin-bottom: 0">2023 - 2025</p>
